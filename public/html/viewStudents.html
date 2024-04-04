@@ -29,7 +29,7 @@
     <script>
         $(document).ready(function() {
             // Fetch student data using jQuery AJAX
-            $.getJSON('../php/getStudents.php', function(data) {
+            $.getJSON('../../src/php/getStudents.php', function(data) {
                 // Process the data and create table rows
                 $.each(data, function(index, student) {
                     var row = $('<tr>');
