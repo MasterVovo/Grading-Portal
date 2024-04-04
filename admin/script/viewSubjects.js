@@ -23,19 +23,24 @@ $(document).ready(function() {
         var row = $(this).closest('tr');
         var courseID = row.find('td:eq(0)').text();
         var newCourseCode = row.find('td:eq(1) input[type="text"]').val();
-        var newCourseTitle = row.find('td:eq(2) input[type="text"]').val();// Update this line
+        var newCourseTitle = row.find('td:eq(2) input[type="text"]').val();
+
+        var isConfirmed = confirm('Are you sure you want to update this subject?');
+
+        if (!isConfirmed) {
+            return;
+        }
+    
         console.log(row, courseID, newCourseCode, newCourseTitle);
-
+    
         console.log('Attempting to update subject with ID:', newCourseCode, 'New Title:', newCourseTitle);
-
-        // Check if the newCourseTitle is correctly retrieved
+    
         if ((typeof newCourseTitle === 'undefined' || newCourseTitle === '') || typeof newCourseCode === 'undefined' || newCourseCode === '') {
             console.error('New course title is undefined or empty. Please check the input.');
             alert('New course title is undefined or empty. Please check the input.');
-            return; // Exit the function if the newCourseTitle is not correctly retrieved
+            return;
         }
-
-        // Send updated subject data to the server
+    
         $.ajax({
             type: 'POST',
             url: '../../src/php/updateSubjects.php',
@@ -45,25 +50,27 @@ $(document).ready(function() {
                 crsTitle: newCourseTitle
             },
             success: function(response) {
-                // Handle success response
                 console.log('Server response:', response);
                 if (response.message) {
                     alert(response.message);
                 } else if (response.error) {
-                    alert(response.error);
+                    alert('Error: ' + response.error);
+                } else {
+                    // Reset row to uneditable state
+                    row.find('td:eq(1), td:eq(2)').each(function() {
+                        var currentContent = $(this).find('input[type="text"]').val();
+                        $(this).text(currentContent);
+                    });
+    
+                    row.find('.edit-btn').show(); // Show edit button
+                    row.find('.submit-btn, .cancel-btn').remove(); // Remove submit and cancel buttons
                 }
             },
             error: function(xhr, status, error) {
-                // Handle error response
                 console.error('Error updating subject:', error);
                 alert('Error updating subject: ' + error);
             }
         });
-
-        // Remove submit and cancel buttons
-        row.find('.edit-btn').show(); // Show edit button
-        $(this).siblings('.submit-btn').remove();
-        $(this).hide();
     });
 
     // Event delegation to handle clicks on the cancel button
@@ -115,5 +122,13 @@ $(document).ready(function() {
     })
     .fail(function(jqXHR, textStatus, errorThrown) {
         console.error('Error:', errorThrown);
+    });
+
+    $('#subjects-table').on('keydown', 'input[type="text"]', function(event) {
+        if (event.keyCode === 13) { // Check if Enter key was pressed
+            var row = $(this).closest('tr');
+            var submitBtn = row.find('.submit-btn');
+            submitBtn.click(); // Trigger click event on the submit button
+        }
     });
 });
