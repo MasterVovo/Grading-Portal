@@ -1,6 +1,6 @@
 <?php
 
-include "dbConn.php";
+include "../model/dbConn.php";
 
 class Student {
     public $stdID;
@@ -43,17 +43,23 @@ class StudentRepository {
                 $students[] = $student;
             }
 
+            // Close the database connection
             mysqli_close($this->conn);
+
             return $students;
         } else {
-            echo "Error fetching student data from the database";
+            // Handle database query error
+            echo json_encode(array("error" => "Error fetching student data from the database"));
             return null;
         }
     }
 }
 
+// Create a new Database instance
+$db = new Database($servername, $username, $password, $dbname);
+
 // Create a new StudentRepository instance
-$studentRepository = new StudentRepository($conn);
+$studentRepository = new StudentRepository($db->getConnection());
 
 // Get all students from the database
 $students = $studentRepository->getAllStudents();
