@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../scripts/ecr.js" defer></script>
+    <title>Electronic Class Record</title>
+</head>
+<body>
+    <form action="" id="form-ecr">
+        <label for="ecr">Import ECR</label>
+        <input type="file" accept=".xlsm" name="ecr" id="input-ecr">
+
+        <label for="startCell">Starting Cell</label>
+        <input type="text" id="startCell">
+
+        <label for="endCell">End Cell</label>
+        <input type="text" id="endCell">
+
+        <input type="submit" name="submit">
+        
+    </form>
+    <p class="error"></p>
+</body>
+</html>
