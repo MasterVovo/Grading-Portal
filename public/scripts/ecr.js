@@ -1,4 +1,5 @@
 const formECR = document.querySelector('#form-ecr');
+const idGrdForm = document.querySelector('#idGrdForm');
 
 formECR.addEventListener('submit', (event) => {
     event.preventDefault();
@@ -31,4 +32,45 @@ formECR.addEventListener('submit', (event) => {
         // Notify when no file is seleted.
         alert("Please select a file");
     }
-})
+});
+
+idGrdForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    const crsID = document.querySelector('#crsID');
+    const grdTerm = document.querySelector('#grdTerm');
+    const id = document.querySelector('#id');
+    const grd = document.querySelector('#grd');
+
+    console.log(isValueEmpty([crsID, grdTerm, id, grd]));
+    console.log(crsID.value === '');
+    console.log(grdTerm.value === '');
+    console.log(id.value === '');
+    console.log(grd.value === '');
+    if (!(isValueEmpty([crsID, grdTerm, id, grd]))) {
+        const formData = new FormData();
+        formData('crsID', crsID.value);
+        formData('grdTerm', grdTerm.value);
+        formData('id', id.value);
+        formData('grd', grd.value);
+
+        fetch('../../src/controller/setGrades.php', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.text())
+        .then(data => document.querySelector('.error').innerHTML = data)
+        .catch((error) => {
+            console.error(error);
+            document.querySelector('.error').innerHTML = error;
+        });
+    } else {
+        alert("There's an empty field");
+    }
+
+    
+});
+
+function isValueEmpty(arr) {
+    return arr.some(elem => elem.value === '');
+}
