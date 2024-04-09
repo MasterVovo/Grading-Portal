@@ -44,10 +44,10 @@ idGrdForm.addEventListener('submit', (event) => {
     
     if (!(isValueEmpty([crsID, grdTerm, id, grd]))) {
         const formData = new FormData();
-        formData('crsID', crsID.value);
-        formData('grdTerm', grdTerm.value);
-        formData('id', id.value);
-        formData('grd', grd.value);
+        formData.append('crsID', crsID.value);
+        formData.append('grdTerm', grdTerm.value);
+        formData.append('id', id.value);
+        formData.append('grd', grd.value);
 
         fetch('../../src/controller/setGrades.php', {
             method: 'POST',
