@@ -41,12 +41,7 @@ idGrdForm.addEventListener('submit', (event) => {
     const grdTerm = document.querySelector('#grdTerm');
     const id = document.querySelector('#id');
     const grd = document.querySelector('#grd');
-
-    console.log(isValueEmpty([crsID, grdTerm, id, grd]));
-    console.log(crsID.value === '');
-    console.log(grdTerm.value === '');
-    console.log(id.value === '');
-    console.log(grd.value === '');
+    
     if (!(isValueEmpty([crsID, grdTerm, id, grd]))) {
         const formData = new FormData();
         formData('crsID', crsID.value);
