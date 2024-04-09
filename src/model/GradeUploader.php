@@ -2,7 +2,7 @@
 
 require_once 'DBConn.php';
 
-class GradeUploader extends DBConn {
+class GradeUploader {
     private $idsAndGrades, $thrID, $crsID;
     public function __construct($idsAndGrades, $thrID, $crsID) {
         $this->idsAndGrades = $idsAndGrades;
@@ -16,12 +16,12 @@ class GradeUploader extends DBConn {
         $sql = "INSERT INTO grdtable(stdID, thrID, crsID, grdMidTerm) VALUES (:stdID, :thrID, :crsID, :grdMidTerm)";
         $stmt = $conn->prepare($sql);
 
-        foreach ($this->idsAndGrades as $idAndGrade) {
+        foreach ($this->idsAndGrades as $id => $grd) {
             $stmt->execute([
-                ':stdID' => $idAndGrade[0],
+                ':stdID' => $id,
                 ':thrID' => $this->thrID,
                 ':crsID' => $this->crsID,
-                ':grdMidTerm' => $idAndGrade[1]
+                ':grdMidTerm' => $grd
             ]);
         }
     }
