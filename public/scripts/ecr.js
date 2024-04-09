@@ -4,6 +4,7 @@ formECR.addEventListener('submit', (event) => {
     event.preventDefault();
 
     const files = document.querySelector('#input-ecr').files;
+    const grdTerm = document.querySelector('#grd-term');
     const idStartCell = document.querySelector('#idStartCell');
     const idEndCell = document.querySelector('#idEndCell');
     const grdStartCell = document.querySelector('#grdStartCell');
@@ -12,6 +13,7 @@ formECR.addEventListener('submit', (event) => {
         // Create form data.
         const formData = new FormData();
         formData.append('ecr', files[0]);
+        formData.append('grdTerm', grdTerm.value);
         formData.append('idStartCell', idStartCell.value);
         formData.append('idEndCell', idEndCell.value);
         formData.append('grdStartCell', grdStartCell.value);
