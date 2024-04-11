@@ -1,54 +1,38 @@
 <?php
+// A singleton pdo mysql connection class
 
-class Database {
-    private $servername;
-    private $username;
-    private $password;
-    private $dbname;
+final class DBConn {
+    private static $instance = null;
     private $conn;
 
-    // Constructor to initialize database connection
-    public function __construct($servername, $username, $password, $dbname) {
-        $this->servername = $servername;
-        $this->username = $username;
-        $this->password = $password;
-        $this->dbname = $dbname;
+    private $host = 'localhost';
+    private $db = 'grading_system';
+    private $charset = 'UTF8';
 
-        // Create connection
-        $this->conn = new mysqli($this->servername, $this->username, $this->password, $this->dbname);
-
-        // Check connection
-        if ($this->conn->connect_error) {
-            die("Connection failed: " . $this->conn->connect_error);
+    private $user = 'root';
+    private $pass = '';
+    
+    private $options = [
+        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+        PDO::ATTR_EMULATE_PREPARES => false,
+    ];
+    
+    private function __construct() {
+        try {
+            $this->conn = new PDO("mysql:host={$this->host};dbname={$this->db};charset={$this->charset};", $this->user, $this->pass, $this->options);
+        } catch (PDOException $e) {
+            echo $e->getMessage();
         }
     }
 
-    // Method to get the database connection
+    public static function getInstance() {
+        if (!(isset(self::$instance)))
+            self::$instance = new DBConn();
+        return self::$instance;
+    }
+
     public function getConnection() {
         return $this->conn;
     }
-
-    // Method to close the database connection
-    public function closeConnection() {
-        $this->conn->close();
-    }
 }
-
-// Usage example:
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "grading_system";
-
-// Create a new Database instance
-$database = new Database($servername, $username, $password, $dbname);
-
-// Get the database connection
-$conn = $database->getConnection();
-
-// Use the connection for database operations
-
-// Close the database connection when done
-$database->closeConnection();
-
-?>
