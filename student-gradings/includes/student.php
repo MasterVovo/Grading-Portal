@@ -5,7 +5,8 @@
 * Date Created:	June 8, 2013
 * Revised By:		
 */
-require_once(LIB_PATH.DS.'database.php');
+// require_once(LIB_PATH.DS.'database.php');
+require_once('database.php');
 class Student {
 	
 	protected static $tbl_name = "tblstudent";

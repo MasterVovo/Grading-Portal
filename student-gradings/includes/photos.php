@@ -5,7 +5,8 @@
 * Date Created:	october 26, 2013
 * Revised By:		
 */
-require_once(LIB_PATH.DS.'database.php');
+// require_once(LIB_PATH.DS.'database.php');
+require_once('database.php');
 class photos {
 	
 	protected static $tbl_name = "photos";
