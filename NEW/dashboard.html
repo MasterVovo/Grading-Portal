@@ -43,7 +43,7 @@ $_SESSION["pfp"] = $pfp = "";
 if ($row["stdImage"] != "") {
   $_SESSION["pfp"] = $pfp = base64_encode($row["stdImage"]); // Set the profile picture in the session
 }
-?> -->
+-->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -84,7 +84,7 @@ if ($row["stdImage"] != "") {
           <h3>Grades</h3>
         </a>
         
-            <a href="logout.php" title="Logout">
+            <a href="logout.html" title="Logout">
           <span class="material-icons-sharp"> logout </span>
           <h3>Logout</h3>
         </a>
@@ -119,7 +119,8 @@ if ($row["stdImage"] != "") {
 
         <div class="profile">
           <div class="info">
-            <?php
+            <p>Good day</p>
+            <!-- <?php
                 echo "<p>Good day 
                   <b>$name</b>
                 </p>"; ?>
@@ -127,18 +128,19 @@ if ($row["stdImage"] != "") {
               <?php
                 echo ucfirst($userType);
               ?>
-            </small>
+            </small> -->
           </div>
           <div class="profile-photo">
-            <img src=
+            <img src="images/KLD LOGO.png" alt="">
+            <!-- <img src=
             <?php 
               if ($pfp == "") {
                 echo "images/profile.png";
               } else {
                 echo "data:image/jpeg;base64,$pfp";
               }
-              ?> 
-            />
+               
+            /> -->
           </div>
         </div>
       </div>
