@@ -3,7 +3,8 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Faculty - Registrar</title>
+    <title>Grading Criteria - Student</title>
+    <meta name="description" content="Ela Admin - HTML5 Admin Template">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="apple-touch-icon" href="https://i.imgur.com/QRAUqs9.png">
@@ -29,45 +30,57 @@
         <nav class="navbar navbar-expand-sm navbar-default">
             <div id="main-menu" class="main-menu collapse navbar-collapse">
                 <ul class="nav navbar-nav">
-                    <li class="menu-title">Teacher:&nbsp;<?php echo $fullName;?></li>
+                <li class="menu-title">ADMIN: &nbsp;&nbsp;&nbsp;<?php echo $staffFullName;?></li>
                     <li class="<?php if($page=='dashboard'){ echo 'active'; }?>">
-                        <a href="index.php"><i class="menu-icon fa fa-dashboard"></i>Dashboard </a>
+                        <a href="dashboard.html"><i class="menu-icon fa fa-dashboard"></i>Dashboard </a>
+                    </li>
+                  
+                        <!-- <li class="menu-item-has-children dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false"> <i class="menu-icon fa fa-user"></i>Admin</a>
+                            <ul class="sub-menu children dropdown-menu">
+                                <li><i class="fa fa-plus"></i><a href="createAdmin.php">Add Administrator</a></li>
+                                <li><i class="fa fa-eye"></i><a href="viewAdmin.php">View Administrator</a></li>
+                            </ul>
+                        </li> -->
+                   
+                   <li class="menu-title">Faculty and Dept.</li>
+                   <li class="<?php if($page=='dashboard'){ echo 'active'; }?>">
+                        <a href="facultyList.html"><i class="menu-icon fa fa-th"></i>Faculty </a>
+                    </li>
+                    <li class="<?php if($page=='dashboard'){ echo 'active'; }?>">
+                        <a href="departmentList.html"><i class="menu-icon fa fa-bars"></i>Department </a>
                     </li>
 
                     <li class="menu-title">Student Section</li>
                     <li class="<?php if($page=='dashboard'){ echo 'active'; }?>">
-                        <a href="index.php"><i class="menu-icon fa fa-users"></i>Student </a>
-                    </li>
-
-                    <li class="<?php if($page=='dashboard'){ echo 'active'; }?>">
-                        <a href="index.php"><i class="menu-icon fa fa-book"></i>Courses </a>
-                    </li>
-
-
-                    <li class="menu-title">Faculty and Dept.</li>
-                    <li class="<?php if($page=='dashboard'){ echo 'active'; }?>">
-                        <a href="index.php"><i class="menu-icon fa fa-book"></i>Faculty </a>
-                    </li>
-
-                    <li class="<?php if($page=='dashboard'){ echo 'active'; }?>">
-                        <a href="index.php"><i class="menu-icon fa fa-users"></i>Student </a>
-                    </li>
+                         <a href="studentList.html"><i class="menu-icon fa fa-users"></i>Student </a>
+                     </li>
+                     <li class="<?php if($page=='dashboard'){ echo 'active'; }?>">
+                         <a href="courseList.html"><i class="menu-icon fa fa-book"></i>Courses </a>
+                     </li>
 
                     <li class="menu-title">ECR</li>
-                    <li class="<?php if($page=='dashboard'){ echo 'active'; }?>">
-                        <a href="index.php"><i class="menu-icon fa fa-file"></i>Grades </a>
+                    <li class="menu-item-has-children dropdown <?php if($page=='result'){ echo 'active'; }?>">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false"> <i class="menu-icon fa fa-file"></i>Result</a>
+                        <ul class="sub-menu children dropdown-menu">
+                            <li><i class="fa fa-plus"></i> <a href="setGrades.html"> Set Grades</a></li>
+                            <li><i class="fa fa-plus"></i> <a href="#"> Final Result</a></li>
+                            <li><i class="fa fa-plus"></i> <a href="gradingCriteria.html"> Grading Criteria</a></li>
+                        </ul>
                     </li>
-                                
+
                     <li class="menu-title">Account</li>
                     <li class="menu-item-has-children dropdown <?php if($page=='profile'){ echo 'active'; }?>">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
-                            aria-expanded="false"> <i class="menu-icon fa fa-user"></i>Profile</a>
+                            aria-expanded="false"> <i class="menu-icon fa fa-user-circle"></i>Profile</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class="menu-icon fa fa-user-circle"></i><a href="updateProfile.php"> Update Profile</a></li>
-                            <!-- <li><i class="menu-icon fa fa-sign-in"></i><a href="changePassword.php">Change Password</a></li> -->
+                            <!-- <li><i class="menu-icon fa fa-key"></i> <a href="changePassword.php">Change Password</a></li> -->
+                            <li><i class="menu-icon fa fa-user"></i> <a href="updateProfile.html">Update Profile</a></li>
                             </li>
                         </ul>
-                        <li>
+                         <li>
                         <a href="logout.php"> <i class="menu-icon fa fa-power-off"></i>Logout </a>
                     </li>
                     </li>
@@ -75,12 +88,7 @@
             </div><!-- /.navbar-collapse -->
         </nav>
     </aside>
-
-   <!-- /#left-panel -->
-
-    <!-- Left Panel -->
-
-    <!-- Right Panel -->
+    <!-- /#left panel -->
 
     <div id="right-panel" class="right-panel">
 
@@ -89,7 +97,7 @@
             <div class="top-left">
                 <div class="navbar-header">
                     <a class="navbar-brand" href="./">Student Grading System</a>
-                    <!-- <a class="navbar-brand hidden" href="./"><img src="../images/logo3.png" alt="Logo"></a> -->
+                    <a class="navbar-brand hidden" href="./">Student Grading System</a>
                     <a id="menuToggle" class="menutoggle"><i class="fa fa-bars"></i></a>
                 </div>
             </div>
@@ -105,16 +113,18 @@
                             </form>
                         </div>
 
+                        
+
                     <div class="user-area dropdown float-right">
                         <a href="#" class="dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true"
                             aria-expanded="false">
-                            <img class="user-avatar rounded-circle" src="../assets/img/admin-icn.png" alt="User Avatar">
-                            <!-- <img class="user-avatar rounded-circle" src="../images/logo.jpeg" alt="User Avatar"> -->
+                            
+                            <img class="user-avatar rounded-circle" src="../assets/img/user2.png" alt="User Avatar">
                         </a>
 
                         <div class="user-menu dropdown-menu">
                             <a class="nav-link" href="updateProfile.php"><i class="fa fa-user"></i>My Profile</a>
-                            <!-- <a class="nav-link" href="changePassword.php"><i class="fa fa-cog"></i>Change Password</a> -->
+                           
 
                             <!-- <a class="nav-link" href="#"><i class="fa fa- user"></i>Notifications <span
                                     class="count">13</span></a> -->
@@ -127,88 +137,119 @@
 
                 </div>
             </div>
-            
         </header>
+        <!-- /Header-->
 
-        <script src="../assets/js/main.js"></script>
-        <!-- /header -->
-        <!-- Header-->
-
-        <div class="breadcrumbs">
-            <div class="breadcrumbs-inner">
-                <div class="row m-0">
-                    <div class="col-sm-4">
-                        <div class="page-header float-left">
-                            <div class="page-title">
-                                <h1>Dashboard</h1>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-8">
-                        <div class="page-header float-right">
-                            <div class="page-title">
-                                <ol class="breadcrumb text-right">
-                                    <li><a href="#">Dashboard</a></li>
-                                    <li><a href="#">Faculty</a></li>
-                                    <li class="active">View Faculty</li>
-                                </ol>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
+       
         <div class="content">
             <div class="animated fadeIn">
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="card">
                           
-                           
                         </div> <!-- .card -->
                     </div><!--/.col-->
                
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
-                                <strong class="card-title"><h2 align="center">All Faculty</h2></strong>
+                                <strong class="card-title"><h3 align="center">GRADING CRITERIA</h3></strong>
                             </div>
                             <div class="card-body">
-                                <table id="bootstrap-data-table" class="table table-hover table-striped table-bordered">
-                                    <thead>
+                                <table class="table table-hover table-striped table-bordered">
+                                       <thead>
                                         <tr>
-                                            <th>#</th>
-                                            <th>Faculty</th>
-                                            <th>Date Created</th>
-                                            <th>Edit</th>
-                                            <th>Delete</th>                                          
-                                            </tr>
+                                            <th>Class Of Diploma</th>
+                                            <th>GPA</th>
+                                        </tr>
                                     </thead>
                                     <tbody>
-                                      
-                            <?php
-        $ret=mysqli_query($con,"SELECT * from tblfaculty");
-        $cnt=1;
-        while ($row=mysqli_fetch_array($ret)) {
-                            ?>
-                <tr>
-                <td><?php echo $cnt;?></td>
-                <td><?php  echo $row['facultyName'];?></td>
-                <td><?php  echo $row['dateCreated'];?></td>
-                <td><a href="editFaculty.php?editid=<?php echo $row['Id'];?>" title="Edit Faculty Details"><i class="fa fa-edit fa-1x"></i></a></td>
-                <td><a onclick="return confirm('Are you sure you want to delete?')" href="deleteFaculty.php?delid=<?php echo $row['Id'];?>" title="Delete Faculty Details"><i class="fa fa-trash fa-1x"></i></a></td>
+                           
+                <tr >
+                <td>Distinction</td>
+                <td>3.50 and Above</td>
                 </tr>
-                <?php 
-                $cnt=$cnt+1;
-                }?>
-                                              
-                                                                                
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
+                 <tr >
+                <td>Upper Credit</td>
+                <td>3.00 - 3.49</td>
+                </tr>
+                 <tr >
+                <td>Lower Credit</td>
+                <td>2.50 - 2.99</td>
+                </tr>
+                 <tr >
+                <td>Pass</td>
+                <td>2.00 - 2.49</td>
+                </tr>
+                 <tr >
+                <td>Fail</td>
+                <td>Below 2.00</td>
+                </tr>
+                </tbody>
+            </table>
+<!-------------------------- FROM THE FINAL RESULT TABLE --------------------------->
+            <table class="table table-striped table-bordered">
+                <thead>
+                <tr>
+                    <th>Score</th>
+                    <th>Grade Point Equivalent</th>
+                    <th>Letter Grade</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr >
+                <td>75 - 100</td>
+                <td>4.00</td>
+                <td>AA</td>
+                </tr>
+                <tr >
+                <td>70 - 74</td>
+                <td>3.50</td>
+                <td>A</td>
+                </tr>
+                <tr >
+                <td>65 - 69</td>
+                <td>3.25</td>
+                <td>AB</td>
+                </tr>
+                <tr >
+                <td>60 - 64</td>
+                <td>3.00</td>
+                <td>B</td>
+                </tr>
+                <tr >
+                <td>55 - 59</td>
+                <td>2.75</td>
+                <td>BC</td>
+                </tr>
+                <tr >
+                <td>50 - 54</td>
+                <td>2.50</td>
+                <td>C</td>
+                </tr>
+                <tr >
+                <td>45 - 49</td>
+                <td>2.25</td>
+                <td>CD</td>
+                </tr>
+                <tr >
+                <td>40 - 44</td>
+                <td>2.00</td>
+                <td>D</td>
+                </tr>
+                <tr >
+                <td>0 - 39</td>
+                <td>0.00</td>
+                <td>F</td>
+                </tr>
+                                                                                    
+                    </tbody>
+                </table>
+                <a href="printGradingCriteria.php" class="btn btn-info"><i class="fa fa-print"></i> Print</a>
+            </div>
+        </div>
+    </div>
+                    
 <!-- end of datatable -->
 
             </div>
@@ -222,7 +263,7 @@
             <div class="footer-inner bg-white">
                 <div class="row">
                     <div class="col-sm-6">
-                    &copy; 2024 Student Grading System
+                        &copy; 2024 Student Grading System
                     </div>
                     <div class="col-sm-6 text-right">
                         <!-- Designed by <a href="https://colorlib.com">Colorlib</a> -->
@@ -230,7 +271,7 @@
                 </div>
             </div>
         </footer>
-        <!-- /.site-footer -->
+        <!-- /Footer -->
 
 
 </div><!-- /#right-panel -->
@@ -277,8 +318,6 @@
             } 
                 
             }); 
-
-      
   </script>
 
 </body>

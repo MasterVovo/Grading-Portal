@@ -33,24 +33,24 @@
                 <ul class="nav navbar-nav">
                     <li class="menu-title">Teacher:&nbsp;<?php echo $fullName;?></li>
                     <li class="<?php if($page=='dashboard'){ echo 'active'; }?>">
-                        <a href="index.php"><i class="menu-icon fa fa-dashboard"></i>Dashboard </a>
+                        <a href="dashboard.html"><i class="menu-icon fa fa-dashboard"></i>Dashboard </a>
                     </li>
 
                     <li class="<?php if($page=='dashboard'){ echo 'active'; }?>">
-                        <a href="index.php"><i class="menu-icon fa fa-users"></i>Student </a>
+                        <a href="studentList.html"><i class="menu-icon fa fa-users"></i>Student </a>
                     </li>
 
                     <li class="<?php if($page=='dashboard'){ echo 'active'; }?>">
-                        <a href="index.php"><i class="menu-icon fa fa-book"></i>Courses </a>
+                        <a href="courseList.html"><i class="menu-icon fa fa-book"></i>Courses </a>
                     </li>
 
                     <li class="menu-item-has-children dropdown <?php if($page=='result'){ echo 'active'; }?>">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
                             aria-expanded="false"> <i class="menu-icon fa fa-file"></i>Result</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class="fa fa-plus"></i> <a href="studentResult.php"> Set Grades</a></li>
-                            <li><i class="fa fa-plus"></i> <a href="viewFinalResult.php"> Final Result</a></li>
-                            <li><i class="fa fa-plus"></i> <a href="gradingCriteria.php"> Grading Criteria</a></li>
+                            <li><i class="fa fa-plus"></i> <a href="setGrades.html"> Set Grades</a></li>
+                            <li><i class="fa fa-plus"></i> <a href="#"> Final Result</a></li>
+                            <li><i class="fa fa-plus"></i> <a href="gradingCriteria.html"> Grading Criteria</a></li>
                         </ul>
                     </li>
                                 
@@ -59,7 +59,7 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
                             aria-expanded="false"> <i class="menu-icon fa fa-user"></i>Profile</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class="menu-icon fa fa-user-circle"></i><a href="updateProfile.php"> Update Profile</a></li>
+                            <li><i class="menu-icon fa fa-user-circle"></i><a href="updateProfile.html"> Update Profile</a></li>
                             <!-- <li><i class="menu-icon fa fa-sign-in"></i><a href="changePassword.php">Change Password</a></li> -->
                             </li>
                         </ul>

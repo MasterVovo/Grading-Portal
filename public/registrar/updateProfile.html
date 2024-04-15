@@ -3,7 +3,8 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Courses - Registrar</title>
+    <title>Update Profile - Student</title>
+    <meta name="description" content="Ela Admin - HTML5 Admin Template">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="apple-touch-icon" href="https://i.imgur.com/QRAUqs9.png">
@@ -31,31 +32,31 @@
                 <ul class="nav navbar-nav">
                     <li class="menu-title">Teacher:&nbsp;<?php echo $fullName;?></li>
                     <li class="<?php if($page=='dashboard'){ echo 'active'; }?>">
-                        <a href="index.php"><i class="menu-icon fa fa-dashboard"></i>Dashboard </a>
+                        <a href="dashboard.html"><i class="menu-icon fa fa-dashboard"></i>Dashboard </a>
                     </li>
 
                     <li class="menu-title">Student Section</li>
                     <li class="<?php if($page=='dashboard'){ echo 'active'; }?>">
-                        <a href="index.php"><i class="menu-icon fa fa-users"></i>Student </a>
+                        <a href="studentList.html"><i class="menu-icon fa fa-users"></i>Student </a>
                     </li>
 
                     <li class="<?php if($page=='dashboard'){ echo 'active'; }?>">
-                        <a href="index.php"><i class="menu-icon fa fa-book"></i>Courses </a>
+                        <a href="courseList.html"><i class="menu-icon fa fa-book"></i>Courses </a>
                     </li>
 
 
                     <li class="menu-title">Faculty and Dept.</li>
                     <li class="<?php if($page=='dashboard'){ echo 'active'; }?>">
-                        <a href="index.php"><i class="menu-icon fa fa-book"></i>Faculty </a>
+                        <a href="facultyList.html"><i class="menu-icon fa fa-book"></i>Faculty </a>
                     </li>
 
                     <li class="<?php if($page=='dashboard'){ echo 'active'; }?>">
-                        <a href="index.php"><i class="menu-icon fa fa-users"></i>Student </a>
+                        <a href="departmentList.html"><i class="menu-icon fa fa-users"></i>Department </a>
                     </li>
 
                     <li class="menu-title">ECR</li>
                     <li class="<?php if($page=='dashboard'){ echo 'active'; }?>">
-                        <a href="index.php"><i class="menu-icon fa fa-file"></i>Grades </a>
+                        <a href="grades.html"><i class="menu-icon fa fa-file"></i>Grades </a>
                     </li>
                                 
                     <li class="menu-title">Account</li>
@@ -63,7 +64,7 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
                             aria-expanded="false"> <i class="menu-icon fa fa-user"></i>Profile</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class="menu-icon fa fa-user-circle"></i><a href="updateProfile.php"> Update Profile</a></li>
+                            <li><i class="menu-icon fa fa-user-circle"></i><a href="updateProfile.html"> Update Profile</a></li>
                             <!-- <li><i class="menu-icon fa fa-sign-in"></i><a href="changePassword.php">Change Password</a></li> -->
                             </li>
                         </ul>
@@ -78,8 +79,6 @@
 
    <!-- /#left-panel -->
 
-    <!-- Left Panel -->
-
     <!-- Right Panel -->
 
     <div id="right-panel" class="right-panel">
@@ -89,7 +88,7 @@
             <div class="top-left">
                 <div class="navbar-header">
                     <a class="navbar-brand" href="./">Student Grading System</a>
-                    <!-- <a class="navbar-brand hidden" href="./"><img src="../images/logo3.png" alt="Logo"></a> -->
+                    <a class="navbar-brand hidden" href="./">Student Grading System</a>
                     <a id="menuToggle" class="menutoggle"><i class="fa fa-bars"></i></a>
                 </div>
             </div>
@@ -105,16 +104,18 @@
                             </form>
                         </div>
 
+                        
+
                     <div class="user-area dropdown float-right">
                         <a href="#" class="dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true"
                             aria-expanded="false">
-                            <img class="user-avatar rounded-circle" src="../assets/img/admin-icn.png" alt="User Avatar">
-                            <!-- <img class="user-avatar rounded-circle" src="../images/logo.jpeg" alt="User Avatar"> -->
+                            
+                            <img class="user-avatar rounded-circle" src="../assets/img/user2.png" alt="User Avatar">
                         </a>
 
                         <div class="user-menu dropdown-menu">
                             <a class="nav-link" href="updateProfile.php"><i class="fa fa-user"></i>My Profile</a>
-                            <!-- <a class="nav-link" href="changePassword.php"><i class="fa fa-cog"></i>Change Password</a> -->
+                           
 
                             <!-- <a class="nav-link" href="#"><i class="fa fa- user"></i>Notifications <span
                                     class="count">13</span></a> -->
@@ -127,10 +128,7 @@
 
                 </div>
             </div>
-            
         </header>
-
-        <script src="../assets/js/main.js"></script>
         <!-- /header -->
         <!-- Header-->
 
@@ -149,8 +147,8 @@
                             <div class="page-title">
                                 <ol class="breadcrumb text-right">
                                     <li><a href="#">Dashboard</a></li>
-                                    <li><a href="#">Courses</a></li>
-                                    <li class="active">View Courses</li>
+                                    <li><a href="#">Profile</a></li>
+                                    <li class="active">Update Information</li>
                                 </ol>
                             </div>
                         </div>
@@ -164,69 +162,64 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="card">
-                          
-                           
+                            <div class="card-header">
+                                <strong class="card-title">Update Profile Information</strong>
+                            </div>
+                            <div class="card-body">
+                                <!-- Credit Card -->
+                                <div id="pay-invoice">
+                                    <div class="card-body">
+                                       <div class="<?php echo $alertStyle;?>" role="alert"><?php echo $statusMsg;?></div>
+                                        <form method="Post" action="">
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <div class="form-group">
+                                                        <label for="cc-exp" class="control-label mb-1">Firstname</label>
+                                                        <input id="" name="firstname" type="tel" class="form-control cc-exp" value="<?php echo $rrow['firstName'];?>" Required data-val="true" data-val-required="Please enter the card expiration" data-val-cc-exp="Please enter a valid month and year" placeholder="Firstname">
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                    <label for="x_card_code" class="control-label mb-1">Lastname</label>
+                                                        <input id="" name="lastname" type="tel" class="form-control cc-cvc" value="<?php echo $rrow['lastName'];?>" Required data-val="true" data-val-required="Please enter the security code" data-val-cc-cvc="Please enter a valid security code" placeholder="Lastname">
+                                                        </div>
+                                                    </div>
+                                                    <div>
+
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <div class="form-group">
+                                                        <label for="cc-exp" class="control-label mb-1">Othername</label>
+                                                        <input id="" name="othername" type="text" class="form-control cc-exp" value="<?php echo $rrow['otherName'];?>" data-val="true" data-val-required="Please enter the card expiration" data-val-cc-exp="Please enter a valid month and year" placeholder="Othername">
+                                                    </div>
+                                                </div>
+                                            <div class="col-6">
+                                                <div class="form-group">
+                                                    <label for="x_card_code" class="control-label mb-1">Email Address</label>
+                                                    <input id="" name="emailAddress" type="email" class="form-control cc-cvc" value="<?php echo $rrow['emailAddress'];?>" Required data-val="true" data-val-required="Please enter the security code" data-val-cc-cvc="Please enter a valid security code" placeholder="Email Address">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                                <div class="col-6">
+                                                    <div class="form-group">
+                                                        <label for="cc-exp" class="control-label mb-1">Phone Number</label>
+                                                        <input id="" name="phoneNo" type="text" class="form-control cc-exp" value="<?php echo $rrow['phoneNo'];?>" Required data-val="true" data-val-required="Please enter the card expiration" data-val-cc-exp="Please enter a valid month and year" placeholder="Phone Number">
+                                                    </div>
+                                                </div>
+                                           
+                                        </div>
+
+                                                <button type="submit" name="submit" class="btn btn-success">Update Profile</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
                         </div> <!-- .card -->
                     </div><!--/.col-->
                
-                    <div class="col-md-12">
-                        <div class="card">
-                            <div class="card-header">
-                                <strong class="card-title"><h2 align="center">All Courses</h2></strong>
-                            </div>
-                            <div class="card-body">
-                                <table id="bootstrap-data-table" class="table table-hover table-striped table-bordered">
-                                    <thead>
-                                        <tr>
-                                            <th>#</th>
-                                            <th>Title</th>
-                                            <th>Code</th>
-                                            <th>Unit</th>
-                                            <th>Level</th>
-                                            <th>Faculty</th>
-                                            <th>Department</th>
-                                             <th>Semester</th>
-                                            <th>Date Added</th>
-                                            <th>Actions</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                      
-                            <?php
-                $ret=mysqli_query($con,"SELECT tblcourse.courseCode,tblcourse.courseTitle,tblcourse.dateAdded,
-                tblcourse.courseUnit,tbllevel.levelName,tblfaculty.facultyName,tbldepartment.departmentName,tblsemester.semesterName
-                from tblcourse 
-                INNER JOIN tbllevel ON tbllevel.Id = tblcourse.levelId
-                INNER JOIN tblsemester ON tblsemester.Id = tblcourse.semesterId
-                INNER JOIN tblfaculty ON tblfaculty.Id = tblcourse.facultyId
-                INNER JOIN tbldepartment ON tbldepartment.Id = tblcourse.departmentId");
 
-                $cnt=1;
-                while ($row=mysqli_fetch_array($ret)) {
-                            ?>
-                <tr>
-                <td><?php echo $cnt;?></td>
-                <td><?php  echo $row['courseTitle'];?></td>
-                <td><?php  echo $row['courseCode'];?></td>
-                <td><?php  echo $row['courseUnit'];?></td>
-                <td><?php  echo $row['levelName'];?></td>
-                <td><?php  echo $row['facultyName'];?></td>
-                <td><?php  echo $row['departmentName'];?></td>
-                <td><?php  echo $row['semesterName'];?></td>
-                <td><?php  echo $row['dateAdded'];?></td>
-                <td><a href="editCourses.php?editCourseId=<?php echo $row['courseCode'];?>" title="Edit Details"><i class="fa fa-edit fa-1x"></i></a>
-                <a onclick="return confirm('Are you sure you want to delete?')" href="deleteCourse.php?delid=<?php echo $row['courseCode'];?>" title="Delete Course"><i class="fa fa-trash fa-1x"></i></a></td>
-                </tr>
-                <?php 
-                $cnt=$cnt+1;
-                }?>
-                                                                                
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-<!-- end of datatable -->
 
             </div>
         </div><!-- .animated -->
@@ -239,7 +232,7 @@
             <div class="footer-inner bg-white">
                 <div class="row">
                     <div class="col-sm-6">
-                    &copy; 2024 Student Grading System
+                        &copy; 2024 Student Grading System
                     </div>
                     <div class="col-sm-6 text-right">
                         <!-- Designed by <a href="https://colorlib.com">Colorlib</a> -->
@@ -294,9 +287,6 @@
             } 
                 
             }); 
-
-
-      
   </script>
 
 </body>

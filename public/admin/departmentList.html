@@ -31,7 +31,7 @@
                 <ul class="nav navbar-nav">
                 <li class="menu-title">ADMIN: &nbsp;&nbsp;&nbsp;<?php echo $staffFullName;?></li>
                     <li class="<?php if($page=='dashboard'){ echo 'active'; }?>">
-                        <a href="index.php"><i class="menu-icon fa fa-dashboard"></i>Dashboard </a>
+                        <a href="dashboard.html"><i class="menu-icon fa fa-dashboard"></i>Dashboard </a>
                     </li>
                   
                         <!-- <li class="menu-item-has-children dropdown">
@@ -45,23 +45,29 @@
                    
                    <li class="menu-title">Faculty and Dept.</li>
                    <li class="<?php if($page=='dashboard'){ echo 'active'; }?>">
-                        <a href="index.php"><i class="menu-icon fa fa-th"></i>Faculty </a>
+                        <a href="facultyList.html"><i class="menu-icon fa fa-th"></i>Faculty </a>
                     </li>
                     <li class="<?php if($page=='dashboard'){ echo 'active'; }?>">
-                        <a href="index.php"><i class="menu-icon fa fa-bars"></i>Department </a>
+                        <a href="departmentList.html"><i class="menu-icon fa fa-bars"></i>Department </a>
                     </li>
 
                     <li class="menu-title">Student Section</li>
                     <li class="<?php if($page=='dashboard'){ echo 'active'; }?>">
-                         <a href="index.php"><i class="menu-icon fa fa-users"></i>Student </a>
+                         <a href="studentList.html"><i class="menu-icon fa fa-users"></i>Student </a>
                      </li>
                      <li class="<?php if($page=='dashboard'){ echo 'active'; }?>">
-                         <a href="index.php"><i class="menu-icon fa fa-book"></i>Courses </a>
+                         <a href="courseList.html"><i class="menu-icon fa fa-book"></i>Courses </a>
                      </li>
 
                     <li class="menu-title">ECR</li>
-                    <li class="<?php if($page=='dashboard'){ echo 'active'; }?>">
-                        <a href="index.php"><i class="menu-icon fa fa-file"></i>Grades </a>
+                    <li class="menu-item-has-children dropdown <?php if($page=='result'){ echo 'active'; }?>">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false"> <i class="menu-icon fa fa-file"></i>Result</a>
+                        <ul class="sub-menu children dropdown-menu">
+                            <li><i class="fa fa-plus"></i> <a href="setGrades.html"> Set Grades</a></li>
+                            <li><i class="fa fa-plus"></i> <a href="#"> Final Result</a></li>
+                            <li><i class="fa fa-plus"></i> <a href="gradingCriteria.html"> Grading Criteria</a></li>
+                        </ul>
                     </li>
 
                     <li class="menu-title">Account</li>
@@ -70,7 +76,7 @@
                             aria-expanded="false"> <i class="menu-icon fa fa-user-circle"></i>Profile</a>
                         <ul class="sub-menu children dropdown-menu">
                             <!-- <li><i class="menu-icon fa fa-key"></i> <a href="changePassword.php">Change Password</a></li> -->
-                            <li><i class="menu-icon fa fa-user"></i> <a href="updateProfile.php">Update Profile</a></li>
+                            <li><i class="menu-icon fa fa-user"></i> <a href="updateProfile.html">Update Profile</a></li>
                             </li>
                         </ul>
                          <li>
