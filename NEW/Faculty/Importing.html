@@ -43,7 +43,7 @@ $_SESSION["pfp"] = $pfp = "";
 if ($row["stdImage"] != "") {
   $_SESSION["pfp"] = $pfp = base64_encode($row["stdImage"]); // Set the profile picture in the session
 }
--->
+?> -->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -53,8 +53,9 @@ if ($row["stdImage"] != "") {
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>KLD Student Portal</title>
   <link rel="shortcut icon" href="images/KLD LOGO.png" type="image/x-icon">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet" />
-  
+
   <link rel="stylesheet" href="dashboard.css" />
 </head>
 
@@ -76,16 +77,16 @@ if ($row["stdImage"] != "") {
           <span class="material-icons-sharp"> account_circle </span>
           <h3>Account</h3>
         </a>
-        <a href="#" class="active" title="Home">
+        <a href="facultyView.html" title="Home">
           <span class="material-icons-sharp"> home </span>
           <h3>Dashboard</h3>
         </a>
-        <a href="grades.php" title="News">
+        <a href="dashboard.html" class="active" title="Home">
           <span class="material-icons-sharp"> grade </span>
-          <h3>Grades</h3>
+          <h3>Grading</h3>
         </a>
         
-            <a href="logout.html" title="Logout">
+            <a href="logout.php" title="Logout">
           <span class="material-icons-sharp"> logout </span>
           <h3>Logout</h3>
         </a>
@@ -100,7 +101,64 @@ if ($row["stdImage"] != "") {
       </div>
       <div class="ann-container">
         <div class="announcement">
-         asdas
+         <div class="search-container">
+          <input type="text" id="search-input" placeholder="Search...">
+          <button type="button" id="search-button"><i class="fas fa-search"></i></button>
+      </div>
+
+      <div id="search-results">
+          <!-- Search results will be displayed here -->
+      </div>  
+
+      <!-- Importing -->
+  
+    <div class="filter-container">
+        <button class="filter-button" data-year="1">First Year</button>
+        <button class="filter-button" data-year="2">Second Year</button>
+        <button class="filter-button" data-year="3">Third Year</button>
+        <button class="filter-button" data-year="4">Fourth Year</button>
+        <button class="filter-button" data-year="">All</button> <!-- Button to reset/filter all results -->
+    </div>
+    
+    <div id="search-results">
+        <!-- Search results will be displayed here -->
+    </div>
+
+  <!-- SUBMIT AND IMPORT BUTTON -->
+  <div class="button-container">
+    <!-- Submit Button -->
+    <button type="submit" class="submit-button"><i class="fas fa-check-circle"></i> Submit</button>
+
+    <!-- Import Button -->
+    <button id="import-button" class="import-button"><i class="fas fa-file-import"></i> Import</button>
+</div>
+
+    <br>
+    <br>
+<!-- TABLE -->
+      <div id="table-container">
+        <table id="data-table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Section</th>
+                    <th>Course Code</th>
+                    <th>Description</th>
+                    <th>Student Number</th>
+                    <th>Semester/Academic Year</th>
+                    <th>Final Grade</th>
+                    <th>Units</th>
+                    <th>Professor's Name</th>
+                </tr>
+            </thead>
+            <tbody id="table-body">
+                <!-- Table data will be inserted dynamically here -->
+            </tbody>
+        </table>
+    </div>
+
+      
+        
         </div>
       </div>
     </main>
@@ -120,8 +178,7 @@ if ($row["stdImage"] != "") {
 
         <div class="profile">
           <div class="info">
-            <p>Good day</p>
-            <!-- <?php
+            <?php
                 echo "<p>Good day 
                   <b>$name</b>
                 </p>"; ?>
@@ -129,19 +186,18 @@ if ($row["stdImage"] != "") {
               <?php
                 echo ucfirst($userType);
               ?>
-            </small> -->
+            </small>
           </div>
           <div class="profile-photo">
-            <img src="images/KLD LOGO.png" alt="">
-            <!-- <img src=
+            <img src=
             <?php 
               if ($pfp == "") {
                 echo "images/profile.png";
               } else {
                 echo "data:image/jpeg;base64,$pfp";
               }
-               
-            /> -->
+              ?> 
+            />
           </div>
         </div>
       </div>
@@ -169,6 +225,10 @@ if ($row["stdImage"] != "") {
       document.getElementById('currentDate').textContent = formattedDate;
     }
   </script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="scripts.js"></script> <!-- Link to your JavaScript file -->
+
 </body>
 
 </html>
