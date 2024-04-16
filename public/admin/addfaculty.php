@@ -56,6 +56,7 @@
     <link rel="stylesheet" href="../styles/cs-skin-elastic.css">
     <link rel="stylesheet" href="../styles/lib/datatable/dataTables.bootstrap.min.css">
     <link rel="stylesheet" href="../styles/style2.css">
+    <link rel="shortcut icon" href="../images/KLD LOGO.png" type="image/x-icon" />
 
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
 
