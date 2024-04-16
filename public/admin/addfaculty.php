@@ -1,48 +1,47 @@
 <?php
 
-include('../includes/dbconnection.php');
-include('../includes/session.php');
-error_reporting(0);
+// include('../includes/dbconnection.php');
+// include('../includes/session.php');
+// error_reporting(0);
 
-if (isset($_POST['submit'])) {
+// if (isset($_POST['submit'])) {
 
-    $alertStyle = "";
-    $statusMsg = "";
+//     $alertStyle = "";
+//     $statusMsg = "";
 
-    $facultyName = $_POST['facultyName'];
-    $dateCreated = date("Y-m-d");
+//     $facultyName = $_POST['facultyName'];
+//     $dateCreated = date("Y-m-d");
 
 
-    $query = mysqli_query($con, "select * from tblfaculty where facultyName ='$facultyName'");
-    $ret = mysqli_fetch_array($query);
-    if ($ret > 0) {
+//     $query = mysqli_query($con, "select * from tblfaculty where facultyName ='$facultyName'");
+//     $ret = mysqli_fetch_array($query);
+//     if ($ret > 0) {
 
-        $alertStyle = "alert alert-danger";
-        $statusMsg = "This Faculty already exist!";
-    } else {
+//         $alertStyle = "alert alert-danger";
+//         $statusMsg = "This Faculty already exist!";
+//     } else {
 
-        $query = mysqli_query($con, "insert into tblfaculty(facultyName,dateCreated) value('$facultyName','$dateCreated')");
+//         $query = mysqli_query($con, "insert into tblfaculty(facultyName,dateCreated) value('$facultyName','$dateCreated')");
 
-        if ($query) {
+//         if ($query) {
 
-            $alertStyle = "alert alert-success";
-            $statusMsg = "Faculty Added Successfully!";
-        } else {
-            $alertStyle = "alert alert-danger";
-            $statusMsg = "An error Occurred!";
-        }
-    }
-}
+//             $alertStyle = "alert alert-success";
+//             $statusMsg = "Faculty Added Successfully!";
+//         } else {
+//             $alertStyle = "alert alert-danger";
+//             $statusMsg = "An error Occurred!";
+//         }
+//     }
+// }
 ?>
 
 <!doctype html>
-<!--[if gt IE 8]><!-->
-<html class="no-js" lang=""> <!--<![endif]-->
+<html class="no-js" lang="">
 
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <?php include 'includes/title.php'; ?>
+    <title>KLD Student Grading Portal</title>
     <meta name="description" content="Ela Admin - HTML5 Admin Template">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -54,29 +53,21 @@ if (isset($_POST['submit'])) {
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lykmapipo/themify-icons@0.1.2/css/themify-icons.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pixeden-stroke-7-icon@1.2.3/pe-icon-7-stroke/dist/pe-icon-7-stroke.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.0/css/flag-icon.min.css">
-    <link rel="stylesheet" href="../assets/css/cs-skin-elastic.css">
-    <link rel="stylesheet" href="../assets/css/lib/datatable/dataTables.bootstrap.min.css">
-    <link rel="stylesheet" href="../assets/css/style2.css">
+    <link rel="stylesheet" href="../styles/cs-skin-elastic.css">
+    <link rel="stylesheet" href="../styles/lib/datatable/dataTables.bootstrap.min.css">
+    <link rel="stylesheet" href="../styles/style2.css">
 
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
-
-    <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script> -->
 
 </head>
 
 <body>
     <!-- Left Panel -->
     <?php $page = "faculty";
-    include 'includes/leftMenu.php'; ?>
-
-    <!-- /#left-panel -->
-
-    <!-- Left Panel -->
+    include 'includes/leftnav.php'; ?>
 
     <!-- Right Panel -->
-
     <div id="right-panel" class="right-panel">
-
         <!-- Header-->
         <?php include 'includes/header.php'; ?>
         <!-- /header -->
@@ -121,7 +112,7 @@ if (isset($_POST['submit'])) {
                                 <!-- Credit Card -->
                                 <div id="pay-invoice">
                                     <div class="card-body">
-                                        <div class="<?php echo $alertStyle; ?>" role="alert"><?php echo $statusMsg; ?></div>
+                                        <div class="<?php /* echo $alertStyle; */ ?>" role="alert"><?php /*  echo $statusMsg;  */ ?></div>
                                         <form method="Post" action="">
                                             <div class="row">
                                                 <div class="col-6">
@@ -130,10 +121,8 @@ if (isset($_POST['submit'])) {
                                                         <input id="" name="facultyName" type="tel" class="form-control cc-exp" value="" placeholder="Faculty Name">
                                                     </div>
                                                 </div>
-
                                             </div>
                                             <div>
-                                                <!-- Log on to codeastro.com for more projects! -->
                                                 <button type="submit" name="submit" class="btn btn-success">Add Faculty</button>
                                             </div>
                                         </form>
@@ -142,54 +131,6 @@ if (isset($_POST['submit'])) {
                             </div>
                         </div> <!-- .card -->
                     </div><!--/.col-->
-
-
-                    <br><br>
-                    <div class="col-md-12">
-                        <div class="card">
-                            <div class="card-header">
-                                <strong class="card-title">
-                                    <h2 align="center">All Faculty</h2>
-                                </strong>
-                            </div>
-                            <div class="card-body">
-                                <table id="bootstrap-data-table" class="table table-hover table-striped table-bordered">
-                                    <thead>
-                                        <tr>
-                                            <!-- Log on to codeastro.com for more projects! -->
-                                            <th>#</th>
-                                            <th>Faculty</th>
-                                            <th>Date Created</th>
-                                            <th>Edit</th>
-                                            <th>Delete</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-
-                                        <?php
-                                        $ret = mysqli_query($con, "SELECT * from tblfaculty");
-                                        $cnt = 1;
-                                        while ($row = mysqli_fetch_array($ret)) {
-                                        ?>
-                                            <tr>
-                                                <td><?php echo $cnt; ?></td>
-                                                <td><?php echo $row['facultyName']; ?></td>
-                                                <td><?php echo $row['dateCreated']; ?></td>
-                                                <!-- Log on to codeastro.com for more projects! -->
-                                                <td><a href="editFaculty.php?editid=<?php echo $row['Id']; ?>" title="Edit Faculty Details"><i class="fa fa-edit fa-1x"></i></a></td>
-                                                <td><a onclick="return confirm('Are you sure you want to delete?')" href="deleteFaculty.php?delid=<?php echo $row['Id']; ?>" title="Delete Faculty Details"><i class="fa fa-trash fa-1x"></i></a></td>
-                                            </tr>
-                                        <?php
-                                            $cnt = $cnt + 1;
-                                        } ?>
-
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- end of datatable -->
-
                 </div>
             </div><!-- .animated -->
         </div><!-- .content -->
@@ -223,10 +164,6 @@ if (isset($_POST['submit'])) {
 
 
     <script type="text/javascript">
-        $(document).ready(function() {
-            $('#bootstrap-data-table-export').DataTable();
-        });
-
         // Menu Trigger
         $('#menuToggle').on('click', function(event) {
             var windowWidth = $(window).width();
