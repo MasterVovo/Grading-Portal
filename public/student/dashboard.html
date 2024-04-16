@@ -73,7 +73,7 @@
         <nav class="navbar navbar-expand-sm navbar-default">
             <div id="main-menu" class="main-menu collapse navbar-collapse">
                 <ul class="nav navbar-nav">
-                    <li class="menu-title">Student:&nbsp;<?php echo $fullName;?></li>
+                    <li class="menu-title">Student:&nbsp;Testing</li>
                     <li class="<?php if($page=='dashboard'){ echo 'active'; }?>">
                         <a href="dashboard.html"><i class="menu-icon fa fa-dashboard"></i>Dashboard </a>
                     </li>
@@ -112,7 +112,7 @@
             </div><!-- /.navbar-collapse -->
         </nav>
     </aside>
-    <!-- /#left-panel -->
+    <!-- /Left-panel -->
     <!-- Right Panel -->
     <div id="right-panel" class="right-panel">
         <!-- Header-->
@@ -142,7 +142,7 @@
                         <a href="#" class="dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true"
                             aria-expanded="false">
                             
-                            <img class="user-avatar rounded-circle" src="../assets/img/user2.png" alt="User Avatar">
+                            <img class="user-avatar rounded-circle" src="../assets/user2.png" alt="User Avatar">
                         </a>
 
                         <div class="user-menu dropdown-menu">
@@ -161,33 +161,31 @@
                 </div>
             </div>
         </header>
-
-        <!-- /#header -->
+        <!-- /Header -->
         <!-- Content -->
         <div class="content">
             <!-- Animated -->
             <div class="animated fadeIn">
                 <!-- Widgets  -->
                 <div class="row">
-
-                <div class="col-lg-12">
+                    <div class="col-lg-12">
                         <div class="card">
                             <div class="card-body">
                                 <h3 align="center"><b>STUDENT DASHBOARD</b></h3>
                             </div>
                             
                         </div>
-                    </div><!-- /# column -->
+                    </div>
 
-                <div class="col-sm-6 col-lg-3">
+                    <div class="col-sm-6 col-lg-3">
                         <div class="card text-white bg-flat-color-3">
                             <div class="card-body">
                                 <div class="card-left pt-1 float-left">
                                     <h3 class="mb-0 fw-r">
                                         <span class="currency float-left mr-1"></span>
-                                        <span class="count"><?php echo $coutAllStudentCourses;?></span>
+                                        <span class="count">9</span>
                                     </h3>
-                                    <p class="text-light mt-1 m-0">Courses</p>
+                                    <p class="text-light mt-1 m-0">No. of Subjects</p>
                                 </div><!-- /.card-left -->
 
                                 <div class="card-right float-right text-right">
@@ -205,9 +203,9 @@
                                 <div class="card-left pt-1 float-left">
                                     <h3 class="mb-0 fw-r">
                                         <span class="currency float-left mr-1"></span>
-                                        <span class="count"><?php echo $countAllStudResult;?></span>
+                                        <span class="count">1.25</span>
                                     </h3>
-                                    <p class="text-light mt-1 m-0">Result</p>
+                                    <p class="text-light mt-1 m-0">Highest Grade Last Semester</p>
                                 </div><!-- /.card-left -->
 
                                 <div class="card-right float-right text-right">
@@ -219,15 +217,15 @@
                         </div>
                     </div>
 
-                <div class="col-sm-6 col-lg-3">
+                    <div class="col-sm-6 col-lg-3">
                         <div class="card text-white bg-secondary">
                             <div class="card-body">
                                 <div class="card-left pt-1 float-left">
                                     <h3 class="mb-0 fw-r">
                                         <span class="currency float-left mr-1"></span>
-                                        <span class="count"><?php echo $countFaculty;?></span>
+                                        <span class="count">2.25</span>
                                     </h3>
-                                    <p class="text-light mt-1 m-0">Faculty</p>
+                                    <p class="text-light mt-1 m-0">Lowest Grade Last Semester</p>
                                 </div><!-- /.card-left -->
 
                                 <div class="card-right float-right text-right">
@@ -245,9 +243,9 @@
                                 <div class="card-left pt-1 float-left">
                                     <h3 class="mb-0 fw-r">
                                         <span class="currency float-left mr-1"></span>
-                                        <span class="count"><?php echo $countDepartment;?></span>
+                                        <span class="count">1.75</span>
                                     </h3>
-                                    <p class="text-light mt-1 m-0">Department</p>
+                                    <p class="text-light mt-1 m-0">1st Year Average</p>
                                 </div><!-- /.card-left -->
 
                                 <div class="card-right float-right text-right">
@@ -258,38 +256,12 @@
 
                         </div>
                     </div>
-
                 </div>
                 <!-- /Widgets -->
-                <!--  Traffic  -->
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="card">
-                            
-                        </div>
-                        </div>
-                        </div>
-                <!--  /Traffic -->
-                <div class="clearfix"></div>
-                <!-- Orders -->
-            
-                <!-- /.orders -->
-                <!-- To Do and Live Chat -->
-            
-                <!-- /To Do and Live Chat -->
-                <!-- Calender Chart Weather  -->
-            
-                <!-- /Calender Chart Weather -->
-                <!-- Modal - Calendar - Add New Event -->
-            
-                <!-- /#event-modal -->
-                <!-- Modal - Calendar - Add Category -->
-            
-                <!-- /#add-category -->
             </div>
             <!-- .animated -->
         </div>
-        <!-- /.content -->
+        <!-- /Content -->
         <div class="clearfix"></div>
         <!-- Footer -->
         <footer class="site-footer">
@@ -299,7 +271,6 @@
                         &copy; 2024 Student Grading System
                     </div>
                     <div class="col-sm-6 text-right">
-                        <!-- Designed by <a href="https://colorlib.com">Colorlib</a> -->
                     </div>
                 </div>
             </div>
@@ -316,7 +287,7 @@
     <!-- <script src="../scripts/main.js"></script> -->
 
     <!--  Chart js -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.7.3/dist/Chart.bundle.min.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/chart.js@2.7.3/dist/Chart.bundle.min.js"></script> -->
 
     <!--Chartist Chart-->
     <!-- <script src="https://cdn.jsdelivr.net/npm/chartist@0.11.0/dist/chartist.min.js"></script>
@@ -334,6 +305,24 @@
     <script src="../scripts/init/fullcalendar-init.js"></script> -->
 
     <!--Local Stuff-->
+    <script>
+        $('#menuToggle').on('click', function(event) {
+        var windowWidth = $(window).width();   		 
+        if (windowWidth<1010) { 
+            $('body').removeClass('open'); 
+            if (windowWidth<760){ 
+            $('#left-panel').slideToggle(); 
+            } else {
+            $('#left-panel').toggleClass('open-menu');  
+            } 
+        } else {
+            $('body').toggleClass('open');
+            $('#left-panel').removeClass('open-menu');  
+        } 
+            
+        }); 
+    </script>
+
     <!-- <script>
         jQuery(document).ready(function ($) {
             "use strict";
