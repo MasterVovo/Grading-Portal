@@ -185,79 +185,109 @@ function showValues(str) {
                                 <div id="pay-invoice">
                                     <div class="card-body">
                                        <div class="" role="alert"></div>
-                                        <form method="Post" action="">
+                                        <form method="Post" action="" id="add-student">
                                             <div class="row">
                                                 <div class="col-6">
                                                     <div class="form-group">
-													
-                                                        <label for="cc-exp" class="control-label mb-1">Firstname</label>
-                                                        <input id="" name="firstname" type="text" class="form-control cc-exp" value="" Required data-val="true" data-val-required="Please enter the card expiration" data-val-cc-exp="Please enter a valid month and year" placeholder="Firstname">
+                                                        <label for="std-id" class="control-label mb-1">Student ID</label>
+                                                        <input id="std-id" name="stdID" type="text" class="form-control cc-exp" value="" required placeholder="Student ID">
                                                     </div>
                                                 </div>
                                                 <div class="col-6">
-												
-                                                    <label for="x_card_code" class="control-label mb-1">Lastname</label>
-                                                        <input id="" name="lastname" type="text" class="form-control cc-cvc" value="" Required data-val="true" data-val-required="Please enter the security code" data-val-cc-cvc="Please enter a valid security code" placeholder="Lastname">
-                                                        </div>
-                                                    </div>
-                                                    <div>
-
-                                            <div class="row">
-                                                <div class="col-6">
-                                                    <div class="form-group">
-													
-                                                        <label for="cc-exp" class="control-label mb-1">Othername</label>
-                                                        <input id="" name="othername" type="text" class="form-control cc-exp" value="" data-val="true" data-val-required="Please enter the card expiration" data-val-cc-exp="Please enter a valid month and year" placeholder="Othername">
-                                                    </div>
-                                                </div>
-                                            <div class="col-6">
-                                                <div class="form-group">
-                                                    <label for="x_card_code" class="control-label mb-1">Level</label>
-                                                    <select required name="levelId" class="custom-select form-control">
-                                                    <option value="">--Select Level--</option>
-                                                    <option value="'.$row['Id'].'" >ROW</option>
-                                                </select>
+                                                    <label for="x_card_code" class="control-label mb-1">First name</label>
+                                                    <input id="" name="fname" type="text" class="form-control cc-cvc" value="" required placeholder="First name">
                                                 </div>
                                             </div>
-                                        </div>
+                                            <div>
 
-                                        <div class="row">
+                                            <div class="row">
                                                 <div class="col-6">
                                                     <div class="form-group">
-                                                        <label for="cc-exp" class="control-label mb-1">Matric No</label>
-                                                        <input id="" name="matricNo" type="text" class="form-control cc-exp" value="" Required data-val="true" data-val-required="Please enter the card expiration" data-val-cc-exp="Please enter a valid month and year" placeholder="Matric Number">
+                                                        <label for="cc-exp" class="control-label mb-1">Middle name</label>
+                                                        <input id="" name="mname" type="text" class="form-control cc-exp" value="" required placeholder="Middle name">
                                                     </div>
                                                 </div>
-                                            <div class="col-6">
-                                                <div class="form-group">
-                                                     <label for="x_card_code" class="control-label mb-1">Session</label>
-                                                     <select required name="sessionId" class="custom-select form-control">
-                                                        <option value="">--Select Session--</option>
+                                                <div class="col-6">
+                                                    <div class="form-group">
+                                                        <label for="cc-exp" class="control-label mb-1">Last name</label>
+                                                        <input id="" name="lname" type="text" class="form-control cc-exp" value="" required placeholder="Last name">
+                                                        
+                                                        <!-- <label for="x_card_code" class="control-label mb-1">Level</label>
+                                                        <select required name="levelId" class="custom-select form-control">
+                                                        <option value="">--Select Level--</option>
+                                                        <option value="'.$row['Id'].'" >ROW</option> -->
+                                                    </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <div class="form-group">
+                                                        <label for="cc-exp" class="control-label mb-1">Email</label>
+                                                        <input id="" name="email" type="email" class="form-control cc-exp" value="" required placeholder="Email">
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                    <div class="form-group">
+                                                        <label for="cc-exp" class="control-label mb-1">Password</label>
+                                                        <input id="" name="pass" type="password" class="form-control cc-exp" value="" placeholder="Password">
+                                                        
+                                                        <!-- <label for="x_card_code" class="control-label mb-1">Session</label>
+                                                        <select required name="sessionId" class="custom-select form-control">
+                                                            <option value="">--Select Session--</option>
                                                             <option value="'.$row['Id'].'" >ROW</option>
-                                                        </select>
+                                                        </select> -->
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                         <div class="row">
+                                            <div class="row">
                                                 <div class="col-6">
                                                     <div class="form-group">
-                                                    <label for="x_card_code" class="control-label mb-1">Faculty</label>
-                                                    <select required name="facultyId" onchange="showValues(this.value)" class="custom-select form-control">
-                                                        <option value="">--Select Faculty--</option>
-                                                        <option value="'.$row['Id'].'" >ROW</option>
-                                                    </select>                                              
-                                                 </div>
+                                                        <label for="x_card_code" class="control-label mb-1">Department</label>
+                                                        <select required name="dept" onchange="showValues(this.value)" class="custom-select form-control">
+                                                            <option value="">--Select Department--</option>
+                                                            <option value="iics" >Institute of Information and Computing Sciences</option>
+                                                            <option value="ioe" >Institute of Engineering</option>
+                                                            <option value="ihpd" >Institute of Human Potential and Development</option>
+                                                        </select>                                              
+                                                    </div>
                                                 </div>
-                                                 <div class="col-6">
+                                                <div class="col-6">
                                                     <div class="form-group">
-                                                   </div>                                  
-                                                 </div>
-                                                 
+                                                        <label for="x_card_code" class="control-label mb-1">Year Level</label>
+                                                        <select required name="year" onchange="showValues(this.value)" class="custom-select form-control">
+                                                            <option value="">--Select Year Level--</option>
+                                                            <option value="1" >1st Year</option>
+                                                            <option value="2" >2nd Year</option>
+                                                            <option value="3" >3rd Year</option>
+                                                            <option value="4" >4th Year</option>
+                                                        </select>
+                                                    </div>                                  
                                                 </div>
-                                             </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <div class="form-group">
+                                                        <label for="x_card_code" class="control-label mb-1">Section</label>
+                                                        <select required name="sect" onchange="showValues(this.value)" class="custom-select form-control">
+                                                            <option value="">--Select Section--</option>
+                                                            <option value="bsis101" >BSIS 101</option>
+                                                            <option value="bsis102" >BSIS 102</option>
+                                                            <option value="bsis103" >BSIS 103</option>
+                                                        </select>                                              
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                    <div class="form-group">
+                                                        
+                                                    </div>                                  
+                                                </div>
+                                            </div>
+                                            </div>
 											 
                                              <p><small><i>Note: By default student's password is set to "<b>???</b>"</i></small></p>
-                                                <button type="submit" name="submit" class="btn btn-success">Add New Student</button>
+                                            <button type="submit" name="submit" class="btn btn-success">Add New Student</button>
                                             </div>
                                         </form>
                                     </div>
