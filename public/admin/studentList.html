@@ -194,8 +194,8 @@ function showValues(str) {
                                                     </div>
                                                 </div>
                                                 <div class="col-6">
-                                                    <label for="x_card_code" class="control-label mb-1">First name</label>
-                                                    <input id="" name="fname" type="text" class="form-control cc-cvc" value="" required placeholder="First name">
+                                                    <label for="fname" class="control-label mb-1">First name</label>
+                                                    <input id="fname" name="fname" type="text" class="form-control cc-cvc" value="" required placeholder="First name">
                                                 </div>
                                             </div>
                                             <div>
@@ -203,14 +203,14 @@ function showValues(str) {
                                             <div class="row">
                                                 <div class="col-6">
                                                     <div class="form-group">
-                                                        <label for="cc-exp" class="control-label mb-1">Middle name</label>
-                                                        <input id="" name="mname" type="text" class="form-control cc-exp" value="" required placeholder="Middle name">
+                                                        <label for="mname" class="control-label mb-1">Middle name</label>
+                                                        <input id="mname" name="mname" type="text" class="form-control cc-exp" value="" required placeholder="Middle name">
                                                     </div>
                                                 </div>
                                                 <div class="col-6">
                                                     <div class="form-group">
-                                                        <label for="cc-exp" class="control-label mb-1">Last name</label>
-                                                        <input id="" name="lname" type="text" class="form-control cc-exp" value="" required placeholder="Last name">
+                                                        <label for="lname" class="control-label mb-1">Last name</label>
+                                                        <input id="lname" name="lname" type="text" class="form-control cc-exp" value="" required placeholder="Last name">
                                                         
                                                         <!-- <label for="x_card_code" class="control-label mb-1">Level</label>
                                                         <select required name="levelId" class="custom-select form-control">
@@ -224,14 +224,14 @@ function showValues(str) {
                                             <div class="row">
                                                 <div class="col-6">
                                                     <div class="form-group">
-                                                        <label for="cc-exp" class="control-label mb-1">Email</label>
-                                                        <input id="" name="email" type="email" class="form-control cc-exp" value="" required placeholder="Email">
+                                                        <label for="email" class="control-label mb-1">Email</label>
+                                                        <input id="email" name="email" type="email" class="form-control cc-exp" value="" required placeholder="Email">
                                                     </div>
                                                 </div>
                                                 <div class="col-6">
                                                     <div class="form-group">
-                                                        <label for="cc-exp" class="control-label mb-1">Password</label>
-                                                        <input id="" name="pass" type="password" class="form-control cc-exp" value="" placeholder="Password">
+                                                        <label for="pass" class="control-label mb-1">Password</label>
+                                                        <input id="pass" name="pass" type="password" class="form-control cc-exp" value="" placeholder="Password">
                                                         
                                                         <!-- <label for="x_card_code" class="control-label mb-1">Session</label>
                                                         <select required name="sessionId" class="custom-select form-control">
@@ -244,8 +244,8 @@ function showValues(str) {
                                             <div class="row">
                                                 <div class="col-6">
                                                     <div class="form-group">
-                                                        <label for="x_card_code" class="control-label mb-1">Department</label>
-                                                        <select required name="dept" onchange="showValues(this.value)" class="custom-select form-control">
+                                                        <label for="dept" class="control-label mb-1">Department</label>
+                                                        <select required id="dept" name="dept" onchange="showValues(this.value)" class="custom-select form-control">
                                                             <option value="">--Select Department--</option>
                                                             <option value="iics" >Institute of Information and Computing Sciences</option>
                                                             <option value="ioe" >Institute of Engineering</option>
@@ -255,8 +255,8 @@ function showValues(str) {
                                                 </div>
                                                 <div class="col-6">
                                                     <div class="form-group">
-                                                        <label for="x_card_code" class="control-label mb-1">Year Level</label>
-                                                        <select required name="year" onchange="showValues(this.value)" class="custom-select form-control">
+                                                        <label for="year" class="control-label mb-1">Year Level</label>
+                                                        <select required id="year" name="year" onchange="showValues(this.value)" class="custom-select form-control">
                                                             <option value="">--Select Year Level--</option>
                                                             <option value="1" >1st Year</option>
                                                             <option value="2" >2nd Year</option>
@@ -269,8 +269,8 @@ function showValues(str) {
                                             <div class="row">
                                                 <div class="col-6">
                                                     <div class="form-group">
-                                                        <label for="x_card_code" class="control-label mb-1">Section</label>
-                                                        <select required name="sect" onchange="showValues(this.value)" class="custom-select form-control">
+                                                        <label for="sect" class="control-label mb-1">Section</label>
+                                                        <select required id="sect" name="sect" onchange="showValues(this.value)" class="custom-select form-control">
                                                             <option value="">--Select Section--</option>
                                                             <option value="bsis101" >BSIS 101</option>
                                                             <option value="bsis102" >BSIS 102</option>
