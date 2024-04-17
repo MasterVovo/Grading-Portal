@@ -211,11 +211,6 @@ function showValues(str) {
                                                     <div class="form-group">
                                                         <label for="lname" class="control-label mb-1">Last name</label>
                                                         <input id="lname" name="lname" type="text" class="form-control cc-exp" value="" required placeholder="Last name">
-                                                        
-                                                        <!-- <label for="x_card_code" class="control-label mb-1">Level</label>
-                                                        <select required name="levelId" class="custom-select form-control">
-                                                        <option value="">--Select Level--</option>
-                                                        <option value="'.$row['Id'].'" >ROW</option> -->
                                                     </select>
                                                     </div>
                                                 </div>
@@ -232,12 +227,6 @@ function showValues(str) {
                                                     <div class="form-group">
                                                         <label for="pass" class="control-label mb-1">Password</label>
                                                         <input id="pass" name="pass" type="password" class="form-control cc-exp" value="" placeholder="Password">
-                                                        
-                                                        <!-- <label for="x_card_code" class="control-label mb-1">Session</label>
-                                                        <select required name="sessionId" class="custom-select form-control">
-                                                            <option value="">--Select Session--</option>
-                                                            <option value="'.$row['Id'].'" >ROW</option>
-                                                        </select> -->
                                                     </div>
                                                 </div>
                                             </div>
@@ -245,7 +234,7 @@ function showValues(str) {
                                                 <div class="col-6">
                                                     <div class="form-group">
                                                         <label for="dept" class="control-label mb-1">Department</label>
-                                                        <select required id="dept" name="dept" onchange="showValues(this.value)" class="custom-select form-control">
+                                                        <select required id="dept" name="dept" class="custom-select form-control">
                                                             <option value="">--Select Department--</option>
                                                             <option value="iics" >Institute of Information and Computing Sciences</option>
                                                             <option value="ioe" >Institute of Engineering</option>
@@ -256,7 +245,7 @@ function showValues(str) {
                                                 <div class="col-6">
                                                     <div class="form-group">
                                                         <label for="year" class="control-label mb-1">Year Level</label>
-                                                        <select required id="year" name="year" onchange="showValues(this.value)" class="custom-select form-control">
+                                                        <select required id="year" name="year" class="custom-select form-control">
                                                             <option value="">--Select Year Level--</option>
                                                             <option value="1" >1st Year</option>
                                                             <option value="2" >2nd Year</option>
@@ -270,7 +259,7 @@ function showValues(str) {
                                                 <div class="col-6">
                                                     <div class="form-group">
                                                         <label for="sect" class="control-label mb-1">Section</label>
-                                                        <select required id="sect" name="sect" onchange="showValues(this.value)" class="custom-select form-control">
+                                                        <select required id="sect" name="sect" class="custom-select form-control">
                                                             <option value="">--Select Section--</option>
                                                             <option value="bsis101" >BSIS 101</option>
                                                             <option value="bsis102" >BSIS 102</option>
