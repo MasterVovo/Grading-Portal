@@ -4,16 +4,18 @@
 require_once '../model/StudentAdder.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $id = $_POST['id'];
+    $stdID = $_POST['stdID'];
     $fname = $_POST['fname'];
     $mname = $_POST['mname'];
     $lname = $_POST['lname'];
     $email = $_POST['email'];
     $pass = $_POST['pass'];
-    $sect = $_POST['sect'];
     $dept = $_POST['dept'];
-
-    $stdUpldr = new StudentAdder($id, $fname, $mname, $lname, $email, $pass, $sect, $dept);
+    $year = $_POST['year'];
+    $sect = $_POST['sect'];
+    
+    $stdUpldr = new StudentAdder($stdID, $fname, $mname, $lname, $email, $pass, $dept, $year, $sect);
+    echo $stdUpldr->uploadToDB();
 } else {
     exit();
 }
