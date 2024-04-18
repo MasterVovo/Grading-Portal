@@ -17,7 +17,7 @@ class CourseAdder {
     public function uploadToDB() {
         $conn = DBConn::getInstance()->getConnection();
         
-        $sql = "INSERT INTO tblfct(crsCode, crsName, dept, year, sem) VALUES (:code, :name, :dept, :year, :sem)";
+        $sql = "INSERT INTO tblcrs(crsCode, crsName, dept, year, sem) VALUES (:code, :name, :dept, :year, :sem)";
         $stmt = $conn->prepare($sql);
         $result = $stmt->execute([
             ':code' => $this->code,
