@@ -24,55 +24,7 @@
 <body>
     <!-- Left Panel -->
     <aside id="left-panel" class="left-panel">
-        <nav class="navbar navbar-expand-sm navbar-default">
-            <div id="main-menu" class="main-menu collapse navbar-collapse">
-                <ul class="nav navbar-nav"> 
-                <li class="menu-title">ADMIN: &nbsp;&nbsp;&nbsp;</li>
-                    <li class="">
-                        <a href="dashboard.html"><i class="menu-icon fa fa-dashboard"></i>Dashboard </a>
-                    </li>
-                   <li class="menu-title">Faculty and Dept.</li>
-                   <li class="">
-                        <a href="facultyList.html"><i class="menu-icon fa fa-th"></i>Faculty </a>
-                    </li>
-                    <li class="">
-                        <a href="departmentList.html"><i class="menu-icon fa fa-bars"></i>Department </a>
-                    </li>
-
-                    <li class="menu-title">Student Section</li>
-                    <li class="">
-                         <a href="studentList.html"><i class="menu-icon fa fa-users"></i>Student </a>
-                     </li>
-                     <li class="">
-                         <a href="courseList.html"><i class="menu-icon fa fa-book"></i>Courses </a>
-                     </li>
-
-                    <li class="menu-title">ECR</li>
-                    <li class="menu-item-has-children dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
-                            aria-expanded="false"> <i class="menu-icon fa fa-file"></i>Result</a>
-                        <ul class="sub-menu children dropdown-menu">
-                            <li><i class="fa fa-plus"></i> <a href="setGrades.html"> Set Grades</a></li>
-                            <li><i class="fa fa-plus"></i> <a href="#"> Final Result</a></li>
-                            <li><i class="fa fa-plus"></i> <a href="gradingCriteria.html"> Grading Criteria</a></li>
-                        </ul>
-                    </li>
-
-                    <li class="menu-title">Account</li>
-                    <li class="menu-item-has-children dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
-                            aria-expanded="false"> <i class="menu-icon fa fa-user-circle"></i>Profile</a>
-                        <ul class="sub-menu children dropdown-menu">
-                            <li><i class="menu-icon fa fa-user"></i> <a href="updateProfile.html">Update Profile</a></li>
-                            </li>
-                        </ul>
-                         <li>
-                        <a href="logout.html"> <i class="menu-icon fa fa-power-off"></i>Logout </a>
-                    </li>
-                    </li>
-                </ul>
-            </div><!-- /.navbar-collapse -->
-        </nav>
+        
     </aside>
 
    <!-- /#left-panel -->
@@ -267,6 +219,14 @@
     <script src="../assets/js/lib/data-table/buttons.colVis.min.js"></script>
     <script src="../assets/js/init/datatables-init.js"></script>
 
+    <!-- Script for adding separate html -->
+    <script>
+        fetch('includes/leftnav.html')
+        .then(response => response.text())
+        .then(data => {
+            document.querySelector('#left-panel').innerHTML = data;
+        });
+    </script>
 
     <script type="text/javascript">
         $(document).ready(function() {
