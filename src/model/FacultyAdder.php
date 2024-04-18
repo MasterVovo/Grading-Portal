@@ -3,7 +3,7 @@
 
 require_once 'DBConn.php';
 
-class StudentAdder {
+class FacultyAdder {
     private $id, $fname, $mname, $lname, $email, $pass;
 
     public function __construct($id, $fname, $mname, $lname, $email, $pass, $dept) {
@@ -19,7 +19,7 @@ class StudentAdder {
     public function uploadToDB() {
         $conn = DBConn::getInstance()->getConnection();
         
-        $sql = "INSERT INTO tblstd(id, fname, mname, lname, email, pass, dept) VALUES (:id, :fname, :mname, :lname, :email, :pass, :dept)";
+        $sql = "INSERT INTO tblfct(id, fname, mname, lname, email, pass, dept) VALUES (:id, :fname, :mname, :lname, :email, :pass, :dept)";
         $stmt = $conn->prepare($sql);
         $result = $stmt->execute([
             ':id' => $this->id,

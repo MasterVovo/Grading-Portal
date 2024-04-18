@@ -1,7 +1,7 @@
 <?php
 // API for adding faculty
 
-require_once '../model/StudentAdder.php';
+require_once '../model/FacultyAdder.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $fctID = $_POST['fctID'];
