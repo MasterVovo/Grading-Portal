@@ -218,37 +218,37 @@ function showLecturer(str) {
                                 <div id="pay-invoice">
                                     <div class="card-body">
                                        <div class="<?php echo $alertStyle;?>" role="alert"><?php echo $statusMsg;?></div>
-                                        <form method="Post" action="">
+                                        <form method="POST" action="#" id="add-course">
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <label for="crs-code" class="control-label mb-1">Course Code</label>
+                                                    <input id="crs-code" name="courseCode" type="text" class="form-control cc-exp" value="" Required placeholder="Course Code">
+                                                </div>
+                                                <div class="col-6">
+                                                    <div class="form-group">
+                                                        <label for="crs-name" class="control-label mb-1">Course Name</label>
+                                                        <input id="crs-name" name="courseTitle" type="text" class="form-control cc-exp" value="" Required placeholder="Course Name">
+                                                    </div>
+                                                </div>
+                                            </div>
                                             <div class="row">
                                                 <div class="col-6">
                                                     <div class="form-group">
-													
-                                                        <label for="cc-exp" class="control-label mb-1">Course Title</label>
-                                                        <input id="" name="courseTitle" type="text" class="form-control cc-exp" value="" Required data-val="true" data-val-required="Please enter the card expiration" data-val-cc-exp="Please enter a valid month and year" placeholder="Course Title">
-                                                    </div>
-                                                </div>
-                                                <div class="col-6">
-												
-                                                    <label for="x_card_code" class="control-label mb-1">Course Code</label>
-                                                        <input id="" name="courseCode" type="text" class="form-control cc-exp" value="" Required placeholder="Course Code">
-                                                        </div>
-                                                    </div>
-                                                    <div>
-                                                <div class="row">
-                                                <div class="col-6">
-                                                    <div class="form-group">
-													
-                                                        <label for="cc-exp" class="control-label mb-1">Course Unit</label>
-                                                        <input id="" name="courseUnit" type="text" class="form-control cc-exp" value="" data-val="true" data-val-required="Please enter the card expiration" data-val-cc-exp="Please enter a valid month and year" placeholder="Course Unit">
+                                                        <label for="dept" class="control-label mb-1">Department</label>
+                                                        <input id="dept" name="courseUnit" type="text" class="form-control cc-exp" value="" placeholder="Department">
                                                     </div>
                                                 </div>
                                                 <div class="col-6">
                                                     <div class="form-group">
-                                                     <label for="x_card_code" class="control-label mb-1">Level</label>
-                                                    <select required name="levelId" class="custom-select form-control">
-                                                        <option value="">--Select Level--</option>
-                                                        <option value="'.$row['Id'].'" >ROW</option></select>
-                                                </div>
+                                                        <label for="year" class="control-label mb-1">Year Level</label>
+                                                        <select required id="year" name="year" class="custom-select form-control">
+                                                            <option value="">--Select Year Level--</option>
+                                                            <option value="1">1st Year</option>
+                                                            <option value="2">2nd Year</option>
+                                                            <option value="3">3rd Year</option>
+                                                            <option value="4">4th Year</option>
+                                                        </select> 
+                                                    </div>
                                                 </div>
                                             </div>
                                              <div class="row">
@@ -257,30 +257,18 @@ function showLecturer(str) {
                                                         <label for="cc-exp" class="control-label mb-1">Semester</label>
                                                         <select required name="semesterId" class="custom-select form-control">
                                                             <option value="">--Select Semester--</option>
-                                                            <option value="'.$row['Id'].'" >ROW</option>
-                                                        </select>                                               
+                                                            <option value="1" >1st Semester</option>
+                                                            <option value="2" >2nd Semester</option>
+                                                        </select>                                   
                                                     </div>
                                                 </div>
                                                 <div class="col-6">
                                                     <div class="form-group">
-                                                     <label for="x_card_code" class="control-label mb-1">Faculty</label>
-                                                     <select required name="facultyId" onchange="showValues(this.value)" class="custom-select form-control">
-                                                        <option value="">--Select Faculty--</option>
-                                                        <option value="'.$row['Id'].'" >'.$row['facultyName'].'</option>
-                                                    </select>      
-                                                </div>
+                                                        
+                                                    </div>
                                                 </div>
                                             </div>
-                                             <div class="row">
-                                                <div class="col-6">
-                                                    <div class="form-group">
-                                                    <div id='txtHint'></div>
-                                                </div>                                
-                                                </div>
-                                               
-                                            </div>
-                                                <button type="submit" name="submit" class="btn btn-success">Add Course</button>
-                                            </div>
+                                            <button type="submit" name="submit" class="btn btn-success">Add Course</button>
                                         </form>
                                     </div>
                                 </div>
