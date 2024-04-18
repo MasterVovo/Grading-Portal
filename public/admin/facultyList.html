@@ -161,20 +161,70 @@
                                 <div id="pay-invoice">
                                     <div class="card-body">
                                        <div class="" role="alert"></div>
-                                        <form method="Post" action="">
+                                        <form method="Post" action="#" id="add-faculty">
                                             <div class="row">
                                                 <div class="col-6">
                                                     <div class="form-group">
-                                                        <label for="cc-exp" class="control-label mb-1">Faculty</label>
-                                                        <input id="" name="facultyName" type="tel" class="form-control cc-exp" value="" placeholder="Faculty Name">
+                                                        <label for="fct-id" class="control-label mb-1">Faculty ID</label>
+                                                        <input id="fct-id" name="fct-id" type="text" class="form-control cc-exp" value="" placeholder="Faculty ID">
                                                     </div>
                                                 </div>
-                                                
+                                                <div class="col-6">
+                                                    <div class="form-group">
+                                                        <label for="fname" class="control-label mb-1">First name</label>
+                                                        <input id="fname" name="fname" type="text" class="form-control cc-exp" value="" placeholder="First name">
                                                     </div>
-                                                    <div>
-												
-                                                <button type="submit" name="submit" class="btn btn-success">Add Faculty</button>
+                                                </div>
                                             </div>
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <div class="form-group">
+                                                        <label for="mname" class="control-label mb-1">Middle name</label>
+                                                        <input id="mname" name="mname" type="text" class="form-control cc-exp" value="" required placeholder="Middle name">
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                    <div class="form-group">
+                                                        <label for="lname" class="control-label mb-1">Last name</label>
+                                                        <input id="lname" name="lname" type="text" class="form-control cc-exp" value="" required placeholder="Last name">
+                                                    </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <div class="form-group">
+                                                        <label for="email" class="control-label mb-1">Email</label>
+                                                        <input id="email" name="email" type="email" class="form-control cc-exp" value="" required placeholder="Email">
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                    <div class="form-group">
+                                                        <label for="pass" class="control-label mb-1">Password</label>
+                                                        <input id="pass" name="pass" type="password" class="form-control cc-exp" value="" placeholder="Password">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <div class="form-group">
+                                                        <label for="dept" class="control-label mb-1">Department</label>
+                                                        <select required id="dept" name="dept" class="custom-select form-control">
+                                                            <option value="">--Select Department--</option>
+                                                            <option value="iics" >Institute of Information and Computing Sciences</option>
+                                                            <option value="ioe" >Institute of Engineering</option>
+                                                            <option value="ihpd" >Institute of Human Potential and Development</option>
+                                                        </select>                                              
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                    <div class="form-group">
+                                                        
+                                                    </div>                                  
+                                                </div>
+                                            </div>
+                                            <p><small><i>Note: By default student's password is set to "<b>???</b>"</i></small></p>
+                                            <button type="submit" name="submit" class="btn btn-success">Add Faculty</button>
                                         </form>
                                     </div>
                                 </div>
