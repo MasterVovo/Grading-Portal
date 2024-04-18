@@ -25,7 +25,7 @@ form.addEventListener('submit', (event) => {
         formData.append('year', year);
         formData.append('sect', sect);
 
-        fetch('../../src/controller/addStudents.php', {
+        fetch('../../src/controller/addStudent.php', {
             method: 'POST',
             body: formData
         })
