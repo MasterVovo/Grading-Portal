@@ -13,7 +13,7 @@ form.addEventListener('submit', (event) => {
     const year = document.querySelector('#year').value;
     const sect = document.querySelector('#sect').value;
     
-    if (!(isValueEmpty([stdID, fname, mname, lname, email, pass, dept, year, sect]))) {
+    if (!(isValueEmpty([stdID, fname, mname, lname, email, dept, year, sect]))) {
         const formData = new FormData();
         formData.append('stdID', stdID);
         formData.append('fname', fname);
