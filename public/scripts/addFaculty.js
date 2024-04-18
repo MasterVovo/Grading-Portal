@@ -11,7 +11,7 @@ form.addEventListener('submit', (event) => {
     const pass = document.querySelector('#pass').value;
     const dept = document.querySelector('#dept').value;
     
-    if (!(isValueEmpty([fctID, fname, mname, lname, email, dept]))) {
+    if (!(isValueEmpty([fctID, fname, lname, email, dept]))) {
         const formData = new FormData();
         formData.append('fctID', fctID);
         formData.append('fname', fname);
@@ -26,7 +26,7 @@ form.addEventListener('submit', (event) => {
             body: formData
         })
         .then(response => response.text())
-        .then(data => console.log(data))
+        .then(data => alert(data))
         .catch(error => console.error(error));
     } else {
         alert("There's an empty field");

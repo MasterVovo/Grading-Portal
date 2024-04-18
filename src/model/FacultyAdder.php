@@ -4,7 +4,7 @@
 require_once 'DBConn.php';
 
 class FacultyAdder {
-    private $id, $fname, $mname, $lname, $email, $pass;
+    private $id, $fname, $mname, $lname, $email, $pass, $dept;
 
     public function __construct($id, $fname, $mname, $lname, $email, $pass, $dept) {
         $this->id = $id;
@@ -19,7 +19,7 @@ class FacultyAdder {
     public function uploadToDB() {
         $conn = DBConn::getInstance()->getConnection();
         
-        $sql = "INSERT INTO tblfct(id, fname, mname, lname, email, pass, dept) VALUES (:id, :fname, :mname, :lname, :email, :pass, :dept)";
+        $sql = "INSERT INTO faculty(facultyID, facultyFName, facultyMName, facultyLName, facultyEmail, facultyPass, facultyDept) VALUES (:id, :fname, :mname, :lname, :email, :pass, :dept)";
         $stmt = $conn->prepare($sql);
         $result = $stmt->execute([
             ':id' => $this->id,
