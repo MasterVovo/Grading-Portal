@@ -3,7 +3,7 @@ const form = document.querySelector('#add-faculty');
 form.addEventListener('submit', (event) => {
     event.preventDefault();
 
-    const fctID = document.querySelector('#std-id').value;
+    const fctID = document.querySelector('#fct-id').value;
     const fname = document.querySelector('#fname').value;
     const mname = document.querySelector('#mname').value;
     const lname = document.querySelector('#lname').value;
