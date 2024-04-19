@@ -20,7 +20,7 @@ class SectionAdder {
     public function uploadToDB() {
         $conn = DBConn::getInstance()->getConnection();
         
-        $sql = "INSERT INTO tblstd(sctID, dept, fctID, year) VALUES (:sctID, :dept, :fctID, :year)";
+        $sql = "INSERT INTO section(sectionID, sectionDept, sectionAdv, sectionYearLvl) VALUES (:sctID, :dept, :fctID, :year)";
         $stmt = $conn->prepare($sql);
         $result = $stmt->execute([
             ':sctID' => $this->sctID,

@@ -20,7 +20,7 @@ form.addEventListener('submit', (event) => {
             body: formData
         })
         .then(response => response.text())
-        .then(data => console.log(data))
+        .then(data => alert(data))
         .catch(error => console.error(error));
     } else {
         alert("There's an empty field");

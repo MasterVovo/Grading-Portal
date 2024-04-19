@@ -13,7 +13,7 @@ form.addEventListener('submit', (event) => {
     const year = document.querySelector('#year').value;
     const sect = document.querySelector('#sect').value;
     
-    if (!(isValueEmpty([stdID, fname, mname, lname, email, dept, year, sect]))) {
+    if (!(isValueEmpty([stdID, fname, lname, email, dept, year, sect]))) {
         const formData = new FormData();
         formData.append('stdID', stdID);
         formData.append('fname', fname);
@@ -30,7 +30,7 @@ form.addEventListener('submit', (event) => {
             body: formData
         })
         .then(response => response.text())
-        .then(data => console.log(data))
+        .then(data => alert(data))
         .catch(error => console.error(error));
     } else {
         alert("There's an empty field");
