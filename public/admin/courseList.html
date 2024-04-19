@@ -173,12 +173,12 @@ function showLecturer(str) {
                                         <form method="POST" action="#" id="add-course">
                                             <div class="row">
                                                 <div class="col-6">
-                                                    <label for="crs-code" class="control-label mb-1">Course Code</label>
+                                                    <label for="crs-code" class="control-label mb-1">Course Code <span class="red">*</span></label>
                                                     <input id="crs-code" name="courseCode" type="text" class="form-control cc-exp" value="" Required placeholder="Course Code">
                                                 </div>
                                                 <div class="col-6">
                                                     <div class="form-group">
-                                                        <label for="crs-name" class="control-label mb-1">Course Name</label>
+                                                        <label for="crs-name" class="control-label mb-1">Course Name <span class="red">*</span></label>
                                                         <input id="crs-name" name="courseTitle" type="text" class="form-control cc-exp" value="" Required placeholder="Course Name">
                                                     </div>
                                                 </div>
@@ -186,7 +186,7 @@ function showLecturer(str) {
                                             <div class="row">
                                                 <div class="col-6">
                                                     <div class="form-group">
-                                                        <label for="dept" class="control-label mb-1">Department</label>
+                                                        <label for="dept" class="control-label mb-1">Department <span class="red">*</span></label>
                                                         <select required id="dept" name="dept" class="custom-select form-control">
                                                             <option value="">--Select Department--</option>
                                                             <option value="iics" >Institute of Information and Computing Sciences</option>
@@ -197,7 +197,7 @@ function showLecturer(str) {
                                                 </div>
                                                 <div class="col-6">
                                                     <div class="form-group">
-                                                        <label for="year" class="control-label mb-1">Year Level</label>
+                                                        <label for="year" class="control-label mb-1">Year Level <span class="red">*</span></label>
                                                         <select required id="year" name="year" class="custom-select form-control">
                                                             <option value="">--Select Year Level--</option>
                                                             <option value="1">1st Year</option>
@@ -211,7 +211,7 @@ function showLecturer(str) {
                                              <div class="row">
                                                 <div class="col-6">
                                                     <div class="form-group">
-                                                        <label for="sem" class="control-label mb-1">Semester</label>
+                                                        <label for="sem" class="control-label mb-1">Semester <span class="red">*</span></label>
                                                         <select required id="sem" name="sem" class="custom-select form-control">
                                                             <option value="">--Select Semester--</option>
                                                             <option value="1" >1st Semester</option>
