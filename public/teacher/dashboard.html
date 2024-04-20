@@ -17,7 +17,6 @@
     <link rel="stylesheet" href="../styles/cs-skin-elastic.css">
     <link rel="stylesheet" href="../styles/style2.css">
     <link rel="shortcut icon" href="../images/KLD LOGO.png" type="image/x-icon" />
-    <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script> -->
     <link href="https://cdn.jsdelivr.net/npm/chartist@0.11.0/dist/chartist.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/jqvmap@1.5.1/dist/jqvmap.min.css" rel="stylesheet">
 
@@ -74,20 +73,20 @@
         <nav class="navbar navbar-expand-sm navbar-default">
             <div id="main-menu" class="main-menu collapse navbar-collapse">
                 <ul class="nav navbar-nav">
-                    <li class="menu-title">Teacher:&nbsp;<?php echo $fullName;?></li>
-                    <li class="<?php if($page=='dashboard'){ echo 'active'; }?>">
+                    <li class="menu-title">Teacher:&nbsp;</li>
+                    <li class="">
                         <a href="dashboard.html"><i class="menu-icon fa fa-dashboard"></i>Dashboard </a>
                     </li>
 
-                    <li class="<?php if($page=='dashboard'){ echo 'active'; }?>">
+                    <li class="">
                         <a href="studentList.html"><i class="menu-icon fa fa-users"></i>Student </a>
                     </li>
 
-                    <li class="<?php if($page=='dashboard'){ echo 'active'; }?>">
+                    <li class="">
                         <a href="courseList.html"><i class="menu-icon fa fa-book"></i>Courses </a>
                     </li>
 
-                    <li class="menu-item-has-children dropdown <?php if($page=='result'){ echo 'active'; }?>">
+                    <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
                             aria-expanded="false"> <i class="menu-icon fa fa-file"></i>Result</a>
                         <ul class="sub-menu children dropdown-menu">
@@ -97,13 +96,11 @@
                         </ul>
                     </li>
                                 
-                    <!-- <li class="menu-title">Profile</li>/.menu-title -->
-                    <li class="menu-item-has-children dropdown <?php if($page=='profile'){ echo 'active'; }?>">
+                    <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
                             aria-expanded="false"> <i class="menu-icon fa fa-user"></i>Profile</a>
                         <ul class="sub-menu children dropdown-menu">
                             <li><i class="menu-icon fa fa-user-circle"></i><a href="updateProfile.html"> Update Profile</a></li>
-                            <!-- <li><i class="menu-icon fa fa-sign-in"></i><a href="changePassword.php">Change Password</a></li> -->
                             </li>
                         </ul>
                         <li>
@@ -129,7 +126,6 @@
             <div class="top-right">
                 <div class="header-menu">
                     <div class="header-left">
-                        <!-- <button class="search-trigger"><i class="fa fa-search"></i></button> -->
                         <div class="form-inline">
                             <form class="search-form">
                                 <input class="form-control mr-sm-2" type="text" placeholder="Search ..."
@@ -149,13 +145,6 @@
 
                         <div class="user-menu dropdown-menu">
                             <a class="nav-link" href="updateProfile.php"><i class="fa fa-user"></i>My Profile</a>
-                           
-
-                            <!-- <a class="nav-link" href="#"><i class="fa fa- user"></i>Notifications <span
-                                    class="count">13</span></a> -->
-
-                            <!-- <a class="nav-link" href="#"><i class="fa fa -cog"></i>Settings</a> -->
-
                             <a class="nav-link" href="logout.php"><i class="fa fa-power-off"></i>Logout</a>
                         </div>
                     </div>
@@ -187,7 +176,7 @@
                                 <div class="card-left pt-1 float-left">
                                     <h3 class="mb-0 fw-r">
                                         <span class="currency float-left mr-1"></span>
-                                        <span class="count"><?php echo $coutAllStudentCourses;?></span>
+                                        <span class="count"></span>
                                     </h3>
                                     <p class="text-light mt-1 m-0">Courses</p>
                                 </div><!-- /.card-left -->
@@ -207,7 +196,7 @@
                                 <div class="card-left pt-1 float-left">
                                     <h3 class="mb-0 fw-r">
                                         <span class="currency float-left mr-1"></span>
-                                        <span class="count"><?php echo $countAllStudResult;?></span>
+                                        <span class="count"></span>
                                     </h3>
                                     <p class="text-light mt-1 m-0">Result</p>
                                 </div><!-- /.card-left -->
@@ -227,7 +216,7 @@
                                 <div class="card-left pt-1 float-left">
                                     <h3 class="mb-0 fw-r">
                                         <span class="currency float-left mr-1"></span>
-                                        <span class="count"><?php echo $countFaculty;?></span>
+                                        <span class="count"></span>
                                     </h3>
                                     <p class="text-light mt-1 m-0">Faculty</p>
                                 </div><!-- /.card-left -->
@@ -247,7 +236,7 @@
                                 <div class="card-left pt-1 float-left">
                                     <h3 class="mb-0 fw-r">
                                         <span class="currency float-left mr-1"></span>
-                                        <span class="count"><?php echo $countDepartment;?></span>
+                                        <span class="count"></span>
                                     </h3>
                                     <p class="text-light mt-1 m-0">Department</p>
                                 </div><!-- /.card-left -->
@@ -263,7 +252,6 @@
 
                 </div>
                 <!-- /Widgets -->
-                <!--  Traffic  -->
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="card">
@@ -271,23 +259,7 @@
                         </div>
                         </div>
                         </div>
-                <!--  /Traffic -->
                 <div class="clearfix"></div>
-                <!-- Orders -->
-            
-                <!-- /.orders -->
-                <!-- To Do and Live Chat -->
-            
-                <!-- /To Do and Live Chat -->
-                <!-- Calender Chart Weather  -->
-            
-                <!-- /Calender Chart Weather -->
-                <!-- Modal - Calendar - Add New Event -->
-            
-                <!-- /#event-modal -->
-                <!-- Modal - Calendar - Add Category -->
-            
-                <!-- /#add-category -->
             </div>
             <!-- .animated -->
         </div>
@@ -301,7 +273,6 @@
                         &copy; 2024 Student Grading System
                     </div>
                     <div class="col-sm-6 text-right">
-                        <!-- Designed by <a href="https://colorlib.com">Colorlib</a> -->
                     </div>
                 </div>
             </div>

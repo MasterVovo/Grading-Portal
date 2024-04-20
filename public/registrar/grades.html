@@ -1,5 +1,5 @@
 <!doctype html>
-<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
+<html class="no-js" lang="">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -52,42 +52,41 @@ function showValues(str) {
         <nav class="navbar navbar-expand-sm navbar-default">
             <div id="main-menu" class="main-menu collapse navbar-collapse">
                 <ul class="nav navbar-nav">
-                    <li class="menu-title">Teacher:&nbsp;<?php echo $fullName;?></li>
-                    <li class="<?php if($page=='dashboard'){ echo 'active'; }?>">
+                    <li class="menu-title">Teacher:&nbsp;</li>
+                    <li class="">
                         <a href="dashboard.html"><i class="menu-icon fa fa-dashboard"></i>Dashboard </a>
                     </li>
 
                     <li class="menu-title">Student Section</li>
-                    <li class="<?php if($page=='dashboard'){ echo 'active'; }?>">
+                    <li class="">
                         <a href="studentList.html"><i class="menu-icon fa fa-users"></i>Student </a>
                     </li>
 
-                    <li class="<?php if($page=='dashboard'){ echo 'active'; }?>">
+                    <li class="">
                         <a href="courseList.html"><i class="menu-icon fa fa-book"></i>Courses </a>
                     </li>
 
 
                     <li class="menu-title">Faculty and Dept.</li>
-                    <li class="<?php if($page=='dashboard'){ echo 'active'; }?>">
+                    <li class="">
                         <a href="facultyList.html"><i class="menu-icon fa fa-book"></i>Faculty </a>
                     </li>
 
-                    <li class="<?php if($page=='dashboard'){ echo 'active'; }?>">
+                    <li class="">
                         <a href="departmentList.html"><i class="menu-icon fa fa-users"></i>Department </a>
                     </li>
 
                     <li class="menu-title">ECR</li>
-                    <li class="<?php if($page=='dashboard'){ echo 'active'; }?>">
+                    <li class="">
                         <a href="grades.html"><i class="menu-icon fa fa-file"></i>Grades </a>
                     </li>
                                 
                     <li class="menu-title">Account</li>
-                    <li class="menu-item-has-children dropdown <?php if($page=='profile'){ echo 'active'; }?>">
+                    <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
                             aria-expanded="false"> <i class="menu-icon fa fa-user"></i>Profile</a>
                         <ul class="sub-menu children dropdown-menu">
                             <li><i class="menu-icon fa fa-user-circle"></i><a href="updateProfile.html"> Update Profile</a></li>
-                            <!-- <li><i class="menu-icon fa fa-sign-in"></i><a href="changePassword.php">Change Password</a></li> -->
                             </li>
                         </ul>
                         <li>
@@ -112,14 +111,12 @@ function showValues(str) {
             <div class="top-left">
                 <div class="navbar-header">
                     <a class="navbar-brand" href="./">Student Grading System</a>
-                    <!-- <a class="navbar-brand hidden" href="./"><img src="../images/logo3.png" alt="Logo"></a> -->
                     <a id="menuToggle" class="menutoggle"><i class="fa fa-bars"></i></a>
                 </div>
             </div>
             <div class="top-right">
                 <div class="header-menu">
                     <div class="header-left">
-                        <!-- <button class="search-trigger"><i class="fa fa-search"></i></button> -->
                         <div class="form-inline">
                             <form class="search-form">
                                 <input class="form-control mr-sm-2" type="text" placeholder="Search ..."
@@ -132,18 +129,10 @@ function showValues(str) {
                         <a href="#" class="dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true"
                             aria-expanded="false">
                             <img class="user-avatar rounded-circle" src="../assets/img/admin-icn.png" alt="User Avatar">
-                            <!-- <img class="user-avatar rounded-circle" src="../images/logo.jpeg" alt="User Avatar"> -->
                         </a>
 
                         <div class="user-menu dropdown-menu">
                             <a class="nav-link" href="updateProfile.php"><i class="fa fa-user"></i>My Profile</a>
-                            <!-- <a class="nav-link" href="changePassword.php"><i class="fa fa-cog"></i>Change Password</a> -->
-
-                            <!-- <a class="nav-link" href="#"><i class="fa fa- user"></i>Notifications <span
-                                    class="count">13</span></a> -->
-
-                            <!-- <a class="nav-link" href="#"><i class="fa fa -cog"></i>Settings</a> -->
-
                             <a class="nav-link" href="logout.html"><i class="fa fa-power-off"></i>Logout</a>
                         </div>
                     </div>
@@ -194,42 +183,26 @@ function showValues(str) {
                                 <!-- Credit Card -->
                                 <div id="pay-invoice">
                                     <div class="card-body">
-                                       <div class="<?php echo $alertStyle;?>" role="alert"><?php echo $statusMsg;?></div>
+                                       <div class="" role="alert"></div>
                                         <form method="Post" action="">
                                             
                                             <div class="row">
                                                 <div class="col-6">
                                                     <div class="form-group">
                                                       <label for="x_card_code" class="control-label mb-1">Level</label>
-                                                    <?php 
-                                                $query=mysqli_query($con,"select * from tbllevel");                        
-                                                $count = mysqli_num_rows($query);
-                                                if($count > 0){                       
-                                                    echo ' <select required name="levelId" class="custom-select form-control">';
-                                                    echo'<option value="">--Select Level--</option>';
-                                                    while ($row = mysqli_fetch_array($query)) {
-                                                    echo'<option value="'.$row['Id'].'" >'.$row['levelName'].'</option>';
-                                                        }
-                                                            echo '</select>';
-                                                        }
-                                                ?>   
+                                                    <select required name="levelId" class="custom-select form-control">
+                                                        <option value="">--Select Level--</option>
+                                                        <option value="'.$row['Id'].'" >ROW</option>
+                                                    </select>
                                                     </div>
                                                 </div>
                                             <div class="col-6">
                                                 <div class="form-group">
                                                      <label for="x_card_code" class="control-label mb-1">Session</label>
-                                                    <?php 
-                                                    $query=mysqli_query($con,"select * from tblsession where isActive = 1");                        
-                                                    $count = mysqli_num_rows($query);
-                                                    if($count > 0){                       
-                                                        echo ' <select required name="sessionId" class="custom-select form-control">';
-                                                        echo'<option value="">--Select Session--</option>';
-                                                        while ($row = mysqli_fetch_array($query)) {
-                                                        echo'<option value="'.$row['Id'].'" >'.$row['sessionName'].'</option>';
-                                                            }
-                                                                echo '</select>';
-                                                            }
-                                                ?>   
+                                                    <select required name="sessionId" class="custom-select form-control">
+                                                        <option value="">--Select Session--</option>
+                                                        <option value="'.$row['Id'].'" >ROW</option>
+                                                    </select>
                                                 </div>
                                             </div>
                                         </div>
@@ -237,25 +210,15 @@ function showValues(str) {
                                                 <div class="col-6">
                                                     <div class="form-group">
                                                     <label for="x_card_code" class="control-label mb-1">Faculty</label>
-                                                    <?php 
-                                                    $query=mysqli_query($con,"select * from tblfaculty ORDER BY facultyName ASC");                        
-                                                    $count = mysqli_num_rows($query);
-                                                    if($count > 0){                       
-                                                        echo ' <select required name="facultyId" onchange="showValues(this.value)" class="custom-select form-control">';
-                                                        echo'<option value="">--Select Faculty--</option>';
-                                                        while ($row = mysqli_fetch_array($query)) {
-                                                        echo'<option value="'.$row['Id'].'" >'.$row['facultyName'].'</option>';
-                                                            }
-                                                                echo '</select>';
-                                                            }
-                                                    ?>                                                     
+                                                    <select required name="facultyId" onchange="showValues(this.value)" class="custom-select form-control">
+                                                        <option value="">--Select Faculty--</option>
+                                                        <option value="'.$row['Id'].'" >ROW</option>
+                                                    </select>                                                 
                                                  </div>
                                                 </div>
                                                  <div class="col-6">
                                                     <div class="form-group">
-                                                   <?php
-                                                        echo"<div id='txtHint'></div>";
-                                                    ?>                                    
+                                                        <div id='txtHint'></div>          
                                                  </div>
                                                 </div>
                                              </div>
@@ -296,45 +259,19 @@ function showValues(str) {
                                     </thead>
                                     <tbody>
                                       
-                            <?php
-                if(isset($_POST['submit']))
-                {
-                    $levelId=$_POST['levelId'];
-                    $sessionId=$_POST['sessionId'];
-                    $departmentId=$_POST['departmentId'];
-                    $facultyId=$_POST['facultyId'];
-
-                    $ret=mysqli_query($con,"SELECT tblstudent.Id, tblstudent.firstName, tblstudent.lastName, tblstudent.otherName,tblstudent.matricNo,
-                    tblstudent.dateCreated, tbllevel.levelName,tblfaculty.facultyName,tbldepartment.departmentName,tblsession.sessionName,
-                    tblstudent.levelId,tblstudent.sessionId,tblstudent.facultyId,tblstudent.departmentId
-                    from tblstudent
-                    INNER JOIN tbllevel ON tbllevel.Id = tblstudent.levelId
-                    INNER JOIN tblsession ON tblsession.Id = tblstudent.sessionId
-                    INNER JOIN tblfaculty ON tblfaculty.Id = tblstudent.facultyId
-                    INNER JOIN tbldepartment ON tbldepartment.Id = tblstudent.departmentId
-                    where tblstudent.levelId ='$levelId' and tblstudent.sessionId ='$sessionId' 
-                    and tblstudent.departmentId ='$departmentId' and tblstudent.facultyId ='$facultyId'");
-                    $cnt=1;
-                    while ($row=mysqli_fetch_array($ret)) {
-                                        ?>
                     <tr>
-                    <td><?php echo $cnt;?></td>
-                    <td><?php  echo $row['firstName'].' '.$row['lastName'].' '.$row['otherName'];?></td>
-                    <td><?php  echo $row['matricNo'];?></td>
-                    <td><?php  echo $row['levelName'];?></td>
-                    <td><?php  echo $row['facultyName'];?></td>
-                    <td><?php  echo $row['departmentName'];?></td>
-                     <td><?php  echo $row['sessionName'];?></td>
-                    <td><?php  echo $row['dateCreated'];?></td>
-                    <td><a href="viewSemesterResult.php?semesterId=1&matricNo=<?php echo $row['matricNo'];?>&levelId=<?php echo $row['levelId'];?>&sessionId=<?php echo $row['sessionId'];?>" title="View Details"><i class="fa fa-eye fa-1x"></i> View</a></td>
-                    <td><a href="viewSemesterResult.php?semesterId=2&matricNo=<?php echo $row['matricNo'];?>&levelId=<?php echo $row['levelId'];?>&sessionId=<?php echo $row['sessionId'];?>" title="View Details"><i class="fa fa-eye fa-1x"></i> View</a></td>
-                    <td><a href="viewFinalResult.php?matricNo=<?php echo $row['matricNo'];?>" title="View Details"><i class="fa fa-eye fa-1x"></i> View</a></td>
-                    </tr>
-                    <?php 
-                    $cnt=$cnt+1;
-                    }
-                }?>
-                                                                               
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                     <td></td>
+                    <td></td>
+                    <td><a href="" title="View Details"><i class="fa fa-eye fa-1x"></i> View</a></td>
+                    <td><a href="" title="View Details"><i class="fa fa-eye fa-1x"></i> View</a></td>
+                    <td><a href="" title="View Details"><i class="fa fa-eye fa-1x"></i> View</a></td>
+                    </tr>                                                        
                 </tbody>
                 </table>
             </div>
@@ -356,7 +293,6 @@ function showValues(str) {
                     &copy; 2024 Student Grading System
                     </div>
                     <div class="col-sm-6 text-right">
-                        <!-- Designed by <a href="https://colorlib.com">Colorlib</a> -->
                     </div>
                 </div>
             </div>

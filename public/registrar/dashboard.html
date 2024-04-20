@@ -1,6 +1,5 @@
 <!doctype html>
 <html class="no-js" lang="">
-<!--<![endif]-->
 
 <head>
     <meta charset="utf-8">
@@ -79,42 +78,41 @@
         <nav class="navbar navbar-expand-sm navbar-default">
             <div id="main-menu" class="main-menu collapse navbar-collapse">
                 <ul class="nav navbar-nav">
-                    <li class="menu-title">Teacher:&nbsp;<?php echo $fullName;?></li>
-                    <li class="<?php if($page=='dashboard'){ echo 'active'; }?>">
+                    <li class="menu-title">Registrar:&nbsp;</li>
+                    <li class="">
                         <a href="dashboard.html"><i class="menu-icon fa fa-dashboard"></i>Dashboard </a>
                     </li>
 
                     <li class="menu-title">Student Section</li>
-                    <li class="<?php if($page=='dashboard'){ echo 'active'; }?>">
+                    <li class="">
                         <a href="studentList.html"><i class="menu-icon fa fa-users"></i>Student </a>
                     </li>
 
-                    <li class="<?php if($page=='dashboard'){ echo 'active'; }?>">
+                    <li class="">
                         <a href="courseList.html"><i class="menu-icon fa fa-book"></i>Courses </a>
                     </li>
 
 
                     <li class="menu-title">Faculty and Dept.</li>
-                    <li class="<?php if($page=='dashboard'){ echo 'active'; }?>">
+                    <li class="">
                         <a href="facultyList.html"><i class="menu-icon fa fa-book"></i>Faculty </a>
                     </li>
 
-                    <li class="<?php if($page=='dashboard'){ echo 'active'; }?>">
+                    <li class="">
                         <a href="departmentList.html"><i class="menu-icon fa fa-users"></i>Department </a>
                     </li>
 
                     <li class="menu-title">ECR</li>
-                    <li class="<?php if($page=='dashboard'){ echo 'active'; }?>">
+                    <li class="">
                         <a href="grades.html"><i class="menu-icon fa fa-file"></i>Grades </a>
                     </li>
                                 
                     <li class="menu-title">Account</li>
-                    <li class="menu-item-has-children dropdown <?php if($page=='profile'){ echo 'active'; }?>">
+                    <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
                             aria-expanded="false"> <i class="menu-icon fa fa-user"></i>Profile</a>
                         <ul class="sub-menu children dropdown-menu">
                             <li><i class="menu-icon fa fa-user-circle"></i><a href="updateProfile.html"> Update Profile</a></li>
-                            <!-- <li><i class="menu-icon fa fa-sign-in"></i><a href="changePassword.php">Change Password</a></li> -->
                             </li>
                         </ul>
                         <li>
@@ -133,14 +131,12 @@
             <div class="top-left">
                 <div class="navbar-header">
                     <a class="navbar-brand" href="./">Student Grading System</a>
-                    <!-- <a class="navbar-brand hidden" href="./"><img src="../images/logo3.png" alt="Logo"></a> -->
                     <a id="menuToggle" class="menutoggle"><i class="fa fa-bars"></i></a>
                 </div>
             </div>
             <div class="top-right">
                 <div class="header-menu">
                     <div class="header-left">
-                        <!-- <button class="search-trigger"><i class="fa fa-search"></i></button> -->
                         <div class="form-inline">
                             <form class="search-form">
                                 <input class="form-control mr-sm-2" type="text" placeholder="Search ..."
@@ -153,18 +149,10 @@
                         <a href="#" class="dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true"
                             aria-expanded="false">
                             <img class="user-avatar rounded-circle" src="../assets/img/admin-icn.png" alt="User Avatar">
-                            <!-- <img class="user-avatar rounded-circle" src="../images/logo.jpeg" alt="User Avatar"> -->
                         </a>
 
                         <div class="user-menu dropdown-menu">
                             <a class="nav-link" href="updateProfile.php"><i class="fa fa-user"></i>My Profile</a>
-                            <!-- <a class="nav-link" href="changePassword.php"><i class="fa fa-cog"></i>Change Password</a> -->
-
-                            <!-- <a class="nav-link" href="#"><i class="fa fa- user"></i>Notifications <span
-                                    class="count">13</span></a> -->
-
-                            <!-- <a class="nav-link" href="#"><i class="fa fa -cog"></i>Settings</a> -->
-
                             <a class="nav-link" href="logout.html"><i class="fa fa-power-off"></i>Logout</a>
                         </div>
                     </div>
@@ -202,7 +190,7 @@
                                 <div class="card-left pt-1 float-left">
                                     <h3 class="mb-0 fw-r">
                                         <span class="currency float-left mr-1"></span>
-                                        <span class="count"><?php echo $countFaculty;?></span>
+                                        <span class="count"></span>
                                     </h3>
                                     <p class="text-light mt-1 m-0">Faculty</p><!-- Log on to codeastro.com for more projects! -->
                                 </div><!-- /.card-left -->
@@ -222,7 +210,7 @@
                                 <div class="card-left pt-1 float-left">
                                     <h3 class="mb-0 fw-r">
                                         <span class="currency float-left mr-1"></span>
-                                        <span class="count"><?php echo $countDepartment;?></span>
+                                        <span class="count"></span>
                                     </h3>
                                     <p class="text-light mt-1 m-0">Department</p><!-- Log on to codeastro.com for more projects! -->
                                 </div><!-- /.card-left -->
@@ -242,7 +230,7 @@
                                 <div class="card-left pt-1 float-left">
                                     <h3 class="mb-0 fw-r">
                                         <span class="currency float-left mr-1"></span>
-                                        <span class="count"><?php echo $countAllStudent;?></span>
+                                        <span class="count"></span>
                                     </h3>
                                     <p class="text-light mt-1 m-0">Student</p><!-- Log on to codeastro.com for more projects! -->
                                 </div><!-- /.card-left -->
@@ -263,7 +251,7 @@
                                 <div class="card-left pt-1 float-left">
                                     <h3 class="mb-0 fw-r">
                                         <span class="currency float-left mr-1"></span>
-                                        <span class="count"><?php echo $countAllCourses;?></span>
+                                        <span class="count"></span>
                                     </h3>
                                     <p class="text-light mt-1 m-0">Courses</p><!-- Log on to codeastro.com for more projects! -->
                                 </div><!-- /.card-left -->
@@ -283,7 +271,7 @@
                                 <div class="card-left pt-1 float-left">
                                     <h3 class="mb-0 fw-r">
                                         <span class="currency float-left mr-1"></span>
-                                        <span class="count"><?php echo $countAllComputed;?></span>
+                                        <span class="count"></span>
                                     </h3>
                                     <p class="text-light mt-1 m-0">Comp. Result</p><!-- Log on to codeastro.com for more projects! -->
                                 </div><!-- /.card-left -->
@@ -303,7 +291,7 @@
                                 <div class="card-left pt-1 float-left">
                                     <h3 class="mb-0 fw-r">
                                         <span class="currency float-left mr-1"></span>
-                                        <span class="count"><?php echo $countAllSemester;?></span>
+                                        <span class="count"></span>
                                     </h3>
                                     <p class="text-light mt-1 m-0">Semester</p><!-- Log on to codeastro.com for more projects! -->
                                 </div><!-- /.card-left -->
@@ -323,7 +311,7 @@
                                 <div class="card-left pt-1 float-left">
                                     <h3 class="mb-0 fw-r">
                                         <span class="currency float-left mr-1"></span>
-                                        <span class="count"><?php echo $countAllLevel;?></span>
+                                        <span class="count"></span>
                                     </h3>
                                     <p class="text-light mt-1 m-0">Level</p><!-- Log on to codeastro.com for more projects! -->
                                 </div><!-- /.card-left -->
@@ -345,7 +333,7 @@
                                 <div class="card-left pt-1 float-left">
                                     <h3 class="mb-0 fw-r">
                                         <span class="currency float-left mr-1"></span>
-                                        <span class="count"><?php echo $countAllDist;?></span>
+                                        <span class="count"></span>
                                     </h3>
                                     <p class="text-light mt-1 m-0">Distinction No.</p><!-- Log on to codeastro.com for more projects! -->
                                 </div><!-- /.card-left -->
@@ -365,7 +353,7 @@
                                 <div class="card-left pt-1 float-left">
                                     <h3 class="mb-0 fw-r">
                                         <span class="currency float-left mr-1"></span>
-                                        <span class="count"><?php echo $countAllUpc;?></span>
+                                        <span class="count"></span>
                                     </h3>
                                     <p class="text-light mt-1 m-0">Upper Credit</p><!-- Log on to codeastro.com for more projects! -->
                                 </div><!-- /.card-left -->
@@ -385,7 +373,7 @@
                                 <div class="card-left pt-1 float-left">
                                     <h3 class="mb-0 fw-r">
                                         <span class="currency float-left mr-1"></span>
-                                        <span class="count"><?php echo $countAlllc;?></span>
+                                        <span class="count"></span>
                                     </h3>
                                     <p class="text-light mt-1 m-0">Lower Credit</p><!-- Log on to codeastro.com for more projects! -->
                                 </div><!-- /.card-left -->
@@ -405,7 +393,7 @@
                                 <div class="card-left pt-1 float-left">
                                     <h3 class="mb-0 fw-r">
                                         <span class="currency float-left mr-1"></span>
-                                        <span class="count"><?php echo $countAlljp;?></span>
+                                        <span class="count"></span>
                                     </h3>
                                     <p class="text-light mt-1 m-0">Passed No.</p><!-- Log on to codeastro.com for more projects! -->
                                 </div><!-- /.card-left -->
@@ -425,7 +413,7 @@
                                 <div class="card-left pt-1 float-left">
                                     <h3 class="mb-0 fw-r">
                                         <span class="currency float-left mr-1"></span>
-                                        <span class="count"><?php echo $countAllf;?></span>
+                                        <span class="count"></span>
                                     </h3>
                                     <p class="text-light mt-1 m-0">Failed No.</p><!-- Log on to codeastro.com for more projects! -->
                                 </div><!-- /.card-left -->
@@ -448,33 +436,12 @@
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-body">
-                                <h3 align="center"><marquee direction="left">Current Session: <?php 
-                                $result = mysqli_query($con, 'SELECT (sessionName) AS sessname FROM tblsession WHERE isActive = 1'); 
-                                $row = mysqli_fetch_assoc($result); 
-                                $sum = $row['sessname'];
-                                echo $sum;
-                                ?></marquee></h3>
+                                <h3 align="center"><marquee direction="left">Current Session: </marquee></h3>
                             </div>
                         </div>
                          </div>
                           </div>
-                <!--  /Traffic -->
                 <div class="clearfix"></div>
-                <!-- Orders -->
-               
-                <!-- /.orders -->
-                <!-- To Do and Live Chat -->
-               
-                <!-- /To Do and Live Chat -->
-                <!-- Calender Chart Weather  -->
-              
-                <!-- /Calender Chart Weather -->
-                <!-- Modal - Calendar - Add New Event -->
-               
-                <!-- /#event-modal -->
-                <!-- Modal - Calendar - Add Category -->
-               
-                <!-- /#add-category -->
             </div>
             <!-- .animated -->
         </div>
@@ -488,7 +455,6 @@
                     &copy; 2024 Student Grading System
                     </div>
                     <div class="col-sm-6 text-right">
-                        <!-- Designed by <a href="https://colorlib.com">Colorlib</a> -->
                     </div>
                 </div>
             </div>

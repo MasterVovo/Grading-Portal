@@ -1,5 +1,5 @@
 <!doctype html>
-<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
+<html class="no-js" lang="">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -21,7 +21,6 @@
 
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
 
-    <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script> -->
 <script>
 function showValues(str) {
     if (str == "") {
@@ -52,12 +51,12 @@ function showValues(str) {
         <nav class="navbar navbar-expand-sm navbar-default">
             <div id="main-menu" class="main-menu collapse navbar-collapse">
                 <ul class="nav navbar-nav">
-                    <li class="menu-title">Student:&nbsp;<?php echo $fullName;?></li>
-                    <li class="<?php if($page=='dashboard'){ echo 'active'; }?>">
+                    <li class="menu-title">Student:&nbsp;</li>
+                    <li class="">
                         <a href="dashboard.html"><i class="menu-icon fa fa-dashboard"></i>Dashboard </a>
                     </li>
                     
-                    <li class="menu-item-has-children dropdown <?php if($page=='courses'){ echo 'active'; }?>">
+                    <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
                             aria-expanded="false"> <i class="menu-icon fa fa-book"></i>Courses</a>
                         <ul class="sub-menu children dropdown-menu">
@@ -65,7 +64,7 @@ function showValues(str) {
                         </ul>
                     </li>
 
-                    <li class="menu-item-has-children dropdown <?php if($page=='result'){ echo 'active'; }?>">
+                    <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
                             aria-expanded="false"> <i class="menu-icon fa fa-file"></i>Result</a>
                         <ul class="sub-menu children dropdown-menu">
@@ -75,13 +74,11 @@ function showValues(str) {
                         </ul>
                     </li>
                                 
-                    <!-- <li class="menu-title">Profile</li>/.menu-title -->
-                    <li class="menu-item-has-children dropdown <?php if($page=='profile'){ echo 'active'; }?>">
+                    <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
                             aria-expanded="false"> <i class="menu-icon fa fa-user"></i>Profile</a>
                         <ul class="sub-menu children dropdown-menu">
                             <li><i class="menu-icon fa fa-user-circle"></i><a href="updateProfile.html"> Update Profile</a></li>
-                            <!-- <li><i class="menu-icon fa fa-sign-in"></i><a href="changePassword.php">Change Password</a></li> -->
                             </li>
                         </ul>
                         <li>
@@ -110,7 +107,6 @@ function showValues(str) {
             <div class="top-right">
                 <div class="header-menu">
                     <div class="header-left">
-                        <!-- <button class="search-trigger"><i class="fa fa-search"></i></button> -->
                         <div class="form-inline">
                             <form class="search-form">
                                 <input class="form-control mr-sm-2" type="text" placeholder="Search ..."
@@ -130,13 +126,6 @@ function showValues(str) {
 
                         <div class="user-menu dropdown-menu">
                             <a class="nav-link" href="updateProfile.php"><i class="fa fa-user"></i>My Profile</a>
-                           
-
-                            <!-- <a class="nav-link" href="#"><i class="fa fa- user"></i>Notifications <span
-                                    class="count">13</span></a> -->
-
-                            <!-- <a class="nav-link" href="#"><i class="fa fa -cog"></i>Settings</a> -->
-
                             <a class="nav-link" href="logout.html"><i class="fa fa-power-off"></i>Logout</a>
                         </div>
                     </div>
@@ -184,42 +173,26 @@ function showValues(str) {
                                 <!-- Credit Card -->
                                 <div id="pay-invoice">
                                     <div class="card-body">
-                                       <div class="<?php echo $alertStyle;?>" role="alert"><?php echo $statusMsg;?></div>
+                                       <div class="" role="alert"></div>
                                         <form method="Post" action="">
                                             
                                             <div class="row">
                                                 <div class="col-6">
                                                     <div class="form-group">
                                                       <label for="x_card_code" class="control-label mb-1">Level</label>
-                                                    <?php 
-                                                $query=mysqli_query($con,"select * from tbllevel");                        
-                                                $count = mysqli_num_rows($query);
-                                                if($count > 0){                       
-                                                    echo ' <select required name="levelId" class="custom-select form-control">';
-                                                    echo'<option value="">--Select Level--</option>';
-                                                    while ($row = mysqli_fetch_array($query)) {
-                                                    echo'<option value="'.$row['Id'].'" >'.$row['levelName'].'</option>';
-                                                        }
-                                                            echo '</select>';
-                                                        }
-                                                ?>   
+                                                    <select required name="levelId" class="custom-select form-control">
+                                                        <option value="">--Select Level--</option>
+                                                        <option value="'.$row['Id'].'" >Row</option>
+                                                    </select>
                                                     </div>
                                                 </div>
                                             <div class="col-6">
                                                 <div class="form-group">
                                                      <label for="x_card_code" class="control-label mb-1">Session</label>
-                                                    <?php 
-                                                    $query=mysqli_query($con,"select * from tblsession where isActive = 1");                        
-                                                    $count = mysqli_num_rows($query);
-                                                    if($count > 0){                       
-                                                        echo ' <select required name="sessionId" class="custom-select form-control">';
-                                                        echo'<option value="">--Select Session--</option>';
-                                                        while ($row = mysqli_fetch_array($query)) {
-                                                        echo'<option value="'.$row['Id'].'" >'.$row['sessionName'].'</option>';
-                                                            }
-                                                                echo '</select>';
-                                                            }
-                                                ?>   
+                                                    <select required name="sessionId" class="custom-select form-control">
+                                                        <option value="">--Select Session--</option>
+                                                        <option value="'.$row['Id'].'" >Row</option>
+                                                    </select>
                                                 </div>
                                             </div>
                                         </div>
@@ -227,18 +200,10 @@ function showValues(str) {
                                                 <div class="col-6">
                                                     <div class="form-group">
                                                     <label for="x_card_code" class="control-label mb-1">Semester</label>
-                                                    <?php 
-                                                    $query=mysqli_query($con,"select * from tblsemester ORDER BY semesterName ASC");                        
-                                                    $count = mysqli_num_rows($query);
-                                                    if($count > 0){                       
-                                                        echo ' <select required name="semesterId" class="custom-select form-control">';
-                                                        echo'<option value="">--Select Semester--</option>';
-                                                        while ($row = mysqli_fetch_array($query)) {
-                                                        echo'<option value="'.$row['Id'].'" >'.$row['semesterName'].'</option>';
-                                                            }
-                                                                echo '</select>';
-                                                            }
-                                                    ?>                                                     
+                                                <select required name="semesterId" class="custom-select form-control">
+                                                    <option value="">--Select Semester--</option>
+                                                        <option value="'.$row['Id'].'" >Row</option>
+                                                    </select>                                              
                                                  </div>
                                                 </div>
                                                 
@@ -252,31 +217,12 @@ function showValues(str) {
                             </div>
                         </div> <!-- .card -->
                     </div><!--/.col-->
-               <?php
- if(isset($_POST['submit'])){
-
-                $levelId = $_POST['levelId'];
-                $sessionId = $_POST['sessionId'];
-                $semesterId = $_POST['semesterId'];
-
-                $semesterQuery=mysqli_query($con,"select * from tblsemester where Id = '$semesterId'");
-                $rowSemester = mysqli_fetch_array($semesterQuery);
-
-                $sessionQuery=mysqli_query($con,"select * from tblsession where Id = '$sessionId'");
-                $rowSession = mysqli_fetch_array($sessionQuery);
-
-                $levelQuery=mysqli_query($con,"select * from tbllevel where Id = '$levelId'");
-                $rowLevel = mysqli_fetch_array($levelQuery);
- }
-
-               ?>
-
                 <br><br>
 
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
-                                <strong class="card-title"><h3 align="center"><?php echo $rowLevel['levelName'];?>&nbsp;<?php echo $rowSemester['semesterName'];?> Semester Result &nbsp;<?php echo $rowSession['sessionName'];?> Session</h3></strong>
+                                <strong class="card-title"><h3 align="center">&nbsp; Semester Result &nbsp; Session</h3></strong>
                             </div>
                             <div class="card-body">
                                <table class="table table-hover table-striped table-bordered">
@@ -286,67 +232,37 @@ function showValues(str) {
                                             <th>Course</th>
                                             <th>Course Code</th>
                                             <th>Unit</th>
-                                            <th>Score</th>
-                                            <th>Grade</th>
-                                            <th>Grade Point</th>
-                                            <th>Total GradePoint</th>
+                                            <th>Teacher</th>
+                                            <th>Midterm</th>
+                                            <th>Final</th>
+                                            <th>Remarks</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                            <?php
-
-            if(isset($_POST['submit'])){
-
-                $levelId = $_POST['levelId'];
-                $sessionId = $_POST['sessionId'];
-                $semesterId = $_POST['semesterId'];
-
-                $ret=mysqli_query($con,"SELECT tblresult.matricNo,tblresult.levelId,tblresult.courseCode,tblresult.courseUnit,tblresult.score,tblresult.scoreGradePoint,
-                tblresult.scoreLetterGrade,tblresult.totalScoreGradePoint,tblresult.dateAdded,tblcourse.courseTitle,
-                tbllevel.levelName,tblsemester.semesterName,tblsession.sessionName
-                from tblresult
-                INNER JOIN tbllevel ON tbllevel.Id = tblresult.levelId
-                INNER JOIN tblcourse ON tblcourse.courseCode = tblresult.courseCode
-                INNER JOIN tblsemester ON tblsemester.Id = tblresult.semesterId
-                INNER JOIN tblsession ON tblsession.Id = tblresult.sessionId
-                where tblresult.levelId ='$levelId' and tblresult.sessionId ='$sessionId' 
-                and tblresult.semesterId ='$semesterId' and tblresult.matricNo ='$matricNo'");
-                $cnt=1;  $totalCourseUnit = 0;  $totalScoreGradePoint = 0;
-                while ($row=mysqli_fetch_array($ret)) {
-                    if($row['scoreLetterGrade'] == "F"){$color = 'red';}else{$color = '';}
-                ?>
                 <tr >
-                <td bgcolor="<?php echo $color;?>"><?php  echo $cnt;?></td>
-                <td bgcolor="<?php echo $color;?>"><?php  echo $row['courseTitle'];?></td>
-                <td bgcolor="<?php echo $color;?>"><?php  echo $row['courseCode'];?></td>
-                <td bgcolor="<?php echo $color;?>"><?php  echo $row['courseUnit'];?></td>
-                <td bgcolor="<?php echo $color;?>"><?php  echo $row['score'];?></td>
-                <td bgcolor="<?php echo $color;?>"><?php  echo $row['scoreLetterGrade'];?></td>
-                <td bgcolor="<?php echo $color;?>"><?php  echo $row['scoreGradePoint'];?></td>
-                <td bgcolor="<?php echo $color;?>"><?php  echo $row['totalScoreGradePoint'];?></td>
+                <td bgcolor=""></td>
+                <td bgcolor=""></td>
+                <td bgcolor=""></td>
+                <td bgcolor=""></td>
+                <td bgcolor=""></td>
+                <td bgcolor=""></td>
+                <td bgcolor=""></td>
+                <td bgcolor=""></td>
                 </tr>
-                <?php 
-                    $cnt=$cnt+1;
-                    $courseUnit = $row['courseUnit'];
-                    $scoreGradePoint = $row['totalScoreGradePoint'];
-                    $totalCourseUnit += $courseUnit;
-                    $totalScoreGradePoint += $scoreGradePoint;
-                }
-            }?>
                 <tr>
                 <td bgcolor=""> </td>
                 <td bgcolor=""> </td>
                 <td bgcolor=""> </td>
-                <td bgcolor="#F9D342"><?php echo $totalCourseUnit;?></td>
+                <td bgcolor="#F9D342"></td>
                 <td bgcolor=""> </td>
                 <td bgcolor=""> </td>
                 <td bgcolor=""> </td>
-                <td bgcolor="#F9D342"><?php echo $totalScoreGradePoint;?></td>
+                <td bgcolor="#F9D342"></td>
                 </tr>                                                          
                 </tbody>
             </table>
 <!-------------------------- FROM THE FINAL RESULT TABLE --------------------------->
-            <table class="table table-hover table-striped table-bordered">
+            <!-- <table class="table table-hover table-striped table-bordered">
                 <thead>
                 <tr>
                     <th>Total Course Unit</th>
@@ -356,44 +272,19 @@ function showValues(str) {
                 </tr>
             </thead>
             <tbody>
-        <?php
-
-     if (isset($_POST['submit'])){
-
-                $levelId = $_POST['levelId'];
-                $sessionId = $_POST['sessionId'];
-                $semesterId = $_POST['semesterId'];
-
-        $ret=mysqli_query($con,"SELECT tblfinalresult.matricNo,tblfinalresult.levelId,tblfinalresult.totalCourseUnit,tblfinalresult.totalScoreGradePoint,tblfinalresult.gpa,
-        tblfinalresult.classOfDiploma,tblfinalresult.dateAdded,
-        tbllevel.levelName,tblsemester.semesterName,tblsession.sessionName
-        from tblfinalresult
-        INNER JOIN tbllevel ON tbllevel.Id = tblfinalresult.levelId
-        INNER JOIN tblsemester ON tblsemester.Id = tblfinalresult.semesterId
-        INNER JOIN tblsession ON tblsession.Id = tblfinalresult.sessionId
-        where tblfinalresult.levelId ='$levelId' and tblfinalresult.sessionId ='$sessionId' 
-        and tblfinalresult.semesterId ='$semesterId' and tblfinalresult.matricNo ='$matricNo'");
-        $cnt=1;
-        while ($row=mysqli_fetch_array($ret)) {
-        ?>
         <tr>
-        <td bgcolor="#F9D342"><?php  echo $row['totalCourseUnit'];?></td>
-        <td bgcolor="#F9D342"><?php  echo $row['totalScoreGradePoint'];?></td>
-        <td bgcolor="#F9D342"><?php  echo $row['gpa'];?></td>
-        <td bgcolor="#F9D342"><?php  echo $row['classOfDiploma'];?></td>
-        </tr>
-        <?php 
-        $cnt=$cnt+1;
-        }
-    }?>
-                                                                                    
+        <td bgcolor="#F9D342"></td>
+        <td bgcolor="#F9D342"></td>
+        <td bgcolor="#F9D342"></td>
+        <td bgcolor="#F9D342"></td>
+        </tr>                                                         
                     </tbody>
-                </table>
+                </table> -->
                 <a href="studentPrintResult.php?semesterId=<?php echo $semesterId;?>&matricNo=<?php echo $matricNo;?>&levelId=<?php echo $levelId;?>&sessionId=<?php echo $sessionId;?>" class="btn btn-danger">Print Result</a>
             </div>
         </div>
     </div>
-<!-- end of datatable -->
+    <!-- end of datatable -->
 
             </div>
         </div><!-- .animated -->
@@ -409,7 +300,6 @@ function showValues(str) {
                         &copy; 2024 Student Grading System
                     </div>
                     <div class="col-sm-6 text-right">
-                        <!-- Designed by <a href="https://colorlib.com">Colorlib</a> -->
                     </div>
                 </div>
             </div>

@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Courses - Admin</title>
+    <title>Section - Admin</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <link rel="apple-touch-icon" href="https://i.imgur.com/QRAUqs9.png" />
@@ -188,8 +188,8 @@
                 <div class="page-title">
                   <ol class="breadcrumb text-right">
                     <li><a href="#">Dashboard</a></li>
-                    <li><a href="#">Courses</a></li>
-                    <li class="active">Add Courses</li>
+                    <li><a href="#">Section</a></li>
+                    <li class="active">Add Section</li>
                   </ol>
                 </div>
               </div>
@@ -205,50 +205,30 @@
               <div class="card">
                 <div class="card-header">
                   <strong class="card-title"
-                    ><h2 align="center">Add New Course</h2></strong
+                    ><h2 align="center">Add New Section</h2></strong
                   >
                 </div>
                 <div class="card-body">
                   <!-- Credit Card -->
                   <div id="pay-invoice">
                     <div class="card-body">
-                      <div class="<?php echo $alertStyle;?>" role="alert">
-                        <?php echo $statusMsg;?>
-                      </div>
-                      <form method="POST" action="#" id="add-course">
+                      <div class="" role="alert"></div>
+                      <form method="POST" action="#" id="add-section">
                         <div class="row">
                           <div class="col-6">
-                            <label for="crs-code" class="control-label mb-1"
-                              >Course Code <span class="red">*</span></label
+                            <label for="sct-id" class="control-label mb-1"
+                              >Section ID <span class="red">*</span></label
                             >
                             <input
-                              id="crs-code"
-                              name="courseCode"
+                              id="sct-id"
+                              name="sct-id"
                               type="text"
                               class="form-control cc-exp"
                               value=""
                               required
-                              placeholder="Course Code"
+                              placeholder="Section ID"
                             />
                           </div>
-                          <div class="col-6">
-                            <div class="form-group">
-                              <label for="crs-name" class="control-label mb-1"
-                                >Course Name <span class="red">*</span></label
-                              >
-                              <input
-                                id="crs-name"
-                                name="courseTitle"
-                                type="text"
-                                class="form-control cc-exp"
-                                value=""
-                                required
-                                placeholder="Course Name"
-                              />
-                            </div>
-                          </div>
-                        </div>
-                        <div class="row">
                           <div class="col-6">
                             <div class="form-group">
                               <label for="dept" class="control-label mb-1"
@@ -274,6 +254,24 @@
                               </select>
                             </div>
                           </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-6">
+                            <div class="form-group">
+                              <label for="adv-id" class="control-label mb-1"
+                                >Adviser ID <span class="red">*</span></label
+                              >
+                              <input
+                                id="adv-id"
+                                name="adv-id"
+                                type="text"
+                                class="form-control cc-exp"
+                                value=""
+                                required
+                                placeholder="Adviser ID"
+                              />
+                            </div>
+                          </div>
                           <div class="col-6">
                             <div class="form-group">
                               <label for="year" class="control-label mb-1"
@@ -294,34 +292,12 @@
                             </div>
                           </div>
                         </div>
-                        <div class="row">
-                          <div class="col-6">
-                            <div class="form-group">
-                              <label for="sem" class="control-label mb-1"
-                                >Semester <span class="red">*</span></label
-                              >
-                              <select
-                                required
-                                id="sem"
-                                name="sem"
-                                class="custom-select form-control"
-                              >
-                                <option value="">--Select Semester--</option>
-                                <option value="1">1st Semester</option>
-                                <option value="2">2nd Semester</option>
-                              </select>
-                            </div>
-                          </div>
-                          <div class="col-6">
-                            <div class="form-group"></div>
-                          </div>
-                        </div>
                         <button
                           type="submit"
                           name="submit"
                           class="btn btn-success"
                         >
-                          Add Course
+                          Add Section
                         </button>
                       </form>
                     </div>
@@ -337,7 +313,7 @@
               <div class="card">
                 <div class="card-header">
                   <strong class="card-title"
-                    ><h2 align="center">All Courses</h2></strong
+                    ><h2 align="center">All Sections</h2></strong
                   >
                 </div>
                 <div class="card-body">
@@ -439,7 +415,7 @@
     </script>
 
     <!-- Script for adding course -->
-    <script src="../scripts/addCourse.js"></script>
+    <script src="../scripts/addSection.js"></script>
 
     <script type="text/javascript">
       $(document).ready(function () {
