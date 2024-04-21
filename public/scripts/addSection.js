@@ -4,14 +4,12 @@ form.addEventListener('submit', (event) => {
     event.preventDefault();
 
     const sctID = document.querySelector('#sct-id').value;
-    const dept = document.querySelector('#dept').value;
     const fctID = document.querySelector('#adv-id').value;
     const year = document.querySelector('#year').value;
     
-    if (!(isValueEmpty([sctID, dept, fctID, year]))) {
+    if (!(isValueEmpty([sctID, fctID, year]))) {
         const formData = new FormData();
         formData.append('sctID', sctID);
-        formData.append('dept', dept);
         formData.append('fctID', fctID);
         formData.append('year', year);
 

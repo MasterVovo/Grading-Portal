@@ -9,11 +9,10 @@ form.addEventListener('submit', (event) => {
     const lname = document.querySelector('#lname').value;
     const email = document.querySelector('#email').value;
     const pass = document.querySelector('#pass').value;
-    const dept = document.querySelector('#dept').value;
     const year = document.querySelector('#year').value;
     const sect = document.querySelector('#sect').value;
     
-    if (!(isValueEmpty([stdID, fname, lname, email, dept, year, sect]))) {
+    if (!(isValueEmpty([stdID, fname, lname, email, year, sect]))) {
         const formData = new FormData();
         formData.append('stdID', stdID);
         formData.append('fname', fname);
@@ -21,7 +20,6 @@ form.addEventListener('submit', (event) => {
         formData.append('lname', lname);
         formData.append('email', email);
         formData.append('pass', pass);
-        formData.append('dept', dept);
         formData.append('year', year);
         formData.append('sect', sect);
 
