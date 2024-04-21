@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 21, 2024 at 04:42 AM
+-- Generation Time: Apr 22, 2024 at 01:53 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.12
 
@@ -62,22 +62,6 @@ CREATE TABLE `faculty` (
   `facultyPass` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `faculty`
---
-
-INSERT INTO `faculty` (`facultyID`, `facultyFName`, `facultyMName`, `facultyLName`, `facultyEmail`, `facultyPass`) VALUES
-('1', 'John', 'A.', 'Doe', 'john.doe@example.com', 'password1'),
-('10', 'Patricia', 'J.', 'Taylor', 'patricia.taylor@example.com', 'password10'),
-('2', 'Jane', 'B.', 'Smith', 'jane.smith@example.com', 'password2'),
-('3', 'Michael', 'C.', 'Johnson', 'michael.johnson@example.com', 'password3'),
-('4', 'Emily', 'D.', 'Williams', 'emily.williams@example.com', 'password4'),
-('5', 'Robert', 'E.', 'Brown', 'robert.brown@example.com', 'password5'),
-('6', 'Linda', 'F.', 'Davis', 'linda.davis@example.com', 'password6'),
-('7', 'Thomas', 'G.', 'Miller', 'thomas.miller@example.com', 'password7'),
-('8', 'Sarah', 'H.', 'Wilson', 'sarah.wilson@example.com', 'password8'),
-('9', 'James', 'I.', 'Moore', 'james.moore@example.com', 'password9');
-
 -- --------------------------------------------------------
 
 --
@@ -117,13 +101,6 @@ CREATE TABLE `section` (
   `sectionAdv` varchar(20) NOT NULL,
   `sectionYearLvl` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `section`
---
-
-INSERT INTO `section` (`sectionID`, `sectionAdv`, `sectionYearLvl`) VALUES
-('BSIS101', '1', '1');
 
 -- --------------------------------------------------------
 
