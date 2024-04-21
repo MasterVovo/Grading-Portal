@@ -27,11 +27,6 @@ class Database {
     public function getConnection() {
         return $this->conn;
     }
-
-    // Method to close the database connection
-    public function closeConnection() {
-        $this->conn->close();
-    }
 }
 
 // Usage example:
@@ -47,8 +42,4 @@ $database = new Database($servername, $username, $password, $dbname);
 $conn = $database->getConnection();
 
 // Use the connection for database operations
-
-// Close the database connection when done
-$database->closeConnection();
-
 ?>
