@@ -11,7 +11,7 @@ class FacultyFetcher {
     public function getAllFct() {
         $conn = DBConn::getInstance()->getConnection();
         
-        $sql = "SELECT * FROM thrtable";
+        $sql = "SELECT facultyID, facultyFName, facultyMName, facultyLName, facultyEmail, facultyDept FROM faculty";
         $stmt = $conn->prepare($sql);
         $result = $stmt->execute();
 
@@ -22,5 +22,5 @@ class FacultyFetcher {
     }
 }
 
-// $fct = new FacultyFetcher();
-// $fct->getAllFct();
+$fct = new FacultyFetcher();
+$fct->getAllFct();
