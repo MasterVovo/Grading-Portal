@@ -181,43 +181,28 @@ function showValues(str) {
                                             <div class="row">
                                                 <div class="col-6">
                                                     <div class="form-group">
-                                                      <label for="x_card_code" class="control-label mb-1">Level</label>
+                                                      <label for="x_card_code" class="control-label mb-1">Section</label>
                                                     <select required name="levelId" class="custom-select form-control">
-                                                        <option value="">--Select Level--</option>
-                                                        <option value="'.$row['Id'].'" >ROW</option>
+                                                        <option value="">--Select Section--</option>
+                                                        <option value="bsis201" >BSIS201</option>
+                                                        <option value="bsis202" >BSIS202</option>
+                                                        <option value="bsis203" >BSIS203</option>
+                                                        <option value="bsis204" >BSIS204</option>
+                                                        <option value="bsis205" >BSIS205</option>
                                                     </select>
                                                     </div>
                                                 </div>
                                             <div class="col-6">
                                                 <div class="form-group">
-                                                     <label for="x_card_code" class="control-label mb-1">Session</label>
-                                                     <select required name="sessionId" class="custom-select form-control">
-                                                        <option value="">--Select Session--</option>
-                                                        <option value="'.$row['Id'].'" >ROW</option>
-                                                    </select>
+                                                     
                                                 </div>
                                             </div>
                                         </div>
-                                         <div class="row">
-                                                <div class="col-6">
-                                                    <div class="form-group">
-                                                    <label for="x_card_code" class="control-label mb-1">Faculty</label>
-                                                    <select required name="facultyId" onchange="showValues(this.value)" class="custom-select form-control">
-                                                        <option value="">--Select Faculty--</option>
-                                                        <option value="'.$row['Id'].'" >ROW</option>
-                                                    </select>                              
-                                                 </div>
-                                                </div>
-                                                 <div class="col-6">
-                                                    <div class="form-group">
-                                                        <div id='txtHint'></div>                           
-                                                 </div>
-                                                </div>
-                                             </div>
-                                                <div>
+                                        
+                                        <div>
 												
-                                                <button type="submit" name="submit" class="btn btn-success">View Student</button>
-                                            </div>
+                                            <button type="submit" name="submit" class="btn btn-success">View Student</button>
+                                        </div>
                                         </form>
                                     </div>
                                 </div>
@@ -238,26 +223,16 @@ function showValues(str) {
                                      <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>FullName</th>
-                                            <th>MatricNo</th>
-                                            <th>Level</th>
-                                            <th>Faculty</th>
-                                            <th>Department</th>
-                                            <th>Session</th>
-                                            <th>Date Added</th>
-                                            <th>First Semester</th>
-                                            <th>Second Semester</th>
+                                            <th>First name</th>
+                                            <th>Middle name</th>
+                                            <th>Last name</th>
+                                            <th>Grade</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                     <tr>
                     <td></td>
                     <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                     <td></td>
                     <td></td>
                     <td><a href="" title="Edit Details"><i class="fa fa-eye fa-1x"></i> View Course</a></td>
                     <td><a href="" title="Edit Details"><i class="fa fa-eye fa-1x"></i> View Course</a></td>

@@ -13,7 +13,7 @@ if (isset($_POST['submit'])) {
     exit();
   }
   //check if studentID exist in faculty, student, and admin tables
-  $sql = "SELECT facultyPass FROM faculty WHERE facultyID = ? UNION ALL SELECT studentPass FROM student WHERE studentID = ?";
+  $sql = "SELECT 'teacher' AS userType,facultyPass FROM faculty WHERE facultyID = ? UNION ALL SELECT 'student' AS userType, studentPass FROM student WHERE studentID = ?";
   $stmt = mysqli_prepare($conn, $sql);
   mysqli_stmt_bind_param($stmt, "ss", $studentID, $studentID);
   mysqli_stmt_execute($stmt);
@@ -22,12 +22,13 @@ if (isset($_POST['submit'])) {
 
   if ($row) {
     //check if password is correct
-    if (password_verify($password, $row['password'])) {
+    $userPass = $row['facultyPass'] ?: $row['studentPass'];
+    if ($password == $userPass) {
       //login successful
-      $userType = $row['facultyID'] ? 'teacher' : ($row['studentID'] ? 'student' : 'admin');
-      $_SESSION['userID'] = $row['facultyID'] ?: $row['studentID'] ?: $row['adminID'];
+      $userType = $row['userType'];
+      $_SESSION['userID'] = $row['facultyID'] ?: $row['studentID'];
       $_SESSION['userType'] = $userType;
-      $redirectPage = $userType . '/index.php';
+      $redirectPage = $userType . '/dashboard.html';
       header("Location: $redirectPage");
       exit();
     } else {
