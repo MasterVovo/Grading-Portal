@@ -264,20 +264,9 @@
                           </div>
                         </div>
                         <p>
-                          <small
-                            ><i
-                              >Note: By default student's password is set to
-                              "<b>???</b>"</i
-                            ></small
-                          >
+                          <small><i>Note: By default student's password is set to "<b>???</b>"</i></small>
                         </p>
-                        <button
-                          type="submit"
-                          name="submit"
-                          class="btn btn-success"
-                        >
-                          Add Faculty
-                        </button>
+                        <button type="submit" name="submit" class="btn btn-success">Add Faculty</button>
                       </form>
                     </div>
                   </div>
@@ -301,42 +290,40 @@
                 <div class="modal-dialog modal-lg" role="document">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                      <h5 class="modal-title" id="exampleModalLabel">Edit Faculty Data</h5>
                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                       </button>
                     </div>
                     <div class="modal-body">
-                      <!-- <form method="Post" action="#" id="edit-faculty">
+                      <form method="Post" action="#" id="edit-faculty">
                         <div class="row">
                           <div class="col-6">
                             <div class="form-group">
-                              <label for="fct-id" class="control-label mb-1"
-                                >Faculty ID <span class="red">*</span></label
-                              >
+                              <label for="edit-fct-id" class="control-label mb-1">Faculty ID <span class="red">*</span></label>
                               <input
-                                id="fct-id"
+                                id="edit-fct-id"
                                 name="fct-id"
                                 type="text"
                                 class="form-control cc-exp"
                                 value=""
                                 required
+                                disabled
                                 placeholder="Faculty ID"
                               />
                             </div>
                           </div>
                           <div class="col-6">
                             <div class="form-group">
-                              <label for="fname" class="control-label mb-1"
-                                >First name <span class="red">*</span></label
-                              >
+                              <label for="edit-fname" class="control-label mb-1">First name <span class="red">*</span></label>
                               <input
-                                id="fname"
+                                id="edit-fname"
                                 name="fname"
                                 type="text"
                                 class="form-control cc-exp"
                                 value=""
                                 required
+                                disabled
                                 placeholder="First name"
                               />
                             </div>
@@ -345,31 +332,29 @@
                         <div class="row">
                           <div class="col-6">
                             <div class="form-group">
-                              <label for="mname" class="control-label mb-1"
-                                >Middle name</label
-                              >
+                              <label for="edit-mname" class="control-label mb-1">Middle name</label>
                               <input
-                                id="mname"
+                                id="edit-mname"
                                 name="mname"
                                 type="text"
                                 class="form-control cc-exp"
                                 value=""
+                                disabled
                                 placeholder="Middle name"
                               />
                             </div>
                           </div>
                           <div class="col-6">
                             <div class="form-group">
-                              <label for="lname" class="control-label mb-1"
-                                >Last name <span class="red">*</span></label
-                              >
+                              <label for="edit-lname" class="control-label mb-1">Last name <span class="red">*</span></label>
                               <input
-                                id="lname"
+                                id="edit-lname"
                                 name="lname"
                                 type="text"
                                 class="form-control cc-exp"
                                 value=""
                                 required
+                                disabled
                                 placeholder="Last name"
                               />
                             </div>
@@ -378,55 +363,89 @@
                         <div class="row">
                           <div class="col-6">
                             <div class="form-group">
-                              <label for="email" class="control-label mb-1"
-                                >Email <span class="red">*</span></label
-                              >
+                              <label for="edit-email" class="control-label mb-1">Email <span class="red">*</span></label>
                               <input
-                                id="email"
+                                id="edit-email"
                                 name="email"
                                 type="email"
                                 class="form-control cc-exp"
                                 value=""
                                 required
+                                disabled
                                 placeholder="Email"
                               />
                             </div>
                           </div>
                           <div class="col-6">
                             <div class="form-group">
-                              <label for="pass" class="control-label mb-1"
-                                >Password <span class="red">*</span></label
-                              >
+                              <label for="edit-pass" class="control-label mb-1">Password <span class="red">*</span></label>
                               <input
-                                id="pass"
+                                id="edit-pass"
                                 name="pass"
                                 type="password"
                                 class="form-control cc-exp"
                                 value=""
                                 required
+                                disabled
                                 placeholder="Password"
                               />
                             </div>
                           </div>
                         </div>
+                      </form>
+
+                      <form action="" id="set-assign">
+                        <h2 class="h5 mt-2">Assign New Section and Course</h2>
                         
-                        <p>
-                          <small>
-                            <i>Note: By default student's password is set to "<b>???</b>"</i>
-                          </small>
-                        </p>
-                        <button
-                          type="submit"
-                          name="submit"
-                          class="btn btn-success"
-                        >
-                          Add Faculty
-                        </button>
-                      </form> -->
+                        <div class="row">
+                          <div class="col-6">
+                            <div class="form-group">
+                              <label for="sect" class="control-label mb-1">Section</label>
+                              <select required id="sect" name="sect" class="custom-select form-control">
+                                <option value="" disabled selected>--Select Section--</option>
+                              </select>
+                            </div>
+                          </div>
+
+                          <div class="col-6">
+                            <div class="form-group">
+                              <label for="crs" class="control-label mb-1">Course</label>
+                              <select required id="crs" name="crs" class="custom-select form-control">
+                                <option value="" disabled selected>--Select Course--</option>
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+
+                        <button type="submit" name="submit" class="btn btn-success" onclick="setAssignment()">Assign</button>
+                      </form>
+                      
+                      <div class="card shadow-lg">
+                        <div class="card-header">
+                          <h2 align="center" class="h5">Section & Subject Assignment</h2>
+                        </div>
+                        <div class="card-body">
+                          <table id="bootstrap-data-table" class="table table-hover table-striped table-bordered">
+                            <thead>
+                              <tr>
+                                <th>Section</th>
+                                <th>Course</th>
+                                <th>Actions</th>
+                              </tr>
+                            </thead>
+                            <tbody id="ass-table">
+                          
+                            </tbody>
+                            <script src="../scripts/reqAssignment.js"></script>
+                          </table>
+                        </div>
+                      </div>
+                      
+                      
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                      <button type="button" class="btn btn-primary">Save changes</button>
+                      <button type="button" class="btn btn-success">Save changes</button>
                     </div>
                   </div>
                 </div>
@@ -457,7 +476,7 @@
                         <th>Actions</th>
                       </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="fct-list-tbl">
                       
                     </tbody>
                     <script src="../scripts/reqFctList.js"></script>
@@ -517,6 +536,8 @@
 
     <!-- Script for adding faculty -->
     <script src="../scripts/addFaculty.js"></script>
+    <!-- Script for sanitizing inputs -->
+    <script src="../scripts/sanitation.js"></script>
 
     <script type="text/javascript">
       $(document).ready(function () {
@@ -538,6 +559,115 @@
           $("#left-panel").removeClass("open-menu");
         }
       });
+
+      // Populating the edit fields
+      function populateEditFields() {
+        event.preventDefault();
+        const facultyID = event.currentTarget.getAttribute('data-id');
+        
+        const formData = new FormData();
+        formData.append('method', 'getFct');
+        formData.append('facultyID', facultyID);
+
+        fetch('../../src/controller/getFctList.php', {
+          method: 'POST',
+          body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+          console.log(data[0]);
+          document.querySelector('#edit-fct-id').value = data[0].facultyID;
+          document.querySelector('#edit-fname').value = data[0].facultyFName;
+          document.querySelector('#edit-mname').value = data[0].facultyMName;
+          document.querySelector('#edit-lname').value = data[0].facultyLName;
+          document.querySelector('#edit-email').value = data[0].facultyEmail;
+          document.querySelector('#edit-pass').value = data[0].facultyPass;
+        })
+        .catch(error => console.error(error));
+
+        document.querySelector('#ass-table').innerHTML = '';
+        fetch('../../src/controller/getAssignment.php', {
+          method: 'POST',
+          body: (() => {
+            const formData = new FormData();
+            formData.append('method', 'getAssignmentByFct');
+            formData.append('facultyID', facultyID);
+            return formData;
+          })()
+        })
+        .then(response => response.json())
+        .then(data => {
+          console.log(data);
+          data.forEach((item) => {
+            document.querySelector('#ass-table').innerHTML += `
+              <tr>
+                <th>${item.sectionID}</th>
+                <td>${item.courseID}</td>
+                <td>
+                    <a onclick="return confirm('Are you sure you want to delete?')" href="deleteStudent.php?delid=<?php echo $row['matricNo'];?>" title="Delete Student Details"><i class="fa fa-trash fa-1x"></i></a>
+                </td>
+              </tr>
+            `;
+          });
+        })
+        .catch(error => console.error(error));
+      }
+
+      // Filling in section selection
+      const getAllSctId = new FormData();
+      getAllSctId.append('method', 'getAllSctId')
+      fetch('../../src/controller/getSctList.php', {
+        method: 'POST',
+        body: getAllSctId
+      })
+      .then(response => response.json())
+      .then(data => {
+        data.forEach(item => {
+          document.querySelector('#sect').innerHTML += `<option value="${item.sectionID}">${item.sectionID}</option>`;
+        })
+      })
+      .catch(error => console.error(error));
+
+      // Filling in course selection
+      const getAllCrsId = new FormData();
+      getAllCrsId.append('method', 'getAllCrsId')
+      fetch('../../src/controller/getCrsList.php', {
+        method: 'POST',
+        body: getAllCrsId
+      })
+      .then(response => response.json())
+      .then(data => {
+        data.forEach(item => {
+          document.querySelector('#crs').innerHTML += `<option value="${item.courseCode}">${item.courseCode}</option>`;
+        })
+      })
+      .catch(error => console.error(error));
+
+      // Setting assignment of section and course
+      function setAssignment() {
+        event.preventDefault();
+
+        const id = document.querySelector('#edit-fct-id').value;
+        const sect = document.querySelector('#sect').value;
+        const crs = document.querySelector('#crs').value;
+
+        if (!(isValueEmpty([id, sect, crs]))) {
+          const formData = new FormData();
+          formData.append('id', id);
+          formData.append('sect', sect);
+          formData.append('crs', crs);
+
+          fetch('../../src/controller/setAssignment.php', {
+              method: 'POST',
+              body: formData
+          })
+          .then(response => response.text())
+          .then(data => alert(data))
+          .catch(error => console.error(error));
+        } else {
+            alert("There's an empty field");
+        }
+      }
     </script>
   </body>
 </html>
