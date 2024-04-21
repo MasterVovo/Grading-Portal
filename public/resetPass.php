@@ -6,13 +6,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="shortcut icon" href="images/KLD LOGO.png" type="image/x-icon">
-    <link rel="stylesheet" href="styles/resetPass.css" />
+    <link rel="stylesheet" href="resetPass.css" />
     <title>Reset Password</title>
   </head>
 
   <body>
     <!-- RESET PASSWORD FORM-->
     <section class="container">
+      
       <h2>Change your password</h2>
       <form class="form" autocomplete="off">
           <div class="input-box">

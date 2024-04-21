@@ -53,6 +53,12 @@
       font-size: xx-large;
       font-family: Arial, Helvetica, sans-serif;
     }
+
+    .mr-5 {
+    margin-left: 3rem; /* Adjust the left margin to increase/decrease spacing */
+
+  }
+
   </style>
 
   <body>
@@ -90,11 +96,14 @@
                     id="agreeTerms"
                     required
                   />
-                  <label class="form-check-label" for="agreeTerms">
-                    I agree to the
-                    <a href="#" data-toggle="modal" data-target="#termsModal">
-                    Terms and Conditions</a>
-                  </label>
+                    <label class="form-check-label" for="agreeTerms">
+                      I agree to the
+                      <a href="#" data-toggle="modal" data-target="#termsModal">
+                      Terms and Conditions</a>
+                    </label>
+                    <span class="mr-5"> <!-- Adjust the spacing as needed -->
+                      <a href="#" id="forgotPasswordLink">Forgot Password?</a>
+                    </span>
                 </div>
                 <!-- <button
                   type="submit"
@@ -444,5 +453,6 @@
       });
     });
     </script>
+    
   </body>
 </html>
