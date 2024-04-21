@@ -1,7 +1,12 @@
 const tbody = document.querySelector('tbody');
 
 fetch('../../src/controller/getCrsList.php', {
-    method: 'POST'
+    method: 'POST',
+    body: (() => {
+        const formData = new FormData();
+        formData.append('method', 'getAllCrs')
+        return formData;
+    })()
 })
 .then(response => response.json())
 .then(data => {
