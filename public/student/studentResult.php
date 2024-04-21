@@ -60,39 +60,6 @@
 
         <!-- Header-->
         <header id="header" class="header">
-            <div class="top-left">
-                <div class="navbar-header">
-                    <a class="navbar-brand" href="./">Student Grading System</a>
-                    <a class="navbar-brand hidden" href="./">Student Grading System</a>
-                    <a id="menuToggle" class="menutoggle"><i class="fa fa-bars"></i></a>
-                </div>
-            </div>
-            <div class="top-right">
-                <div class="header-menu">
-                    <div class="header-left">
-                        <div class="form-inline">
-                            <form class="search-form">
-                                <input class="form-control mr-sm-2" type="text" placeholder="Search ..." aria-label="Search">
-                                <button class="search-close" type="submit"><i class="fa fa-close"></i></button>
-                            </form>
-                        </div>
-
-
-
-                        <div class="user-area dropdown float-right">
-                            <a href="#" class="dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-
-                                <img class="user-avatar rounded-circle" src="../assets/img/user2.png" alt="User Avatar">
-                            </a>
-
-                            <div class="user-menu dropdown-menu">
-                                <a class="nav-link" href="updateProfile.php"><i class="fa fa-user"></i>My Profile</a>
-                                <a class="nav-link" href="logout.html"><i class="fa fa-power-off"></i>Logout</a>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
         </header>
         <!-- /header -->
         <!-- Header-->
@@ -252,7 +219,14 @@
         </tr>                                                         
                     </tbody>
                 </table> -->
-                                <a href="studentPrintResult.php?semesterId=<?php echo $semesterId; ?>&matricNo=<?php echo $matricNo; ?>&levelId=<?php echo $levelId; ?>&sessionId=<?php echo $sessionId; ?>" class="btn btn-danger">Print Result</a>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <a href="studentPrintResult.php?semesterId=<?php echo $semesterId; ?>&matricNo=<?php echo $matricNo; ?>&levelId=<?php echo $levelId; ?>&sessionId=<?php echo $sessionId; ?>" class="btn btn-danger">Print Result</a>
+                                    </div>
+                                    <div class="col-6">
+                                        <h4 class="font-weight-bold pr-5 pt-2" align="right">GWA: --</h4>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -305,6 +279,11 @@
             .then((response) => response.text())
             .then((data) => {
                 document.querySelector("#left-panel").innerHTML = data;
+            });
+        fetch("includes/header.html")
+            .then((response) => response.text())
+            .then((data) => {
+                document.querySelector("#header").innerHTML = data;
             });
     </script>
 

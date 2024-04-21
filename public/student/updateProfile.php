@@ -38,39 +38,6 @@
 
         <!-- Header-->
         <header id="header" class="header">
-            <div class="top-left">
-                <div class="navbar-header">
-                    <a class="navbar-brand" href="./">Student Grading System</a>
-                    <a class="navbar-brand hidden" href="./">Student Grading System</a>
-                    <a id="menuToggle" class="menutoggle"><i class="fa fa-bars"></i></a>
-                </div>
-            </div>
-            <div class="top-right">
-                <div class="header-menu">
-                    <div class="header-left">
-                        <div class="form-inline">
-                            <form class="search-form">
-                                <input class="form-control mr-sm-2" type="text" placeholder="Search ..." aria-label="Search">
-                                <button class="search-close" type="submit"><i class="fa fa-close"></i></button>
-                            </form>
-                        </div>
-
-
-
-                        <div class="user-area dropdown float-right">
-                            <a href="#" class="dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-
-                                <img class="user-avatar rounded-circle" src="../assets/img/user2.png" alt="User Avatar">
-                            </a>
-
-                            <div class="user-menu dropdown-menu">
-                                <a class="nav-link" href="updateProfile.php"><i class="fa fa-user"></i>My Profile</a>
-                                <a class="nav-link" href="logout.html"><i class="fa fa-power-off"></i>Logout</a>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
         </header>
         <!-- /header -->
         <!-- Header-->
@@ -117,28 +84,27 @@
                                             <div class="row">
                                                 <div class="col-6">
                                                     <div class="form-group">
-                                                        <label for="cc-exp" class="control-label mb-1">Firstname</label>
-                                                        <input id="" name="firstname" type="tel" class="form-control cc-exp" value="" Required data-val="true" data-val-required="Please enter the card expiration" data-val-cc-exp="Please enter a valid month and year" placeholder="Firstname">
+                                                        <label for="cc-exp" class="control-label mb-1">First Name</label>
+                                                        <input id="" name="firstname" type="tel" class="form-control cc-exp" value="" Required data-val="true" placeholder="First Name">
                                                     </div>
                                                 </div>
                                                 <div class="col-6">
-                                                    <label for="x_card_code" class="control-label mb-1">Lastname</label>
-                                                    <input id="" name="lastname" type="tel" class="form-control cc-cvc" value="" Required data-val="true" data-val-required="Please enter the security code" data-val-cc-cvc="Please enter a valid security code" placeholder="Lastname">
+                                                    <div class="form-group">
+                                                        <label for="cc-exp" class="control-label mb-1">Middle Name</label>
+                                                        <input id="" name="mmiddlename" type="text" class="form-control cc-exp" value="" placeholder="Middle Name">
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div>
-
                                                 <div class="row">
                                                     <div class="col-6">
-                                                        <div class="form-group">
-                                                            <label for="cc-exp" class="control-label mb-1">Othername</label>
-                                                            <input id="" name="othername" type="text" class="form-control cc-exp" value="" data-val="true" data-val-required="Please enter the card expiration" data-val-cc-exp="Please enter a valid month and year" placeholder="Othername">
-                                                        </div>
+                                                        <label for="x_card_code" class="control-label mb-1">Last Name</label>
+                                                        <input id="" name="lastname" type="tel" class="form-control cc-cvc" value="" Required data-val="true" placeholder="Last Name">
                                                     </div>
                                                     <div class="col-6">
                                                         <div class="form-group">
                                                             <label for="x_card_code" class="control-label mb-1">Email Address</label>
-                                                            <input id="" name="emailAddress" type="email" class="form-control cc-cvc" value="" Required data-val="true" data-val-required="Please enter the security code" data-val-cc-cvc="Please enter a valid security code" placeholder="Email Address">
+                                                            <input id="" name="emailAddress" type="email" class="form-control cc-cvc" value="" Required placeholder="Email Address">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -147,10 +113,9 @@
                                                     <div class="col-6">
                                                         <div class="form-group">
                                                             <label for="cc-exp" class="control-label mb-1">Phone Number</label>
-                                                            <input id="" name="phoneNo" type="text" class="form-control cc-exp" value="" Required data-val="true" data-val-required="Please enter the card expiration" data-val-cc-exp="Please enter a valid month and year" placeholder="Phone Number">
+                                                            <input id="" name="phoneNo" type="text" class="form-control cc-exp" value="" Required placeholder="Phone Number">
                                                         </div>
                                                     </div>
-
                                                 </div>
 
                                                 <button type="submit" name="submit" class="btn btn-success">Update Profile</button>
@@ -212,6 +177,11 @@
             .then((response) => response.text())
             .then((data) => {
                 document.querySelector("#left-panel").innerHTML = data;
+            });
+        fetch("includes/header.html")
+            .then((response) => response.text())
+            .then((data) => {
+                document.querySelector("#header").innerHTML = data;
             });
     </script>
 

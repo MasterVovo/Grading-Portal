@@ -1,5 +1,6 @@
 <!doctype html>
 <html class="no-js" lang="">
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -63,12 +64,10 @@
         #cellPaiChart {
             height: 160px;
         }
+
         .header-menu {
             color: green;
         }
-
-    
-
     </style>
 </head>
 
@@ -81,41 +80,6 @@
     <div id="right-panel" class="right-panel">
         <!-- Header-->
         <header id="header" class="header">
-            <div class="top-left">
-                <div class="navbar-header">
-                    <a class="navbar-brand" href="./">Student Grading System</a>
-                    <a class="navbar-brand hidden" href="./">Student Grading System</a>
-                    <a id="menuToggle" class="menutoggle"><i class="fa fa-bars"></i></a>
-                </div>
-            </div>
-            <div class="top-right">
-                <div class="header-menu">
-                    <div class="header-left">
-                        <div class="form-inline">
-                            <form class="search-form">
-                                <input class="form-control mr-sm-2" type="text" placeholder="Search ..."
-                                    aria-label="Search">
-                                <button class="search-close" type="submit"><i class="fa fa-close"></i></button>
-                            </form>
-                        </div>
-
-                        
-
-                    <div class="user-area dropdown float-right">
-                        <a href="#" class="dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true"
-                            aria-expanded="false">
-                            
-                            <img class="user-avatar rounded-circle" src="../assets/user2.png" alt="User Avatar">
-                        </a>
-
-                        <div class="user-menu dropdown-menu">
-                            <a class="nav-link" href="updateProfile.html"><i class="fa fa-user"></i>My Profile</a>
-                           <a class="nav-link" href="logout.html"><i class="fa fa-power-off"></i>Logout</a>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
         </header>
         <!-- /Header -->
         <!-- Content -->
@@ -129,7 +93,7 @@
                             <div class="card-body">
                                 <h3 align="center"><b>STUDENT DASHBOARD</b></h3>
                             </div>
-                            
+
                         </div>
                     </div>
 
@@ -263,28 +227,33 @@
     <!--Local Stuff-->
     <script>
         fetch("includes/leftnav.html")
-          .then((response) => response.text())
-          .then((data) => {
-            document.querySelector("#left-panel").innerHTML = data;
-          });
-      </script>
+            .then((response) => response.text())
+            .then((data) => {
+                document.querySelector("#left-panel").innerHTML = data;
+            });
+        fetch("includes/header.html")
+            .then((response) => response.text())
+            .then((data) => {
+                document.querySelector("#header").innerHTML = data;
+            });
+    </script>
 
     <script>
         $('#menuToggle').on('click', function(event) {
-        var windowWidth = $(window).width();   		 
-        if (windowWidth<1010) { 
-            $('body').removeClass('open'); 
-            if (windowWidth<760){ 
-            $('#left-panel').slideToggle(); 
+            var windowWidth = $(window).width();
+            if (windowWidth < 1010) {
+                $('body').removeClass('open');
+                if (windowWidth < 760) {
+                    $('#left-panel').slideToggle();
+                } else {
+                    $('#left-panel').toggleClass('open-menu');
+                }
             } else {
-            $('#left-panel').toggleClass('open-menu');  
-            } 
-        } else {
-            $('body').toggleClass('open');
-            $('#left-panel').removeClass('open-menu');  
-        } 
-            
-        }); 
+                $('body').toggleClass('open');
+                $('#left-panel').removeClass('open-menu');
+            }
+
+        });
     </script>
 
     <!-- <script>
