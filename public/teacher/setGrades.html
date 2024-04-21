@@ -182,7 +182,7 @@ function showValues(str) {
                                             <th>Actions</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody id="grd-body">
                                         <!-- <tr>
                                         <td></td>
                                         <td></td>
@@ -244,11 +244,11 @@ function showValues(str) {
 
     <script type="text/javascript">
         $(document).ready(function() {
-          $('#bootstrap-data-table-export').DataTable();
-      } );
+            $('#bootstrap-data-table-export').DataTable();
+        });
 
-      // Menu Trigger
-      $('#menuToggle').on('click', function(event) {
+        // Menu Trigger
+        $('#menuToggle').on('click', function(event) {
             var windowWidth = $(window).width();   		 
             if (windowWidth<1010) { 
                 $('body').removeClass('open'); 
@@ -262,8 +262,21 @@ function showValues(str) {
                 $('#left-panel').removeClass('open-menu');  
             } 
                 
-            }); 
+        }); 
 
+        // Load the student list
+        fetch('../../src/controller/getStdList.php', {
+            method: 'POST',
+            body: (() => {
+                const formData = new FormData();
+                formData.append('method', 'getStdBySessionID');
+                return formData;
+            })()
+        })
+        .then(response => response.text())
+        .then(data => {
+            console.log(data);
+        })
       
   </script>
 

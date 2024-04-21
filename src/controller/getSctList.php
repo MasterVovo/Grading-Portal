@@ -4,19 +4,14 @@
 require_once '../model/SectionFetcher.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $method = $_POST['method'];
-    if (isset($_POST['year'])) {
-        $method = $_POST['method'];
-        $year = $_POST['year'];
-    }
-    
     $sctFetcher = new SectionFetcher();
-    if ($method == 'getSectionsByYear')
-        echo $sctFetcher->getSctByYear($year);
-    else if ($method == 'getAllSctId')
-        echo $sctFetcher->getAllSctId();
-    else if ($method == 'getAllSct')
+    if ($_POST['method'] == 'getAllSct')
         echo $sctFetcher->getAllSct();
+    else if ($_POST['method'] == 'getAllSctId')
+        echo $sctFetcher->getAllSctId();
+    else if ($_POST['method'] == 'getSectionsByYear')
+        echo $sctFetcher->getSctByYear($_POST['year']);
+
     // echo $fctFetcher->uploadToDB();
 } else {
     exit();
