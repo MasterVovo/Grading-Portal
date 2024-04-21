@@ -1,17 +1,17 @@
 <?php
-// A class for retrieving teacher data
+// A class for retrieving section data
 
 require_once 'DBConn.php';
 
-class FacultyFetcher {
+class SectionFetcher {
     public function __construct() {
 
     }
 
-    public function getAllFct() {
+    public function getAllSct() {
         $conn = DBConn::getInstance()->getConnection();
         
-        $sql = "SELECT facultyID, facultyFName, facultyMName, facultyLName, facultyEmail, facultyDept FROM faculty";
+        $sql = "SELECT section.sectionID, section.sectionYearLvl, faculty.facultyFName, faculty.facultyMName, faculty.facultyLName FROM section INNER JOIN faculty ON section.sectionAdv=faculty.facultyID;";
         $stmt = $conn->prepare($sql);
         $result = $stmt->execute();
 
