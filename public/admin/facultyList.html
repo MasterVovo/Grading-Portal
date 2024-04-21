@@ -147,6 +147,7 @@
 
       <div class="content">
         <div class="animated fadeIn">
+          
           <div class="row">
             <div class="col-lg-12">
               <div class="card">
@@ -262,36 +263,6 @@
                             </div>
                           </div>
                         </div>
-                        <div class="row">
-                          <div class="col-6">
-                            <div class="form-group">
-                              <label for="dept" class="control-label mb-1"
-                                >Department <span class="red">*</span></label
-                              >
-                              <select
-                                required
-                                id="dept"
-                                name="dept"
-                                class="custom-select form-control"
-                              >
-                                <option value="">--Select Department--</option>
-                                <option value="iics">
-                                  Institute of Information and Computing
-                                  Sciences
-                                </option>
-                                <option value="ioe">
-                                  Institute of Engineering
-                                </option>
-                                <option value="ihpd">
-                                  Institute of Human Potential and Development
-                                </option>
-                              </select>
-                            </div>
-                          </div>
-                          <div class="col-6">
-                            <div class="form-group"></div>
-                          </div>
-                        </div>
                         <p>
                           <small
                             ><i
@@ -318,6 +289,153 @@
 
             <br /><br />
             <div class="col-md-12">
+              
+
+              <!-- Button trigger modal -->
+              <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editFacultyModal">
+                Launch demo modal
+              </button> -->
+
+              <!-- Modal -->
+              <div class="modal fade" id="editFacultyModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <!-- <form method="Post" action="#" id="edit-faculty">
+                        <div class="row">
+                          <div class="col-6">
+                            <div class="form-group">
+                              <label for="fct-id" class="control-label mb-1"
+                                >Faculty ID <span class="red">*</span></label
+                              >
+                              <input
+                                id="fct-id"
+                                name="fct-id"
+                                type="text"
+                                class="form-control cc-exp"
+                                value=""
+                                required
+                                placeholder="Faculty ID"
+                              />
+                            </div>
+                          </div>
+                          <div class="col-6">
+                            <div class="form-group">
+                              <label for="fname" class="control-label mb-1"
+                                >First name <span class="red">*</span></label
+                              >
+                              <input
+                                id="fname"
+                                name="fname"
+                                type="text"
+                                class="form-control cc-exp"
+                                value=""
+                                required
+                                placeholder="First name"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-6">
+                            <div class="form-group">
+                              <label for="mname" class="control-label mb-1"
+                                >Middle name</label
+                              >
+                              <input
+                                id="mname"
+                                name="mname"
+                                type="text"
+                                class="form-control cc-exp"
+                                value=""
+                                placeholder="Middle name"
+                              />
+                            </div>
+                          </div>
+                          <div class="col-6">
+                            <div class="form-group">
+                              <label for="lname" class="control-label mb-1"
+                                >Last name <span class="red">*</span></label
+                              >
+                              <input
+                                id="lname"
+                                name="lname"
+                                type="text"
+                                class="form-control cc-exp"
+                                value=""
+                                required
+                                placeholder="Last name"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-6">
+                            <div class="form-group">
+                              <label for="email" class="control-label mb-1"
+                                >Email <span class="red">*</span></label
+                              >
+                              <input
+                                id="email"
+                                name="email"
+                                type="email"
+                                class="form-control cc-exp"
+                                value=""
+                                required
+                                placeholder="Email"
+                              />
+                            </div>
+                          </div>
+                          <div class="col-6">
+                            <div class="form-group">
+                              <label for="pass" class="control-label mb-1"
+                                >Password <span class="red">*</span></label
+                              >
+                              <input
+                                id="pass"
+                                name="pass"
+                                type="password"
+                                class="form-control cc-exp"
+                                value=""
+                                required
+                                placeholder="Password"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                        
+                        <p>
+                          <small>
+                            <i>Note: By default student's password is set to "<b>???</b>"</i>
+                          </small>
+                        </p>
+                        <button
+                          type="submit"
+                          name="submit"
+                          class="btn btn-success"
+                        >
+                          Add Faculty
+                        </button>
+                      </form> -->
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+
+
+
               <div class="card">
                 <div class="card-header">
                   <strong class="card-title">

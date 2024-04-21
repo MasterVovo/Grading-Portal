@@ -4,11 +4,10 @@
 require_once 'DBConn.php';
 
 class SectionAdder {
-    private $sctID, $dept, $fctID, $year;
+    private $sctID, $fctID, $year;
 
-    public function __construct($sctID, $dept, $fctID, $year) {
+    public function __construct($sctID, $fctID, $year) {
         $this->sctID = $sctID;
-        $this->dept = $dept;
         $this->fctID = $fctID;
         $this->year = $year;
     }
@@ -20,11 +19,10 @@ class SectionAdder {
     public function uploadToDB() {
         $conn = DBConn::getInstance()->getConnection();
         
-        $sql = "INSERT INTO section(sectionID, sectionDept, sectionAdv, sectionYearLvl) VALUES (:sctID, :dept, :fctID, :year)";
+        $sql = "INSERT INTO section(sectionID, sectionAdv, sectionYearLvl) VALUES (:sctID, :fctID, :year)";
         $stmt = $conn->prepare($sql);
         $result = $stmt->execute([
             ':sctID' => $this->sctID,
-            ':dept' => $this->dept,
             ':fctID' => $this->fctID,
             ':year' => $this->year
         ]);

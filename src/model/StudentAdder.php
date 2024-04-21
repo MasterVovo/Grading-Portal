@@ -4,9 +4,9 @@
 require_once 'DBConn.php';
 
 class StudentAdder {
-    private $id, $fname, $mname, $lname, $email, $pass, $sect, $year, $dept;
+    private $id, $fname, $mname, $lname, $email, $pass, $sect, $year;
 
-    public function __construct($id, $fname, $mname, $lname, $email, $pass, $sect, $year, $dept) {
+    public function __construct($id, $fname, $mname, $lname, $email, $pass, $sect, $year) {
         $this->id = $id;
         $this->fname = $fname;
         $this->mname = $mname;
@@ -15,7 +15,6 @@ class StudentAdder {
         $this->pass = $pass;
         $this->sect = $sect;
         $this->year = $year;
-        $this->dept = $dept;
     }
 
     public function uploadToDB() {
@@ -26,7 +25,7 @@ class StudentAdder {
             $this->mname = "N/A";
         }
 
-        $sql = "INSERT INTO student(studentID, studentFName, studentMName, studentLName, studentEmail, studentPass, studentDept, studentYear, studentSect) VALUES (:id, :fname, :mname, :lname, :email, :pass, :dept, :year, :sect)";
+        $sql = "INSERT INTO student(studentID, studentFName, studentMName, studentLName, studentEmail, studentPass, studentYear, studentSect) VALUES (:id, :fname, :mname, :lname, :email, :pass, :year, :sect)";
         $stmt = $conn->prepare($sql);
         $result = $stmt->execute([
             ':id' => $this->id,
@@ -35,7 +34,6 @@ class StudentAdder {
             ':lname' => $this->lname,
             ':email' => $this->email,
             ':pass' => $this->pass,
-            ':dept' => $this->dept,
             ':year' => $this->year,
             ':sect' => $this->sect
         ]);

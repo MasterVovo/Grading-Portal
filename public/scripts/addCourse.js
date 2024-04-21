@@ -5,15 +5,13 @@ form.addEventListener('submit', (event) => {
 
     const crsCode = document.querySelector('#crs-code').value;
     const crsName = document.querySelector('#crs-name').value;
-    const dept = document.querySelector('#dept').value;
     const year = document.querySelector('#year').value;
     const sem = document.querySelector('#sem').value;
     
-    if (!(isValueEmpty([crsCode, crsName, dept, year, sem]))) {
+    if (!(isValueEmpty([crsCode, crsName, year, sem]))) {
         const formData = new FormData();
         formData.append('crsCode', crsCode);
         formData.append('crsName', crsName);
-        formData.append('dept', dept);
         formData.append('year', year);
         formData.append('sem', sem);
 
