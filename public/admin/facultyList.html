@@ -35,7 +35,7 @@
     <link rel="stylesheet" href="../styles/cs-skin-elastic.css" />
     <link
       rel="stylesheet"
-      href="https://cdn.datatables.net/2.0.5/css/dataTables.dataTables.min.css"
+      href="../styles/lib/datatable/dataTables.bootstrap.min.css"
     />
     <link rel="stylesheet" href="../styles/style2.css" />
     <link
@@ -425,7 +425,7 @@
                           <h2 align="center" class="h5">Section & Subject Assignment</h2>
                         </div>
                         <div class="card-body">
-                          <table id="bootstrap-data-table" class="table table-hover table-striped table-bordered">
+                          <table id="assignment-table" class="table table-hover table-striped table-bordered">
                             <thead>
                               <tr>
                                 <th>Section</th>
@@ -482,22 +482,23 @@
                   </table> -->
 
                   <table
-                    id="bootstrap-data-table"
+                    id="faculty-table"
                     class="table table-hover table-striped table-bordered"
                   >
                     <thead>
                       <tr>
-                        <th>ID</th>
-                        <th>Faculty Name</th>
+                        <th>#</th>
+                        <th>First Name</th>
+                        <th>Middle Name</th>
+                        <th>Last Name</th>
                         <th>Email</th>
-                        <th>Dept</th>
-                        <th>Edit</th>
-                        <th>Delete</th>
+                        <th>Actions</th>
                       </tr>
                     </thead>
                     <tbody id="fct-list-tbl">
 
                     </tbody>
+                    <script src="../scripts/reqFctList.js"></script>
                   </table>
                 </div>
               </div>
@@ -532,7 +533,17 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery-match-height@0.7.2/dist/jquery.matchHeight.min.js"></script>
     <script src="../assets/js/main.js"></script>
-    <script src="https://cdn.datatables.net/2.0.5/js/dataTables.min.js"></script>
+    <script src="../assets/js/lib/data-table/datatables.min.js"></script>
+    <script src="../assets/js/lib/data-table/dataTables.bootstrap.min.js"></script>
+    <script src="../assets/js/lib/data-table/dataTables.buttons.min.js"></script>
+    <script src="../assets/js/lib/data-table/buttons.bootstrap.min.js"></script>
+    <script src="../assets/js/lib/data-table/jszip.min.js"></script>
+    <script src="../assets/js/lib/data-table/vfs_fonts.js"></script>
+    <script src="../assets/js/lib/data-table/buttons.html5.min.js"></script>
+    <script src="../assets/js/lib/data-table/buttons.print.min.js"></script>
+    <script src="../assets/js/lib/data-table/buttons.colVis.min.js"></script>
+    <script src="../assets/js/init/datatables-init.js"></script>
+
     <!-- Script for adding separate html -->
     <script>
       fetch("includes/leftnav.html")
@@ -547,13 +558,9 @@
     <!-- Script for sanitizing inputs -->
     <script src="../scripts/sanitation.js"></script>
 
-    <script src="../scripts/viewFaculty.js"></script>
+    <!-- <script src="../scripts/viewFaculty.js"></script> -->
 
     <script type="text/javascript">
-      $(document).ready(function () {
-        $("#bootstrap-data-table").DataTable();
-      });
-
       // Menu Trigger
       $("#menuToggle").on("click", function (event) {
         var windowWidth = $(window).width();
@@ -571,6 +578,7 @@
       });
 
       // Populating the edit fields
+      let assignmentDataTable = $("#assignment-table").DataTable();
       function populateEditFields() {
         event.preventDefault();
         const facultyID = event.currentTarget.getAttribute('data-id');
@@ -595,7 +603,7 @@
         })
         .catch(error => console.error(error));
 
-        document.querySelector('#ass-table').innerHTML = '';
+
         fetch('../../src/controller/getAssignment.php', {
           method: 'POST',
           body: (() => {
@@ -608,6 +616,8 @@
         .then(response => response.json())
         .then(data => {
           console.log(data);
+          assignmentDataTable.destroy();
+          document.querySelector('#ass-table').innerHTML = '';
           data.forEach((item) => {
             document.querySelector('#ass-table').innerHTML += `
               <tr>
@@ -619,6 +629,7 @@
               </tr>
             `;
           });
+          assignmentDataTable = $("#assignment-table").DataTable();
         })
         .catch(error => console.error(error));
       }
@@ -678,6 +689,13 @@
             alert("There's an empty field");
         }
       }
+    </script>
+
+    <script defer>
+      $(document).ready(function () {
+        $("#bootstrap-data-table").DataTable();
+        $("#faculty-table").DataTable();
+      });
     </script>
   </body>
 </html>
