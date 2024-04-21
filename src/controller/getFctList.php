@@ -5,7 +5,10 @@ require_once '../model/FacultyFetcher.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $fctFetcher = new FacultyFetcher();
-    echo $fctFetcher->getAllFct();
+    if ($_POST['method'] == 'getAllFct')
+        echo $fctFetcher->getAllFct();
+    else if ($_POST['method'] == 'getFct')
+        echo $fctFetcher->getFct($_POST['facultyID']);
     // echo $fctFetcher->uploadToDB();
 } else {
     exit();

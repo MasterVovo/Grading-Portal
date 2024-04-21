@@ -405,10 +405,6 @@
     <script src="../scripts/addCourse.js"></script>
 
     <script type="text/javascript">
-      $(document).ready(function () {
-        $("#bootstrap-data-table-export").DataTable();
-      });
-
       // Menu Trigger
       $("#menuToggle").on("click", function (event) {
         var windowWidth = $(window).width();
@@ -423,6 +419,12 @@
           $("body").toggleClass("open");
           $("#left-panel").removeClass("open-menu");
         }
+      });
+    </script>
+    
+    <script defer>
+      $(document).ready(function () {
+        $("#bootstrap-data-table-export").DataTable();
       });
     </script>
   </body>
