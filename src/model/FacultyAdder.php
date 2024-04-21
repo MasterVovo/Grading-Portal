@@ -4,22 +4,21 @@
 require_once 'DBConn.php';
 
 class FacultyAdder {
-    private $id, $fname, $mname, $lname, $email, $pass, $dept;
+    private $id, $fname, $mname, $lname, $email, $pass;
 
-    public function __construct($id, $fname, $mname, $lname, $email, $pass, $dept) {
+    public function __construct($id, $fname, $mname, $lname, $email, $pass) {
         $this->id = $id;
         $this->fname = $fname;
         $this->mname = $mname;
         $this->lname = $lname;
         $this->email = $email;
         $this->pass = $pass;
-        $this->dept = $dept;
     }
 
     public function uploadToDB() {
         $conn = DBConn::getInstance()->getConnection();
         
-        $sql = "INSERT INTO faculty(facultyID, facultyFName, facultyMName, facultyLName, facultyEmail, facultyPass, facultyDept) VALUES (:id, :fname, :mname, :lname, :email, :pass, :dept)";
+        $sql = "INSERT INTO faculty(facultyID, facultyFName, facultyMName, facultyLName, facultyEmail, facultyPass) VALUES (:id, :fname, :mname, :lname, :email, :pass)";
         $stmt = $conn->prepare($sql);
         $result = $stmt->execute([
             ':id' => $this->id,
@@ -28,7 +27,6 @@ class FacultyAdder {
             ':lname' => $this->lname,
             ':email' => $this->email,
             ':pass' => $this->pass,
-            ':dept' => $this->dept
         ]);
 
         if ($result)

@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 21, 2024 at 01:04 AM
+-- Generation Time: Apr 21, 2024 at 04:42 AM
 -- Server version: 10.4.28-MariaDB
--- PHP Version: 8.1.17
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -30,7 +30,6 @@ SET time_zone = "+00:00";
 CREATE TABLE `assignment` (
   `assignID` int(11) NOT NULL,
   `facultyID` varchar(20) NOT NULL,
-  `deptID` varchar(20) NOT NULL,
   `sectionID` varchar(20) NOT NULL,
   `courseID` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -44,20 +43,8 @@ CREATE TABLE `assignment` (
 CREATE TABLE `course` (
   `courseCode` varchar(10) NOT NULL,
   `courseName` varchar(100) NOT NULL,
-  `courseDept` varchar(50) NOT NULL,
   `courseYear` varchar(50) NOT NULL,
   `courseSem` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `department`
---
-
-CREATE TABLE `department` (
-  `deptID` int(11) NOT NULL,
-  `deptName` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -72,9 +59,24 @@ CREATE TABLE `faculty` (
   `facultyMName` varchar(30) NOT NULL,
   `facultyLName` varchar(50) NOT NULL,
   `facultyEmail` varchar(100) NOT NULL,
-  `facultyPass` varchar(255) NOT NULL,
-  `facultyDept` varchar(20) NOT NULL
+  `facultyPass` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `faculty`
+--
+
+INSERT INTO `faculty` (`facultyID`, `facultyFName`, `facultyMName`, `facultyLName`, `facultyEmail`, `facultyPass`) VALUES
+('1', 'John', 'A.', 'Doe', 'john.doe@example.com', 'password1'),
+('10', 'Patricia', 'J.', 'Taylor', 'patricia.taylor@example.com', 'password10'),
+('2', 'Jane', 'B.', 'Smith', 'jane.smith@example.com', 'password2'),
+('3', 'Michael', 'C.', 'Johnson', 'michael.johnson@example.com', 'password3'),
+('4', 'Emily', 'D.', 'Williams', 'emily.williams@example.com', 'password4'),
+('5', 'Robert', 'E.', 'Brown', 'robert.brown@example.com', 'password5'),
+('6', 'Linda', 'F.', 'Davis', 'linda.davis@example.com', 'password6'),
+('7', 'Thomas', 'G.', 'Miller', 'thomas.miller@example.com', 'password7'),
+('8', 'Sarah', 'H.', 'Wilson', 'sarah.wilson@example.com', 'password8'),
+('9', 'James', 'I.', 'Moore', 'james.moore@example.com', 'password9');
 
 -- --------------------------------------------------------
 
@@ -111,11 +113,17 @@ CREATE TABLE `gradecriteria` (
 --
 
 CREATE TABLE `section` (
-  `sectionID` int(10) NOT NULL,
-  `sectionDept` varchar(50) NOT NULL,
+  `sectionID` varchar(10) NOT NULL,
   `sectionAdv` varchar(20) NOT NULL,
   `sectionYearLvl` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `section`
+--
+
+INSERT INTO `section` (`sectionID`, `sectionAdv`, `sectionYearLvl`) VALUES
+('BSIS101', '1', '1');
 
 -- --------------------------------------------------------
 
@@ -130,7 +138,6 @@ CREATE TABLE `student` (
   `studentLName` varchar(50) NOT NULL,
   `studentEmail` varchar(100) NOT NULL,
   `studentPass` varchar(255) NOT NULL,
-  `studentDept` varchar(20) NOT NULL,
   `studentYear` varchar(20) NOT NULL,
   `studentSect` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -179,12 +186,6 @@ ALTER TABLE `course`
   ADD PRIMARY KEY (`courseCode`);
 
 --
--- Indexes for table `department`
---
-ALTER TABLE `department`
-  ADD PRIMARY KEY (`deptID`);
-
---
 -- Indexes for table `faculty`
 --
 ALTER TABLE `faculty`
@@ -229,12 +230,6 @@ ALTER TABLE `usersession`
 --
 ALTER TABLE `assignment`
   MODIFY `assignID` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `department`
---
-ALTER TABLE `department`
-  MODIFY `deptID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `grade`
