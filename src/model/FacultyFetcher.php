@@ -24,9 +24,11 @@ class FacultyFetcher {
     public function getFct($facultyID) {
         $conn = DBConn::getInstance()->getConnection();
         
-        $sql = "SELECT * FROM faculty WHERE facultyID = " . $facultyID;
+        $sql = "SELECT * FROM faculty WHERE facultyID = :facultyID";
         $stmt = $conn->prepare($sql);
-        $result = $stmt->execute();
+        $result = $stmt->execute([
+            ':facultyID' => $facultyID
+        ]);
 
         if ($result)
             return json_encode($stmt->fetchAll(PDO::FETCH_ASSOC));

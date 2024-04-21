@@ -11,9 +11,11 @@ class AssignmentFetcher {
     public function getAssnByFct($facultyID) {
         $conn = DBConn::getInstance()->getConnection();
         
-        $sql = "SELECT * FROM assignment WHERE facultyID = " . $facultyID;
+        $sql = "SELECT * FROM assignment WHERE facultyID = :facultyID";
         $stmt = $conn->prepare($sql);
-        $result = $stmt->execute();
+        $result = $stmt->execute([
+            ':facultyID' => $facultyID
+        ]);
 
         if ($result)
             return json_encode($stmt->fetchAll(PDO::FETCH_ASSOC));
