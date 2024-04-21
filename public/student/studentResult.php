@@ -1,7 +1,3 @@
-<?php
-require_once "../includes/dbconn.php";
-?>
-
 <!doctype html>
 <html class="no-js" lang="">
 
@@ -167,28 +163,74 @@ require_once "../includes/dbconn.php";
                                             <th>Teacher</th>
                                             <th>Midterm</th>
                                             <th>Final</th>
+                                            <th>Semestral</th>
                                             <th>Remarks</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php
-                                            // Fetch data from the course table
-                                            $ret = mysqli_query($conn, "SELECT * FROM course");
-
-                                            // Display the data in the table
-                                            while ($row = mysqli_fetch_array($ret)) {
-                                            ?>
-                                            <tr>
-                                                <td><?php echo $row['courseCode']; ?></td>
-                                                <td><?php echo $row['courseName']; ?></td>
-                                                <td><?php echo ''; ?></td>
-                                                <td><?php echo ''; ?></td>
-                                                <td><?php echo ''; ?></td>
-                                                <td><?php echo ''; ?></td>
-                                            </tr>
-                                        <?php
-                                            }
-                                        ?>
+                                        <tr>
+                                            <td>ABC123</td>
+                                            <td>Sample Course 1</td>
+                                            <td>Sample Teacher 1</td>
+                                            <td>1.00</td>
+                                            <td>1.00</td>
+                                            <td>1.00</td>
+                                            <td>Passed</td>
+                                        </tr>
+                                        <tr>
+                                            <td>123ABC</td>
+                                            <td>Sample Course 2</td>
+                                            <td>Sample Teacher 2</td>
+                                            <td>1.25</td>
+                                            <td>--</td>
+                                            <td>--</td>
+                                            <td>--</td>
+                                        </tr>
+                                        <tr>
+                                            <td>DEF456</td>
+                                            <td>Sample Course 3</td>
+                                            <td>Sample Teacher 3</td>
+                                            <td>1.75</td>
+                                            <td>1.25</td>
+                                            <td>1.50</td>
+                                            <td>Passed</td>
+                                        </tr>
+                                        <tr>
+                                            <td>456DEF</td>
+                                            <td>Sample Course 4</td>
+                                            <td>Sample Teacher 4</td>
+                                            <td>3.00</td>
+                                            <td>3.00</td>
+                                            <td>3.00</td>
+                                            <td>Passed</td>
+                                        </tr>
+                                        <tr>
+                                            <td>GHI789</td>
+                                            <td>Sample Course 5</td>
+                                            <td>Sample Teacher 5</td>
+                                            <td>1.25</td>
+                                            <td>1.25</td>
+                                            <td>1.25</td>
+                                            <td>Passed</td>
+                                        </tr>
+                                        <tr>
+                                            <td>789GHI</td>
+                                            <td>Sample Course 6</td>
+                                            <td>Sample Teacher 6</td>
+                                            <td bgcolor="red">5.00</td>
+                                            <td bgcolor="red">5.00</td>
+                                            <td bgcolor="red">5.00</td>
+                                            <td bgcolor="red">Failed</td>
+                                        </tr>
+                                        <tr>
+                                            <td>JKL000</td>
+                                            <td>Sample Course 7</td>
+                                            <td>Sample Teacher 7</td>
+                                            <td>--</td>
+                                            <td>--</td>
+                                            <td>--</td>
+                                            <td>--</td>
+                                        </tr>
                                     </tbody>
                                 </table>
                                 <!-------------------------- FROM THE FINAL RESULT TABLE --------------------------->
