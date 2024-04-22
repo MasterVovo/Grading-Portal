@@ -84,103 +84,96 @@
         <!-- /Header -->
         <!-- Content -->
         <div class="content">
-            <!-- Animated -->
             <div class="animated fadeIn">
-                <!-- Widgets  -->
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="card">
-                            <div class="card-body">
-                                <h3 align="center"><b>STUDENT DASHBOARD</b></h3>
+                            <div class="card-header">
+                                <strong class="card-body">
+                                    <h3 align="center"><b>STUDENT DASHBOARD</b></h3>
+                                </strong>
                             </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-sm-12 col-lg-6">
+                                        <div class="card text-white bg-flat-color-3">
+                                            <div class="card-body">
+                                                <div class="card-left pt-1 float-left">
+                                                    <h3 class="mb-0 fw-r">
+                                                        <span class="currency float-left mr-1"></span>
+                                                        <span class="count">5 / 7</span>
+                                                    </h3>
+                                                    <p class="text-light mt-1 m-0">Graded Subjects</p>
+                                                </div><!-- /.card-left -->
 
+                                                <div class="card-right float-right text-right">
+                                                    <i class="icon fade-5 icon-lg pe-7s-notebook"></i>
+                                                </div><!-- /.card-right -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 col-lg-6">
+                                        <div class="card text-white bg-success">
+                                            <div class="card-body">
+                                                <div class="card-left pt-1 float-left">
+                                                    <h3 class="mb-0 fw-r">
+                                                        <span class="currency float-left mr-1"></span>
+                                                        <span class="count">1.25</span>
+                                                    </h3>
+                                                    <p class="text-light mt-1 m-0">Highest Grade This Sem</p>
+                                                </div><!-- /.card-left -->
+
+                                                <div class="card-right float-right text-right">
+                                                    <i class="icon fade-5 icon-lg pe-7s-copy-file"></i>
+                                                </div><!-- /.card-right -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12 col-lg-6">
+                                        <div class="card text-white bg-secondary">
+                                            <div class="card-body">
+                                                <div class="card-left pt-1 float-left">
+                                                    <h3 class="mb-0 fw-r">
+                                                        <span class="currency float-left mr-1"></span>
+                                                        <span class="count">1.25</span>
+                                                    </h3>
+                                                    <p class="text-light mt-1 m-0">Highest Grade Last Sem</p>
+                                                </div><!-- /.card-left -->
+
+                                                <div class="card-right float-right text-right">
+                                                    <i class="icon fade-5 icon-lg pe-7s-keypad"></i>
+                                                </div><!-- /.card-right -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 col-lg-6">
+                                        <div class="card text-white bg-flat-color-2">
+                                            <div class="card-body">
+                                                <div class="card-left pt-1 float-left">
+                                                    <h3 class="mb-0 fw-r">
+                                                        <span class="currency float-left mr-1"></span>
+                                                        <span class="count">1.55</span>
+                                                    </h3>
+                                                    <p class="text-light mt-1 m-0">Last Sem GWA</p>
+                                                </div><!-- /.card-left -->
+
+                                                <div class="card-right float-right text-right">
+                                                    <i class="icon fade-5 icon-lg pe-7s-network"></i>
+                                                </div><!-- /.card-right -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
+                    <!-- end of datatable -->
 
-                    <div class="col-sm-6 col-lg-3">
-                        <div class="card text-white bg-flat-color-3">
-                            <div class="card-body">
-                                <div class="card-left pt-1 float-left">
-                                    <h3 class="mb-0 fw-r">
-                                        <span class="currency float-left mr-1"></span>
-                                        <span class="count">9</span>
-                                    </h3>
-                                    <p class="text-light mt-1 m-0">No. of Subjects</p>
-                                </div><!-- /.card-left -->
-
-                                <div class="card-right float-right text-right">
-                                    <i class="icon fade-5 icon-lg pe-7s-notebook"></i>
-                                </div><!-- /.card-right -->
-
-                            </div>
-
-                        </div>
-                    </div>
-
-                    <div class="col-sm-6 col-lg-3">
-                        <div class="card text-white bg-success">
-                            <div class="card-body">
-                                <div class="card-left pt-1 float-left">
-                                    <h3 class="mb-0 fw-r">
-                                        <span class="currency float-left mr-1"></span>
-                                        <span class="count">1.25</span>
-                                    </h3>
-                                    <p class="text-light mt-1 m-0">Highest Grade Last Semester</p>
-                                </div><!-- /.card-left -->
-
-                                <div class="card-right float-right text-right">
-                                    <i class="icon fade-5 icon-lg pe-7s-copy-file"></i>
-                                </div><!-- /.card-right -->
-
-                            </div>
-
-                        </div>
-                    </div>
-
-                    <div class="col-sm-6 col-lg-3">
-                        <div class="card text-white bg-secondary">
-                            <div class="card-body">
-                                <div class="card-left pt-1 float-left">
-                                    <h3 class="mb-0 fw-r">
-                                        <span class="currency float-left mr-1"></span>
-                                        <span class="count">2.25</span>
-                                    </h3>
-                                    <p class="text-light mt-1 m-0">Lowest Grade Last Semester</p>
-                                </div><!-- /.card-left -->
-
-                                <div class="card-right float-right text-right">
-                                    <i class="icon fade-5 icon-lg pe-7s-keypad"></i>
-                                </div><!-- /.card-right -->
-
-                            </div>
-
-                        </div>
-                    </div>
-
-                    <div class="col-sm-6 col-lg-3">
-                        <div class="card text-white bg-flat-color-2">
-                            <div class="card-body">
-                                <div class="card-left pt-1 float-left">
-                                    <h3 class="mb-0 fw-r">
-                                        <span class="currency float-left mr-1"></span>
-                                        <span class="count">1.75</span>
-                                    </h3>
-                                    <p class="text-light mt-1 m-0">1st Year Average</p>
-                                </div><!-- /.card-left -->
-
-                                <div class="card-right float-right text-right">
-                                    <i class="icon fade-5 icon-lg pe-7s-network"></i>
-                                </div><!-- /.card-right -->
-
-                            </div>
-
-                        </div>
-                    </div>
                 </div>
-                <!-- /Widgets -->
-            </div>
-            <!-- .animated -->
-        </div>
+            </div><!-- .animated -->
+        </div><!-- .content -->
         <!-- /Content -->
         <div class="clearfix"></div>
         <!-- Footer -->
@@ -204,6 +197,8 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.4/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery-match-height@0.7.2/dist/jquery.matchHeight.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
+    
     <!-- <script src="../scripts/main.js"></script> -->
 
     <!--  Chart js -->

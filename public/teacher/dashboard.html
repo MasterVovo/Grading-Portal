@@ -112,106 +112,123 @@
       <!-- /#header -->
       <!-- Content -->
       <div class="content">
-        <!-- Animated -->
         <div class="animated fadeIn">
-          <!-- Widgets  -->
           <div class="row">
             <div class="col-lg-12">
               <div class="card">
+                <div class="card-header">
+                  <strong class="card-body">
+                    <h3 align="center"><b>TEACHER DASHBOARD</b></h3>
+                  </strong>
+                </div>
                 <div class="card-body">
-                  <h3 align="center"><b>TEACHER DASHBOARD</b></h3>
+                  <div class="row">
+                    <div class="col-sm-12 col-lg-6">
+                      <div class="card">
+                        <div class="card-body">
+                          <canvas id="top10chart" height="200"></canvas>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-12 col-lg-6">
+                      <div class="card">
+                        <div class="card-body">
+                          <canvas id="sectionPerf" height="200"></canvas>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-12 col-lg-6">
+                      <div class="card text-white bg-flat-color-6">
+                        <div class="card-body">
+                          <div class="card-left pt-1 float-left">
+                            <h3 class="mb-0 fw-r">
+                              <span class="currency float-left mr-1"></span>
+                              <span class="count">3</span>
+                            </h3>
+                            <p class="text-light mt-1 m-0">No. of Sections</p>
+                          </div>
+                          <!-- /.card-left -->
+
+                          <div class="card-right float-right text-right">
+                            <i class="icon fade-5 icon-lg pe-7s-note2"></i>
+                          </div>
+                          <!-- /.card-right -->
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-12 col-lg-6">
+                      <div class="card text-white bg-success">
+                        <div class="card-body">
+                          <div class="card-left pt-1 float-left">
+                            <h3 class="mb-0 fw-r">
+                              <span class="currency float-left mr-1"></span>
+                              <span class="count">2/3</span>
+                            </h3>
+                            <p class="text-light mt-1 m-0">
+                              Graded Sections
+                            </p>
+                          </div>
+                          <!-- /.card-left -->
+
+                          <div class="card-right float-right text-right">
+                            <i class="icon fade-5 icon-lg pe-7s-copy-file"></i>
+                          </div>
+                          <!-- /.card-right -->
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-12 col-lg-6">
+                      <div class="card text-white bg-flat-color-3">
+                        <div class="card-body">
+                          <div class="card-left pt-1 float-left">
+                            <h3 class="mb-0 fw-r">
+                              <span class="currency float-left mr-1"></span>
+                              <span class="count">75</span>
+                            </h3>
+                            <p class="text-light mt-1 m-0">No. of Passed</p>
+                          </div>
+                          <!-- /.card-left -->
+
+                          <div class="card-right float-right text-right">
+                            <i
+                              class="icon fade-5 icon-lg pe-7s-angle-up-circle"
+                            ></i>
+                          </div>
+                          <!-- /.card-right -->
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-12 col-lg-6">
+                      <div class="card text-white bg-danger">
+                        <div class="card-body">
+                          <div class="card-left pt-1 float-left">
+                            <h3 class="mb-0 fw-r">
+                              <span class="currency float-left mr-1"></span>
+                              <span class="count">1</span>
+                            </h3>
+                            <p class="text-light mt-1 m-0">No. of Failed</p>
+                          </div>
+                          <!-- /.card-left -->
+
+                          <div class="card-right float-right text-right">
+                            <i
+                              class="icon fade-5 icon-lg pe-7s-angle-down-circle"
+                            ></i>
+                          </div>
+                          <!-- /.card-right -->
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-            <!-- /# column -->
-
-            <div class="col-sm-6 col-lg-3">
-              <div class="card text-white bg-flat-color-3">
-                <div class="card-body">
-                  <div class="card-left pt-1 float-left">
-                    <h3 class="mb-0 fw-r">
-                      <span class="currency float-left mr-1"></span>
-                      <span class="count"></span>
-                    </h3>
-                    <p class="text-light mt-1 m-0">Courses</p>
-                  </div>
-                  <!-- /.card-left -->
-
-                  <div class="card-right float-right text-right">
-                    <i class="icon fade-5 icon-lg pe-7s-notebook"></i>
-                  </div>
-                  <!-- /.card-right -->
-                </div>
-              </div>
-            </div>
-
-            <div class="col-sm-6 col-lg-3">
-              <div class="card text-white bg-success">
-                <div class="card-body">
-                  <div class="card-left pt-1 float-left">
-                    <h3 class="mb-0 fw-r">
-                      <span class="currency float-left mr-1"></span>
-                      <span class="count"></span>
-                    </h3>
-                    <p class="text-light mt-1 m-0">Result</p>
-                  </div>
-                  <!-- /.card-left -->
-
-                  <div class="card-right float-right text-right">
-                    <i class="icon fade-5 icon-lg pe-7s-copy-file"></i>
-                  </div>
-                  <!-- /.card-right -->
-                </div>
-              </div>
-            </div>
-
-            <div class="col-sm-6 col-lg-3">
-              <div class="card text-white bg-secondary">
-                <div class="card-body">
-                  <div class="card-left pt-1 float-left">
-                    <h3 class="mb-0 fw-r">
-                      <span class="currency float-left mr-1"></span>
-                      <span class="count"></span>
-                    </h3>
-                    <p class="text-light mt-1 m-0">Faculty</p>
-                  </div>
-                  <!-- /.card-left -->
-
-                  <div class="card-right float-right text-right">
-                    <i class="icon fade-5 icon-lg pe-7s-keypad"></i>
-                  </div>
-                  <!-- /.card-right -->
-                </div>
-              </div>
-            </div>
-
-            <div class="col-sm-6 col-lg-3">
-              <div class="card text-white bg-flat-color-2">
-                <div class="card-body">
-                  <div class="card-left pt-1 float-left">
-                    <h3 class="mb-0 fw-r">
-                      <span class="currency float-left mr-1"></span>
-                      <span class="count"></span>
-                    </h3>
-                    <p class="text-light mt-1 m-0">Department</p>
-                  </div>
-                  <!-- /.card-left -->
-
-                  <div class="card-right float-right text-right">
-                    <i class="icon fade-5 icon-lg pe-7s-network"></i>
-                  </div>
-                  <!-- /.card-right -->
-                </div>
-              </div>
-            </div>
+            <!-- end of datatable -->
           </div>
-          <!-- /Widgets -->
-          <div class="row">
-            <div class="col-lg-12">
-              <div class="card"></div>
-            </div>
-          </div>
-          <div class="clearfix"></div>
         </div>
         <!-- .animated -->
       </div>
@@ -238,7 +255,101 @@
     <!-- <script src="../scripts/main.js"></script> -->
 
     <!--  Chart js -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.7.3/dist/Chart.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
+    <script>
+      var ctx = document.getElementById("top10chart").getContext("2d");
+
+      var data = {
+        labels: [
+          "KLD-1",
+          "KLD-2",
+          "KLD-3",
+          "KLD-4",
+          "KLD-5",
+          "KLD-6",
+          "KLD-7",
+          "KLD-8",
+          "KLD-9",
+          "KLD-10",
+        ],
+        datasets: [
+          {
+            label: false,
+            data: [1.2, 1.4, 1.6, 1.78, 1.8, 1.8, 1.9, 2.2, 2.23, 2.45],
+            backgroundColor: ["rgb(54, 162, 235)"],
+          },
+        ],
+      };
+
+      var options = {
+        scales: {
+          y: {
+            beginAtZero: false,
+            min: 5,
+            max: 1,
+            reverse: true,
+          },
+        },
+        plugins: {
+          legend: {
+            display: false,
+          },
+          title: {
+            display: true,
+            text: "Top 10 Highest GWA",
+          },
+        },
+      };
+
+      var top10Chart = new Chart(ctx, {
+        type: "line",
+        data: data,
+        options: options,
+      });
+    </script>
+    <script>
+      var ctx = document.getElementById("sectionPerf").getContext("2d");
+
+      var data = {
+        labels: [
+          "BSIS-201",
+          "BSIS-202",
+          "BSIS-203"
+        ],
+        datasets: [
+          {
+            label: false,
+            data: [1.2, 1.4, 1.6],
+            backgroundColor: ["rgb(54, 162, 235)"],
+          },
+        ],
+      };
+
+      var options = {
+        scales: {
+          y: {
+            beginAtZero: false,
+            min: 5,
+            max: 1,
+          },
+        },
+        plugins: {
+          legend: {
+            display: false,
+          },
+          title: {
+            display: true,
+            text: "Section Performance",
+          },
+        },
+      };
+
+      var sectionPerf = new Chart(ctx, {
+        type: "bar",
+        data: data,
+        options: options,
+      });
+    </script>
 
     <script>
       fetch("includes/leftnav.html")

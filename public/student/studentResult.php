@@ -200,25 +200,7 @@
                                         </tr>
                                     </tbody>
                                 </table>
-                                <!-------------------------- FROM THE FINAL RESULT TABLE --------------------------->
-                                <!-- <table class="table table-hover table-striped table-bordered">
-                <thead>
-                <tr>
-                    <th>Total Course Unit</th>
-                    <th>Total Grade Point</th>
-                    <th>GPA</th>
-                    <th>Class of Diploma</th>
-                </tr>
-            </thead>
-            <tbody>
-        <tr>
-        <td bgcolor="#F9D342"></td>
-        <td bgcolor="#F9D342"></td>
-        <td bgcolor="#F9D342"></td>
-        <td bgcolor="#F9D342"></td>
-        </tr>                                                         
-                    </tbody>
-                </table> -->
+                                
                                 <div class="row">
                                     <div class="col-6">
                                         <a href="studentPrintResult.php?semesterId=<?php echo $semesterId; ?>&matricNo=<?php echo $matricNo; ?>&levelId=<?php echo $levelId; ?>&sessionId=<?php echo $sessionId; ?>" class="btn btn-danger">Print Result</a>
