@@ -13,7 +13,7 @@ if (isset($_POST['submit'])) {
     exit();
   }
   //check if studentID exist in faculty, student, and admin tables
-  $sql = "SELECT 'teacher' AS userType,facultyPass FROM faculty WHERE facultyID = ? UNION ALL SELECT 'student' AS userType, studentPass FROM student WHERE studentID = ?";
+  $sql = "SELECT 'teacher' AS userType, facultyPass, facultyID FROM faculty WHERE facultyID = ? UNION ALL SELECT 'student' AS userType, studentPass, studentID FROM student WHERE studentID = ?";
   $stmt = mysqli_prepare($conn, $sql);
   mysqli_stmt_bind_param($stmt, "ss", $studentID, $studentID);
   mysqli_stmt_execute($stmt);
