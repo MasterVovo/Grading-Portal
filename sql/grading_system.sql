@@ -22,6 +22,19 @@ SET time_zone = "+00:00";
 --
 
 -- --------------------------------------------------------
+--
+-- Table structure for table `approval`
+--
+
+CREATE TABLE `approval` (
+  `approvalID` int(11) NOT NULL,
+  `courseCode` varchar(10) NOT NULL,
+  `facultyID` varchar(20) NOT NULL,
+  `isApprovedByChair` int(11) NOT NULL,
+  `isApprovedByDean` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `assignment`
@@ -30,8 +43,8 @@ SET time_zone = "+00:00";
 CREATE TABLE `assignment` (
   `assignID` int(11) NOT NULL,
   `facultyID` varchar(20) NOT NULL,
-  `sectionID` varchar(20) NOT NULL,
-  `courseID` varchar(20) NOT NULL
+  `sectionID` varchar(10) NOT NULL,
+  `courseCode` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -59,7 +72,19 @@ CREATE TABLE `faculty` (
   `facultyMName` varchar(30) NOT NULL,
   `facultyLName` varchar(50) NOT NULL,
   `facultyEmail` varchar(100) NOT NULL,
-  `facultyPass` varchar(255) NOT NULL
+  `facultyPass` varchar(255) NOT NULL,
+  `facultyType` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `facultyType`
+--
+
+CREATE TABLE `facultytype` (
+  `facultyTypeID` int(11) NOT NULL,
+  `facultyType` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -76,7 +101,8 @@ CREATE TABLE `grade` (
   `gradeMidterm` decimal(4,2) NOT NULL,
   `gradeFinal` decimal(4,2) NOT NULL,
   `gradeSemestral` decimal(4,2) NOT NULL,
-  `gradeCreated` datetime NOT NULL DEFAULT current_timestamp()
+  `gradeFeedback` text NOT NULL,
+  `gradeApproved` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -115,7 +141,6 @@ CREATE TABLE `student` (
   `studentLName` varchar(50) NOT NULL,
   `studentEmail` varchar(100) NOT NULL,
   `studentPass` varchar(255) NOT NULL,
-  `studentYear` varchar(20) NOT NULL,
   `studentSect` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -131,19 +156,6 @@ CREATE TABLE `usersession` (
   `sessionValidator` char(64) NOT NULL,
   `userID` varchar(11) NOT NULL,
   `sessionExpiry` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `usertable`
---
-
-CREATE TABLE `usertable` (
-  `userID` varchar(11) NOT NULL,
-  `userPass` varchar(255) NOT NULL,
-  `usertype` varchar(20) NOT NULL,
-  `userstatus` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
