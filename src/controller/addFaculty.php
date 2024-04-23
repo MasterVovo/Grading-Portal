@@ -10,8 +10,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $lname = $_POST['lname'];
     $email = $_POST['email'];
     $pass = $_POST['pass'];
+    $fctType = $_POST['fctType'];
     
-    $fctUpldr = new FacultyAdder($fctID, $fname, $mname, $lname, $email, $pass);
+    $fctUpldr = new FacultyAdder($fctID, $fname, $mname, $lname, $email, $pass, $fctType);
     echo $fctUpldr->uploadToDB();
 } else {
     exit();
