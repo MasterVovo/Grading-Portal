@@ -179,38 +179,30 @@ function showValues(str) {
                                             <div class="row">
                                                 <div class="col-6">
                                                     <div class="form-group">
-                                                      <label for="x_card_code" class="control-label mb-1">Level</label>
+                                                      <label for="x_card_code" class="control-label mb-1">Semester</label>
                                                     <select required name="levelId" class="custom-select form-control">
-                                                        <option value="">--Select Level--</option>
-                                                        <option value="'.$row['Id'].'" >Row</option>
+                                                        <option value="">--Select Semester--</option>
+                                                        <option value="'.$row['Id'].'" >1st Semester</option>
+                                                        <option value="'.$row['Id'].'" >2nd Semester</option>
                                                     </select>
                                                     </div>
                                                 </div>
                                             <div class="col-6">
                                                 <div class="form-group">
-                                                     <label for="x_card_code" class="control-label mb-1">Session</label>
+                                                     <label for="x_card_code" class="control-label mb-1">Year</label>
                                                     <select required name="sessionId" class="custom-select form-control">
-                                                        <option value="">--Select Session--</option>
-                                                        <option value="'.$row['Id'].'" >Row</option>
+                                                        <option value="">--Select Year--</option>
+                                                        <option value="'.$row['Id'].'" >1st Year</option>
+                                                        <option value="'.$row['Id'].'" >2nd Year</option>
+                                                        <option value="'.$row['Id'].'" >3rd Year</option>
+                                                        <option value="'.$row['Id'].'" >4th Year</option>
                                                     </select>
                                                 </div>
                                             </div>
                                         </div>
-                                         <div class="row">
-                                                <div class="col-6">
-                                                    <div class="form-group">
-                                                    <label for="x_card_code" class="control-label mb-1">Semester</label>
-                                                <select required name="semesterId" class="custom-select form-control">
-                                                    <option value="">--Select Semester--</option>
-                                                        <option value="'.$row['Id'].'" >Row</option>
-                                                    </select>                                              
-                                                 </div>
-                                                </div>
-                                                
-                                             </div>
-                                                <div>
-                                                <button type="submit" name="submit" class="btn btn-success">View</button>
-                                            </div>
+                                        <div>
+                                            <button type="submit" name="submit" class="btn btn-success">View</button>
+                                        </div>
                                         </form>
                                     </div>
                                 </div>
