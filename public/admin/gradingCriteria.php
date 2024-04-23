@@ -132,7 +132,6 @@ if (isset($_POST['submit'])) {
                     $_SESSION['gradeEquivs'] = $gradeEquivs;
                     ?>
                 </table>
-                <a href="printGradingCriteria.php" class="btn btn-info"><i class="fa fa-print"></i> Print</a>
                 <button type="submit" name="submit" class="btn btn-primary">Save</button>
                 </form>
               </div>

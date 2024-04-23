@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Courses - Admin</title>
+    <title>Courses - Student</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <link rel="apple-touch-icon" href="https://i.imgur.com/QRAUqs9.png" />
@@ -49,61 +49,8 @@
       rel="stylesheet"
       type="text/css"
     />
-    <script>
-      function isNumber(evt) {
-        evt = evt ? evt : window.event;
-        var charCode = evt.which ? evt.which : evt.keyCode;
-        if (charCode > 31 && (charCode < 48 || charCode > 57)) {
-          return false;
-        }
-        return true;
-      }
-
-      function showValues(str) {
-        if (str == "") {
-          document.getElementById("txtHint").innerHTML = "";
-          return;
-        } else {
-          if (window.XMLHttpRequest) {
-            // code for IE7+, Firefox, Chrome, Opera, Safari
-            xmlhttp = new XMLHttpRequest();
-          } else {
-            // code for IE6, IE5
-            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-          }
-          xmlhttp.onreadystatechange = function () {
-            if (this.readyState == 4 && this.status == 200) {
-              document.getElementById("txtHint").innerHTML = this.responseText;
-            }
-          };
-          xmlhttp.open("GET", "ajaxCall2.php?fid=" + str, true);
-          xmlhttp.send();
-        }
-      }
-
-      function showLecturer(str) {
-        if (str == "") {
-          document.getElementById("txtHintt").innerHTML = "";
-          return;
-        } else {
-          if (window.XMLHttpRequest) {
-            // code for IE7+, Firefox, Chrome, Opera, Safari
-            xmlhttp = new XMLHttpRequest();
-          } else {
-            // code for IE6, IE5
-            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-          }
-          xmlhttp.onreadystatechange = function () {
-            if (this.readyState == 4 && this.status == 200) {
-              document.getElementById("txtHintt").innerHTML = this.responseText;
-            }
-          };
-          xmlhttp.open("GET", "ajaxCallLecturer.php?deptId=" + str, true);
-          xmlhttp.send();
-        }
-      }
-    </script>
   </head>
+
   <body>
     <!-- Left Panel -->
     <aside id="left-panel" class="left-panel"></aside>
@@ -120,6 +67,7 @@
         <div class="top-left">
           <div class="navbar-header">
             <a class="navbar-brand" href="./">Student Grading System</a>
+            <a class="navbar-brand hidden" href="./">Student Grading System</a>
             <a id="menuToggle" class="menutoggle"><i class="fa fa-bars"></i></a>
           </div>
         </div>
@@ -150,7 +98,7 @@
                 >
                   <img
                     class="user-avatar rounded-circle"
-                    src="../assets/img/admin-icn.png"
+                    src="../assets/img/user2.png"
                     alt="User Avatar"
                   />
                 </a>
@@ -168,8 +116,6 @@
           </div>
         </div>
       </header>
-
-      <script src="../assets/js/main.js"></script>
       <!-- /header -->
       <!-- Header-->
 
@@ -189,7 +135,7 @@
                   <ol class="breadcrumb text-right">
                     <li><a href="#">Dashboard</a></li>
                     <li><a href="#">Courses</a></li>
-                    <li class="active">Add Courses</li>
+                    <li class="active">View Courses</li>
                   </ol>
                 </div>
               </div>
@@ -202,110 +148,17 @@
         <div class="animated fadeIn">
           <div class="row">
             <div class="col-lg-12">
-              <div class="card">
-                <div class="card-header">
-                  <strong class="card-title"
-                    ><h2 align="center">Add New Course</h2></strong
-                  >
-                </div>
-                <div class="card-body">
-                  <!-- Credit Card -->
-                  <div id="pay-invoice">
-                    <div class="card-body">
-                      <div class="<?php echo $alertStyle;?>" role="alert">
-                        <?php echo $statusMsg;?>
-                      </div>
-                      <form method="POST" action="#" id="add-course">
-                        <div class="row">
-                          <div class="col-6">
-                            <label for="crs-code" class="control-label mb-1">Course Code <span class="red">*</span></label>
-                            <input
-                              id="crs-code"
-                              name="courseCode"
-                              type="text"
-                              class="form-control cc-exp"
-                              value=""
-                              required
-                              placeholder="Course Code"
-                            />
-                          </div>
-                          <div class="col-6">
-                            <div class="form-group">
-                              <label for="crs-name" class="control-label mb-1">Course Name <span class="red">*</span></label>
-                              <input
-                                id="crs-name"
-                                name="courseTitle"
-                                type="text"
-                                class="form-control cc-exp"
-                                value=""
-                                required
-                                placeholder="Course Name"
-                              />
-                            </div>
-                          </div>
-                        </div>
-
-                        <div class="row">
-                          <div class="col-6">
-                            <div class="form-group">
-                              <label for="year" class="control-label mb-1"
-                                >Year Level <span class="red">*</span></label
-                              >
-                              <select
-                                required
-                                id="year"
-                                name="year"
-                                class="custom-select form-control"
-                              >
-                                <option value="">--Select Year Level--</option>
-                                <option value="1">1st Year</option>
-                                <option value="2">2nd Year</option>
-                                <option value="3">3rd Year</option>
-                                <option value="4">4th Year</option>
-                              </select>
-                            </div>
-                          </div>
-                          <div class="col-6">
-                            <div class="form-group">
-                              <label for="sem" class="control-label mb-1"
-                                >Semester <span class="red">*</span></label
-                              >
-                              <select
-                                required
-                                id="sem"
-                                name="sem"
-                                class="custom-select form-control"
-                              >
-                                <option value="">--Select Semester--</option>
-                                <option value="1">1st Semester</option>
-                                <option value="2">2nd Semester</option>
-                              </select>
-                            </div>
-                          </div>
-                        </div>
-
-                        <button
-                          type="submit"
-                          name="submit"
-                          class="btn btn-success">
-                          Add Course
-                        </button>
-                      </form>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <div class="card"></div>
               <!-- .card -->
             </div>
             <!--/.col-->
 
-            <br /><br />
             <div class="col-md-12">
               <div class="card">
                 <div class="card-header">
-                  <strong class="card-title"
-                    ><h2 align="center">All Courses</h2></strong
-                  >
+                  <strong class="card-title">
+                    <h2 align="center">My Courses</h2>
+                  </strong>
                 </div>
                 <div class="card-body">
                   <table
@@ -314,15 +167,14 @@
                   >
                     <thead>
                       <tr>
-                        <th>Course Code</th>
-                        <th>Course Title</th>
-                        <th>Year Level</th>
+                        <th>Code</th>
+                        <th>Title</th>
+                        <th>Teacher</th>
                         <th>Semester</th>
-                        <th>Actions</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <!-- <tr>
+                      <tr>
                         <td></td>
                         <td></td>
                         <td></td>
@@ -330,22 +182,9 @@
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>
-                          <a href="" title="Edit Details"
-                            ><i class="fa fa-edit fa-1x"></i
-                          ></a>
-                          <a
-                            onclick="return confirm('Are you sure you want to delete?')"
-                            href=""
-                            title="Delete Course"
-                            ><i class="fa fa-trash fa-1x"></i
-                          ></a>
-                        </td>
-                      </tr> -->
+                        <td><span class="badge badge-success"></span></td>
+                      </tr>
                     </tbody>
-                    <script src="../scripts/reqCrsList.js"></script>
                   </table>
                 </div>
               </div>
@@ -359,7 +198,6 @@
 
       <div class="clearfix"></div>
 
-      <!-- Footer -->
       <footer class="site-footer">
         <div class="footer-inner bg-white">
           <div class="row">
@@ -368,7 +206,6 @@
           </div>
         </div>
       </footer>
-      <!-- /.site-footer -->
     </div>
     <!-- /#right-panel -->
 
@@ -392,7 +229,6 @@
     <script src="../assets/js/lib/data-table/buttons.colVis.min.js"></script>
     <script src="../assets/js/init/datatables-init.js"></script>
 
-    <!-- Script for adding separate html -->
     <script>
       fetch("includes/leftnav.html")
         .then((response) => response.text())
@@ -401,10 +237,11 @@
         });
     </script>
 
-    <!-- Script for adding course -->
-    <script src="../scripts/addCourse.js"></script>
-
     <script type="text/javascript">
+      $(document).ready(function () {
+        $("#bootstrap-data-table-export").DataTable();
+      });
+
       // Menu Trigger
       $("#menuToggle").on("click", function (event) {
         var windowWidth = $(window).width();
@@ -419,12 +256,6 @@
           $("body").toggleClass("open");
           $("#left-panel").removeClass("open-menu");
         }
-      });
-    </script>
-    
-    <script defer>
-      $(document).ready(function () {
-        $("#bootstrap-data-table-export").DataTable();
       });
     </script>
   </body>

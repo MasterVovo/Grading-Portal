@@ -32,11 +32,11 @@
           <!-- Added margin-top to reduce spacing -->
           <div class="col-md-6 mb-3">
             <!-- Reduced margin-bottom to mb-2 -->
-            <button class="btn btn-lg btn-success w-100 fs-6" onclick="location.href='../successLogout.html'">Logout</button>
+            <button class="btn btn-lg btn-success w-100 fs-6" onclick="location.href='successLogout.php'">Logout</button>
           </div>
           <div class="col-md-6 mb-3">
             <!-- Reduced margin-bottom to mb-2 -->
-            <button class="btn btn-secondary justify-content-center w-100 fs-6" onclick="location.href='dashboard.html'">
+            <button class="btn btn-secondary justify-content-center w-100 fs-6" onclick="location.href='dashboard.php'">
               Cancel
             </button>
           </div>

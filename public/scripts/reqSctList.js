@@ -1,7 +1,11 @@
 const tbody = document.querySelector('tbody');
 
+const formData = new FormData();
+formData.append('method', 'getAllSct');
+
 fetch('../../src/controller/getSctList.php', {
-    method: 'POST'
+    method: 'POST',
+    body: formData
 })
 .then(response => response.json())
 .then(data => {
