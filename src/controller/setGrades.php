@@ -1,18 +1,21 @@
 <?php
-// API for uploading the grades on database via copy pasting from excel
+// API for uploading the grades on database
 
+session_start();
 require_once '../model/Grades.php';
 require_once '../model/GradeUploader.php';
+require_once '../model/CourseFetcher.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $grades = new Grades($_POST['id'], $_POST['grd']);
-    $assocIdGrd = $grades->getGradesByID();
-
-    $grdUploader = new GradeUploader($assocIdGrd, 0, $_POST['crsID']);
+    $grdUploader = new GradeUploader();
 
     if ($_POST['grdTerm'] === 'midterm') {
-        $grdUploader->uploadToMidterm();
+        $crsFetcher = new CourseFetcher();
+        $crs = json_decode($crsFetcher->getCrsByFctAndSct($_SESSION['userID'], $_POST['section']));
+
+        echo $grdUploader->uploadToMidterm($_POST['grade'], $_POST['section'], $_POST['`studentID'], $_POST['feedback'], $_SESSION['userID'], $crs[0]->courseCode);
     }
 } else {
     exit();
 }
+

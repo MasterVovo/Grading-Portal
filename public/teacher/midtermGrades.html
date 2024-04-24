@@ -154,23 +154,22 @@
                   <div class="row">
                     <div class="col-6">
                       <div class="form-group">
-                        <label for="x_card_code" class="control-label mb-1"
+                        <label for="section-select" class="control-label mb-1"
                           >Section</label
                         >
                         <select
+                          id="section-select"
                           required
                           name="semester"
                           class="custom-select form-control"
                         >
-                          <option value="1">BSIS-201</option>
-                          <option value="2">BSIS-202</option>
-                          <option value="3">BSIS-203</option>
+                          <option disabled selected>--Select Section--</option>
                         </select>
                       </div>
                     </div>
                     <div class="col-6">
                       <h4 class="font-weight-bold pr-4 pt-5" align="right">
-                        Course Code: ABC123
+                        Course Code: <span id="course-code">ABC123</span>
                       </h4>
                     </div>
                   </div>
@@ -187,7 +186,7 @@
                       </tr>
                     </thead>
                     <tbody id="grd-body">
-                      <tr>
+                      <!-- <tr>
                         <td>1</td>
                         <td>Sample Student 1</td>
                         <td><input type="text" maxlength="4" size="4" /></td>
@@ -199,64 +198,12 @@
                             rows="1"
                           ></textarea>
                         </td>
-                      </tr>
-                      <tr>
-                        <td>2</td>
-                        <td>Sample Student 2</td>
-                        <td><input type="text" maxlength="4" size="4" /></td>
-                        <td>
-                          <textarea
-                            name="feedback"
-                            id="feedback"
-                            cols="30"
-                            rows="1"
-                          ></textarea>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>3</td>
-                        <td>Sample Student 3</td>
-                        <td><input type="text" maxlength="4" size="4" /></td>
-                        <td>
-                          <textarea
-                            name="feedback"
-                            id="feedback"
-                            cols="30"
-                            rows="1"
-                          ></textarea>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>4</td>
-                        <td>Sample Student 4</td>
-                        <td><input type="text" maxlength="4" size="4" /></td>
-                        <td>
-                          <textarea
-                            name="feedback"
-                            id="feedback"
-                            cols="30"
-                            rows="1"
-                          ></textarea>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>5</td>
-                        <td>Sample Student 5</td>
-                        <td><input type="text" maxlength="4" size="4" /></td>
-                        <td>
-                          <textarea
-                            name="feedback"
-                            id="feedback"
-                            cols="30"
-                            rows="1"
-                          ></textarea>
-                        </td>
-                      </tr>
+                      </tr> -->
                     </tbody>
                   </table><br>
                   <div class="row">
                     <div class="col-6">
-                      <button class="btn btn-primary" onclick="showConfirmation()"
+                      <button class="btn btn-primary" onclick="uploadGrades()"
                         >Submit Grades</button
                       >
                     </div>
@@ -307,18 +254,42 @@
     <script src="../assets/js/init/datatables-init.js"></script>
 
     <script>
-        function showConfirmation(){
-            if (confirm("Are you sure you want to submit your grades? Doing so will disable you to edit the grades again.") == true){
-                alert("Grades submitted for approval")
-            }
+        function uploadGrades(){
+          if (confirm("Are you sure you want to submit your grades? Doing so will disable you to edit the grades again.") == true){
+            const grades = document.querySelectorAll('.grade');
+            const feedback = document.querySelectorAll('.feedback');
+
+            const formData = new FormData();
+            grades.forEach((gradeElem, index) => {
+              // const formData1 = new FormData();
+              // formData1.append('grade', gradeElem.value);
+              // formData1.append('feedback', feedback[index].value);
+              // formData.append(gradeElem.getAttribute('data-id'), formData1);
+
+
+              fetch('../../src/controller/setGrades.php', {
+                method: 'POST',
+                body: (() => {
+                  const formData2 = new FormData();
+                  formData2.append('grdTerm', 'midterm');
+                  formData2.append('section', document.querySelector('#section-select').value);
+                  formData2.append('grade', gradeElem.value);
+                  formData2.append('feedback', feedback[index].value),
+                  formData2.append('studentID', gradeElem.getAttribute('data-id'));
+                  return formData2;
+                })()
+              })
+              .then(response => response.text())
+              .then(data => alert(data))
+              .catch(error => console.error(error));
+
+            });
+            alert("Grades submitted for approval")
+          }
         }
     </script>
 
     <script type="text/javascript">
-      $(document).ready(function () {
-        $("#bootstrap-data-table-export").DataTable();
-      });
-
       // Menu Trigger
       $("#menuToggle").on("click", function (event) {
         var windowWidth = $(window).width();
@@ -335,19 +306,63 @@
         }
       });
 
-      // Load the student list
-      fetch("../../src/controller/getStdList.php", {
+      // Load the section selection
+      fetch("../../src/controller/getSctList.php", {
         method: "POST",
         body: (() => {
           const formData = new FormData();
-          formData.append("method", "getStdBySessionID");
-          return formData;
-        })(),
+          formData.append('method', 'getSctByFct');
+          return formData
+        })()
       })
-        .then((response) => response.text())
-        .then((data) => {
-          console.log(data);
-        });
+      .then(response => response.json())
+      .then(data => {
+        data.forEach(item => {
+          document.querySelector('#section-select').innerHTML += `<option value="${item.sectionID}">${item.sectionID}</option>`
+        })
+      })
+      .catch(error => console.error(error));
+
+      let dataTable = $("#bootstrap-data-table-export").DataTable();
+
+      // Load the student list when the section changed
+      document.querySelector('#section-select').addEventListener('change', () => {
+        document.querySelector('#grd-body').innerHTML += '';
+        dataTable.destroy();
+
+        fetch("../../src/controller/getStdList.php", {
+          method: "POST",
+          body: (() => {
+            const formData = new FormData();
+            formData.append("method", "getStdBySct");
+            formData.append('section', document.querySelector('#section-select').value);
+            return formData;
+          })(),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            data.forEach(item => {
+              document.querySelector('#grd-body').innerHTML += `
+                <tr>
+                  <th>${item.studentID}</th>
+                  <td>${item.studentFName + ' ' + item.studentMName + ' ' + item.studentLName}</td>
+                  <td><input type="text" maxlength="4" size="4" data-id="${item.studentID}" class="grade"/></td>
+                  <td>
+                    <textarea
+                      name="feedback"
+                      class="feedback"
+                      cols="30"
+                      rows="1"
+                    ></textarea>
+                  </td>
+                </tr>
+              `
+              });
+              dataTable = $("#bootstrap-data-table-export").DataTable();
+              document.querySelector('#course-code').innerHTML = item.courseCode;
+            });
+      });
+      
     </script>
     <script>
       fetch("includes/leftnav.html")

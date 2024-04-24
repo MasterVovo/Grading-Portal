@@ -1,7 +1,12 @@
 const tbody = document.querySelector('tbody');
 
 fetch('../../src/controller/getStdList.php', {
-    method: 'POST'
+    method: 'POST',
+    body: (() => {
+        const formData = new FormData();
+        formData.append('method', 'getAllStd');
+        return formData;
+    })()
 })
 .then(response => response.json())
 .then(data => {
@@ -12,7 +17,6 @@ fetch('../../src/controller/getStdList.php', {
             <th>${item.studentID}</th>
             <td>${item.studentFName + ' ' + item.studentMName + ' ' + item.studentLName}</td>
             <td>${item.studentEmail}</td>
-            <td>${item.studentYear}</td>
             <td>${item.studentSect}</td>
             <td>
                 <a href="#" onclick="event.preventDefault()"><i class="fa fa-edit fa-1x" data-toggle="modal" data-target="#editFacultyModal"></i></a>
