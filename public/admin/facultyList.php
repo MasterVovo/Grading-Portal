@@ -12,7 +12,7 @@ require_once "../includes/dbconn.php";
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <link rel="apple-touch-icon" href="https://i.imgur.com/QRAUqs9.png" />
-  <link rel="shortcut icon" href="../assets/img/student-grade.png" />
+  <link rel="shortcut icon" href="../images/KLD LOGO.png" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.0/normalize.min.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" />
@@ -179,26 +179,24 @@ require_once "../includes/dbconn.php";
                           </div>
                         </div>
                       </div>
-                      <input id="pass" name="pass" type="text" value=
-                        <?php
-                          $characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
-                          $passArray = array();
-                          $charLen = strlen($characters) - 1;
-                      
-                          for ($i = 0; $i < 8; $i++) {
-                              $char = $characters[rand(0, $charLen)];
-                              $passArray[] = $char;
-                          }
+                      <input id="pass" name="pass" type="text" value=<?php
+                                                                      $characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
+                                                                      $passArray = array();
+                                                                      $charLen = strlen($characters) - 1;
 
-                          $password = implode($passArray);
+                                                                      for ($i = 0; $i < 8; $i++) {
+                                                                        $char = $characters[rand(0, $charLen)];
+                                                                        $passArray[] = $char;
+                                                                      }
 
-                          echo "$password";
-                        ?>
-                        disabled hidden/>
+                                                                      $password = implode($passArray);
+
+                                                                      echo "$password";
+                                                                      ?> disabled hidden />
                       <p>
                         <small><i>Note: Faculty's password is automatically generated</i></small>
                       </p>
-                      <button class="btn btn-primary">Bulk Add Excel</button>&nbsp<a href="#" onclick="showHelp()"><i class="fa fa-question-circle-o font-weight-bold" aria-hidden="true"></i></a>
+                      <button type="button" class="btn btn-primary" id="importExcel">Bulk Add Excel</button>&nbsp<a href="#" onclick="showHelp()"><i class="fa fa-question-circle-o font-weight-bold" aria-hidden="true"></i></a>
                       <button type="submit" name="submit" class="btn btn-success">Add Faculty</button>
                     </form>
                   </div>
@@ -576,13 +574,43 @@ require_once "../includes/dbconn.php";
   </script>
 
   <script>
-    function showHelp(){
+    function showHelp() {
       swal.fire({
-        html: "<h5>Sample excel file</h5><br>" + 
-        "<img src='../images/sample excel.png'>" + "",
-        
+        html: "<h5>Sample excel file</h5><br>" +
+          "<img src='../images/sample excel.png'>" + "",
+
       });
     }
+  </script>
+
+  <script>
+    $("#importExcel").on("click", function(e) {
+      e.preventDefault();
+      swal.fire({
+        title: "Upload Excel File",
+        input: "file",
+        inputAttributes: {
+          required: "required",
+          accept: ".xls, .xlsx",
+          "aria-label": "Upload your excel file"
+        },
+        showConfirmButton: true,
+        confirmButtonText: "Upload",
+        showCancelButton: true
+      }).then((result) => {
+        if (result.isConfirmed) {
+          // swal.fire({ // Loading 
+          //   title: "Uploading file...",
+          //   html: 'Please wait...',
+          //   allowOutsideClick: false,
+          //   allowEscapeKey: false,
+          //   didOpen: () => {
+          //     swal.showLoading();
+          //   },
+          // });
+        }
+      })
+    });
   </script>
 </body>
 
