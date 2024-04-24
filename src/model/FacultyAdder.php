@@ -32,7 +32,7 @@ class FacultyAdder {
         ]);
 
         if ($result)
-            echo "Query executed successfully.";
+            echo "Faculty Added Successfully";
         else
             echo $conn->errorInfo();
     }

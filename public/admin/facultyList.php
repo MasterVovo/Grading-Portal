@@ -1,14 +1,5 @@
 <?php
 require_once "../includes/dbconn.php";
-
-// Count the number of rows in the faculty table
-$query = "SELECT COUNT(*) AS total FROM faculty";
-$result = mysqli_query($conn, $query);
-$row = mysqli_fetch_assoc($result);
-$count = $row['total'];
-
-// Set the value of fct-id field with the pattern "KLD" + number of rows in the table + 1
-$facultyIdPattern = "KLD-" . str_pad($count + 1, 6, '0', STR_PAD_LEFT);
 ?>
 
 <!DOCTYPE html>
@@ -29,7 +20,7 @@ $facultyIdPattern = "KLD-" . str_pad($count + 1, 6, '0', STR_PAD_LEFT);
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pixeden-stroke-7-icon@1.2.3/pe-icon-7-stroke/dist/pe-icon-7-stroke.min.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.0/css/flag-icon.min.css" />
   <link rel="stylesheet" href="../styles/cs-skin-elastic.css" />
-  <link rel="stylesheet" href="https://cdn.datatables.net/2.0.5/css/dataTables.dataTables.min.css" />
+  <link rel="stylesheet" href="../styles/lib/datatable/dataTables.bootstrap.min.css" />
   <link rel="stylesheet" href="../styles/style2.css" />
   <link rel="shortcut icon" href="../images/KLD LOGO.png" type="image/x-icon" />
 
@@ -132,8 +123,17 @@ $facultyIdPattern = "KLD-" . str_pad($count + 1, 6, '0', STR_PAD_LEFT);
                       <div class="row">
                         <div class="col-6">
                           <div class="form-group">
-                            <label for="fct-id" class="control-label mb-1">Faculty ID <span class="red">*</span></label>
-                            <input id="fct-id" name="fct-id" type="text" class="form-control cc-exp" value="<?php echo $facultyIdPattern;?>" disabled/>
+                            <label for="fct-id" class="control-label mb-1">Faculty ID</label>
+                            <input id="fct-id" name="fct-id" type="text" class="form-control cc-exp" value=<?php
+                                                                                                            $currentYear = date('y'); // Get current year
+                                                                                                            $query = "SELECT COUNT(*) AS count FROM faculty WHERE facultyID LIKE 'KLD-$currentYear-%'"; // Count rows with IDs in current year
+                                                                                                            $result = mysqli_query($conn, $query);
+                                                                                                            $row = mysqli_fetch_assoc($result);
+                                                                                                            $count = $row['count'];
+                                                                                                            $paddedCount = str_pad($count + 1, 4, '0', STR_PAD_LEFT);
+                                                                                                            $value = "KLD-$currentYear-$paddedCount";
+                                                                                                            echo $value;
+                                                                                                            ?> required placeholder="Faculty ID" disabled />
                           </div>
                         </div>
                         <div class="col-6">
@@ -166,18 +166,40 @@ $facultyIdPattern = "KLD-" . str_pad($count + 1, 6, '0', STR_PAD_LEFT);
                         </div>
                         <div class="col-6">
                           <div class="form-group">
-                            <label for="pass" class="control-label mb-1">Password <span class="red">*</span></label>
-                            <input id="pass" name="pass" type="password" class="form-control cc-exp" value="" required placeholder="Password" />
+                            <label for="fct-type" class="control-label mb-1">Faculty Type <span class="red">*</span></label>
+                            <select required id="fct-type" name="fct-type" class="custom-select form-control">
+                              <option selected disabled>
+                                --Select Faculty Type--
+                              </option>
+                              <option value="1">Teacher</option>
+                              <option value="2">Program Chair</option>
+                              <option value="3">Dean</option>
+                              <option value="4">Registrar</option>
+                            </select>
                           </div>
                         </div>
                       </div>
+                      <input id="pass" name="pass" type="text" value=
+                        <?php
+                          $characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
+                          $passArray = array();
+                          $charLen = strlen($characters) - 1;
+                      
+                          for ($i = 0; $i < 8; $i++) {
+                              $char = $characters[rand(0, $charLen)];
+                              $passArray[] = $char;
+                          }
+
+                          $password = implode($passArray);
+
+                          echo "$password";
+                        ?>
+                        disabled hidden/>
                       <p>
-                        <small><i>Note: By default student's password is set to
-                            "<b>???</b>"</i></small>
+                        <small><i>Note: Faculty's password is automatically generated</i></small>
                       </p>
-                      <button type="submit" name="submit" class="btn btn-success">
-                        Add Faculty
-                      </button>
+                      <button class="btn btn-primary">Bulk Add Excel</button>&nbsp<a href="#" onclick="showHelp()"><i class="fa fa-question-circle-o font-weight-bold" aria-hidden="true"></i></a>
+                      <button type="submit" name="submit" class="btn btn-success">Add Faculty</button>
                     </form>
                   </div>
                 </div>
@@ -201,132 +223,109 @@ $facultyIdPattern = "KLD-" . str_pad($count + 1, 6, '0', STR_PAD_LEFT);
               <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Edit Faculty Data</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
                   </div>
                   <div class="modal-body">
-                    <!-- <form method="Post" action="#" id="edit-faculty">
-                        <div class="row">
-                          <div class="col-6">
-                            <div class="form-group">
-                              <label for="fct-id" class="control-label mb-1"
-                                >Faculty ID <span class="red">*</span></label
-                              >
-                              <input
-                                id="fct-id"
-                                name="fct-id"
-                                type="text"
-                                class="form-control cc-exp"
-                                value=""
-                                required
-                                placeholder="Faculty ID"
-                              />
-                            </div>
-                          </div>
-                          <div class="col-6">
-                            <div class="form-group">
-                              <label for="fname" class="control-label mb-1"
-                                >First name <span class="red">*</span></label
-                              >
-                              <input
-                                id="fname"
-                                name="fname"
-                                type="text"
-                                class="form-control cc-exp"
-                                value=""
-                                required
-                                placeholder="First name"
-                              />
-                            </div>
+                    <form method="Post" action="#" id="edit-faculty">
+                      <div class="row">
+                        <div class="col-6">
+                          <div class="form-group">
+                            <label for="edit-fct-id" class="control-label mb-1">Faculty ID <span class="red">*</span></label>
+                            <input id="edit-fct-id" name="fct-id" type="text" class="form-control cc-exp" value="" required disabled placeholder="Faculty ID" />
                           </div>
                         </div>
-                        <div class="row">
-                          <div class="col-6">
-                            <div class="form-group">
-                              <label for="mname" class="control-label mb-1"
-                                >Middle name</label
-                              >
-                              <input
-                                id="mname"
-                                name="mname"
-                                type="text"
-                                class="form-control cc-exp"
-                                value=""
-                                placeholder="Middle name"
-                              />
-                            </div>
-                          </div>
-                          <div class="col-6">
-                            <div class="form-group">
-                              <label for="lname" class="control-label mb-1"
-                                >Last name <span class="red">*</span></label
-                              >
-                              <input
-                                id="lname"
-                                name="lname"
-                                type="text"
-                                class="form-control cc-exp"
-                                value=""
-                                required
-                                placeholder="Last name"
-                              />
-                            </div>
+                        <div class="col-6">
+                          <div class="form-group">
+                            <label for="edit-fname" class="control-label mb-1">First name <span class="red">*</span></label>
+                            <input id="edit-fname" name="fname" type="text" class="form-control cc-exp" value="" required disabled placeholder="First name" />
                           </div>
                         </div>
-                        <div class="row">
-                          <div class="col-6">
-                            <div class="form-group">
-                              <label for="email" class="control-label mb-1"
-                                >Email <span class="red">*</span></label
-                              >
-                              <input
-                                id="email"
-                                name="email"
-                                type="email"
-                                class="form-control cc-exp"
-                                value=""
-                                required
-                                placeholder="Email"
-                              />
-                            </div>
-                          </div>
-                          <div class="col-6">
-                            <div class="form-group">
-                              <label for="pass" class="control-label mb-1"
-                                >Password <span class="red">*</span></label
-                              >
-                              <input
-                                id="pass"
-                                name="pass"
-                                type="password"
-                                class="form-control cc-exp"
-                                value=""
-                                required
-                                placeholder="Password"
-                              />
-                            </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-6">
+                          <div class="form-group">
+                            <label for="edit-mname" class="control-label mb-1">Middle name</label>
+                            <input id="edit-mname" name="mname" type="text" class="form-control cc-exp" value="" disabled placeholder="Middle name" />
                           </div>
                         </div>
-                        
-                        <p>
-                          <small>
-                            <i>Note: By default student's password is set to "<b>???</b>"</i>
-                          </small>
-                        </p>
-                        <button
-                          type="submit"
-                          name="submit"
-                          class="btn btn-success"
-                        >
-                          Add Faculty
-                        </button>
-                      </form> -->
+                        <div class="col-6">
+                          <div class="form-group">
+                            <label for="edit-lname" class="control-label mb-1">Last name <span class="red">*</span></label>
+                            <input id="edit-lname" name="lname" type="text" class="form-control cc-exp" value="" required disabled placeholder="Last name" />
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-6">
+                          <div class="form-group">
+                            <label for="edit-email" class="control-label mb-1">Email <span class="red">*</span></label>
+                            <input id="edit-email" name="email" type="email" class="form-control cc-exp" value="" required disabled placeholder="Email" />
+                          </div>
+                        </div>
+                        <div class="col-6">
+                          <div class="form-group">
+                            <label for="edit-pass" class="control-label mb-1">Password <span class="red">*</span></label>
+                            <input id="edit-pass" name="pass" type="password" class="form-control cc-exp" value="" required disabled placeholder="Password" />
+                          </div>
+                        </div>
+                      </div>
+                    </form>
+
+                    <form action="" id="set-assign">
+                      <h2 class="h5 mt-2">Assign New Section and Course</h2>
+
+                      <div class="row">
+                        <div class="col-6">
+                          <div class="form-group">
+                            <label for="sect" class="control-label mb-1">Section</label>
+                            <select required id="sect" name="sect" class="custom-select form-control">
+                              <option value="" disabled selected>--Select Section--</option>
+                            </select>
+                          </div>
+                        </div>
+
+                        <div class="col-6">
+                          <div class="form-group">
+                            <label for="crs" class="control-label mb-1">Course</label>
+                            <select required id="crs" name="crs" class="custom-select form-control">
+                              <option value="" disabled selected>--Select Course--</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+
+                      <button type="submit" name="submit" class="btn btn-success" onclick="setAssignment()">Assign</button>
+                    </form>
+
+                    <div class="card shadow-lg">
+                      <div class="card-header">
+                        <h2 align="center" class="h5">Section & Subject Assignment</h2>
+                      </div>
+                      <div class="card-body">
+                        <table id="assignment-table" class="table table-hover table-striped table-bordered">
+                          <thead>
+                            <tr>
+                              <th>Section</th>
+                              <th>Course</th>
+                              <th>Actions</th>
+                            </tr>
+                          </thead>
+                          <tbody id="ass-table">
+
+                          </tbody>
+                          <script src="../scripts/reqAssignment.js"></script>
+                        </table>
+                      </div>
+                    </div>
+
+
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <button type="button" class="btn btn-success">Save changes</button>
                   </div>
                 </div>
               </div>
@@ -362,40 +361,19 @@ $facultyIdPattern = "KLD-" . str_pad($count + 1, 6, '0', STR_PAD_LEFT);
                     </tbody>
                   </table> -->
 
-                <table id="bootstrap-data-table" class="table table-hover table-striped table-bordered">
+                <table id="faculty-table" class="table table-hover table-striped table-bordered">
                   <thead>
                     <tr>
-                      <th>ID</th>
-                      <th>Faculty Name</th>
+                      <th>#</th>
+                      <th>Name</th>
                       <th>Email</th>
-                      <th>Dept</th>
-                      <th>Edit</th>
-                      <th>Delete</th>
+                      <th>Actions</th>
                     </tr>
                   </thead>
-                  <tbody>
-                    <!-- <tr>
-                        <td>1</td>
-                        <td>Faculty 1</td>
-                        <td>2022-06-13</td>
-                        <td>
-                          <a
-                            href="editFaculty.php?editid=1"
-                            title="Edit Faculty Details"
-                            ><i class="fa fa-edit fa-1x"></i
-                          ></a>
-                        </td>
-                        <td>
-                          <a
-                            onclick="return confirm('Are you sure you want to delete?')"
-                            href="deleteFaculty.php?delid=1"
-                            title="Delete Faculty Details"
-                            ><i class="fa fa-trash fa-1x"></i
-                          ></a>
-                        </td>
-                        <td></td> -->
-                    </tr>
+                  <tbody id="fct-list-tbl">
+
                   </tbody>
+                  <script src="../scripts/reqFctList.js"></script>
                 </table>
               </div>
             </div>
@@ -430,7 +408,18 @@ $facultyIdPattern = "KLD-" . str_pad($count + 1, 6, '0', STR_PAD_LEFT);
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/jquery-match-height@0.7.2/dist/jquery.matchHeight.min.js"></script>
   <script src="../assets/js/main.js"></script>
-  <script src="https://cdn.datatables.net/2.0.5/js/dataTables.min.js"></script>
+  <script src="../assets/js/lib/data-table/datatables.min.js"></script>
+  <script src="../assets/js/lib/data-table/dataTables.bootstrap.min.js"></script>
+  <script src="../assets/js/lib/data-table/dataTables.buttons.min.js"></script>
+  <script src="../assets/js/lib/data-table/buttons.bootstrap.min.js"></script>
+  <script src="../assets/js/lib/data-table/jszip.min.js"></script>
+  <script src="../assets/js/lib/data-table/vfs_fonts.js"></script>
+  <script src="../assets/js/lib/data-table/buttons.html5.min.js"></script>
+  <script src="../assets/js/lib/data-table/buttons.print.min.js"></script>
+  <script src="../assets/js/lib/data-table/buttons.colVis.min.js"></script>
+  <script src="../assets/js/init/datatables-init.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
   <!-- Script for adding separate html -->
   <script>
     fetch("includes/leftnav.html")
@@ -442,14 +431,12 @@ $facultyIdPattern = "KLD-" . str_pad($count + 1, 6, '0', STR_PAD_LEFT);
 
   <!-- Script for adding faculty -->
   <script src="../scripts/addFaculty.js"></script>
+  <!-- Script for sanitizing inputs -->
+  <script src="../scripts/sanitation.js"></script>
 
-  <script src="../scripts/viewFaculty.js"></script>
+  <!-- <script src="../scripts/viewFaculty.js"></script> -->
 
   <script type="text/javascript">
-    $(document).ready(function() {
-      $("#bootstrap-data-table").DataTable();
-    });
-
     // Menu Trigger
     $("#menuToggle").on("click", function(event) {
       var windowWidth = $(window).width();
@@ -465,6 +452,137 @@ $facultyIdPattern = "KLD-" . str_pad($count + 1, 6, '0', STR_PAD_LEFT);
         $("#left-panel").removeClass("open-menu");
       }
     });
+
+    // Populating the edit fields
+    let assignmentDataTable = $("#assignment-table").DataTable();
+
+    function populateEditFields() {
+      event.preventDefault();
+      const facultyID = event.currentTarget.getAttribute('data-id');
+
+      const formData = new FormData();
+      formData.append('method', 'getFct');
+      formData.append('facultyID', facultyID);
+
+      fetch('../../src/controller/getFctList.php', {
+          method: 'POST',
+          body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+          console.log(data[0]);
+          document.querySelector('#edit-fct-id').value = data[0].facultyID;
+          document.querySelector('#edit-fname').value = data[0].facultyFName;
+          document.querySelector('#edit-mname').value = data[0].facultyMName;
+          document.querySelector('#edit-lname').value = data[0].facultyLName;
+          document.querySelector('#edit-email').value = data[0].facultyEmail;
+          document.querySelector('#edit-pass').value = data[0].facultyPass;
+        })
+        .catch(error => console.error(error));
+
+
+      fetch('../../src/controller/getAssignment.php', {
+          method: 'POST',
+          body: (() => {
+            const formData = new FormData();
+            formData.append('method', 'getAssignmentByFct');
+            formData.append('facultyID', facultyID);
+            return formData;
+          })()
+        })
+        .then(response => response.json())
+        .then(data => {
+          console.log(data);
+          assignmentDataTable.destroy();
+          document.querySelector('#ass-table').innerHTML = '';
+          data.forEach((item) => {
+            document.querySelector('#ass-table').innerHTML += `
+              <tr>
+                <th>${item.sectionID}</th>
+                <td>${item.courseID}</td>
+                <td>
+                    <a onclick="return confirm('Are you sure you want to delete?')" href="deleteStudent.php?delid=<?php echo $row['matricNo']; ?>" title="Delete Student Details"><i class="fa fa-trash fa-1x"></i></a>
+                </td>
+              </tr>
+            `;
+          });
+          assignmentDataTable = $("#assignment-table").DataTable();
+        })
+        .catch(error => console.error(error));
+    }
+
+    // Filling in section selection
+    const getAllSctId = new FormData();
+    getAllSctId.append('method', 'getAllSctId')
+    fetch('../../src/controller/getSctList.php', {
+        method: 'POST',
+        body: getAllSctId
+      })
+      .then(response => response.json())
+      .then(data => {
+        data.forEach(item => {
+          document.querySelector('#sect').innerHTML += `<option value="${item.sectionID}">${item.sectionID}</option>`;
+        })
+      })
+      .catch(error => console.error(error));
+
+    // Filling in course selection
+    const getAllCrsId = new FormData();
+    getAllCrsId.append('method', 'getAllCrsId')
+    fetch('../../src/controller/getCrsList.php', {
+        method: 'POST',
+        body: getAllCrsId
+      })
+      .then(response => response.json())
+      .then(data => {
+        data.forEach(item => {
+          document.querySelector('#crs').innerHTML += `<option value="${item.courseCode}">${item.courseCode}</option>`;
+        })
+      })
+      .catch(error => console.error(error));
+
+    // Setting assignment of section and course
+    function setAssignment() {
+      event.preventDefault();
+
+      const id = document.querySelector('#edit-fct-id').value;
+      const sect = document.querySelector('#sect').value;
+      const crs = document.querySelector('#crs').value;
+
+      if (!(isValueEmpty([id, sect, crs]))) {
+        const formData = new FormData();
+        formData.append('id', id);
+        formData.append('sect', sect);
+        formData.append('crs', crs);
+
+        fetch('../../src/controller/setAssignment.php', {
+            method: 'POST',
+            body: formData
+          })
+          .then(response => response.text())
+          .then(data => alert(data))
+          .catch(error => console.error(error));
+      } else {
+        alert("There's an empty field");
+      }
+    }
+  </script>
+
+  <script defer>
+    $(document).ready(function() {
+      $("#bootstrap-data-table").DataTable();
+      $("#faculty-table").DataTable();
+    });
+  </script>
+
+  <script>
+    function showHelp(){
+      swal.fire({
+        html: "<h5>Sample excel file</h5><br>" + 
+        "<img src='../images/sample excel.png'>" + "",
+        
+      });
+    }
   </script>
 </body>
 

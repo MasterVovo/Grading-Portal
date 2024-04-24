@@ -1,22 +1,20 @@
-const fctTable = document.querySelector('#fct-list-tbl');
+const fctTable = document.querySelector("#fct-list-tbl");
 
 const formData = new FormData();
-formData.append('method', 'getAllFct');
+formData.append("method", "getAllFct");
 
-fetch('../../src/controller/getFctList.php', {
-    method: 'POST',
-    body: formData
+fetch("../../src/controller/getFctList.php", {
+  method: "POST",
+  body: formData,
 })
-.then(response => response.json())
-.then(data => {
-    console.log(data)
+  .then((response) => response.json())
+  .then((data) => {
+    console.log(data);
     data.forEach((item) => {
-        fctTable.innerHTML += `
+      fctTable.innerHTML += `
         <tr>
             <th>${item.facultyID}</th>
-            <td>${item.facultyFName}</td>
-            <td>${item.facultyMName}</td>
-            <td>${item.facultyLName}</td>
+            <td>${item.facultyFName} ${item.facultyMName} ${item.facultyLName}</td>
             <td>${item.facultyEmail}</td>
             <td>
                 <a href="#" onclick="populateEditFields()" data-id="${item.facultyID}"><i class="fa fa-edit fa-1x" data-toggle="modal" data-target="#editFacultyModal"></i></a>
@@ -28,5 +26,5 @@ fetch('../../src/controller/getFctList.php', {
         </tr>
         `;
     });
-})
-.catch(error => console.error(error));
+  })
+  .catch((error) => console.error(error));
