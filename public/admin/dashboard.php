@@ -188,13 +188,13 @@
             <!-- /# column -->
           
 
-            <div class="col-sm-6 col-lg-3">
+            <div class="col-sm-6 col-lg-4">
               <div class="card text-white bg-flat-color-2">
                 <div class="card-body">
                   <div class="card-left pt-1 float-left">
                     <h3 class="mb-0 fw-r">
                       <span class="currency float-left mr-1"></span>
-                      <span class="count">201</span>
+                      <span class="count" id="active-users">201</span>
                     </h3>
                     <p class="text-light mt-1 m-0">Active Users</p>
                   </div>
@@ -208,13 +208,13 @@
               </div>
             </div>
 
-            <div class="col-sm-6 col-lg-3">
+            <div class="col-sm-6 col-lg-4">
               <div class="card text-white bg-flat-color-3">
                 <div class="card-body">
                   <div class="card-left pt-1 float-left">
                     <h3 class="mb-0 fw-r">
                       <span class="currency float-left mr-1"></span>
-                      <span class="count">3,146</span>
+                      <span class="count" id="total-users">3,146</span>
                     </h3>
                     <p class="text-light mt-1 m-0">Total Users</p>
                   </div>
@@ -228,13 +228,13 @@
               </div>
             </div>
 
-            <div class="col-sm-6 col-lg-3">
+            <div class="col-sm-6 col-lg-4">
               <div class="card text-white bg-flat-color-5">
                 <div class="card-body">
                   <div class="card-left pt-1 float-left">
                     <h3 class="mb-0 fw-r">
                       <span class="currency float-left mr-1"></span>
-                      <span class="count">3,056</span>
+                      <span class="count" id="total-std">3,056</span>
                     </h3>
                     <p class="text-light mt-1 m-0">Total Student</p>
                   </div>
@@ -248,13 +248,13 @@
               </div>
             </div>
 
-            <div class="col-sm-6 col-lg-3">
+            <div class="col-sm-6 col-lg-4">
               <div class="card text-white bg-flat-color-1">
                 <div class="card-body">
                   <div class="card-left pt-1 float-left">
                     <h3 class="mb-0 fw-r">
-                      <span class="currency float-left mr-1">90</span>
-                      <span class="count"></span>
+                      <span class="currency float-left mr-1"></span>
+                      <span class="count" id="total-fct">90</span>
                     </h3>
                     <p class="text-light mt-1 m-0">Total Faculty</p>
                   </div>
@@ -268,13 +268,13 @@
               </div>
             </div>
 
-            <div class="col-sm-6 col-lg-3">
+            <div class="col-sm-6 col-lg-4">
               <div class="card text-white bg-secondary">
                 <div class="card-body">
                   <div class="card-left pt-1 float-left">
                     <h3 class="mb-0 fw-r">
-                      <span class="currency float-left mr-1">102</span>
-                      <span class="count"></span>
+                      <span class="currency float-left mr-1"></span>
+                      <span class="count" id="total-fails">102</span>
                     </h3>
                     <p class="text-light mt-1 m-0">Total Failures</p>
                   </div>
@@ -288,13 +288,13 @@
               </div>
             </div>
 
-            <div class="col-sm-6 col-lg-3">
+            <div class="col-sm-6 col-lg-4">
               <div class="card text-white bg-danger">
                 <div class="card-body">
                   <div class="card-left pt-1 float-left">
                     <h3 class="mb-0 fw-r">
-                      <span class="currency float-left mr-1">98%</span>
-                      <span class="count"></span>
+                      <span class="currency float-left mr-1"></span>
+                      <span class="count" id="pass-rate">98%</span>
                     </h3>
                     <p class="text-light mt-1 m-0">Passing Rate</p>
                   </div>
@@ -302,46 +302,6 @@
 
                   <div class="card-right float-right text-right">
                     <i class="icon fade-5 icon-lg pe-7s-culture"></i>
-                  </div>
-                  <!-- /.card-right -->
-                </div>
-              </div>
-            </div>
-
-            <div class="col-sm-6 col-lg-3">
-              <div class="card text-white bg-info">
-                <div class="card-body">
-                  <div class="card-left pt-1 float-left">
-                    <h3 class="mb-0 fw-r">
-                      <span class="currency float-left mr-1"></span>
-                      <span class="count">CCIS1101</span>
-                    </h3>
-                    <p class="text-light mt-1 m-0">Lowest Subject</p>
-                  </div>
-                  <!-- /.card-left -->
-
-                  <div class="card-right float-right text-right">
-                    <i class="icon fade-5 icon-lg pe-7s-server"></i>
-                  </div>
-                  <!-- /.card-right -->
-                </div>
-              </div>
-            </div>
-
-            <div class="col-sm-6 col-lg-3">
-              <div class="card text-white bg-primary">
-                <div class="card-body">
-                  <div class="card-left pt-1 float-left">
-                    <h3 class="mb-0 fw-r">
-                      <span class="currency float-left mr-1"></span>
-                      <span class="count">CCIS2116</span>
-                    </h3>
-                    <p class="text-light mt-1 m-0">Highest Subject</p>
-                  </div>
-                  <!-- /.card-left -->
-
-                  <div class="card-right float-right text-right">
-                    <i class="icon fade-5 icon-lg pe-7s-gleam"></i>
                   </div>
                   <!-- /.card-right -->
                 </div>
@@ -380,7 +340,7 @@
               <div class="card">
                 <div class="card-body">
                   <h3 align="center">
-                    <marquee direction="left">Current Session: </marquee>
+                    <marquee direction="left">School Year: 2023 - 2024</marquee>
                   </h3>
                 </div>
               </div>
@@ -578,6 +538,54 @@
         ]
         }
       });
+
+      // Display active users
+      fetch('../../src/controller/getChartData.php', {
+        method: 'POST',
+        body: (() => {
+          const formData = new FormData();
+          formData.append('method', 'getActiveUsers');
+          return formData;
+        })()
+      })
+      .then(response => response.json())
+      .then(data => {
+        document.querySelector('#active-users').innerHTML = data[0]['activeUsers'];
+      })
+      .catch(error => console.error(error));
+
+      // Display total students
+      fetch('../../src/controller/getChartData.php', {
+        method: 'POST',
+        body: (() => {
+          const formData = new FormData();
+          formData.append('method', 'getTotalStudent');
+          return formData;
+        })()
+      })
+      .then(response => response.json())
+      .then(data => {
+        document.querySelector('#total-std').innerHTML = data[0]['totalStd'];
+      })
+      .catch(error => console.error(error));
+
+      // Display total faculty
+      fetch('../../src/controller/getChartData.php', {
+        method: 'POST',
+        body: (() => {
+          const formData = new FormData();
+          formData.append('method', 'getTotalFaculty');
+          return formData;
+        })()
+      })
+      .then(response => response.json())
+      .then(data => {
+        document.querySelector('#total-fct').innerHTML = data[0]['totalFct'];
+      })
+      .catch(error => console.error(error));
+
+      // Display total users
+      document.querySelector('#total-users').innerHTML = document.querySelector('#total-std').value + document.querySelector('#total-fct').value;
 
       // Menu Trigger
       $("#menuToggle").on("click", function (event) {

@@ -25,7 +25,7 @@ class StudentAdder {
             $this->mname = "N/A";
         }
 
-        $sql = "INSERT INTO student(studentID, studentFName, studentMName, studentLName, studentEmail, studentPass, studentYear, studentSect) VALUES (:id, :fname, :mname, :lname, :email, :pass, :year, :sect)";
+        $sql = "INSERT INTO student(studentID, studentFName, studentMName, studentLName, studentEmail, studentPass, studentSect) VALUES (:id, :fname, :mname, :lname, :email, :pass, :sect)";
         $stmt = $conn->prepare($sql);
         $result = $stmt->execute([
             ':id' => $this->id,
@@ -34,7 +34,6 @@ class StudentAdder {
             ':lname' => $this->lname,
             ':email' => $this->email,
             ':pass' => $this->pass,
-            ':year' => $this->year,
             ':sect' => $this->sect
         ]);
 

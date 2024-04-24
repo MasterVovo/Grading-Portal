@@ -1,6 +1,7 @@
 <?php
 // API for fetching the section list
 
+session_start();
 require_once '../model/SectionFetcher.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -11,6 +12,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         echo $sctFetcher->getAllSctId();
     else if ($_POST['method'] == 'getSectionsByYear')
         echo $sctFetcher->getSctByYear($_POST['year']);
+    else if ($_POST['method'] == 'getSctByFct')
+        echo $sctFetcher->getSctByFct($_SESSION['userID']);
 
     // echo $fctFetcher->uploadToDB();
 } else {

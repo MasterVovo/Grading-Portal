@@ -13,7 +13,7 @@ class StudentFetcher
     {
         $conn = DBConn::getInstance()->getConnection();
 
-        $sql = "SELECT studentID, studentFName, studentMName, studentLName, studentEmail, studentYear, studentSect FROM student";
+        $sql = "SELECT studentID, studentFName, studentMName, studentLName, studentEmail, studentSect FROM student";
         $stmt = $conn->prepare($sql);
         $result = $stmt->execute();
 
@@ -23,15 +23,15 @@ class StudentFetcher
             return json_encode(["error" => "Failed to fetch data"]);
     }
 
-    public function getStdBySessionID($facultyID)
+    public function getStdBySct($sct)
     {
         $conn = DBConn::getInstance()->getConnection();
-
-        $sql = "SELECT student.studentID, student.studentFName, student.studentMName, student.studentLName, student.studentSect, grade.gradeID, grade.gradeMidterm, grade.gradeFinal, grade.gradeSemestral 
-        FROM student 
-        INNER JOIN grade ON section.sectionAdv = " . $facultyID . " AND student.studentSect = section.sectionID AND grade.studentID = student.studentID";
+        
+        $sql = "SELECT * FROM student WHERE studentSect = :sct";
         $stmt = $conn->prepare($sql);
-        $result = $stmt->execute();
+        $result = $stmt->execute([
+            ':sct' => $sct
+        ]);
 
         if ($result)
             return json_encode($stmt->fetchAll(PDO::FETCH_ASSOC));

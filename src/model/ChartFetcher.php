@@ -1,17 +1,17 @@
 <?php
-// A class for retrieving course data
+// A class for retrieving chart data
 
 require_once 'DBConn.php';
 
-class CourseFetcher {
+class ChartFetcher {
     public function __construct() {
 
     }
 
-    public function getAllCrs() {
+    public function getActiveUsers() {
         $conn = DBConn::getInstance()->getConnection();
         
-        $sql = "SELECT courseCode, courseName, courseYear, courseSem FROM course";
+        $sql = "SELECT COUNT(sessionID) AS activeUsers FROM usersession";
         $stmt = $conn->prepare($sql);
         $result = $stmt->execute();
 
@@ -21,10 +21,10 @@ class CourseFetcher {
             return json_encode(["error" => "Failed to fetch data"]);
     }
 
-    public function getAllCrsId() {
+    public function getTotalStudent() {
         $conn = DBConn::getInstance()->getConnection();
         
-        $sql = "SELECT courseCode FROM course";
+        $sql = "SELECT COUNT(studentID) AS totalStd FROM student";
         $stmt = $conn->prepare($sql);
         $result = $stmt->execute();
 
@@ -33,16 +33,13 @@ class CourseFetcher {
         else
             return json_encode(["error" => "Failed to fetch data"]);
     }
-    
-    public function getCrsByFctAndSct($fctID, $sctID) {
+
+    public function getTotalFaculty() {
         $conn = DBConn::getInstance()->getConnection();
         
-        $sql = "SELECT courseCode FROM assignment WHERE facultyID = :fctID AND sectionID = :sctID";
+        $sql = "SELECT COUNT(facultyID) AS totalFct FROM faculty";
         $stmt = $conn->prepare($sql);
-        $result = $stmt->execute([
-            'fctID' => $fctID,
-            'sctID' => $sctID
-        ]);
+        $result = $stmt->execute();
 
         if ($result)
             return json_encode($stmt->fetchAll(PDO::FETCH_ASSOC));

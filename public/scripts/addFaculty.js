@@ -9,6 +9,7 @@ form.addEventListener('submit', (event) => {
     const lname = document.querySelector('#lname').value;
     const email = document.querySelector('#email').value;
     const pass = document.querySelector('#pass').value;
+    const fctType = document.querySelector('#fct-type').value;
     
     if (!(isValueEmpty([fctID, fname, lname, email]))) {
         const formData = new FormData();
@@ -18,6 +19,7 @@ form.addEventListener('submit', (event) => {
         formData.append('lname', lname);
         formData.append('email', email);
         formData.append('pass', pass);
+        formData.append('fctType', fctType);
 
         fetch('../../src/controller/addFaculty.php', {
             method: 'POST',

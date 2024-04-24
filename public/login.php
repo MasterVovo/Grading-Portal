@@ -11,6 +11,11 @@ if (isset($_POST['submit'])) {
     $_SESSION['userType'] = 'admin';
     header("Location: admin/dashboard.html");
     exit();
+  } elseif ($studentID == "registrar" && $password == "registrar") {
+    $_SESSION['userID'] = $studentID;
+    $_SESSION['userType'] = 'registrar';
+    header("Location: registrar/dashboard.html");
+    exit();
   }
   //check if studentID exist in faculty, student, and admin tables
   $sql = "SELECT 'teacher' AS userType, facultyPass, facultyID FROM faculty WHERE facultyID = ? UNION ALL SELECT 'student' AS userType, studentPass, studentID FROM student WHERE studentID = ?";
@@ -107,8 +112,8 @@ if (isset($_POST['submit'])) {
             <hr />
             <form id="loginForm" method="POST" action="login.php">
               <div class="form-group">
-                <label for="studentId">Student ID</label>
-                <input type="text" class="form-control" id="studentId" name="studentId" placeholder="KLD-##-######" />
+                <label for="studentId">School ID</label>
+                <input type="text" class="form-control" id="studentId" name="studentId" placeholder="School ID" />
               </div>
               <div class="form-group">
                 <label for="password">Password</label>

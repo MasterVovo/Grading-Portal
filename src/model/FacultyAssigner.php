@@ -15,7 +15,7 @@ class FacultyAssigner {
     public function uploadToDB() {
         $conn = DBConn::getInstance()->getConnection();
 
-        $sql = "INSERT INTO assignment(facultyID, sectionID, courseID) VALUES (:facultyID, :sectionID, :courseID)";
+        $sql = "INSERT INTO assignment(facultyID, sectionID, courseCode) VALUES (:facultyID, :sectionID, :courseID)";
         $stmt = $conn->prepare($sql);
         $result = $stmt->execute([
             ':facultyID' => $this->facultyID,
