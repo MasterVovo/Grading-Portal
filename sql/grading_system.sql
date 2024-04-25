@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 22, 2024 at 03:52 PM
+-- Generation Time: Apr 24, 2024 at 11:41 AM
 -- Server version: 10.4.28-MariaDB
--- PHP Version: 8.1.17
+-- PHP Version: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -105,6 +105,17 @@ CREATE TABLE `assignment` (
   `courseCode` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `assignment`
+--
+
+INSERT INTO `assignment` (`assignID`, `facultyID`, `sectionID`, `courseCode`) VALUES
+(1, 'fct1', 'sct1', 'PCIS1011'),
+(2, 'fct2', 'sct2', 'GEC1000'),
+(3, 'fct3', 'sct3', 'PCIS1109'),
+(4, 'KLD125288', 'BSIS201', 'CCIS1101'),
+(5, 'KLD125288', 'BSIS101', 'GEC1000');
+
 -- --------------------------------------------------------
 
 --
@@ -117,6 +128,17 @@ CREATE TABLE `course` (
   `courseYear` int(11) NOT NULL,
   `courseSem` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `course`
+--
+
+INSERT INTO `course` (`courseCode`, `courseName`, `courseYear`, `courseSem`) VALUES
+('CCIS1101', 'Computer Programming Lec', 1, '1'),
+('CCIS1102', 'Computer Programming Lab', 1, '1'),
+('GEC1000', 'Purposive Communication', 1, '1'),
+('PCIS1011', 'Intro to Computing', 1, '1'),
+('PCIS1109', 'Living in the IT Era', 2, '1');
 
 -- --------------------------------------------------------
 
@@ -134,6 +156,29 @@ CREATE TABLE `faculty` (
   `facultyType` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `faculty`
+--
+
+INSERT INTO `faculty` (`facultyID`, `facultyFName`, `facultyMName`, `facultyLName`, `facultyEmail`, `facultyPass`, `facultyType`) VALUES
+('fct1', 'asdf', 'asdf', 'asdf', 'asdf@f.c', '123', 1),
+('fct10', 'Aibu', 'B', 'Kuan', 'abcde@gmail.com', '123', 1),
+('fct2', 'asdf2', 'asdf2', 'asdf2', 'asdf2@f.c', '123', 2),
+('fct3', 'asdf3', 'asdf3', 'asdf3', 'asdf3@f.c', '123', 3),
+('KLD1', 'John Andrew', 'Gadin', 'Reyes', 'reyes@gmail.com', '12345', 1),
+('KLD125288', 'Mark Christopher', 'Pogi', 'Borja', 'borjie@gmail.com', '12345', 3),
+('KLD125289', 'Cesar', 'Masipag', 'Galingana', 'galingana@gmail.com', '12345', 2),
+('KLD125290', 'Cecille', 'Maganda', 'Alvaran', 'alvaran@gmail.com', '12345', 1),
+('KLD125291', 'Mary Jane', 'Malupet', 'Legaspi', 'legaspi@gmail.com', '12345', 1),
+('KLD125292', 'Jackie', '', 'Bostick', 'amal_horan@hotmail.com', '12345', 2),
+('KLD125293', 'Belinda', '', 'Brewster', 'kit-wentz03995@ins.com', '12345', 3),
+('KLD125294', 'Alba', '', 'Mcknight', 'marnie-hook@yahoo.com', '12345', 3),
+('KLD125295', 'Veronique', '', 'Estrella', 'shanti.hager@bmw.com', '12345', 2),
+('KLD125296', 'Kellye', '', 'Dobson-Beaudry', 'leonardo8@bid.com', '12345', 2),
+('KLD125297', 'Alfredo', '', 'Han', 'soledad.drury@remains.com', '12345', 3),
+('KLD2', 'John Lloyd', 'Flordeliza', 'Mata', 'mata@gmail.com', '12345', 2),
+('KLD3', 'Aibu', '', 'Kuan', 'kuan@gmail.com', '12345', 3);
+
 -- --------------------------------------------------------
 
 --
@@ -144,6 +189,15 @@ CREATE TABLE `facultytype` (
   `facultyTypeID` int(11) NOT NULL,
   `facultyType` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `facultytype`
+--
+
+INSERT INTO `facultytype` (`facultyTypeID`, `facultyType`) VALUES
+(1, 'Teacher'),
+(2, 'Program Ch'),
+(3, 'Dean');
 
 -- --------------------------------------------------------
 
@@ -162,6 +216,13 @@ CREATE TABLE `grade` (
   `gradeFeedback` text NOT NULL,
   `gradeApproved` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `grade`
+--
+
+INSERT INTO `grade` (`gradeID`, `studentID`, `teacherID`, `courseCode`, `gradeMidterm`, `gradeFinal`, `gradeSemestral`, `gradeFeedback`, `gradeApproved`) VALUES
+(3, 'std1', 'fct1', 'PCIS1011', 1.00, 0.00, 0.00, 'sdadas', 0);
 
 -- --------------------------------------------------------
 
@@ -186,6 +247,35 @@ CREATE TABLE `section` (
   `sectionYearLvl` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `section`
+--
+
+INSERT INTO `section` (`sectionID`, `sectionAdv`, `sectionYearLvl`) VALUES
+('BSIS101', 'KLD1', 1),
+('BSIS102', 'KLD1', 1),
+('BSIS103', 'KLD1', 1),
+('BSIS104', 'KLD1', 1),
+('BSIS105', 'KLD1', 1),
+('BSIS201', 'KLD1', 2),
+('BSIS202', 'KLD1', 2),
+('BSIS203', 'KLD1', 2),
+('BSIS204', 'KLD1', 2),
+('BSIS205', 'KLD1', 2),
+('BSIS301', 'KLD1', 3),
+('BSIS302', 'KLD1', 3),
+('BSIS303', 'KLD1', 3),
+('BSIS304', 'KLD1', 3),
+('BSIS305', 'KLD1', 3),
+('BSIS401', 'KLD1', 4),
+('BSIS402', 'KLD1', 4),
+('BSIS403', 'KLD1', 4),
+('BSIS404', 'KLD1', 4),
+('BSIS405', 'KLD1', 4),
+('sct1', 'fct1', 1),
+('sct2', 'fct2', 2),
+('sct3', 'fct3', 3);
+
 -- --------------------------------------------------------
 
 --
@@ -201,6 +291,25 @@ CREATE TABLE `student` (
   `studentPass` varchar(255) NOT NULL,
   `studentSect` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `student`
+--
+
+INSERT INTO `student` (`studentID`, `studentFName`, `studentMName`, `studentLName`, `studentEmail`, `studentPass`, `studentSect`) VALUES
+('125328', 'Lucas', '', 'Yang', 'scarlet.barone@exclude.com', '12345', 'BSIS403'),
+('125329', 'Kasey', '', 'Lister', 'catherina_rogers9664@gmail.com', '12345', 'BSIS305'),
+('125330', 'Mayme', '', 'Palumbo', 'lulalake2@gmail.com', '12345', 'BSIS105'),
+('125331', 'Tambra', '', 'Matthew', 'russel-pack2@understood.com', '12345', 'BSIS204'),
+('125332', 'Karri', '', 'Lindstrom', 'zoila21718@hotmail.com', '12345', 'BSIS403'),
+('125333', 'Cayla', '', 'Putnam', 'elaina11604@yahoo.com', '12345', 'BSIS201'),
+('125334', 'Latoria', '', 'Burris', 'davisgonsalves95290@grow.com', '12345', 'BSIS202'),
+('125335', 'Katlyn', '', 'Keeling', 'krystlemilton35116@visitors.com', '12345', 'BSIS404'),
+('125336', 'Loris', '', 'Yancey', 'nelle_hand012@gmail.com', '12345', 'BSIS401'),
+('125337', 'Kristan', '', 'Daigle', 'janey.vanhorn83085@gmail.com', '12345', 'BSIS105'),
+('std1', 'asdf', 'asdf', 'asdf', 'asdf@f.c', '123', 'sct1'),
+('std2', 'asdf2', 'asdf2', 'asdf2', 'asdf2@f.c', '123', 'sct2'),
+('std3', 'asdf3', 'asdf3', 'asdf3', 'asdf3@f.c', '123', 'sct3');
 
 -- --------------------------------------------------------
 
@@ -226,6 +335,16 @@ CREATE TABLE `yearlevel` (
   `yearLevelID` int(11) NOT NULL,
   `yearLevel` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `yearlevel`
+--
+
+INSERT INTO `yearlevel` (`yearLevelID`, `yearLevel`) VALUES
+(1, '1st Year'),
+(2, '2nd Year'),
+(3, '3rd Year'),
+(4, '4th Year');
 
 --
 -- Indexes for dumped tables
@@ -303,7 +422,8 @@ ALTER TABLE `grade`
   ADD PRIMARY KEY (`gradeID`),
   ADD KEY `fkgradestudent` (`studentID`),
   ADD KEY `fkgradecourse` (`courseCode`),
-  ADD KEY `fkgradeapproved` (`gradeApproved`);
+  ADD KEY `fkgradeapproved` (`gradeApproved`),
+  ADD KEY `fkgradeteacher` (`teacherID`);
 
 --
 -- Indexes for table `gradecriteria`
@@ -323,7 +443,8 @@ ALTER TABLE `section`
 -- Indexes for table `student`
 --
 ALTER TABLE `student`
-  ADD PRIMARY KEY (`studentID`);
+  ADD PRIMARY KEY (`studentID`),
+  ADD KEY `fkstudentsect` (`studentSect`);
 
 --
 -- Indexes for table `usersession`
@@ -345,19 +466,19 @@ ALTER TABLE `yearlevel`
 -- AUTO_INCREMENT for table `assignment`
 --
 ALTER TABLE `assignment`
-  MODIFY `assignID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `assignID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `facultytype`
 --
 ALTER TABLE `facultytype`
-  MODIFY `facultyTypeID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `facultyTypeID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `grade`
 --
 ALTER TABLE `grade`
-  MODIFY `gradeID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `gradeID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `usersession`
@@ -369,7 +490,7 @@ ALTER TABLE `usersession`
 -- AUTO_INCREMENT for table `yearlevel`
 --
 ALTER TABLE `yearlevel`
-  MODIFY `yearLevelID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `yearLevelID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables
@@ -406,9 +527,9 @@ ALTER TABLE `faculty`
 -- Constraints for table `grade`
 --
 ALTER TABLE `grade`
-  ADD CONSTRAINT `fkgradeapproved` FOREIGN KEY (`gradeApproved`) REFERENCES `approval` (`approvalID`),
   ADD CONSTRAINT `fkgradecourse` FOREIGN KEY (`courseCode`) REFERENCES `course` (`courseCode`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `fkgradestudent` FOREIGN KEY (`studentID`) REFERENCES `student` (`studentID`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `fkgradestudent` FOREIGN KEY (`studentID`) REFERENCES `student` (`studentID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fkgradeteacher` FOREIGN KEY (`teacherID`) REFERENCES `faculty` (`facultyID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `section`
@@ -416,6 +537,12 @@ ALTER TABLE `grade`
 ALTER TABLE `section`
   ADD CONSTRAINT `fksectionadviser` FOREIGN KEY (`sectionAdv`) REFERENCES `faculty` (`facultyID`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fksectionyear` FOREIGN KEY (`sectionYearLvl`) REFERENCES `yearlevel` (`yearLevelID`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `student`
+--
+ALTER TABLE `student`
+  ADD CONSTRAINT `fkstudentsect` FOREIGN KEY (`studentSect`) REFERENCES `section` (`sectionID`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
