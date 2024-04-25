@@ -12,7 +12,7 @@ require_once "../includes/dbconn.php";
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <link rel="apple-touch-icon" href="https://i.imgur.com/QRAUqs9.png" />
-  <link rel="shortcut icon" href="../assets/img/student-grade.png" />
+  <link rel="shortcut icon" href="../images/KLD LOGO.png" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.0/normalize.min.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" />
@@ -20,12 +20,12 @@ require_once "../includes/dbconn.php";
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pixeden-stroke-7-icon@1.2.3/pe-icon-7-stroke/dist/pe-icon-7-stroke.min.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.0/css/flag-icon.min.css" />
   <link rel="stylesheet" href="../styles/cs-skin-elastic.css" />
-  <link rel="stylesheet" href="../styles/lib/datatable/dataTables.bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdn.datatables.net/2.0.5/css/dataTables.dataTables.min.css" />
   <link rel="stylesheet" href="../styles/style2.css" />
   <link rel="shortcut icon" href="../images/KLD LOGO.png" type="image/x-icon" />
 
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css" />
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -114,7 +114,7 @@ require_once "../includes/dbconn.php";
                 </strong>
               </div>
               <div class="card-body">
-                <table id="faculty-table" class="table table-hover table-striped table-bordered">
+                <table id="archive-faculty-table" class="table table-hover table-striped table-bordered">
                   <thead>
                     <tr>
                       <th>#</th>
@@ -123,10 +123,10 @@ require_once "../includes/dbconn.php";
                       <th>Actions</th>
                     </tr>
                   </thead>
-                  <tbody id="fct-list-tbl">
+                  <tbody id="arc-fct-list-tbl">
 
                   </tbody>
-                  <script src="../scripts/reqFctList.js"></script>
+                  <script src="../scripts/retrieveArchiveFaculty.js"></script>
                 </table>
               </div>
             </div>
@@ -161,16 +161,7 @@ require_once "../includes/dbconn.php";
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/jquery-match-height@0.7.2/dist/jquery.matchHeight.min.js"></script>
   <script src="../assets/js/main.js"></script>
-  <script src="../assets/js/lib/data-table/datatables.min.js"></script>
-  <script src="../assets/js/lib/data-table/dataTables.bootstrap.min.js"></script>
-  <script src="../assets/js/lib/data-table/dataTables.buttons.min.js"></script>
-  <script src="../assets/js/lib/data-table/buttons.bootstrap.min.js"></script>
-  <script src="../assets/js/lib/data-table/jszip.min.js"></script>
-  <script src="../assets/js/lib/data-table/vfs_fonts.js"></script>
-  <script src="../assets/js/lib/data-table/buttons.html5.min.js"></script>
-  <script src="../assets/js/lib/data-table/buttons.print.min.js"></script>
-  <script src="../assets/js/lib/data-table/buttons.colVis.min.js"></script>
-  <script src="../assets/js/init/datatables-init.js"></script>
+  <script src="https://cdn.datatables.net/2.0.5/js/dataTables.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
   <!-- Script for this page -->
