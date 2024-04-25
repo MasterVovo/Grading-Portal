@@ -9,7 +9,7 @@ if (isset($_POST['submit'])) {
   if ($studentID == "admin" && $password == "admin") {
     $_SESSION['userID'] = $studentID;
     $_SESSION['userType'] = 'admin';
-    header("Location: admin/dashboard.html");
+    header("Location: admin/dashboard.php");
     exit();
   } elseif ($studentID == "registrar" && $password == "registrar") {
     $_SESSION['userID'] = $studentID;
