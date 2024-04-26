@@ -5,13 +5,6 @@ fetch("includes/leftnav.html")
     document.querySelector("#left-panel").innerHTML = data;
 });
 
-$(document).ready(function() {
-    $("#bootstrap-data-table").DataTable();
-    $("#faculty-table").DataTable();
-});
-
-
-
 // Filling in section selection
 const getAllSctId = new FormData();
 getAllSctId.append('method', 'getAllSctId')
