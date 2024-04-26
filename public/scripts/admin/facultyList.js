@@ -35,12 +35,8 @@ fetch('../../src/controller/getCrsList.php', {
 })
 .catch(error => console.error(error));
 
-
-
 // Initialize the assignment table as DataTable
 let assignmentDataTable = $("#assignment-table").DataTable();
-
-
 
 // Populating the edit fields
 function populateEditFields(event) {

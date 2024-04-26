@@ -11,7 +11,7 @@ class FacultyFetcher {
     public function getAllFct() {
         $conn = DBConn::getInstance()->getConnection();
         
-        $sql = "SELECT facultyID, facultyFName, facultyMName, facultyLName, facultyEmail FROM archivefaculty";
+        $sql = "SELECT facultyID, facultyFName, facultyMName, facultyLName, facultyEmail FROM faculty WHERE facultyStatus = 3";
         $stmt = $conn->prepare($sql);
         $result = $stmt->execute();
 

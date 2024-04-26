@@ -110,7 +110,7 @@ require_once "../includes/dbconn.php";
             <div class="card">
               <div class="card-header">
                 <strong class="card-title">
-                  <h2 align="center">All Faculty</h2>
+                  <h2 align="center">Archived Faculty</h2>
                 </strong>
               </div>
               <div class="card-body">
