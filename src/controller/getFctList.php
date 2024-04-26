@@ -9,7 +9,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         echo $fctFetcher->getAllFct();
     else if ($_POST['method'] == 'getFct')
         echo $fctFetcher->getFct($_POST['facultyID']);
-    // echo $fctFetcher->uploadToDB();
+    else if ($_POST['method'] == 'countFct')
+        echo $fctFetcher->countFct();
 } else {
     exit();
 }

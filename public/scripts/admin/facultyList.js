@@ -169,6 +169,7 @@ function addFaculty() {
               formData.append("email", email);
               formData.append("pass", pass);
               formData.append("fctType", fctType);
+              formData.append('method', 'addSingle');
     
               fetch("../../src/controller/addFaculty.php", {
                 method: "POST",
@@ -199,4 +200,88 @@ function addFaculty() {
     function isValueEmpty(arr) {
       return arr.some((elem) => elem === "");
     }
+}
+
+
+
+// Get the excel containing the teachers data
+function xlsUpload(event) {
+  event.preventDefault();
+  alert('dropped!');
+  event.target.innerHTML = "File(s) dropped";
+}
+
+
+
+// Get excel of new teachers and display it on the table
+let bulkFctData;
+function getExcelFile(event) {
+  const formData = new FormData();
+  formData.append('excel', event.target.files[0]);
+  formData.append('method', 'faculty');
+
+  fetch('../../src/controller/convertExcel.php', {
+    method: 'POST',
+    body: formData
+  })
+  .then(response => response.json())
+  .then(data => {
+    fetch('../../src/controller/getFctList.php', {
+      method: 'POST',
+      body: (() => {
+        const formData = new FormData();
+        formData.append('method', 'countFct')
+        return formData
+      })()
+    })
+    .then(request => request.json())
+    .then(data1 => {
+      data.id = []; // Initialize new id field in the json of bulk teacher data
+      for (i = 0; i < data['First name'].length; i++) {
+        data1[0]['fctCount']++;
+        const id = "KLD-" + new Date().getFullYear().toString().substring(2) + "-" + data1[0]['fctCount'].toString().padStart(4, '0');
+        document.querySelector('#bulk-fct-tbody').innerHTML += `
+          <tr>
+            <th>${id}</th>
+            <td>${data['First name'][i]}</td>
+            <td>${data['Middle name'][i]}</td>
+            <td>${data['Last name'][i]}</td>
+            <td>${data['Email'][i]}</td>
+          </tr>
+        `;
+        data.id.push(id); // The id will be used when the teachers are uploaded to database
+      }
+      bulkFctData = data;
+      document.querySelector('#bulk-upload').removeAttribute('disabled');
+    })
+    .catch(error => console.error(error));
+    
+  })
+  .catch(error => {
+    console.error(error);
+    alert('An error occured :(');
+  });
+}
+
+
+
+
+// Upload excel of new teachers and display it on the table
+function uploadFctExcel() {
+  fetch('../../src/controller/addFaculty.php', {
+      method: 'POST',
+      body: (() => {
+        const formData = new FormData();
+        formData.append('method', 'addBulk');
+        formData.append('bulkData', JSON.stringify(bulkFctData));
+        return formData;
+      })()
+  })
+  .then(response => response.text())
+  .then(data => alert(data))
+  .catch(error => {
+    console.error(error)
+    alert('Something went wrong :(');
+  });
+  
 }

@@ -29,6 +29,165 @@ require_once "../includes/dbconn.php";
 </head>
 
 <body>
+  <!-- Modal for editing faculty -->
+  <div class="modal fade" id="editFacultyModal" tabindex="-1" role="dialog" aria-labelledby="editFacultyModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editFacultyModalLabel">Edit Faculty Data</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form method="Post" action="#" id="edit-faculty">
+            <div class="row">
+              <div class="col-6">
+                <div class="form-group">
+                  <label for="edit-fct-id" class="control-label mb-1">Faculty ID <span class="red">*</span></label>
+                  <input id="edit-fct-id" name="fct-id" type="text" class="form-control cc-exp" value="" required disabled placeholder="Faculty ID" />
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="form-group">
+                  <label for="edit-fname" class="control-label mb-1">First name <span class="red">*</span></label>
+                  <input id="edit-fname" name="fname" type="text" class="form-control cc-exp" value="" required disabled placeholder="First name" />
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-6">
+                <div class="form-group">
+                  <label for="edit-mname" class="control-label mb-1">Middle name</label>
+                  <input id="edit-mname" name="mname" type="text" class="form-control cc-exp" value="" disabled placeholder="Middle name" />
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="form-group">
+                  <label for="edit-lname" class="control-label mb-1">Last name <span class="red">*</span></label>
+                  <input id="edit-lname" name="lname" type="text" class="form-control cc-exp" value="" required disabled placeholder="Last name" />
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-6">
+                <div class="form-group">
+                  <label for="edit-email" class="control-label mb-1">Email <span class="red">*</span></label>
+                  <input id="edit-email" name="email" type="email" class="form-control cc-exp" value="" required disabled placeholder="Email" />
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="form-group">
+                  <label for="edit-pass" class="control-label mb-1">Password <span class="red">*</span></label>
+                  <input id="edit-pass" name="pass" type="password" class="form-control cc-exp" value="" required disabled placeholder="Password" />
+                </div>
+              </div>
+            </div>
+          </form>
+
+          <form action="" id="set-assign">
+            <h2 class="h5 mt-2">Assign New Section and Course</h2>
+
+            <div class="row">
+              <div class="col-6">
+                <div class="form-group">
+                  <label for="sect" class="control-label mb-1">Section</label>
+                  <select required id="sect" name="sect" class="custom-select form-control">
+                    <option value="" disabled selected>--Select Section--</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="col-6">
+                <div class="form-group">
+                  <label for="crs" class="control-label mb-1">Course</label>
+                  <select required id="crs" name="crs" class="custom-select form-control">
+                    <option value="" disabled selected>--Select Course--</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <button type="submit" name="submit" class="btn btn-success" onclick="setAssignment()">Assign</button>
+          </form>
+
+          <div class="card shadow-lg">
+            <div class="card-header">
+              <h2 align="center" class="h5">Section & Subject Assignment</h2>
+            </div>
+            <div class="card-body">
+              <table id="assignment-table" class="table table-hover table-striped table-bordered">
+                <thead>
+                  <tr>
+                    <th>Section</th>
+                    <th>Course</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="ass-table">
+
+                </tbody>
+                <script src="../scripts/reqAssignment.js"></script>
+              </table>
+            </div>
+          </div>
+
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-success">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal for bulk adding faculty -->
+  <div class="modal fade" id="bulkAddFacultyModal" tabindex="-1" role="dialog" aria-labelledby="bulkAddFacultyModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="bulkAddFacultyModalLabel">Upload Faculty Excel</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <input type="file" id="input-bulk-fct" onchange="getExcelFile(event)" accept=".xlsx" class="d-block">
+
+          <div class="card shadow-lg">
+            <div class="card-header">
+              <h2 align="center" class="h5">New Faculty List</h2>
+            </div>
+            <div class="card-body">
+              <table id="bulk-fct-table" class="table table-hover table-striped table-bordered">
+                <thead>
+                  <tr>
+                    <th>Teacher ID</th>
+                    <th>First name</th>
+                    <th>Middle name</th>
+                    <th>Last name</th>
+                    <th>Email</th>
+                  </tr>
+                </thead>
+                <tbody id="bulk-fct-tbody">
+
+                </tbody>
+                <script src="../scripts/reqAssignment.js"></script>
+              </table>
+            </div>
+          </div>
+
+          <button type="button" id="bulk-upload" onclick="uploadFctExcel()" class="btn btn-success" disabled>Upload</button>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-success">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Left Panel -->
   <aside id="left-panel" class="left-panel"></aside>
 
@@ -169,11 +328,15 @@ require_once "../includes/dbconn.php";
                         <small><i>Note: Faculty's password is automatically
                             generated</i></small>
                       </p>
-                      <button type="button" class="btn btn-primary" id="importExcel">
-                        Bulk Add Excel</button>&nbsp<a href="#" onclick="showHelp()"><i class="fa fa-question-circle-o font-weight-bold" aria-hidden="true"></i></a>
-                      <button type="submit" name="submit" class="btn btn-success">
-                        Add Faculty
-                      </button>
+
+                      <div class="row">
+                        <div class="col-6">
+                          <button type="submit" name="submit" class="btn btn-success" onclick="addFaculty()">Add Faculty</button>
+                        </div>
+                        <div class="col-6">
+                        <button class="btn btn-primary" onclick="event.preventDefault()" data-toggle="modal" data-target="#bulkAddFacultyModal">Bulk Add Excel</button>&nbsp<a href="#" onclick="showHelp()"><i class="fa fa-question-circle-o font-weight-bold ml-2 fs-1" aria-hidden="true"></i></a>
+                        </div>
+                      </div>
                     </form>
                   </div>
                 </div>
@@ -181,138 +344,9 @@ require_once "../includes/dbconn.php";
             </div>
             <!-- .card -->
           </div>
-          <!--/.col-->
 
-          <br /><br />
+
           <div class="col-md-12">
-            <!-- Button trigger modal -->
-            <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editFacultyModal">
-                Launch demo modal
-              </button> -->
-
-            <!-- Modal -->
-            <div class="modal fade" id="editFacultyModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-              <div class="modal-dialog modal-lg" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">
-                      Edit Faculty Data
-                    </h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                  <div class="modal-body">
-                    <form method="Post" action="#" id="edit-faculty">
-                      <div class="row">
-                        <div class="col-6">
-                          <div class="form-group">
-                            <label for="edit-fct-id" class="control-label mb-1">Faculty ID <span class="red">*</span></label>
-                            <input id="edit-fct-id" name="fct-id" type="text" class="form-control cc-exp" value="" required disabled placeholder="Faculty ID" />
-                          </div>
-                        </div>
-                        <div class="col-6">
-                          <div class="form-group">
-                            <label for="edit-fname" class="control-label mb-1">First name <span class="red">*</span></label>
-                            <input id="edit-fname" name="fname" type="text" class="form-control cc-exp" value="" required disabled placeholder="First name" />
-                          </div>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-6">
-                          <div class="form-group">
-                            <label for="edit-mname" class="control-label mb-1">Middle name</label>
-                            <input id="edit-mname" name="mname" type="text" class="form-control cc-exp" value="" disabled placeholder="Middle name" />
-                          </div>
-                        </div>
-                        <div class="col-6">
-                          <div class="form-group">
-                            <label for="edit-lname" class="control-label mb-1">Last name <span class="red">*</span></label>
-                            <input id="edit-lname" name="lname" type="text" class="form-control cc-exp" value="" required disabled placeholder="Last name" />
-                          </div>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-6">
-                          <div class="form-group">
-                            <label for="edit-email" class="control-label mb-1">Email <span class="red">*</span></label>
-                            <input id="edit-email" name="email" type="email" class="form-control cc-exp" value="" required disabled placeholder="Email" />
-                          </div>
-                        </div>
-                        <div class="col-6">
-                          <div class="form-group">
-                            <label for="edit-pass" class="control-label mb-1">Password <span class="red">*</span></label>
-                            <input id="edit-pass" name="pass" type="password" class="form-control cc-exp" value="" required disabled placeholder="Password" />
-                          </div>
-                        </div>
-                      </div>
-                    </form>
-
-                    <form action="" id="set-assign">
-                      <h2 class="h5 mt-2">Assign New Section and Course</h2>
-
-                      <div class="row">
-                        <div class="col-6">
-                          <div class="form-group">
-                            <label for="sect" class="control-label mb-1">Section</label>
-                            <select required id="sect" name="sect" class="custom-select form-control">
-                              <option value="" disabled selected>
-                                --Select Section--
-                              </option>
-                            </select>
-                          </div>
-                        </div>
-
-                        <div class="col-6">
-                          <div class="form-group">
-                            <label for="crs" class="control-label mb-1">Course</label>
-                            <select required id="crs" name="crs" class="custom-select form-control">
-                              <option value="" disabled selected>
-                                --Select Course--
-                              </option>
-                            </select>
-                          </div>
-                        </div>
-                      </div>
-
-                      <button type="submit" name="submit" class="btn btn-success" onclick="setAssignment()">
-                        Assign
-                      </button>
-                    </form>
-
-                    <div class="card shadow-lg">
-                      <div class="card-header">
-                        <h2 align="center" class="h5">
-                          Section & Subject Assignment
-                        </h2>
-                      </div>
-                      <div class="card-body">
-                        <table id="assignment-table" class="table table-hover table-striped table-bordered">
-                          <thead>
-                            <tr>
-                              <th>Section</th>
-                              <th>Course</th>
-                              <th>Actions</th>
-                            </tr>
-                          </thead>
-                          <tbody id="ass-table"></tbody>
-                          <script src="../scripts/reqAssignment.js"></script>
-                        </table>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
-                      Close
-                    </button>
-                    <button type="button" class="btn btn-success">
-                      Save changes
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-
             <div class="card">
               <div class="card-header">
                 <strong class="card-title">
