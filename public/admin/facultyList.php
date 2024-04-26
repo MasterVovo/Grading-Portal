@@ -43,7 +43,7 @@ require_once "../includes/dbconn.php";
     <header id="header" class="header">
       <div class="top-left">
         <div class="navbar-header">
-          <a class="navbar-brand" href="./">Student Grading System</a>
+          <a class="navbar-brand" href="./">KLD Grading Portal</a>
           <a id="menuToggle" class="menutoggle"><i class="fa fa-bars"></i></a>
         </div>
       </div>
@@ -75,37 +75,9 @@ require_once "../includes/dbconn.php";
     </header>
 
     <script src="../assets/js/main.js"></script>
-    <!-- /header -->
-    <!-- Header-->
-
-    <div class="breadcrumbs">
-      <div class="breadcrumbs-inner">
-        <div class="row m-0">
-          <div class="col-sm-4">
-            <div class="page-header float-left">
-              <div class="page-title">
-                <h1>Dashboard</h1>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-8">
-            <div class="page-header float-right">
-              <div class="page-title">
-                <ol class="breadcrumb text-right">
-                  <li><a href="#">Dashboard</a></li>
-                  <li><a href="#">Faculty</a></li>
-                  <li class="active">Add Faculty</li>
-                </ol>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
 
     <div class="content">
       <div class="animated fadeIn">
-
         <div class="row">
           <div class="col-lg-12">
             <div class="card">
@@ -125,15 +97,15 @@ require_once "../includes/dbconn.php";
                           <div class="form-group">
                             <label for="fct-id" class="control-label mb-1">Faculty ID</label>
                             <input id="fct-id" name="fct-id" type="text" class="form-control cc-exp" value=<?php
-                                                                                                            $currentYear = date('y'); // Get current year
-                                                                                                            $query = "SELECT COUNT(*) AS count FROM faculty WHERE facultyID LIKE 'KLD-$currentYear-%'"; // Count rows with IDs in current year
-                                                                                                            $result = mysqli_query($conn, $query);
-                                                                                                            $row = mysqli_fetch_assoc($result);
-                                                                                                            $count = $row['count'];
-                                                                                                            $paddedCount = str_pad($count + 1, 4, '0', STR_PAD_LEFT);
-                                                                                                            $value = "KLD-$currentYear-$paddedCount";
-                                                                                                            echo $value;
-                                                                                                            ?> required placeholder="Faculty ID" disabled />
+                              $currentYear = date('y'); // Get current year
+                              $query = "SELECT COUNT(*) AS count FROM faculty WHERE facultyID LIKE 'KLD-$currentYear-%'"; // Count rows with IDs in current year
+                              $result = mysqli_query($conn, $query);
+                              $row = mysqli_fetch_assoc($result);
+                              $count = $row['count'];
+                              $paddedCount = str_pad($count + 1, 4, '0', STR_PAD_LEFT);
+                              $value = "KLD-$currentYear-$paddedCount";
+                              echo $value;
+                              ?> required disabled />
                           </div>
                         </div>
                         <div class="col-6">
@@ -180,24 +152,28 @@ require_once "../includes/dbconn.php";
                         </div>
                       </div>
                       <input id="pass" name="pass" type="text" value=<?php
-                                                                      $characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
-                                                                      $passArray = array();
-                                                                      $charLen = strlen($characters) - 1;
+                        $characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
+                        $passArray = array();
+                        $charLen = strlen($characters) - 1;
 
-                                                                      for ($i = 0; $i < 8; $i++) {
-                                                                        $char = $characters[rand(0, $charLen)];
-                                                                        $passArray[] = $char;
-                                                                      }
+                        for ($i = 0; $i < 8; $i++) {
+                          $char = $characters[rand(0, $charLen)];
+                          $passArray[] = $char;
+                        }
 
-                                                                      $password = implode($passArray);
+                        $password = implode($passArray);
 
-                                                                      echo "$password";
-                                                                      ?> disabled hidden />
+                        echo "$password";
+                        ?> disabled hidden />
                       <p>
-                        <small><i>Note: Faculty's password is automatically generated</i></small>
+                        <small><i>Note: Faculty's password is automatically
+                            generated</i></small>
                       </p>
-                      <button type="button" class="btn btn-primary" id="importExcel">Bulk Add Excel</button>&nbsp<a href="#" onclick="showHelp()"><i class="fa fa-question-circle-o font-weight-bold" aria-hidden="true"></i></a>
-                      <button type="submit" name="submit" class="btn btn-success">Add Faculty</button>
+                      <button type="button" class="btn btn-primary" id="importExcel">
+                        Bulk Add Excel</button>&nbsp<a href="#" onclick="showHelp()"><i class="fa fa-question-circle-o font-weight-bold" aria-hidden="true"></i></a>
+                      <button type="submit" name="submit" class="btn btn-success">
+                        Add Faculty
+                      </button>
                     </form>
                   </div>
                 </div>
@@ -209,8 +185,6 @@ require_once "../includes/dbconn.php";
 
           <br /><br />
           <div class="col-md-12">
-
-
             <!-- Button trigger modal -->
             <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editFacultyModal">
                 Launch demo modal
@@ -221,7 +195,9 @@ require_once "../includes/dbconn.php";
               <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Edit Faculty Data</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">
+                      Edit Faculty Data
+                    </h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
@@ -280,7 +256,9 @@ require_once "../includes/dbconn.php";
                           <div class="form-group">
                             <label for="sect" class="control-label mb-1">Section</label>
                             <select required id="sect" name="sect" class="custom-select form-control">
-                              <option value="" disabled selected>--Select Section--</option>
+                              <option value="" disabled selected>
+                                --Select Section--
+                              </option>
                             </select>
                           </div>
                         </div>
@@ -289,18 +267,24 @@ require_once "../includes/dbconn.php";
                           <div class="form-group">
                             <label for="crs" class="control-label mb-1">Course</label>
                             <select required id="crs" name="crs" class="custom-select form-control">
-                              <option value="" disabled selected>--Select Course--</option>
+                              <option value="" disabled selected>
+                                --Select Course--
+                              </option>
                             </select>
                           </div>
                         </div>
                       </div>
 
-                      <button type="submit" name="submit" class="btn btn-success" onclick="setAssignment()">Assign</button>
+                      <button type="submit" name="submit" class="btn btn-success" onclick="setAssignment()">
+                        Assign
+                      </button>
                     </form>
 
                     <div class="card shadow-lg">
                       <div class="card-header">
-                        <h2 align="center" class="h5">Section & Subject Assignment</h2>
+                        <h2 align="center" class="h5">
+                          Section & Subject Assignment
+                        </h2>
                       </div>
                       <div class="card-body">
                         <table id="assignment-table" class="table table-hover table-striped table-bordered">
@@ -311,27 +295,23 @@ require_once "../includes/dbconn.php";
                               <th>Actions</th>
                             </tr>
                           </thead>
-                          <tbody id="ass-table">
-
-                          </tbody>
+                          <tbody id="ass-table"></tbody>
                           <script src="../scripts/reqAssignment.js"></script>
                         </table>
                       </div>
                     </div>
-
-
                   </div>
                   <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-success">Save changes</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                      Close
+                    </button>
+                    <button type="button" class="btn btn-success">
+                      Save changes
+                    </button>
                   </div>
                 </div>
               </div>
             </div>
-
-
-
-
 
             <div class="card">
               <div class="card-header">
@@ -340,14 +320,14 @@ require_once "../includes/dbconn.php";
                 </strong>
               </div>
               <div class="card-body">
-                <table id="faculty-table" class="table table-hover table-striped table-bordered">
+                <table id="faculty-table" class="table table-hover table-striped table-bordered" width="100%">
                   <thead>
                     <tr>
                       <th>ID</th>
                       <th>Name</th>
                       <th>Email</th>
                       <th>Type</th>
-                      <th>Actions</th>
+                      <th></th>
                     </tr>
                   </thead>
                   <tbody id="fct-list-tbl">
@@ -426,30 +406,32 @@ require_once "../includes/dbconn.php";
   <script>
     $("#importExcel").on("click", function(e) {
       e.preventDefault();
-      swal.fire({
-        title: "Upload Excel File",
-        input: "file",
-        inputAttributes: {
-          required: "required",
-          accept: ".xls, .xlsx",
-          "aria-label": "Upload your excel file"
-        },
-        showConfirmButton: true,
-        confirmButtonText: "Upload",
-        showCancelButton: true
-      }).then((result) => {
-        if (result.isConfirmed) {
-          // swal.fire({ // Loading 
-          //   title: "Uploading file...",
-          //   html: 'Please wait...',
-          //   allowOutsideClick: false,
-          //   allowEscapeKey: false,
-          //   didOpen: () => {
-          //     swal.showLoading();
-          //   },
-          // });
-        }
-      })
+      swal
+        .fire({
+          title: "Upload Excel File",
+          input: "file",
+          inputAttributes: {
+            required: "required",
+            accept: ".xls, .xlsx",
+            "aria-label": "Upload your excel file",
+          },
+          showConfirmButton: true,
+          confirmButtonText: "Upload",
+          showCancelButton: true,
+        })
+        .then((result) => {
+          if (result.isConfirmed) {
+            // swal.fire({ // Loading
+            //   title: "Uploading file...",
+            //   html: 'Please wait...',
+            //   allowOutsideClick: false,
+            //   allowEscapeKey: false,
+            //   didOpen: () => {
+            //     swal.showLoading();
+            //   },
+            // });
+          }
+        });
     });
   </script>
 </body>
