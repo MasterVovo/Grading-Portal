@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 25, 2024 at 05:43 PM
--- Server version: 10.4.28-MariaDB
--- PHP Version: 8.1.17
+-- Generation Time: Apr 26, 2024 at 03:22 PM
+-- Server version: 10.4.27-MariaDB
+-- PHP Version: 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -174,14 +174,14 @@ CREATE TABLE `faculty` (
 --
 
 INSERT INTO `faculty` (`facultyID`, `facultyFName`, `facultyMName`, `facultyLName`, `facultyEmail`, `facultyPass`, `facultyType`, `facultyStatus`) VALUES
-('fct2', 'asdf2', 'asdf2', 'asdf2', 'asdf2@f.c', '123', 2, 2),
-('fct3', 'asdf3', 'asdf3', 'asdf3', 'asdf3@f.c', '123', 3, 2),
+('fct2', 'asdf2', 'asdf2', 'asdf2', 'asdf2@f.c', '123', 2, 3),
+('fct3', 'asdf3', 'asdf3', 'asdf3', 'asdf3@f.c', '123', 3, 3),
 ('KLD1', 'John Andrew', 'Gadin', 'Reyes', 'reyes@gmail.com', '12345', 1, 1),
 ('KLD125288', 'Mark Christopher', 'Pogi', 'Borja', 'borjie@gmail.com', '12345', 3, 1),
 ('KLD125289', 'Cesar', 'Masipag', 'Galingana', 'galingana@gmail.com', '12345', 2, 1),
 ('KLD125290', 'Cecille', 'Maganda', 'Alvaran', 'alvaran@gmail.com', '12345', 1, 1),
 ('KLD125291', 'Mary Jane', 'Malupet', 'Legaspi', 'legaspi@gmail.com', '12345', 1, 1),
-('KLD125292', 'Jackie', '', 'Bostick', 'amal_horan@hotmail.com', '12345', 2, 1),
+('KLD125292', 'Jackie', '', 'Bostick', 'amal_horan@hotmail.com', '12345', 2, 3),
 ('KLD125293', 'Belinda', '', 'Brewster', 'kit-wentz03995@ins.com', '12345', 3, 1),
 ('KLD125294', 'Alba', '', 'Mcknight', 'marnie-hook@yahoo.com', '12345', 3, 1),
 ('KLD125295', 'Veronique', '', 'Estrella', 'shanti.hager@bmw.com', '12345', 2, 1),
@@ -198,7 +198,7 @@ INSERT INTO `faculty` (`facultyID`, `facultyFName`, `facultyMName`, `facultyLNam
 
 CREATE TABLE `facultytype` (
   `facultyTypeID` int(11) NOT NULL,
-  `facultyType` varchar(10) NOT NULL
+  `facultyType` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -207,8 +207,9 @@ CREATE TABLE `facultytype` (
 
 INSERT INTO `facultytype` (`facultyTypeID`, `facultyType`) VALUES
 (1, 'Teacher'),
-(2, 'Program Ch'),
-(3, 'Dean');
+(2, 'Program Chair'),
+(3, 'Dean'),
+(4, 'registrar');
 
 -- --------------------------------------------------------
 
@@ -501,7 +502,7 @@ ALTER TABLE `assignment`
 -- AUTO_INCREMENT for table `facultytype`
 --
 ALTER TABLE `facultytype`
-  MODIFY `facultyTypeID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `facultyTypeID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `grade`
