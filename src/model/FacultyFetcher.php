@@ -35,4 +35,17 @@ class FacultyFetcher {
         else
             return json_encode(["error" => "Failed to fetch data"]);
     }
+    
+    public function countFct() {
+        $conn = DBConn::getInstance()->getConnection();
+        
+        $sql = "SELECT COUNT(facultyID) AS fctCount FROM faculty";
+        $stmt = $conn->prepare($sql);
+        $result = $stmt->execute();
+
+        if ($result)
+            return json_encode($stmt->fetchAll(PDO::FETCH_ASSOC));
+        else
+            return json_encode(["error" => "Failed to fetch data"]);
+    }
 }

@@ -4,35 +4,38 @@
 require_once 'DBConn.php';
 
 class FacultyAdder {
-    private $id, $fname, $mname, $lname, $email, $pass, $fctType;
+    public function __construct() {
 
-    public function __construct($id, $fname, $mname, $lname, $email, $pass, $fctType) {
-        $this->id = $id;
-        $this->fname = $fname;
-        $this->mname = $mname;
-        $this->lname = $lname;
-        $this->email = $email;
-        $this->pass = $pass;
-        $this->fctType = $fctType;
     }
 
-    public function uploadToDB() {
+    public function uploadBulkFct($bulkData) {
+        for ($i = 0; $i < count($bulkData->id); $i++) {
+            if ($this->uploadToDB($bulkData->id[$i], $bulkData->{'First name'}[$i], $bulkData->{'Middle name'}[$i], $bulkData->{'Last name'}[$i], $bulkData->Email[$i], '123', 1) == "Faculty Added Successfully") {
+                continue;
+            } else {
+                return 'Something went wrong. Faculty ' . $bulkData->id[$i] . ' and beyond were not added.';
+            }
+        }
+        echo 'Teachers Added Successfully';
+    }
+
+    public function uploadToDB($id, $fname, $mname, $lname, $email, $pass, $fctType) {
         $conn = DBConn::getInstance()->getConnection();
         
         $sql = "INSERT INTO faculty(facultyID, facultyFName, facultyMName, facultyLName, facultyEmail, facultyPass, facultyType) VALUES (:id, :fname, :mname, :lname, :email, :pass, :fctType)";
         $stmt = $conn->prepare($sql);
         $result = $stmt->execute([
-            ':id' => $this->id,
-            ':fname' => $this->fname,
-            ':mname' => $this->mname,
-            ':lname' => $this->lname,
-            ':email' => $this->email,
-            ':pass' => $this->pass,
-            ':fctType' => $this->fctType,
+            ':id' => $id,
+            ':fname' => $fname,
+            ':mname' => $mname,
+            ':lname' => $lname,
+            ':email' => $email,
+            ':pass' => $pass,
+            ':fctType' => $fctType,
         ]);
 
         if ($result)
-            echo "Faculty Added Successfully";
+            return "Faculty Added Successfully";
         else
             echo $conn->errorInfo();
     }
