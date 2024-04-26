@@ -194,7 +194,7 @@
                   <div class="card-left pt-1 float-left">
                     <h3 class="mb-0 fw-r">
                       <span class="currency float-left mr-1"></span>
-                      <span class="count" id="active-users">201</span>
+                      <span class="count" id="active-users">0</span>
                     </h3>
                     <p class="text-light mt-1 m-0">Active Users</p>
                   </div>
@@ -214,7 +214,7 @@
                   <div class="card-left pt-1 float-left">
                     <h3 class="mb-0 fw-r">
                       <span class="currency float-left mr-1"></span>
-                      <span class="count" id="total-users">3,146</span>
+                      <span class="count" id="total-users">0</span>
                     </h3>
                     <p class="text-light mt-1 m-0">Total Users</p>
                   </div>
@@ -234,7 +234,7 @@
                   <div class="card-left pt-1 float-left">
                     <h3 class="mb-0 fw-r">
                       <span class="currency float-left mr-1"></span>
-                      <span class="count" id="total-std">3,056</span>
+                      <span class="count" id="total-std">0</span>
                     </h3>
                     <p class="text-light mt-1 m-0">Total Student</p>
                   </div>
@@ -254,7 +254,7 @@
                   <div class="card-left pt-1 float-left">
                     <h3 class="mb-0 fw-r">
                       <span class="currency float-left mr-1"></span>
-                      <span class="count" id="total-fct">90</span>
+                      <span class="count" id="total-fct">0</span>
                     </h3>
                     <p class="text-light mt-1 m-0">Total Faculty</p>
                   </div>
@@ -274,7 +274,7 @@
                   <div class="card-left pt-1 float-left">
                     <h3 class="mb-0 fw-r">
                       <span class="currency float-left mr-1"></span>
-                      <span class="count" id="total-fails">102</span>
+                      <span class="count" id="total-fails">0</span>
                     </h3>
                     <p class="text-light mt-1 m-0">Total Failures</p>
                   </div>
