@@ -1,7 +1,7 @@
-const fctTable = document.querySelector("#fct-list-tbl");
+const fctTable = document.querySelector("#arc-fct-list-tbl");
 const formData = new FormData();
 formData.append("method", "getAllFct");
-fetch("../../src/controller/getFctList.php", {
+fetch("../../src/controller/getArcFctList.php", {
   method: "POST",
   body: formData,
 })
@@ -16,7 +16,6 @@ fetch("../../src/controller/getFctList.php", {
             <td>${item.facultyID}</th>
             <td>${item.facultyFName} ${item.facultyMName} ${item.facultyLName}</td>
             <td>${item.facultyEmail}</td>
-            <td>${item.facultyType}</td>
             <td>
                 <a href="#" onclick="populateEditFields()" data-id="${item.facultyID}"><i class="fa fa-edit fa-1x" data-toggle="modal" data-target="#editFacultyModal"></i></a>
                 <a onclick="deleteFaculty('${item.facultyID}', '${item.facultyFName} ', '${item.facultyMName} ', '${item.facultyLName}')" href="#"><i class="fa fa-trash fa-1x"></i></a>
@@ -24,13 +23,11 @@ fetch("../../src/controller/getFctList.php", {
         </tr>
         `;
     });
-    $("#faculty-table").DataTable({
+    $("#archive-faculty-table").DataTable({
       lengthMenu: [10, 25, 50, 100, { label: "All", value: -1 }],
     });
   })
   .catch((error) => console.error(error));
-
-// Archive faculty
 function deleteFaculty(facultyID, facultyFName, facultyMName, facultyLName) {
   swal
     .fire({

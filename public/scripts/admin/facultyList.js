@@ -5,13 +5,6 @@ fetch("includes/leftnav.html")
     document.querySelector("#left-panel").innerHTML = data;
 });
 
-$(document).ready(function() {
-    $("#bootstrap-data-table").DataTable();
-    $("#faculty-table").DataTable();
-});
-
-
-
 // Filling in section selection
 const getAllSctId = new FormData();
 getAllSctId.append('method', 'getAllSctId')
@@ -42,12 +35,8 @@ fetch('../../src/controller/getCrsList.php', {
 })
 .catch(error => console.error(error));
 
-
-
 // Initialize the assignment table as DataTable
 let assignmentDataTable = $("#assignment-table").DataTable();
-
-
 
 // Populating the edit fields
 function populateEditFields(event) {

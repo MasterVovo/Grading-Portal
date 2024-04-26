@@ -11,7 +11,7 @@ class FacultyFetcher {
     public function getAllFct() {
         $conn = DBConn::getInstance()->getConnection();
         
-        $sql = "SELECT faculty.facultyID, faculty.facultyFName, faculty.facultyMName, faculty.facultyLName, faculty.facultyEmail, faculty.facultyStatus, facultyType.facultyType FROM faculty INNER JOIN facultytype on facultytype.facultyTypeID = faculty.facultyType WHERE facultyStatus IN (1,2)";
+        $sql = "SELECT facultyID, facultyFName, facultyMName, facultyLName, facultyEmail FROM faculty WHERE facultyStatus = 3";
         $stmt = $conn->prepare($sql);
         $result = $stmt->execute();
 
@@ -29,19 +29,6 @@ class FacultyFetcher {
         $result = $stmt->execute([
             ':facultyID' => $facultyID
         ]);
-
-        if ($result)
-            return json_encode($stmt->fetchAll(PDO::FETCH_ASSOC));
-        else
-            return json_encode(["error" => "Failed to fetch data"]);
-    }
-    
-    public function countFct() {
-        $conn = DBConn::getInstance()->getConnection();
-        
-        $sql = "SELECT COUNT(facultyID) AS fctCount FROM faculty";
-        $stmt = $conn->prepare($sql);
-        $result = $stmt->execute();
 
         if ($result)
             return json_encode($stmt->fetchAll(PDO::FETCH_ASSOC));
