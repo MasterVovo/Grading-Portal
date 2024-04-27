@@ -204,15 +204,6 @@ function addFaculty() {
 
 
 
-// Get the excel containing the teachers data
-function xlsUpload(event) {
-  event.preventDefault();
-  alert('dropped!');
-  event.target.innerHTML = "File(s) dropped";
-}
-
-
-
 // Get excel of new teachers and display it on the table
 let bulkFctData;
 function getExcelFile(event) {
@@ -268,20 +259,41 @@ function getExcelFile(event) {
 
 // Upload excel of new teachers and display it on the table
 function uploadFctExcel() {
-  fetch('../../src/controller/addFaculty.php', {
-      method: 'POST',
-      body: (() => {
-        const formData = new FormData();
-        formData.append('method', 'addBulk');
-        formData.append('bulkData', JSON.stringify(bulkFctData));
-        return formData;
-      })()
+  swal.fire({
+    title: "Are you sure?",
+    text: "This will upload the teacher's data to the database!",
+    icon: "question",
+    showConfirmButton: true,
+    showCancelButton: true,
   })
-  .then(response => response.text())
-  .then(data => alert(data))
-  .catch(error => {
-    console.error(error)
-    alert('Something went wrong :(');
+  .then((result) => {
+    if (result.isConfirmed) {
+      fetch('../../src/controller/addFaculty.php', {
+        method: 'POST',
+        body: (() => {
+          const formData = new FormData();
+          formData.append('method', 'addBulk');
+          formData.append('bulkData', JSON.stringify(bulkFctData));
+          return formData;
+        })()
+      })
+      .then(response => response.text())
+      .then(data => {
+        swal.fire({
+          title: data,
+          icon: "success",
+          showConfirmButton: true,
+        })
+        .then((result) => {
+          if (result.isConfirmed) {
+            window.location.href = "facultyList.php";
+          }
+        })
+      })
+      .catch(error => {
+        console.error(error)
+        alert('Something went wrong :(');
+      });
+    }
   });
-  
 }
