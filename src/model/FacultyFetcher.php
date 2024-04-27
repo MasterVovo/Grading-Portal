@@ -39,7 +39,8 @@ class FacultyFetcher {
     public function countFct() {
         $conn = DBConn::getInstance()->getConnection();
         
-        $sql = "SELECT COUNT(facultyID) AS fctCount FROM faculty";
+        $currentYear = date('y');
+        $sql = "SELECT COUNT(facultyID) AS fctCount FROM faculty WHERE facultyID LIKE 'KLD-$currentYear-%'";
         $stmt = $conn->prepare($sql);
         $result = $stmt->execute();
 

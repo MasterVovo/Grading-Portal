@@ -357,7 +357,7 @@ require_once "../includes/dbconn.php";
                 <table id="faculty-table" class="table table-hover table-striped table-bordered" width="100%">
                   <thead>
                     <tr>
-                      <th>ID</th>
+                      <th>Faculty ID</th>
                       <th>Name</th>
                       <th>Email</th>
                       <th>Type</th>
