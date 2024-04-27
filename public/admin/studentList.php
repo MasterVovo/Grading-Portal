@@ -51,6 +51,53 @@ require_once "../includes/dbconn.php";
 </head>
 
 <body>
+  <!-- Modal for bulk adding faculty -->
+  <div class="modal fade" id="bulk-add-student-modal" tabindex="-1" role="dialog" aria-labelledby="bulk-add-student-modal-label" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="bulk-add-student-modal-label">Bulk Upload Student with Excel</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <input type="file" id="input-bulk-fct" onchange="getExcelFile(event)" accept=".xlsx" class="d-block">
+
+          <div class="card shadow-lg">
+            <div class="card-header">
+              <h2 align="center" class="h5">New Students</h2>
+            </div>
+            <div class="card-body">
+              <table id="bulk-fct-table" class="table table-hover table-striped table-bordered">
+                <thead>
+                  <tr>
+                    <th>Student ID</th>
+                    <th>First name</th>
+                    <th>Middle name</th>
+                    <th>Last name</th>
+                    <th>Email</th>
+                    <th>Year Level</th>
+                    <th>Section</th>
+                  </tr>
+                </thead>
+                <tbody id="bulk-std-tbody">
+
+                </tbody>
+                <script src="../scripts/reqAssignment.js"></script>
+              </table>
+            </div>
+          </div>
+
+          <button type="button" id="bulk-upload" onclick="uploadFctExcel()" class="btn btn-success" disabled>Upload</button>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Left Panel -->
   <aside id="left-panel" class="left-panel"></aside>
   <!-- /#left-panel -->
@@ -218,7 +265,7 @@ require_once "../includes/dbconn.php";
                       <p>
                         <small><i>Note: Student's password is automatically generated</i></small>
                       </p>
-                      <button class="btn btn-primary">Bulk Add Excel</button>
+                      <button class="btn btn-primary" onclick="event.preventDefault()" data-toggle="modal" data-target="#bulk-add-student-modal">Bulk Add Excel</button>
                       <button type="submit" name="submit" class="btn btn-success">
                         Add New Student
                       </button>
@@ -250,7 +297,7 @@ require_once "../includes/dbconn.php";
                       <th>Actions</th>
                     </tr>
                   </thead>
-                  <tbody>
+                  <tbody id="std-list-tbody">
                     <!-- <tr>
                         <td></td>
                         <td></td>
