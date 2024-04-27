@@ -159,7 +159,7 @@ require_once "../includes/dbconn.php";
                 <div id="pay-invoice">
                   <div class="card-body">
                     <div class="" role="alert"></div>
-                    <form method="post" action="#" id="add-student">
+                    <form method="post" action="#" id="add-student" onsubmit="addStudent(event)">
                       <div class="row">
                         <div class="col-6">
                           <div class="form-group">
@@ -287,7 +287,7 @@ require_once "../includes/dbconn.php";
                 </strong>
               </div>
               <div class="card-body">
-                <table id="bootstrap-data-table" class="table table-hover table-striped table-bordered">
+                <table id="std-list-data-table" class="table table-hover table-striped table-bordered">
                   <thead>
                     <tr>
                       <th>#</th>
@@ -317,7 +317,6 @@ require_once "../includes/dbconn.php";
                         </td>
                       </tr> -->
                   </tbody>
-                  <script src="../scripts/reqStdList.js"></script>
                 </table>
               </div>
             </div>
@@ -364,40 +363,15 @@ require_once "../includes/dbconn.php";
   <script src="../assets/js/lib/data-table/buttons.colVis.min.js"></script>
   <script src="../assets/js/init/datatables-init.js"></script>
 
-
-  <script>
-    // Script for adding section on select input
-    const year = document.querySelector('#year');
-
-    year.addEventListener('change', () => {
-      const sect = document.querySelector('#sect');
-      sect.innerHTML = `<option value="" disabled selected>--Select Section--</option>`;
-
-      formData = new FormData();
-      formData.append('method', 'getSectionsByYear');
-      formData.append('year', year.value)
-
-      fetch("../../src/controller/getSctList.php", {
-          method: 'POST',
-          body: formData
-        })
-        .then((response) => response.json())
-        .then(data => {
-          data.forEach((item) => {
-            sect.innerHTML += `<option value="${item.sectionID}">${item.sectionID}</option>`
-          });
-        })
-        .catch((error) => console.error(error));
-    });
-  </script>
-
-  <!-- Script for adding students -->
-  <script src="../scripts/addStudent.js"></script>
+  <!-- Script for sanitation of data -->
+  <script src="../scripts/sanitation.js"></script>
+  <!-- Script for this page -->
+  <script src="../scripts/admin/studentList.js"></script>
 
   <script type="text/javascript">
-    $(document).ready(function() {
-      $("#bootstrap-data-table-export").DataTable();
-    });
+    // $(document).ready(function() {
+    //   $("#bootstrap-data-table-export").DataTable();
+    // });
 
     // Menu Trigger
     $("#menuToggle").on("click", function(event) {
@@ -414,15 +388,6 @@ require_once "../includes/dbconn.php";
         $("#left-panel").removeClass("open-menu");
       }
     });
-  </script>
-
-  <script>
-    // Script for adding separate html
-    fetch("includes/leftnav.html")
-      .then((response) => response.text())
-      .then((data) => {
-        document.querySelector("#left-panel").innerHTML = data;
-      });
   </script>
 </body>
 
