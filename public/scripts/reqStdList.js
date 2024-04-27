@@ -12,7 +12,7 @@ fetch('../../src/controller/getStdList.php', {
 .then(data => {
     console.log(data)
     data.forEach(item => {
-        tbody.innerHTML += `
+        document.querySelector('#std-list-tbody').innerHTML += `
         <tr>
             <th>${item.studentID}</th>
             <td>${item.studentFName + ' ' + item.studentMName + ' ' + item.studentLName}</td>
