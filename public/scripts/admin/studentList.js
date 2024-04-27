@@ -19,11 +19,13 @@ fetch('../../src/controller/getStdList.php', {
 .then(response => response.json())
 .then(data => {
     console.log(data)
+    // Clear existing table content
+    document.querySelector('#std-list-tbody').innerHTML = "";
     data.forEach(item => {
         document.querySelector('#std-list-tbody').innerHTML += `
         <tr>
             <th>${item.studentID}</th>
-            <td>${item.studentFName + ' ' + item.studentMName + ' ' + item.studentLName}</td>
+            <td>${item.studentFName} ${item.studentMName} ${item.studentLName}</td>
             <td>${item.studentEmail}</td>
             <td>${item.studentSect}</td>
             <td>
@@ -36,7 +38,10 @@ fetch('../../src/controller/getStdList.php', {
         </tr>
         `;
     });
-    $('#std-list-data-table').DataTable();
+    $("#student-table").DataTable({
+        lengthMenu: [10, 25, 50, 100, { label: "All", value: -1 }],
+        columnDefs: [{ targets: 4, orderable: false }],
+    });
 })
 .catch(error => console.error(error));
 

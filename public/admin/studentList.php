@@ -20,11 +20,12 @@ require_once "../includes/dbconn.php";
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pixeden-stroke-7-icon@1.2.3/pe-icon-7-stroke/dist/pe-icon-7-stroke.min.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.0/css/flag-icon.min.css" />
   <link rel="stylesheet" href="../styles/cs-skin-elastic.css" />
-  <link rel="stylesheet" href="../styles/lib/datatable/dataTables.bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdn.datatables.net/2.0.5/css/dataTables.dataTables.min.css" />
   <link rel="stylesheet" href="../styles/style2.css" />
   <link rel="shortcut icon" href="../images/KLD LOGO.png" type="image/x-icon" />
 
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css" />
+  <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
   <!-- <script>
       function showValues(str) {
         if (str == "") {
@@ -287,35 +288,18 @@ require_once "../includes/dbconn.php";
                 </strong>
               </div>
               <div class="card-body">
-                <table id="std-list-data-table" class="table table-hover table-striped table-bordered">
+                <table id="student-table" class="table table-hover table-striped table-bordered" width="100%">
                   <thead>
                     <tr>
-                      <th>#</th>
+                      <th>Student ID</th>
                       <th>Name</th>
                       <th>Email</th>
                       <th>Section</th>
-                      <th>Actions</th>
+                      <th></th>
                     </tr>
                   </thead>
                   <tbody id="std-list-tbody">
-                    <!-- <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>
-                          <a href="" title="Edit Details"
-                            ><i class="fa fa-edit fa-1x"></i
-                          ></a>
-                          <a
-                            onclick="return confirm('Are you sure you want to delete?')"
-                            href=""
-                            title="Delete Student Details"
-                            ><i class="fa fa-trash fa-1x"></i
-                          ></a>
-                        </td>
-                      </tr> -->
+
                   </tbody>
                 </table>
               </div>
@@ -352,7 +336,9 @@ require_once "../includes/dbconn.php";
   <script src="https://cdn.jsdelivr.net/npm/jquery-match-height@0.7.2/dist/jquery.matchHeight.min.js"></script>
   <script src="../assets/js/main.js"></script>
 
-  <script src="../assets/js/lib/data-table/datatables.min.js"></script>
+  <script src="https://cdn.datatables.net/2.0.5/js/dataTables.min.js"></script>
+
+  <!-- <script src="../assets/js/lib/data-table/datatables.min.js"></script>
   <script src="../assets/js/lib/data-table/dataTables.bootstrap.min.js"></script>
   <script src="../assets/js/lib/data-table/dataTables.buttons.min.js"></script>
   <script src="../assets/js/lib/data-table/buttons.bootstrap.min.js"></script>
@@ -361,7 +347,8 @@ require_once "../includes/dbconn.php";
   <script src="../assets/js/lib/data-table/buttons.html5.min.js"></script>
   <script src="../assets/js/lib/data-table/buttons.print.min.js"></script>
   <script src="../assets/js/lib/data-table/buttons.colVis.min.js"></script>
-  <script src="../assets/js/init/datatables-init.js"></script>
+  <script src="../assets/js/init/datatables-init.js"></script> -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
   <!-- Script for sanitation of data -->
   <script src="../scripts/sanitation.js"></script>
@@ -369,10 +356,6 @@ require_once "../includes/dbconn.php";
   <script src="../scripts/admin/studentList.js"></script>
 
   <script type="text/javascript">
-    // $(document).ready(function() {
-    //   $("#bootstrap-data-table-export").DataTable();
-    // });
-
     // Menu Trigger
     $("#menuToggle").on("click", function(event) {
       var windowWidth = $(window).width();
