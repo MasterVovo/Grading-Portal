@@ -26,9 +26,7 @@ fetch("../../src/controller/getFctList.php", {
     });
     $("#faculty-table").DataTable({
       lengthMenu: [10, 25, 50, 100, { label: "All", value: -1 }],
-      columnDefs: [
-        { targets: 4, orderable: false }
-      ],
+      columnDefs: [{ targets: 4, orderable: false }],
     });
   })
   .catch((error) => console.error(error));
