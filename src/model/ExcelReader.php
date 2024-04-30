@@ -30,7 +30,8 @@ class ExcelReader {
             
             // Loop through rows
             for ($row = 2; $row <= $highestRow; ++$row) {
-                $data[$colVal][] = $worksheet->getCell([$col, $row])->getValue();
+                $value = $worksheet->getCell([$col, $row])->getValue();
+                $data[$colVal][] = $value === null ? "" : $value;
             }
         }
 
