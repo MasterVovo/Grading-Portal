@@ -5,10 +5,18 @@ require_once '../model/StudentFetcher.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stdFetcher = new StudentFetcher();
-    if ($_POST['method'] == 'getAllStd')
-        echo $stdFetcher->getAllStd();
-    else if ($_POST['method'] == 'getStdBySct')
-        echo $stdFetcher->getStdBySct($_POST['section']);
+
+    switch($_POST['method']) {
+        case 'getAllStd':
+            echo $stdFetcher->getAllStd();
+            break;
+        case 'getStdBySct':
+            echo $stdFetcher->getStdBySct($_POST['section']);
+            break;
+        case 'countStd':
+            echo $stdFetcher->countStd();
+            break;
+    }
 } else {
     exit();
 }

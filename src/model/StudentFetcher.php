@@ -38,4 +38,18 @@ class StudentFetcher
         else
             return json_encode(["error" => "Failed to fetch data"]);
     }
+
+    public function countStd() {
+        $conn = DBConn::getInstance()->getConnection();
+        
+        $currentYear = date('y');
+        $sql = "SELECT COUNT(studentID) AS stdCount FROM student WHERE studentID LIKE 'KLD-$currentYear-%'";
+        $stmt = $conn->prepare($sql);
+        $result = $stmt->execute();
+
+        if ($result)
+            return json_encode($stmt->fetchAll(PDO::FETCH_ASSOC));
+        else
+            return json_encode(["error" => "Failed to fetch data"]);
+    }
 }

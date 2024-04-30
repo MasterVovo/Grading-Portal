@@ -7,10 +7,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // TODO: Verify if the file is indeed an ecr
     
     $excelReader = new ExcelReader($_FILES['excel']['tmp_name']);
+    echo json_encode($excelReader->getData());
 
-    if ($_POST['method'] == 'faculty') {
-        echo json_encode($excelReader->getFacultyData());
-    }
+    // switch($_POST['method']) {
+    //     case 'faculty':
+    //         echo json_encode($excelReader->getData());
+    //         break;
+    //     case 'student':
+    //         echo json_encode($excelReader->getStudentData());
+    //         break;
+    // }
 
     // $idsAndGrades;
     // $ecrReader = new ECRReader($_FILES['ecr']['tmp_name']);

@@ -40,14 +40,14 @@ require_once "../includes/dbconn.php";
           </button>
         </div>
         <div class="modal-body">
-          <input type="file" id="input-bulk-fct" onchange="getExcelFile(event)" accept=".xlsx" class="d-block">
+          <input type="file" id="input-bulk-std" onchange="getExcelFile(event)" accept=".xlsx" class="d-block">
 
           <div class="card shadow-lg">
             <div class="card-header">
-              <h2 align="center" class="h5">New Students</h2>
+              <h2 align="center" class="h5" id="bulk-tbl-title">New Students</h2>
             </div>
-            <div class="card-body">
-              <table id="bulk-fct-table" class="table table-hover table-striped table-bordered">
+            <div class="card-body" style="overflow: auto">
+              <table id="bulk-std-table" class="table table-hover table-striped table-bordered">
                 <thead>
                   <tr>
                     <th>Student ID</th>
@@ -67,7 +67,7 @@ require_once "../includes/dbconn.php";
             </div>
           </div>
 
-          <button type="button" id="bulk-upload" onclick="uploadFctExcel()" class="btn btn-success" disabled>Upload</button>
+          <button type="button" id="bulk-upload" onclick="uploadStdExcel()" class="btn btn-success" disabled>Upload</button>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -213,10 +213,17 @@ require_once "../includes/dbconn.php";
                       <p>
                         <small><i>Note: Student's password is automatically generated</i></small>
                       </p>
-                      <button type="submit" name="submit" class="btn btn-success">
-                        Add Student
-                      </button>
-                      <button class="btn btn-primary" onclick="event.preventDefault()" data-toggle="modal" data-target="#bulk-add-student-modal">Bulk Add Excel</button>
+
+                      <div class="row">
+                          <div class="col-6">
+                            <button type="submit" name="submit" class="btn btn-success">
+                              Add New Student
+                            </button>
+                          </div>
+                          <div class="col-6">
+                            <button class="btn btn-primary" onclick="event.preventDefault()" data-toggle="modal" data-target="#bulk-add-student-modal">Bulk Add Excel</button>
+                          </div>
+                        </div>
                     </form>
                   </div>
                 </div>

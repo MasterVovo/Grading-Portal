@@ -4,41 +4,45 @@
 require_once 'DBConn.php';
 
 class StudentAdder {
-    private $id, $fname, $mname, $lname, $email, $pass, $sect;
 
-    public function __construct($id, $fname, $mname, $lname, $email, $pass, $sect) {
-        $this->id = $id;
-        $this->fname = $fname;
-        $this->mname = $mname;
-        $this->lname = $lname;
-        $this->email = $email;
-        $this->pass = $pass;
-        $this->sect = $sect;
+    public function __construct() {
+
     }
 
-    public function uploadToDB() {
+    public function uploadToDB($id, $fname, $mname, $lname, $email, $pass, $sect) {
         $conn = DBConn::getInstance()->getConnection();
         
         // Check if mname has a value, if not set it to "N/A"
-        if(empty($this->mname)) {
-            $this->mname = "";
+        if(empty($mname)) {
+            $mname = "";
         }
 
         $sql = "INSERT INTO student(studentID, studentFName, studentMName, studentLName, studentEmail, studentPass, studentSect) VALUES (:id, :fname, :mname, :lname, :email, :pass, :sect)";
         $stmt = $conn->prepare($sql);
         $result = $stmt->execute([
-            ':id' => $this->id,
-            ':fname' => $this->fname,
-            ':mname' => $this->mname,
-            ':lname' => $this->lname,
-            ':email' => $this->email,
-            ':pass' => $this->pass,
-            ':sect' => $this->sect
+            ':id' => $id,
+            ':fname' => $fname,
+            ':mname' => $mname,
+            ':lname' => $lname,
+            ':email' => $email,
+            ':pass' => $pass,
+            ':sect' => $sect
         ]);
 
         if ($result)
-            echo "Student added successfully.";
+            return "Student Added Successfully";
         else
-            echo $conn->errorInfo();
+            return $conn->errorInfo();
+    }
+
+    public function uploadBulkStd($bulkData) {
+        for ($i = 0; $i < count($bulkData->id); $i++) {
+            if ($this->uploadToDB($bulkData->id[$i], $bulkData->{'First name'}[$i], $bulkData->{'Middle name'}[$i], $bulkData->{'Last name'}[$i], $bulkData->Email[$i], '123', $bulkData->Section[$i]) == "Student Added Successfully") {
+                continue;
+            } else {
+                return 'Something went wrong. Student ' . $bulkData->id[$i] . ' and beyond were not added.';
+            }
+        }
+        return 'Students Added Successfully';
     }
 }

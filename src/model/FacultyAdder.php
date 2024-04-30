@@ -16,7 +16,7 @@ class FacultyAdder {
                 return 'Something went wrong. Faculty ' . $bulkData->id[$i] . ' and beyond were not added.';
             }
         }
-        echo 'Teachers Added Successfully';
+        return 'Teachers Added Successfully';
     }
 
     public function uploadToDB($id, $fname, $mname, $lname, $email, $pass, $fctType, $status) {
@@ -38,6 +38,6 @@ class FacultyAdder {
         if ($result)
             return "Faculty Added Successfully";
         else
-            echo $conn->errorInfo();
+            return $conn->errorInfo();
     }
 }
