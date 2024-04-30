@@ -257,7 +257,7 @@ function getExcelFile(event) {
 
 
 
-// Upload excel of new teachers and display it on the table
+// Upload excel of new teachers
 function uploadFctExcel() {
   swal.fire({
     title: "Are you sure?",
