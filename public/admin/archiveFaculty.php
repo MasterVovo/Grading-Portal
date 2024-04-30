@@ -114,19 +114,34 @@ require_once "../includes/dbconn.php";
                 </strong>
               </div>
               <div class="card-body">
-                <table id="archive-faculty-table" class="table table-hover table-striped table-bordered">
+                <table id="archive-faculty-table" class="table table-hover table-striped table-bordered" width="100%">
                   <thead>
                     <tr>
                       <th>#</th>
                       <th>Name</th>
                       <th>Email</th>
-                      <th>Actions</th>
+                      <th>Type</th>
+                      <th></th>
                     </tr>
                   </thead>
-                  <tbody id="arc-fct-list-tbl">
-
+                  <tbody>
+                    <?php
+                    $sql = "SELECT faculty.facultyID, CONCAT(faculty.facultyFName, ' ', faculty.facultyMName, ' ', faculty.facultyLName) AS fullname, faculty.facultyEmail, facultyType.facultyType FROM faculty INNER JOIN facultytype on facultytype.facultyTypeID = faculty.facultyType WHERE facultyStatus = 3";
+                    $stmt = $conn->prepare($sql);
+                    $stmt->execute();
+                    $result = $stmt->get_result();
+                    while ($row = $result->fetch_assoc()) {
+                      echo "
+                        <tr>
+                          <td>" . $row['facultyID'] . "</td>
+                          <td>" . $row['fullname'] . "</td>
+                          <td>" . $row['facultyEmail'] . "</td>
+                          <td>" . $row['facultyType'] . "</td>
+                          <td><a href='#' onclick=\"restoreFaculty('" . $row['facultyID'] . "', '" . $row['fullname'] . "')\" title='Unarchive Faculty'><i class='fa fa-undo'></i></a></td>
+                        </tr>";
+                    }
+                    ?>
                   </tbody>
-                  <script src="../scripts/retrieveArchiveFaculty.js"></script>
                 </table>
               </div>
             </div>
@@ -183,6 +198,81 @@ require_once "../includes/dbconn.php";
         $("#left-panel").removeClass("open-menu");
       }
     });
+
+    $("#archive-faculty-table").DataTable({
+      lengthMenu: [10, 25, 50, 100, {
+        label: "All",
+        value: -1
+      }],
+      columnDefs: [{
+        targets: 4,
+        orderable: false
+      }]
+    });
+
+    function restoreFaculty(facultyID, fullname) {
+      swal.fire({
+          title: "<h3>Are you sure you want to restore this user?</h3><i><h5>" +
+            facultyID +
+            " - " +
+            fullname +
+            "</h5></i>",
+          text: "Doing so will restore the user from the system",
+          icon: "warning",
+          showConfirmButton: true,
+          showCancelButton: true,
+          confirmButtonText: "Restore User",
+        })
+        .then((result) => {
+          if (result.isConfirmed) {
+            swal.fire({
+              // Loading
+              title: "Restoring User...",
+              html: "Please wait...",
+              allowOutsideClick: false,
+              allowEscapeKey: false,
+              didOpen: () => {
+                swal.showLoading();
+                $.ajax({
+                  url: '../../src/model/restoreFaculty.php',
+                  // Change this to the correct path of your PHP script
+                  type: 'POST',
+                  dataType: 'json',
+                  // We expect JSON to be returned
+                  data: {
+                    facultyID: facultyID
+                  },
+                  success: function(data) {
+                    swal.close();
+                    if (data.success) {
+                      swal.fire({
+                        title: "User Restored",
+                        text: "User successfully restored",
+                        icon: "success",
+                      }).then(function() {
+                        window.location.reload();
+                      });
+                    } else {
+                      swal.fire({
+                        title: "Error",
+                        text: data.message,
+                        icon: "error",
+                      });
+                    }
+                  },
+                  error: function(xhr, status, error) {
+                    swal.fire({
+                      title: "Error",
+                      text: "An error occurred while restoring the user",
+                      icon: "error",
+                    });
+                  }
+                });
+              },
+            });
+          }
+        });
+    }
   </script>
 </body>
 

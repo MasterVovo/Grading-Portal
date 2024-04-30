@@ -10,10 +10,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $lname = $_POST['lname'];
     $email = $_POST['email'];
     $pass = $_POST['pass'];
-    $year = $_POST['year'];
     $sect = $_POST['sect'];
     
-    $stdUpldr = new StudentAdder($stdID, $fname, $mname, $lname, $email, $pass, $year, $sect);
+    $stdUpldr = new StudentAdder($stdID, $fname, $mname, $lname, $email, $pass, $sect);
     echo $stdUpldr->uploadToDB();
 } else {
     exit();

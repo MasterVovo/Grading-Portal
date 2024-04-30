@@ -13,7 +13,7 @@ class StudentFetcher
     {
         $conn = DBConn::getInstance()->getConnection();
 
-        $sql = "SELECT studentID, studentFName, studentMName, studentLName, studentEmail, studentSect FROM student";
+        $sql = "SELECT studentID, studentFName, studentMName, studentLName, studentEmail, studentSect FROM student WHERE studentStatus in (1,2)";
         $stmt = $conn->prepare($sql);
         $result = $stmt->execute();
 

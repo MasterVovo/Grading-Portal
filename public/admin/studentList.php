@@ -26,29 +26,6 @@ require_once "../includes/dbconn.php";
 
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css" />
   <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
-  <!-- <script>
-      function showValues(str) {
-        if (str == "") {
-          document.getElementById("txtHint").innerHTML = "";
-          return;
-        } else {
-          if (window.XMLHttpRequest) {
-            // code for IE7+, Firefox, Chrome, Opera, Safari
-            xmlhttp = new XMLHttpRequest();
-          } else {
-            // code for IE6, IE5
-            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-          }
-          xmlhttp.onreadystatechange = function () {
-            if (this.readyState == 4 && this.status == 200) {
-              document.getElementById("txtHint").innerHTML = this.responseText;
-            }
-          };
-          xmlhttp.open("GET", "ajaxCall2.php?fid=" + str, true);
-          xmlhttp.send();
-        }
-      }
-    </script> -->
 </head>
 
 <body>
@@ -207,44 +184,14 @@ require_once "../includes/dbconn.php";
                           </div>
                           <div class="col-6">
                             <div class="form-group">
-                              <input id="pass" name="pass" type="text" class="form-control cc-exp" value=<?php
-                                $characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
-                                $passArray = array();
-                                $charLen = strlen($characters) - 1;
-
-                                for ($i = 0; $i < 8; $i++) {
-                                  $char = $characters[rand(0, $charLen)];
-                                  $passArray[] = $char;
-                                }
-
-                                $password = implode($passArray);
-
-                                echo "$password";
-                                ?> disabled hidden/>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="row">
-                          <div class="col-6">
-                            <div class="form-group">
-                              <label for="year" class="control-label mb-1">Year Level <span class="red">*</span></label>
-                              <select required id="year" name="year" class="custom-select form-control">
-                                <option value="">
-                                  --Select Year Level--
-                                </option>
-                                <option value="1">1st Year</option>
-                                <option value="2">2nd Year</option>
-                                <option value="3">3rd Year</option>
-                                <option value="4">4th Year</option>
-                              </select>
-                            </div>
-                          </div>
-                          <div class="col-6">
-                            <div class="form-group">
                               <label for="sect" class="control-label mb-1">Section <span class="red">*</span></label>
-                              <select required id="sect" name="sect" class="custom-select form-control">
+                              <!-- <select required id="sect" name="sect" class="custom-select form-control">
                                 <option value="" disabled selected>--Select Section--</option>
-                              </select>
+                              </select> -->
+
+                              <input list="section" id="sect" name="sect" type="text" class="form-control" required placeholder="Section" />
+                              <datalist id="section">
+                              </datalist>
                             </div>
                           </div>
                         </div>
@@ -266,10 +213,10 @@ require_once "../includes/dbconn.php";
                       <p>
                         <small><i>Note: Student's password is automatically generated</i></small>
                       </p>
-                      <button class="btn btn-primary" onclick="event.preventDefault()" data-toggle="modal" data-target="#bulk-add-student-modal">Bulk Add Excel</button>
                       <button type="submit" name="submit" class="btn btn-success">
-                        Add New Student
+                        Add Student
                       </button>
+                      <button class="btn btn-primary" onclick="event.preventDefault()" data-toggle="modal" data-target="#bulk-add-student-modal">Bulk Add Excel</button>
                     </form>
                   </div>
                 </div>
@@ -337,17 +284,6 @@ require_once "../includes/dbconn.php";
   <script src="../assets/js/main.js"></script>
 
   <script src="https://cdn.datatables.net/2.0.5/js/dataTables.min.js"></script>
-
-  <!-- <script src="../assets/js/lib/data-table/datatables.min.js"></script>
-  <script src="../assets/js/lib/data-table/dataTables.bootstrap.min.js"></script>
-  <script src="../assets/js/lib/data-table/dataTables.buttons.min.js"></script>
-  <script src="../assets/js/lib/data-table/buttons.bootstrap.min.js"></script>
-  <script src="../assets/js/lib/data-table/jszip.min.js"></script>
-  <script src="../assets/js/lib/data-table/vfs_fonts.js"></script>
-  <script src="../assets/js/lib/data-table/buttons.html5.min.js"></script>
-  <script src="../assets/js/lib/data-table/buttons.print.min.js"></script>
-  <script src="../assets/js/lib/data-table/buttons.colVis.min.js"></script>
-  <script src="../assets/js/init/datatables-init.js"></script> -->
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
   <!-- Script for sanitation of data -->

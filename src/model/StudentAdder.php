@@ -4,9 +4,9 @@
 require_once 'DBConn.php';
 
 class StudentAdder {
-    private $id, $fname, $mname, $lname, $email, $pass, $sect, $year;
+    private $id, $fname, $mname, $lname, $email, $pass, $sect;
 
-    public function __construct($id, $fname, $mname, $lname, $email, $pass, $sect, $year) {
+    public function __construct($id, $fname, $mname, $lname, $email, $pass, $sect) {
         $this->id = $id;
         $this->fname = $fname;
         $this->mname = $mname;
@@ -14,7 +14,6 @@ class StudentAdder {
         $this->email = $email;
         $this->pass = $pass;
         $this->sect = $sect;
-        $this->year = $year;
     }
 
     public function uploadToDB() {
@@ -22,7 +21,7 @@ class StudentAdder {
         
         // Check if mname has a value, if not set it to "N/A"
         if(empty($this->mname)) {
-            $this->mname = "N/A";
+            $this->mname = "";
         }
 
         $sql = "INSERT INTO student(studentID, studentFName, studentMName, studentLName, studentEmail, studentPass, studentSect) VALUES (:id, :fname, :mname, :lname, :email, :pass, :sect)";
@@ -38,7 +37,7 @@ class StudentAdder {
         ]);
 
         if ($result)
-            echo "Query executed successfully.";
+            echo "Student added successfully.";
         else
             echo $conn->errorInfo();
     }
