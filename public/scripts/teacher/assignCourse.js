@@ -20,7 +20,7 @@ function loadContent() {
                 <td>${item.facultyEmail}</td>
                 <td>${item.facultyType}</td>
                 <td>
-                    <a href="#" onclick="" data-id="${item.facultyID}"><i class="fa fa-edit fa-1x" data-toggle="modal" data-target="#assignCoursesModal"></i></a>
+                    <a href="#" onclick="setFctIDField(event)" data-id="${item.facultyID}"><i class="fa fa-edit fa-1x" data-toggle="modal" data-target="#assignCoursesModal"></i></a>
                 </td>
             </tr>
             `;
@@ -54,3 +54,80 @@ function loadContent() {
     .catch(error => console.error(error));
 }
 
+
+
+// Set the ID on the teacher ID field on the modal
+function setFctIDField(event) {
+    event.preventDefault();
+    document.querySelector('#fct-id').value = event.currentTarget.getAttribute('data-id');
+}
+
+
+
+// Set specialization of the teacher
+function setSpecialization(event) {
+    event.preventDefault();
+
+    swal.fire({
+        title: "Are you sure?",
+        text: "This will assign the teacher to the course!",
+        icon: "question",
+        showConfirmButton: true,
+        showCancelButton: true,
+    })
+    .then((result) => {
+    if (result.isConfirmed) {
+        fetch('../../src/controller/setSpecialization.php', {
+            method: 'POST',
+            body: (() => {
+                const formData = new FormData();
+                formData.append('facultyID', document.querySelector('#fct-id').value);
+                formData.append('courseCode', document.querySelector('#crs').value);
+                return formData;
+            })()
+        })
+        .then(response => response.text())
+        .then(data => {
+            if (data == 'success') {
+                swal.fire({
+                    title: 'Teacher assigned successfully.',
+                    icon: "success",
+                    showConfirmButton: true,
+                })
+                .then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = "assignCourse.html";
+                    }
+                })
+            } else
+                throw new Error(data);
+        })
+        .catch(error => {
+            console.error(error)
+            swal.fire({
+                title: 'Something went wrong.',
+                text: error,
+                icon: "error"
+            })
+        });
+    }
+    });
+
+
+
+
+    // fetch('../../src/controller/setSpecialization.php', {
+    //     method: 'POST',
+    //     body: (() => {
+    //         const formData = new FormData();
+    //         formData.append('facultyID', document.querySelector('#fct-id').value);
+    //         formData.append('courseCode', document.querySelector('#crs').value);
+    //         return formData;
+    //     })()
+    // })
+    // .then(response => response.text())
+    // .then(data => {
+    //     console.log(data);
+    // })
+    // .catch(error => console.error(error));
+}

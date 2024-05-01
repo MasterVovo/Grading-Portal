@@ -38,17 +38,23 @@
         <div class="modal-body">
           <form action="" id="set-assign">
             <div class="row">
-              <div class="col-6">
-                <div class="form-group">
-                  <label for="crs" class="control-label mb-1">Course</label>
-                  <select required id="crs" name="crs" class="custom-select form-control">
-                    <option value="" disabled selected>--Select Course--</option>
-                  </select>
+                <div class="col-6">
+                    <div class="form-group">
+                        <label for="fct-id" class="control-label mb-1">Faculty ID</label>
+                        <input id='fct-id' type="text" class="form-control cc-exp" disabled>
+                    </div>
                 </div>
-              </div>
+                <div class="col-6">
+                    <div class="form-group">
+                    <label for="crs" class="control-label mb-1">Course</label>
+                    <select required id="crs" name="crs" class="custom-select form-control">
+                        <option value="" disabled selected>--Select Course--</option>
+                    </select>
+                    </div>
+                </div>
             </div>
 
-            <button type="submit" name="submit" class="btn btn-success" onclick="setAssignment()">Assign</button>
+            <button type="submit" name="submit" class="btn btn-success" onclick="setSpecialization(event)">Assign</button>
           </form>
 
           <div class="card shadow-lg">
