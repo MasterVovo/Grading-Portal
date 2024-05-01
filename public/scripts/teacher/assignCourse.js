@@ -60,6 +60,7 @@ function loadContent() {
 function loadModalFields(event) {
     event.preventDefault();
     document.querySelector('#fct-id').value = event.currentTarget.getAttribute('data-id');
+    document.querySelector('#course-tbody').innerHTML = ''; // Clears the course ass table
 
     fetch('../../src/controller/getSpecialization.php', {
         method: 'POST',
