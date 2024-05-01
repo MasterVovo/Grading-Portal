@@ -8,7 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     switch($_POST['method']) {
         case 'addSingle':
-            echo $stdUpldr->uploadToDB($_POST['stdID'], $_POST['fname'], $_POST['mname'], $_POST['lname'], $_POST['email'], $_POST['pass'], $_POST['year'], $_POST['sect']);
+            echo $stdUpldr->uploadToDB($_POST['stdID'], $_POST['fname'], $_POST['mname'], $_POST['lname'], $_POST['email'], $_POST['pass'], $_POST['sect']);
             break;
         case 'addBulk':
             echo $stdUpldr->uploadBulkStd(json_decode($_POST['bulkData']));

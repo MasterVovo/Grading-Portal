@@ -171,6 +171,16 @@ function addFaculty() {
               formData.append("fctType", fctType);
               formData.append('method', 'addSingle');
     
+              swal.fire({
+                // Loading
+                title: "Adding Faculty...",
+                html: "Please wait...",
+                allowOutsideClick: false,
+                allowEscapeKey: false,
+                didOpen: () => {
+                  swal.showLoading();
+                },
+              });
               fetch("../../src/controller/addFaculty.php", {
                 method: "POST",
                 body: formData,

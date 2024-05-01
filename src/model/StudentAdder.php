@@ -9,12 +9,12 @@ class StudentAdder {
 
     }
 
-    public function uploadToDB($id, $fname, $mname, $lname, $email, $pass, $sect, $year) {
+    public function uploadToDB($id, $fname, $mname, $lname, $email, $pass, $sect) {
         $conn = DBConn::getInstance()->getConnection();
         
         // Check if mname has a value, if not set it to "N/A"
-        if(empty($this->mname)) {
-            $mname = "N/A";
+        if(empty($mname)) {
+            $mname = "";
         }
 
         $sql = "INSERT INTO student(studentID, studentFName, studentMName, studentLName, studentEmail, studentPass, studentSect) VALUES (:id, :fname, :mname, :lname, :email, :pass, :sect)";
@@ -37,7 +37,7 @@ class StudentAdder {
 
     public function uploadBulkStd($bulkData) {
         for ($i = 0; $i < count($bulkData->id); $i++) {
-            if ($this->uploadToDB($bulkData->id[$i], $bulkData->{'First name'}[$i], $bulkData->{'Middle name'}[$i], $bulkData->{'Last name'}[$i], $bulkData->Email[$i], '123', $bulkData->Section[$i], $bulkData->{'Year level'}[$i]) == "Student Added Successfully") {
+            if ($this->uploadToDB($bulkData->id[$i], $bulkData->{'First name'}[$i], $bulkData->{'Middle name'}[$i], $bulkData->{'Last name'}[$i], $bulkData->Email[$i], '123', $bulkData->Section[$i]) == "Student Added Successfully") {
                 continue;
             } else {
                 return 'Something went wrong. Student ' . $bulkData->id[$i] . ' and beyond were not added.';
