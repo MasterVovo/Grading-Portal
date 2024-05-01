@@ -20,7 +20,7 @@ function loadContent() {
                 <td>${item.facultyEmail}</td>
                 <td>${item.facultyType}</td>
                 <td>
-                    <a href="#" onclick="setFctIDField(event)" data-id="${item.facultyID}"><i class="fa fa-edit fa-1x" data-toggle="modal" data-target="#assignCoursesModal"></i></a>
+                    <a href="#" onclick="loadModalFields(event)" data-id="${item.facultyID}"><i class="fa fa-edit fa-1x" data-toggle="modal" data-target="#assignCoursesModal"></i></a>
                 </td>
             </tr>
             `;
@@ -57,9 +57,35 @@ function loadContent() {
 
 
 // Set the ID on the teacher ID field on the modal
-function setFctIDField(event) {
+function loadModalFields(event) {
     event.preventDefault();
     document.querySelector('#fct-id').value = event.currentTarget.getAttribute('data-id');
+
+    fetch('../../src/controller/getSpecialization.php', {
+        method: 'POST',
+        body: (() => {
+            const formData = new FormData();
+            formData.append('facultyID', document.querySelector('#fct-id').value);
+            return formData;
+        })()
+    })
+    .then(response => response.json())
+    .then(data => {
+        data.forEach(item => {
+            document.querySelector('#course-tbody').innerHTML += `
+                <tr>
+                    <td>${item.courseCode}</th>
+                    <td>${item.courseName}</td>
+                    <td>${item.courseYear}</td>
+                    <td>${item.courseSem}</td>
+                    <td>
+                    <a onclick="deleteCourseAssignment()" href="#"><i class="fa fa-trash fa-1x"></i></a>
+                    </td>
+                </tr>
+            `;
+        })
+    })
+    .catch(error => console.error(error));
 }
 
 
@@ -112,22 +138,4 @@ function setSpecialization(event) {
         });
     }
     });
-
-
-
-
-    // fetch('../../src/controller/setSpecialization.php', {
-    //     method: 'POST',
-    //     body: (() => {
-    //         const formData = new FormData();
-    //         formData.append('facultyID', document.querySelector('#fct-id').value);
-    //         formData.append('courseCode', document.querySelector('#crs').value);
-    //         return formData;
-    //     })()
-    // })
-    // .then(response => response.text())
-    // .then(data => {
-    //     console.log(data);
-    // })
-    // .catch(error => console.error(error));
 }

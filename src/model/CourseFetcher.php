@@ -49,4 +49,21 @@ class CourseFetcher {
         else
             return json_encode(["error" => "Failed to fetch data"]);
     }
+
+    public function getCrsByFct($fctID) {
+        $conn = DBConn::getInstance()->getConnection();
+        
+        // "SELECT section.sectionID, section.sectionYearLvl, faculty.facultyFName, faculty.facultyMName, faculty.facultyLName FROM section INNER JOIN faculty ON section.sectionAdv=faculty.facultyID;";
+
+        $sql = "SELECT course.courseCode, course.courseName, course.courseYear, course.courseSem FROM course INNER JOIN specialization ON specialization.facultyID = :fctID AND course.courseCode = specialization.courseCode";
+        $stmt = $conn->prepare($sql);
+        $result = $stmt->execute([
+            'fctID' => $fctID
+        ]);
+
+        if ($result)
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        else
+            return "Failed to fetch data";
+    }
 }
