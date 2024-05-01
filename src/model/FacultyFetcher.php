@@ -31,9 +31,9 @@ class FacultyFetcher {
         ]);
 
         if ($result)
-            return json_encode($stmt->fetchAll(PDO::FETCH_ASSOC));
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
         else
-            return json_encode(["error" => "Failed to fetch data"]);
+            return ["error" => "Failed to fetch data"];
     }
     
     public function countFct() {
@@ -48,5 +48,23 @@ class FacultyFetcher {
             return json_encode($stmt->fetchAll(PDO::FETCH_ASSOC));
         else
             return json_encode(["error" => "Failed to fetch data"]);
+    }
+
+    public function getFctType($facultyID) {
+        // $fctType = $this->getFct($facultyID)->facultyType;
+        $fctType = $this->getFct($facultyID)[0]['facultyType'];
+
+        $conn = DBConn::getInstance()->getConnection();
+        
+        $sql = "SELECT facultyType FROM facultytype WHERE facultyTypeID = :fctType";
+        $stmt = $conn->prepare($sql);
+        $result = $stmt->execute([
+            ':fctType' => $fctType
+        ]);
+
+        if ($result)
+            return $stmt->fetch()['facultyType'];
+        else
+            return "Failed to fetch data";
     }
 }

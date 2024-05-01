@@ -256,6 +256,18 @@
 
     <!--  Chart js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
+
+    <script>
+      fetch("includes/header.html")
+      .then((response) => response.text())
+      .then((data) => {
+          document.querySelector("#header").innerHTML = data;
+      });
+    </script>
+    
+    <!-- Script for loading and changing the leftnav based on teacher type -->
+    <script src="../scripts/teacher/leftnav.js"></script>
+
     <script>
       var ctx = document.getElementById("top10chart").getContext("2d");
 
@@ -349,19 +361,6 @@
         data: data,
         options: options,
       });
-    </script>
-
-    <script>
-      fetch("includes/leftnav.html")
-        .then((response) => response.text())
-        .then((data) => {
-          document.querySelector("#left-panel").innerHTML = data;
-        });
-      fetch("includes/header.html")
-        .then((response) => response.text())
-        .then((data) => {
-          document.querySelector("#header").innerHTML = data;
-        });
     </script>
 
     <!--Chartist Chart-->
