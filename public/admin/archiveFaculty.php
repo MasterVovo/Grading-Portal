@@ -223,6 +223,7 @@ require_once "../includes/dbconn.php";
           showCancelButton: true,
           confirmButtonText: "Restore User",
         })
+
         .then((result) => {
           if (result.isConfirmed) {
             swal.fire({
@@ -233,43 +234,38 @@ require_once "../includes/dbconn.php";
               allowEscapeKey: false,
               didOpen: () => {
                 swal.showLoading();
-                $.ajax({
-                  url: '../../src/model/restoreFaculty.php',
-                  // Change this to the correct path of your PHP script
-                  type: 'POST',
-                  dataType: 'json',
-                  // We expect JSON to be returned
-                  data: {
-                    facultyID: facultyID
-                  },
-                  success: function(data) {
-                    swal.close();
-                    if (data.success) {
-                      swal.fire({
-                        title: "User Restored",
-                        text: "User successfully restored",
-                        icon: "success",
-                      }).then(function() {
-                        window.location.reload();
-                      });
-                    } else {
-                      swal.fire({
-                        title: "Error",
-                        text: data.message,
-                        icon: "error",
-                      });
-                    }
-                  },
-                  error: function(xhr, status, error) {
-                    swal.fire({
-                      title: "Error",
-                      text: "An error occurred while restoring the user",
-                      icon: "error",
-                    });
-                  }
-                });
               },
             });
+            fetch("../../src/model/restoreFaculty.php", {
+                method: "POST",
+                body: new URLSearchParams({
+                  facultyID: facultyID
+                }),
+                headers: {
+                  "Content-Type": "application/x-www-form-urlencoded",
+                },
+              })
+              .then((response) => {
+                if (response.ok) {
+                  response.text().then((text) => {
+                    // Display the echoed text from PHP
+                    swal
+                      .fire({
+                        title: text,
+                        icon: "success",
+                        showConfirmButton: true,
+                      })
+                      .then((result) => {
+                        if (result.isConfirmed) {
+                          window.location.href = "archiveFaculty.php";
+                        }
+                      });
+                  });
+                } else {
+                  console.error("Error restoring faculty");
+                }
+              })
+              .catch((error) => console.error(error));
           }
         });
     }

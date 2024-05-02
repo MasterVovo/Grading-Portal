@@ -6,19 +6,19 @@ if (isset($_POST['submit'])) {
   $studentID = $_POST['studentId'];
   $password = $_POST['password'];
 
-  if ($studentID == "admin" && $password == "admin") {
-    $_SESSION['userID'] = $studentID;
-    $_SESSION['userType'] = 'admin';
-    header("Location: admin/dashboard.php");
-    exit();
-  } elseif ($studentID == "registrar" && $password == "registrar") {
-    $_SESSION['userID'] = $studentID;
-    $_SESSION['userType'] = 'registrar';
-    header("Location: registrar/dashboard.html");
-    exit();
-  }
+  // if ($studentID == "admin" && $password == "admin") {
+  //   $_SESSION['userID'] = $studentID;
+  //   $_SESSION['userType'] = 'admin';
+  //   header("Location: admin/dashboard.php");
+  //   exit();
+  // } elseif ($studentID == "registrar" && $password == "registrar") {
+  //   $_SESSION['userID'] = $studentID;
+  //   $_SESSION['userType'] = 'registrar';
+  //   header("Location: registrar/dashboard.html");
+  //   exit();
+  // }
   //check if studentID exist in faculty, student, and admin tables
-  $sql = "SELECT 'teacher' AS userType, facultyPass, facultyID FROM faculty WHERE facultyID = ? UNION ALL SELECT 'student' AS userType, studentPass, studentID FROM student WHERE studentID = ?";
+  $sql = "SELECT facultyType AS userType, facultyPass, facultyID FROM faculty WHERE facultyID = ? UNION ALL SELECT 'student' AS userType, studentPass, studentID FROM student WHERE studentID = ?";
   $stmt = mysqli_prepare($conn, $sql);
   mysqli_stmt_bind_param($stmt, "ss", $studentID, $studentID);
   mysqli_stmt_execute($stmt);
@@ -33,9 +33,23 @@ if (isset($_POST['submit'])) {
       $userType = $row['userType'];
       $_SESSION['userID'] = $row['facultyID'] ?: $row['studentID'];
       $_SESSION['userType'] = $userType;
-      $redirectPage = $userType . '/dashboard.html';
-      header("Location: $redirectPage");
-      exit();
+      if ($_SESSION['userID'] == 'admin') {
+        header("Location: admin/dashboard.php");
+        exit();
+      } elseif ($userType == 'student') {
+        header("Location: student/dashboard.html");
+        exit();
+      } else{
+        if ($userType == 1){
+          $_SESSION['userType'] = 'Teacher';
+        } elseif($userType == 2) {
+          $_SESSION['userType'] = 'Program Chair';
+        } elseif($userType == 3) {
+          $_SESSION['userType'] = 'Dean';
+        }
+        header("Location: teacher/dashboard.html");
+        exit();
+      }
     } else {
       $errorMsg = "User password is incorrect";
     }

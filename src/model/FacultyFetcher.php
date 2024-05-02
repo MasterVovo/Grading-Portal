@@ -62,8 +62,10 @@ class FacultyFetcher {
             ':fctType' => $fctType
         ]);
 
+        $type = $stmt->fetch()['facultyType'];
+
         if ($result)
-            return $stmt->fetch()['facultyType'];
+            return $type;
         else
             return "Failed to fetch data";
     }

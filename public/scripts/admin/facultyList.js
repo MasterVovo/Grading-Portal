@@ -5,6 +5,12 @@ fetch("includes/leftnav.html")
     document.querySelector("#left-panel").innerHTML = data;
 });
 
+fetch("includes/header.html")
+    .then((response) => response.text())
+    .then((data) => {
+    document.querySelector("#header").innerHTML = data;
+});
+
 // Filling in section selection
 const getAllSctId = new FormData();
 getAllSctId.append('method', 'getAllSctId')

@@ -28,9 +28,6 @@ const firstPart = `
         <i class="fa fa-plus"></i> <a href="finalGrades.html"> Finals</a>
         </li>
         <li>
-        <i class="fa fa-plus"></i>
-        <a href="gradingCriteria.html"> Grading Criteria</a>
-        </li>
     </ul>
     </li>
 `;
@@ -58,6 +55,7 @@ fetch('../../src/controller/getFctType.php', {
 })
 .then(response => response.text())
 .then(data => {
+    console.log(data);
     switch(data) {
         case 'Teacher':
             document.querySelector('#left-panel').innerHTML = `${firstPart + secondPart}`;
