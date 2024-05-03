@@ -59,8 +59,6 @@ fetch('../../src/controller/getFctType.php', {
 .then(response => response.text())
 .then(data => {
     switch(data) {
-        case 'Teacher':
-            document.querySelector('#left-panel').innerHTML = `${firstPart + secondPart}`;
         case 'Program Chair':
             document.querySelector('#left-panel').innerHTML = `
                 ${firstPart}
@@ -100,6 +98,7 @@ fetch('../../src/controller/getFctType.php', {
             `;
             break;
         default:
+            document.querySelector('#left-panel').innerHTML = `${firstPart + secondPart}`;
             throw new Error('Teacher type is not recognized.');
     }
 })
