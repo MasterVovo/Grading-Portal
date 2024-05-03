@@ -2,15 +2,28 @@
 // A class for uploading new student
 
 require_once 'DBConn.php';
+require_once 'sendEmail.php';
 
-class FacultyAdder {
-    public function __construct() {
-
+class FacultyAdder
+{
+    public function __construct()
+    {
     }
 
-    public function uploadBulkFct($bulkData) {
+    public function uploadBulkFct($bulkData)
+    {
         for ($i = 0; $i < count($bulkData->id); $i++) {
-            if ($this->uploadToDB($bulkData->id[$i], $bulkData->{'First name'}[$i], $bulkData->{'Middle name'}[$i], $bulkData->{'Last name'}[$i], $bulkData->Email[$i], '123', 1, 1) == "Faculty Added Successfully") {
+            $characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
+            $passArray = array();
+            $charLen = strlen($characters) - 1;
+            for ($i = 0; $i < 8; $i++) {
+                $char = $characters[rand(0, $charLen)];
+                $passArray[] = $char;
+            }
+            $password = implode($passArray);
+
+            if ($this->uploadToDB($bulkData->id[$i], $bulkData->{'First name'}[$i], $bulkData->{'Middle name'}[$i], $bulkData->{'Last name'}[$i], $bulkData->Email[$i], $password, 1, 1) == "Faculty Added Successfully") {
+                sendEmail($bulkData->id[$i], $bulkData->{'First name'}[$i], $bulkData->{'Middle name'}[$i], $bulkData->{'Last name'}[$i], $bulkData->Email[$i], $password);
                 continue;
             } else {
                 return 'Something went wrong. Faculty ' . $bulkData->id[$i] . ' and beyond were not added.';
@@ -19,9 +32,10 @@ class FacultyAdder {
         return 'Teachers Added Successfully';
     }
 
-    public function uploadToDB($id, $fname, $mname, $lname, $email, $pass, $fctType, $status) {
+    public function uploadToDB($id, $fname, $mname, $lname, $email, $pass, $fctType, $status)
+    {
         $conn = DBConn::getInstance()->getConnection();
-        
+
         $sql = "INSERT INTO faculty(facultyID, facultyFName, facultyMName, facultyLName, facultyEmail, facultyPass, facultyType, facultyStatus) VALUES (:id, :fname, :mname, :lname, :email, :pass, :fctType, :status)";
         $stmt = $conn->prepare($sql);
         $result = $stmt->execute([

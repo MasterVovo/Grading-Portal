@@ -87,37 +87,6 @@ require_once "../includes/dbconn.php";
   <div id="right-panel" class="right-panel">
     <!-- Header-->
     <header id="header" class="header">
-      <div class="top-left">
-        <div class="navbar-header">
-          <a class="navbar-brand" href="./">Student Grading System</a>
-          <a id="menuToggle" class="menutoggle"><i class="fa fa-bars"></i></a>
-        </div>
-      </div>
-      <div class="top-right">
-        <div class="header-menu">
-          <div class="header-left">
-            <div class="form-inline">
-              <form class="search-form">
-                <input class="form-control mr-sm-2" type="text" placeholder="Search ..." aria-label="Search" />
-                <button class="search-close" type="submit">
-                  <i class="fa fa-close"></i>
-                </button>
-              </form>
-            </div>
-
-            <div class="user-area dropdown float-right">
-              <a href="#" class="dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <img class="user-avatar rounded-circle" src="../assets/img/admin-icn.png" alt="User Avatar" />
-              </a>
-
-              <div class="user-menu dropdown-menu">
-                <a class="nav-link" href="updateProfile.php"><i class="fa fa-user"></i>My Profile</a>
-                <a class="nav-link" href="logout.php"><i class="fa fa-power-off"></i>Logout</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
     </header>
 
     <script src="../assets/js/main.js"></script>
@@ -137,7 +106,7 @@ require_once "../includes/dbconn.php";
                 <div id="pay-invoice">
                   <div class="card-body">
                     <div class="" role="alert"></div>
-                    <form method="post" action="#" id="add-student" onsubmit="addStudent(event)">
+                    <form method="POST" action="#" id="add-student">
                       <div class="row">
                         <div class="col-6">
                           <div class="form-group">
@@ -185,13 +154,13 @@ require_once "../includes/dbconn.php";
                           <div class="col-6">
                             <div class="form-group">
                               <label for="sect" class="control-label mb-1">Section <span class="red">*</span></label>
-                              <!-- <select required id="sect" name="sect" class="custom-select form-control">
+                              <select required id="sect" name="sect" class="custom-select form-control">
                                 <option value="" disabled selected>--Select Section--</option>
-                              </select> -->
-
+                              </select>
+<!-- 
                               <input list="section" id="sect" name="sect" type="text" class="form-control" required placeholder="Section" />
                               <datalist id="section">
-                              </datalist>
+                              </datalist> -->
                             </div>
                           </div>
                         </div>
@@ -216,7 +185,7 @@ require_once "../includes/dbconn.php";
 
                       <div class="row">
                           <div class="col-6">
-                            <button type="submit" name="submit" class="btn btn-success">
+                            <button type="submit" name="submit" class="btn btn-success" onclick="addStudent()">
                               Add New Student
                             </button>
                           </div>

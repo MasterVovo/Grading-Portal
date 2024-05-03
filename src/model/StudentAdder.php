@@ -17,7 +17,7 @@ class StudentAdder {
             $mname = "";
         }
 
-        $sql = "INSERT INTO student(studentID, studentFName, studentMName, studentLName, studentEmail, studentPass, studentSect) VALUES (:id, :fname, :mname, :lname, :email, :pass, :sect)";
+        $sql = "INSERT INTO student(studentID, studentFName, studentMName, studentLName, studentEmail, studentPass, studentSect, studentStatus) VALUES (:id, :fname, :mname, :lname, :email, :pass, :sect, 1)";
         $stmt = $conn->prepare($sql);
         $result = $stmt->execute([
             ':id' => $id,
