@@ -26,37 +26,16 @@
 
 <body onload="loadContent()">
   <!-- Modal for editing faculty -->
-  <div class="modal fade" id="assignCoursesModal" tabindex="-1" role="dialog" aria-labelledby="assignCoursesModalLabel" aria-hidden="true">
+  <div class="modal fade" id="assignSectionModal" tabindex="-1" role="dialog" aria-labelledby="assignSectionModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="assignCoursesModalLabel">Assign Courses</h5>
+          <h5 class="modal-title" id="assignSectionModalLabel">Assign Courses</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
-          <form action="" id="set-assign">
-            <div class="row">
-                <div class="col-6">
-                    <div class="form-group">
-                        <label for="fct-id" class="control-label mb-1">Faculty ID</label>
-                        <input id='fct-id' type="text" class="form-control cc-exp" disabled>
-                    </div>
-                </div>
-                <div class="col-6">
-                    <div class="form-group">
-                    <label for="crs" class="control-label mb-1">Course</label>
-                    <select required id="crs" name="crs" class="custom-select form-control">
-                        <option value="" disabled selected>--Select Course--</option>
-                    </select>
-                    </div>
-                </div>
-            </div>
-
-            <button type="submit" name="submit" class="btn btn-success" onclick="setSpecialization(event)">Assign</button>
-          </form>
-
           <div class="card shadow-lg">
             <div class="card-header">
               <h2 align="center" class="h5">Course Assignment</h2>
