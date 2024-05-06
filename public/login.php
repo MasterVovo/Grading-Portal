@@ -46,6 +46,9 @@ if (isset($_POST['submit'])) {
           $_SESSION['userType'] = 'Program Chair';
         } elseif($userType == 3) {
           $_SESSION['userType'] = 'Dean';
+        } elseif($userType == 4) {
+          $_SESSION['userType'] = 'Registrar';
+          header("Location: admin/dashboard.php");
         }
         header("Location: teacher/dashboard.html");
         exit();
