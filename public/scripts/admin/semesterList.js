@@ -20,9 +20,25 @@ function loadContent() {
             return formData;
         })()
     })
-    .then(response => response.text())
+    .then(response => response.json())
     .then(data => {
-        console.log(data);
+        data.forEach(item => {
+            document.querySelector('#sem-tbody').innerHTML += `
+                <tr>
+                    <th>${item.semesterID}</th>
+                    <td>${item.semesterName}</td>
+                    <td>${item.startDate}</td>
+                    <td>${item.endDate}</td>
+                    <td>
+                        <a href="#" onclick="populateEditFields()" data-id="${item.semesterID}"><i class="fa fa-edit fa-1x" data-toggle="modal" data-target="#editSemesterModal"></i></a>
+                        <a onclick="deleteSemester()" href="#"><i class="fa fa-trash fa-1x"></i></a>
+                    </td>
+                </tr>
+            `
+        });
+        $("#sem-table").DataTable({
+            columnDefs: [{ targets: 4, orderable: false }],
+        });
     })
     .catch(error => console.error(error));
 }
