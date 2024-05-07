@@ -21,6 +21,21 @@ class SectionFetcher {
             return json_encode(["error" => "Failed to fetch data"]);
     }
 
+    public function get($sctID) {
+        $conn = DBConn::getInstance()->getConnection();
+        
+        $sql = "SELECT * FROM section WHERE sectionID = :sctID;";
+        $stmt = $conn->prepare($sql);
+        $result = $stmt->execute([
+            'sctID' => $sctID
+        ]);
+
+        if ($result)
+            return $stmt->fetch();
+        else
+            return "Failed to get section data";
+    }
+
     public function getSctByYear($year) {
         $conn = DBConn::getInstance()->getConnection();
         

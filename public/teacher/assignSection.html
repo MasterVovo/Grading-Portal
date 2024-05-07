@@ -25,7 +25,7 @@
 </head>
 
 <body onload="loadContent()">
-  <!-- Modal for editing faculty -->
+  <!-- Modal for assigning teachers on subject -->
   <div class="modal fade" id="assignSectionModal" tabindex="-1" role="dialog" aria-labelledby="assignSectionModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
@@ -36,6 +36,51 @@
           </button>
         </div>
         <div class="modal-body">
+          <!-- <form method="Post" action="#" onsubmit="">
+            <div class="row">
+              <div class="col-6">
+                <div class="form-group">
+                  <label for="edit-fct-id" class="control-label mb-1">Faculty ID <span class="red">*</span></label>
+                  <input id="edit-fct-id" name="fct-id" type="text" class="form-control cc-exp" value="" required disabled placeholder="Faculty ID" />
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="form-group">
+                  <label for="edit-fname" class="control-label mb-1">First name <span class="red">*</span></label>
+                  <input id="edit-fname" name="fname" type="text" class="form-control cc-exp" value="" required disabled placeholder="First name" />
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-6">
+                <div class="form-group">
+                  <label for="edit-mname" class="control-label mb-1">Middle name</label>
+                  <input id="edit-mname" name="mname" type="text" class="form-control cc-exp" value="" disabled placeholder="Middle name" />
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="form-group">
+                  <label for="edit-lname" class="control-label mb-1">Last name <span class="red">*</span></label>
+                  <input id="edit-lname" name="lname" type="text" class="form-control cc-exp" value="" required disabled placeholder="Last name" />
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-6">
+                <div class="form-group">
+                  <label for="edit-email" class="control-label mb-1">Email <span class="red">*</span></label>
+                  <input id="edit-email" name="email" type="email" class="form-control cc-exp" value="" required disabled placeholder="Email" />
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="form-group">
+                  <label for="edit-pass" class="control-label mb-1">Password <span class="red">*</span></label>
+                  <input id="edit-pass" name="pass" type="password" class="form-control cc-exp" value="" required disabled placeholder="Password" />
+                </div>
+              </div>
+            </div>
+          </form> -->
+
           <div class="card shadow-lg">
             <div class="card-header">
               <h2 align="center" class="h5">Course Assignment</h2>
@@ -46,8 +91,6 @@
                   <tr>
                     <th>Course Code</th>
                     <th>Course Name</th>
-                    <th>Year</th>
-                    <th>Semester</th>
                     <th>Action</th>
                   </tr>
                 </thead>

@@ -11,7 +11,6 @@ function loadContent() {
     })
     .then(response => response.json())
     .then(data => {
-        console.log(data);
         data.forEach(item => {
             document.querySelector('#sct-list-tbody').innerHTML += `
                 <tr>
@@ -19,7 +18,7 @@ function loadContent() {
                     <td>${item.facultyFName + ' ' + item.facultyMName + ' ' + item.facultyLName}</td>
                     <td>${item.sectionYearLvl}</td>
                     <td>
-                        <a href="#" onclick="loadModalFields(event)" data-id="${item.sectionID}"><i class="fa fa-edit fa-1x" data-toggle="modal" data-target="#assignSectionModal"></i></a>
+                        <a href="#" onclick="loadCourseList(event)" data-id="${item.sectionID}"><i class="fa fa-edit fa-1x" data-toggle="modal" data-target="#assignSectionModal"></i></a>
                     </td>
                 </tr>
             `;
@@ -31,4 +30,38 @@ function loadContent() {
     })
     .catch(error => console.error(error));
 
+}
+
+
+
+// Displays the courses for the sections
+function loadCourseList(event) {
+    event.preventDefault();
+
+    fetch('../../src/controller/getCrsList.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: new URLSearchParams({
+            'method': 'getBySection',
+            'section': event.currentTarget.getAttribute('data-id')
+        }).toString()
+    })
+    .then(response => response.json())
+    .then(data => {
+        data.forEach(item => {
+            document.querySelector('#course-tbody').innerHTML += `
+                <tr>
+                    <th>${item.courseCode}</th>
+                    <td>${item.courseName}</td>
+                    <td>
+                        <a href="#" onclick="populateEditFields()" data-id="${item.semesterID}"><i class="fa fa-edit fa-1x" data-toggle="modal" data-target="#editSemesterModal"></i></a>
+                        <a onclick="deleteSemester()" href="#"><i class="fa fa-trash fa-1x"></i></a>
+                    </td>
+                </tr>
+            `
+        });
+    })
+    .catch(error => console.error(error));
 }
