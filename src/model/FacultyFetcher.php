@@ -69,4 +69,20 @@ class FacultyFetcher {
         else
             return "Failed to fetch data";
     }
+    
+    public function getAssignedFct($sectionID, $courseCode) {
+        $conn = DBConn::getInstance()->getConnection();
+        
+        $sql = "SELECT * FROM assignment WHERE sectionID = :section AND courseCode = :course";
+        $stmt = $conn->prepare($sql);
+        $result = $stmt->execute([
+            ':section' => $sectionID,
+            ':course' => $courseCode
+        ]);
+
+        if ($result)
+            return $stmt->fetch();
+        else
+            return "Failed to fetch data";
+    }
 }

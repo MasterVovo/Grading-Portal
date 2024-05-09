@@ -37,6 +37,7 @@ function loadContent() {
 // Displays the courses for the sections
 function loadCourseList(event) {
     event.preventDefault();
+    const sectionID = event.currentTarget.getAttribute('data-id');
 
     fetch('../../src/controller/getCrsList.php', {
         method: 'POST',
@@ -45,7 +46,7 @@ function loadCourseList(event) {
         },
         body: new URLSearchParams({
             'method': 'getBySection',
-            'section': event.currentTarget.getAttribute('data-id')
+            'section': sectionID
         }).toString()
     })
     .then(response => response.json())
@@ -55,12 +56,35 @@ function loadCourseList(event) {
                 <tr>
                     <th>${item.courseCode}</th>
                     <td>${item.courseName}</td>
+                    <td>${getAssignedTeacher(sectionID, item.courseCode)}</td>
                     <td>
                         <a href="#" onclick="populateEditFields()" data-id="${item.semesterID}"><i class="fa fa-edit fa-1x" data-toggle="modal" data-target="#editSemesterModal"></i></a>
                     </td>
                 </tr>
             `
         });
+    })
+    .catch(error => console.error(error));
+}
+
+
+
+function getAssignedTeacher(section, course) {
+    fetch('../../src/controller/getFctList.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: new URLSearchParams({
+            'method': 'getAssignedFct',
+            'section': section,
+            'course': course
+        }).toString()
+    })
+    .then(response => response.text())
+    .then(data => {
+        console.log(data);
+        return data;
     })
     .catch(error => console.error(error));
 }
