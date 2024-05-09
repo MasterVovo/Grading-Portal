@@ -36,50 +36,26 @@
           </button>
         </div>
         <div class="modal-body">
-          <!-- <form method="Post" action="#" onsubmit="">
+          <form method="POST" action="#" onsubmit="">
             <div class="row">
               <div class="col-6">
                 <div class="form-group">
-                  <label for="edit-fct-id" class="control-label mb-1">Faculty ID <span class="red">*</span></label>
-                  <input id="edit-fct-id" name="fct-id" type="text" class="form-control cc-exp" value="" required disabled placeholder="Faculty ID" />
+                  <label for="crs-code" class="control-label mb-1">Course Code</label>
+                  <input id="crs-code" type="text" class="form-control cc-exp" value="" required disabled placeholder="Course Code" />
                 </div>
               </div>
               <div class="col-6">
                 <div class="form-group">
-                  <label for="edit-fname" class="control-label mb-1">First name <span class="red">*</span></label>
-                  <input id="edit-fname" name="fname" type="text" class="form-control cc-exp" value="" required disabled placeholder="First name" />
+                  <label for="fct" class="control-label mb-1">Faculty</label>
+                  <select required id="fct" class="custom-select form-control">
+                      <option value="" disabled selected>--Select Faculty--</option>
+                  </select>
                 </div>
               </div>
             </div>
-            <div class="row">
-              <div class="col-6">
-                <div class="form-group">
-                  <label for="edit-mname" class="control-label mb-1">Middle name</label>
-                  <input id="edit-mname" name="mname" type="text" class="form-control cc-exp" value="" disabled placeholder="Middle name" />
-                </div>
-              </div>
-              <div class="col-6">
-                <div class="form-group">
-                  <label for="edit-lname" class="control-label mb-1">Last name <span class="red">*</span></label>
-                  <input id="edit-lname" name="lname" type="text" class="form-control cc-exp" value="" required disabled placeholder="Last name" />
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-6">
-                <div class="form-group">
-                  <label for="edit-email" class="control-label mb-1">Email <span class="red">*</span></label>
-                  <input id="edit-email" name="email" type="email" class="form-control cc-exp" value="" required disabled placeholder="Email" />
-                </div>
-              </div>
-              <div class="col-6">
-                <div class="form-group">
-                  <label for="edit-pass" class="control-label mb-1">Password <span class="red">*</span></label>
-                  <input id="edit-pass" name="pass" type="password" class="form-control cc-exp" value="" required disabled placeholder="Password" />
-                </div>
-              </div>
-            </div>
-          </form> -->
+
+            <button type="submit" name="submit" class="btn btn-success" onclick="assignTeacher(event)" disabled>Assign</button>
+          </form>
 
           <div class="card shadow-lg">
             <div class="card-header">
