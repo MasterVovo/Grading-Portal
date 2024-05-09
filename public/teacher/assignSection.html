@@ -47,14 +47,14 @@
               <div class="col-6">
                 <div class="form-group">
                   <label for="fct" class="control-label mb-1">Faculty</label>
-                  <select required id="fct" class="custom-select form-control">
+                  <select required id="fct" class="custom-select form-control" onchange="enableButton()">
                       <option value="" disabled selected>--No Available Teachers--</option>
                   </select>
                 </div>
               </div>
             </div>
 
-            <button type="submit" name="submit" class="btn btn-success" disabled>Assign</button>
+            <button id="assign-teacher-button" type="submit" name="submit" class="btn btn-success" disabled>Assign</button>
           </form>
 
           <div class="card shadow-lg">

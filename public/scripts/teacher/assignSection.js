@@ -1,3 +1,5 @@
+let sectionID;
+
 // Function for loading some contents of the assign section page
 function loadContent() {
     // Load the section table
@@ -37,7 +39,7 @@ function loadContent() {
 // Displays the courses for the sections
 function loadCourseList(event) {
     event.preventDefault();
-    const sectionID = event.currentTarget.getAttribute('data-id');
+    sectionID = event.currentTarget.getAttribute('data-id');
 
     fetch('../../src/controller/getCrsList.php', {
         method: 'POST',
@@ -93,8 +95,14 @@ function getAssignedTeacher(section, course) {
 
 
 
+// Enable the assign button
+function enableButton() {
+    document.querySelector('#assign-teacher-button').removeAttribute('disabled')
+}
+
 // Fetches the available teachers that can teach the subject selector
 function populateFctSelector(event) {
+    document.querySelector('#assign-teacher-button').setAttribute('disabled', 'disabled')
     const courseCode = event.currentTarget.getAttribute('data-id');
 
     fetch('../../src/controller/getFctList.php', {
@@ -130,13 +138,65 @@ function populateFctSelector(event) {
 
 
 // Assign the teacher on the subject and section
-// function assignTeacher(event) {
-//     event.preventDefault();
+function assignTeacher(event) {
+    event.preventDefault();
     
-//     fetch('../../src/controller/setAssignment.php', {
-//         method: 'POST',
-//         body: new URLSearchParams({
-//             'id': 
-//         })
-//     })
-// }
+    swal.fire({
+        title: "Are you sure?",
+        text: "This will assign the teacher to the section!",
+        icon: "question",
+        showConfirmButton: true,
+        showCancelButton: true,
+    })
+    .then((result) => {
+    if (result.isConfirmed) {
+        fetch('../../src/controller/setAssignment.php', {
+            method: 'POST',
+            body: new URLSearchParams({
+                'id': document.querySelector('#fct').value,
+                'sect': sectionID,
+                'crs': document.querySelector('#crs-code').placeholder
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data == 'Query executed successfully.') {
+                swal.fire({
+                    title: 'Teacher assigned successfully.',
+                    icon: "success",
+                    showConfirmButton: true,
+                })
+                .then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = "assignSection.html";
+                    }
+                })
+            } else
+                throw new Error(data);
+        })
+        .catch(error => {
+            console.error(error)
+            swal.fire({
+                title: 'Something went wrong.',
+                text: error,
+                icon: "error"
+            })
+        });
+    }
+    });
+
+
+    // fetch('../../src/controller/setAssignment.php', {
+    //     method: 'POST',
+    //     body: new URLSearchParams({
+    //         'id': document.querySelector('#fct').value,
+    //         'sect': sectionID,
+    //         'crs': document.querySelector('#crs-code').placeholder
+    //     })
+    // })
+    // .then(response => response.text())
+    // .then(data => {
+    //     console.log(data);
+    // })
+    // .catch(error => console.error(error));
+}
