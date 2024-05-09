@@ -18,6 +18,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         case 'getAssignedFct':
             echo json_encode($fctFetcher->getAssignedFct($_POST['section'], $_POST['course']));
             break;
+        case 'getBySpecialization':
+            echo json_encode($fctFetcher->getBySpecialization($_POST['course']));
+            break;
     }
 
 } else {

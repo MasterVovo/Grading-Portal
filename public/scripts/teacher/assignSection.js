@@ -58,7 +58,7 @@ function loadCourseList(event) {
                     <td>${item.courseName}</td>
                     <td>${getAssignedTeacher(sectionID, item.courseCode)}</td>
                     <td>
-                        <a href="#" onclick="populateEditFields()" data-id="${item.semesterID}"><i class="fa fa-edit fa-1x" data-toggle="modal" data-target="#editSemesterModal"></i></a>
+                        <a href="#" onclick="populateFctSelector(event)" data-id="${item.courseCode}"><i class="fa fa-edit fa-1x" data-toggle="modal" data-target="#editSemesterModal"></i></a>
                     </td>
                 </tr>
             `
@@ -69,6 +69,7 @@ function loadCourseList(event) {
 
 
 
+// Fetches the assigned subject teacher on a section
 function getAssignedTeacher(section, course) {
     fetch('../../src/controller/getFctList.php', {
         method: 'POST',
@@ -83,8 +84,59 @@ function getAssignedTeacher(section, course) {
     })
     .then(response => response.text())
     .then(data => {
+        
         console.log(data);
         return data;
     })
     .catch(error => console.error(error));
 }
+
+
+
+// Fetches the available teachers that can teach the subject selector
+function populateFctSelector(event) {
+    const courseCode = event.currentTarget.getAttribute('data-id');
+
+    fetch('../../src/controller/getFctList.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: new URLSearchParams({
+            'method': 'getBySpecialization',
+            'course': courseCode
+        }).toString()
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data == 'none') {
+            document.querySelector('#crs-code').placeholder = 'Course Code';
+            document.querySelector('#fct').innerHTML = `<option value="" disabled selected>--No Available Teachers--</option>`
+            throw new Error('No available teachers');
+        } else {
+            document.querySelector('#crs-code').placeholder = courseCode;
+            document.querySelector('#fct').innerHTML = `<option value="" disabled selected>--Select a Teacher--</option>`
+
+            data.forEach(item => {
+                document.querySelector('#fct').innerHTML += `
+                    <option value="${item.facultyID}">${item.facultyFName + ' ' + item.facultyMName + ' ' + item.facultyLName}</option>
+                `
+            })
+        }
+    })
+    .catch(error => console.error(error));
+}
+
+
+
+// Assign the teacher on the subject and section
+// function assignTeacher(event) {
+//     event.preventDefault();
+    
+//     fetch('../../src/controller/setAssignment.php', {
+//         method: 'POST',
+//         body: new URLSearchParams({
+//             'id': 
+//         })
+//     })
+// }

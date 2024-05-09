@@ -10,7 +10,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $fctAssgr = new FacultyAssigner($facultyID, $sectionID, $courseCode);
     $fctAssgr->uploadToDB();
-    // echo $fctFetcher->uploadToDB();
 } else {
     exit();
 }

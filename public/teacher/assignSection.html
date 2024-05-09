@@ -36,7 +36,7 @@
           </button>
         </div>
         <div class="modal-body">
-          <form method="POST" action="#" onsubmit="">
+          <form method="POST" action="#" onsubmit="assignTeacher(event)">
             <div class="row">
               <div class="col-6">
                 <div class="form-group">
@@ -48,13 +48,13 @@
                 <div class="form-group">
                   <label for="fct" class="control-label mb-1">Faculty</label>
                   <select required id="fct" class="custom-select form-control">
-                      <option value="" disabled selected>--Select Faculty--</option>
+                      <option value="" disabled selected>--No Available Teachers--</option>
                   </select>
                 </div>
               </div>
             </div>
 
-            <button type="submit" name="submit" class="btn btn-success" onclick="assignTeacher(event)" disabled>Assign</button>
+            <button type="submit" name="submit" class="btn btn-success" disabled>Assign</button>
           </form>
 
           <div class="card shadow-lg">

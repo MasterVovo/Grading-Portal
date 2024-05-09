@@ -80,9 +80,30 @@ class FacultyFetcher {
             ':course' => $courseCode
         ]);
 
-        if ($result)
-            return $stmt->fetch();
+        if ($stmt->rowCount() > 0)
+            $stmt->fetch();
         else
-            return "Failed to fetch data";
+            return 'none';
+    }
+
+    public function getBySpecialization($course) {
+        $conn = DBConn::getInstance()->getConnection();
+        
+        $sql = 
+        "SELECT faculty.facultyID, faculty.facultyFName, faculty.facultyMName, faculty.facultyLName 
+        FROM faculty
+        INNER JOIN specialization 
+        ON faculty.facultyID = specialization.facultyID
+        AND specialization.courseCode = :course";
+
+        $stmt = $conn->prepare($sql);
+        $stmt->execute([
+            ':course' => $course
+        ]);
+
+        if ($stmt->rowCount() > 0)
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        else
+            return 'none';
     }
 }
