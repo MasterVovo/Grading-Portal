@@ -73,7 +73,14 @@ class FacultyFetcher {
     public function getAssignedFct($sectionID, $courseCode) {
         $conn = DBConn::getInstance()->getConnection();
         
-        $sql = "SELECT * FROM assignment WHERE sectionID = :section AND courseCode = :course";
+        $sql = 
+        "SELECT faculty.facultyID, faculty.facultyFName, faculty.facultyMName, faculty.facultyLName 
+        FROM faculty
+        INNER JOIN assignment 
+        ON faculty.facultyID = assignment.facultyID
+        AND assignment.sectionID = :section
+        AND assignment.courseCode = :course";
+
         $stmt = $conn->prepare($sql);
         $result = $stmt->execute([
             ':section' => $sectionID,
@@ -81,7 +88,7 @@ class FacultyFetcher {
         ]);
 
         if ($stmt->rowCount() > 0)
-            $stmt->fetch();
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
         else
             return 'none';
     }

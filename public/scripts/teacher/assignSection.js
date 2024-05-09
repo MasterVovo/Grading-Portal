@@ -53,17 +53,22 @@ function loadCourseList(event) {
     })
     .then(response => response.json())
     .then(data => {
+        document.querySelector('#course-tbody').innerHTML = '';
         data.forEach(item => {
-            document.querySelector('#course-tbody').innerHTML += `
+            getAssignedTeacher(sectionID, item.courseCode)
+            .then(assignedTeacher => {
+                document.querySelector('#course-tbody').innerHTML += `
                 <tr>
                     <th>${item.courseCode}</th>
                     <td>${item.courseName}</td>
-                    <td>${getAssignedTeacher(sectionID, item.courseCode)}</td>
+                    <td>${assignedTeacher}</td>
                     <td>
                         <a href="#" onclick="populateFctSelector(event)" data-id="${item.courseCode}"><i class="fa fa-edit fa-1x" data-toggle="modal" data-target="#editSemesterModal"></i></a>
                     </td>
                 </tr>
             `
+            })
+            
         });
     })
     .catch(error => console.error(error));
@@ -72,8 +77,8 @@ function loadCourseList(event) {
 
 
 // Fetches the assigned subject teacher on a section
-function getAssignedTeacher(section, course) {
-    fetch('../../src/controller/getFctList.php', {
+async function getAssignedTeacher(section, course) {
+    return await fetch('../../src/controller/getFctList.php', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
@@ -84,11 +89,16 @@ function getAssignedTeacher(section, course) {
             'course': course
         }).toString()
     })
-    .then(response => response.text())
+    .then(response => response.json())
     .then(data => {
-        
         console.log(data);
-        return data;
+        if (data == 'none')
+            return 'None';
+        else {
+            const name = data[0].facultyFName + ' ' + data[0].facultyMName + ' ' + data[0].facultyLName;
+            console.log(name);
+            return name;
+        }
     })
     .catch(error => console.error(error));
 }
@@ -184,19 +194,4 @@ function assignTeacher(event) {
         });
     }
     });
-
-
-    // fetch('../../src/controller/setAssignment.php', {
-    //     method: 'POST',
-    //     body: new URLSearchParams({
-    //         'id': document.querySelector('#fct').value,
-    //         'sect': sectionID,
-    //         'crs': document.querySelector('#crs-code').placeholder
-    //     })
-    // })
-    // .then(response => response.text())
-    // .then(data => {
-    //     console.log(data);
-    // })
-    // .catch(error => console.error(error));
 }
