@@ -50,7 +50,7 @@
       type="text/css"
     />
   </head>
-  <body>
+  <body onload="loadContent()">
     <!-- Left Panel -->
     <aside id="left-panel" class="left-panel"></aside>
 
@@ -154,17 +154,16 @@
                   <div class="row">
                     <div class="col-6">
                       <div class="form-group">
-                        <label for="x_card_code" class="control-label mb-1"
+                        <label for="sections" class="control-label mb-1"
                           >Section</label
                         >
                         <select
                           required
+                          id="sections"
                           name="semester"
                           class="custom-select form-control"
                         >
-                          <option value="1">BSIS-201</option>
-                          <option value="2">BSIS-202</option>
-                          <option value="3">BSIS-203</option>
+                          <option value="" disabled selected>No Section Available</option>
                         </select>
                       </div>
                     </div>
@@ -305,6 +304,9 @@
     <script src="../assets/js/lib/data-table/buttons.print.min.js"></script>
     <script src="../assets/js/lib/data-table/buttons.colVis.min.js"></script>
     <script src="../assets/js/init/datatables-init.js"></script>
+
+    <!-- Script for this page -->
+    <script src="../scripts/teacher/finalGrades.js"></script>
 
     <script>
         function showConfirmation(){
