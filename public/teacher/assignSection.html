@@ -25,7 +25,7 @@
 </head>
 
 <body onload="loadContent()">
-  <!-- Modal for editing faculty -->
+  <!-- Modal for assigning teachers on subject -->
   <div class="modal fade" id="assignSectionModal" tabindex="-1" role="dialog" aria-labelledby="assignSectionModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
@@ -36,6 +36,27 @@
           </button>
         </div>
         <div class="modal-body">
+          <form method="POST" action="#" onsubmit="assignTeacher(event)">
+            <div class="row">
+              <div class="col-6">
+                <div class="form-group">
+                  <label for="crs-code" class="control-label mb-1">Course Code</label>
+                  <input id="crs-code" type="text" class="form-control cc-exp" value="" required disabled placeholder="Course Code" />
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="form-group">
+                  <label for="fct" class="control-label mb-1">Faculty</label>
+                  <select required id="fct" class="custom-select form-control" onchange="enableButton()">
+                      <option value="" disabled selected>--No Available Teachers--</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <button id="assign-teacher-button" type="submit" name="submit" class="btn btn-success" disabled>Assign</button>
+          </form>
+
           <div class="card shadow-lg">
             <div class="card-header">
               <h2 align="center" class="h5">Course Assignment</h2>
@@ -46,8 +67,7 @@
                   <tr>
                     <th>Course Code</th>
                     <th>Course Name</th>
-                    <th>Year</th>
-                    <th>Semester</th>
+                    <th>Faculty</th>
                     <th>Action</th>
                   </tr>
                 </thead>

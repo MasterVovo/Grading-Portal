@@ -22,4 +22,19 @@ class SemesterFetcher
         else
             return "Failed to fetch data";
     }
+
+    public function getCurrentSem($date) {
+        $conn = DBConn::getInstance()->getConnection();
+
+        $sql = "SELECT * FROM semester WHERE :date BETWEEN startDate AND endDate";
+        $stmt = $conn->prepare($sql);
+        $result = $stmt->execute([
+            'date' => $date
+        ]);
+
+        if ($result)
+            return $stmt->fetch();
+        else
+            return "Failed to fetch data";
+    }
 }

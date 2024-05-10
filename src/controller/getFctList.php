@@ -5,12 +5,24 @@ require_once '../model/FacultyFetcher.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $fctFetcher = new FacultyFetcher();
-    if ($_POST['method'] == 'getAllFct')
-        echo $fctFetcher->getAllFct();
-    else if ($_POST['method'] == 'getFct')
-        echo $fctFetcher->getFct($_POST['facultyID']);
-    else if ($_POST['method'] == 'countFct')
-        echo $fctFetcher->countFct();
+    switch($_POST['method']) {
+        case 'getAllFct':
+            echo $fctFetcher->getAllFct();
+            break;
+        case 'getFct':
+            echo $fctFetcher->getFct($_POST['facultyID']);
+            break;
+        case 'countFct':
+            echo $fctFetcher->countFct();
+            break;
+        case 'getAssignedFct':
+            echo json_encode($fctFetcher->getAssignedFct($_POST['section'], $_POST['course']));
+            break;
+        case 'getBySpecialization':
+            echo json_encode($fctFetcher->getBySpecialization($_POST['course']));
+            break;
+    }
+
 } else {
     exit();
 }

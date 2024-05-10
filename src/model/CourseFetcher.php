@@ -66,4 +66,22 @@ class CourseFetcher {
         else
             return "Failed to fetch data";
     }
+
+    public function getByYearAndSem($year, $sem) {
+        $conn = DBConn::getInstance()->getConnection();
+
+        // "SELECT * FROM course INNER JOIN semester ON $date BETWEEN semester.startDate AND semester.endDate";
+
+        $sql = "SELECT * FROM course WHERE courseYear = :year AND courseSem = :sem";
+        $stmt = $conn->prepare($sql);
+        $result = $stmt->execute([
+            'year' => $year,
+            'sem' => $sem
+        ]);
+
+        if ($result)
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        else
+            return "Failed to fetch data";
+    }
 }

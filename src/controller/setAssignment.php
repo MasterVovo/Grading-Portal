@@ -9,8 +9,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $courseCode = $_POST['crs'];
 
     $fctAssgr = new FacultyAssigner($facultyID, $sectionID, $courseCode);
-    $fctAssgr->uploadToDB();
-    // echo $fctFetcher->uploadToDB();
+    if ($fctAssgr->teacherExist())
+        echo json_encode($fctAssgr->updateTeacher());
+    else
+        echo json_encode($fctAssgr->uploadToDB());
+    
 } else {
     exit();
 }

@@ -15,10 +15,10 @@ class SemesterAdder {
     public function uploadToDB() {
         $conn = DBConn::getInstance()->getConnection();
         
-        $sql = "INSERT INTO semester(semesterID, startDate, endDate) VALUES (:semID, :start, :end)";
+        $sql = "INSERT INTO semester(semesterName, startDate, endDate) VALUES (:semName, :start, :end)";
         $stmt = $conn->prepare($sql);
         $result = $stmt->execute([
-            ':semID' => $this->semName,
+            ':semName' => $this->semName,
             ':start' => $this->startDate,
             ':end' => $this->endDate
         ]);
