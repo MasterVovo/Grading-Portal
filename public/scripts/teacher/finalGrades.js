@@ -64,7 +64,7 @@ function loadStudents() {
             document.querySelector('#std-tbody').innerHTML += `
             <tr>
                 <td>${item.studentID}</td>
-                <td>${item.studentFName + item.studentMName + item.studentLName}</td>
+                <td>${item.studentFName + ' ' + item.studentMName + ' ' + item.studentLName}</td>
                 <td><input type="text" maxlength="4" size="4" /></td>
                 <td>
                     <textarea
