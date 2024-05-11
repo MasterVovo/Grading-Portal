@@ -160,17 +160,25 @@
                         <select
                           required
                           id="sections"
-                          name="semester"
                           class="custom-select form-control"
+                          onchange="loadCourses(event)"
                         >
                           <option value="" disabled selected>No Section Available</option>
                         </select>
                       </div>
                     </div>
                     <div class="col-6">
-                      <h4 class="font-weight-bold pr-4 pt-5" align="right">
-                        Course Code: ABC123
-                      </h4>
+                      <label for="courses" class="control-label mb-1"
+                          >Course</label
+                        >
+                        <select
+                          required
+                          id="courses"
+                          name="courses"
+                          class="custom-select form-control"
+                        >
+                          <option value="" disabled selected>No Course Available</option>
+                        </select>
                     </div>
                   </div>
                   <table
