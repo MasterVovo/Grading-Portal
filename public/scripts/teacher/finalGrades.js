@@ -34,7 +34,6 @@ function loadCourses(event) {
     })
     .then(response => response.json())
     .then(data => {
-        console.log(data);
         document.querySelector('#courses').innerHTML = '<option value="" disabled selected>Select A Section</option>';
 
         data.forEach(item => {
