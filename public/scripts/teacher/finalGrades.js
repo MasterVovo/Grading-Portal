@@ -47,6 +47,9 @@ function loadCourses(event) {
 
 
 
+let stdDataTable = $("#std-table").DataTable({
+    columnDefs: [{ targets: [2, 3], orderable: false }]
+});
 function loadStudents() {
     fetch('../../src/controller/getStdList.php', {
         method: 'POST',
@@ -59,25 +62,36 @@ function loadStudents() {
     })
     .then(response => response.json())
     .then(data => {
+        stdDataTable.destroy();
         document.querySelector('#std-tbody').innerHTML = '';
         data.forEach(item => {
             document.querySelector('#std-tbody').innerHTML += `
             <tr>
                 <td>${item.studentID}</td>
                 <td>${item.studentFName + ' ' + item.studentMName + ' ' + item.studentLName}</td>
-                <td><input type="text" maxlength="4" size="4" /></td>
+                <td><input type="text" maxlength="4" size="4" class="grades" data-id="${item.studentID}" /></td>
                 <td>
                     <textarea
-                    name="feedback"
-                    id="feedback"
+                    class="feedbacks"
                     cols="30"
                     rows="1"
                     ></textarea>
                 </td>
             </tr>
         `;
-        })
+        });
+        stdDataTable = $("#std-table").DataTable({
+            columnDefs: [{ targets: [2, 3], orderable: false }]
+        });
        
     })
     .catch(error => console.error(error));
+}
+
+
+
+function submitGrades() {
+    const gradesElement = document.querySelector('#grades');
+    const feedbacksElement = document.querySelector('#feedbacks');
+
 }
