@@ -50,7 +50,7 @@
       type="text/css"
     />
   </head>
-  <body>
+  <body onload="loadContent()">
     <!-- Left Panel -->
     <aside id="left-panel" class="left-panel"></aside>
 
@@ -154,28 +154,36 @@
                   <div class="row">
                     <div class="col-6">
                       <div class="form-group">
-                        <label for="x_card_code" class="control-label mb-1"
+                        <label for="sections" class="control-label mb-1"
                           >Section</label
                         >
                         <select
                           required
-                          name="semester"
+                          id="sections"
                           class="custom-select form-control"
+                          onchange="loadCourses(event)"
                         >
-                          <option value="1">BSIS-201</option>
-                          <option value="2">BSIS-202</option>
-                          <option value="3">BSIS-203</option>
+                          <option value="" disabled selected>No Section Available</option>
                         </select>
                       </div>
                     </div>
                     <div class="col-6">
-                      <h4 class="font-weight-bold pr-4 pt-5" align="right">
-                        Course Code: ABC123
-                      </h4>
+                      <label for="courses" class="control-label mb-1"
+                          >Course</label
+                        >
+                        <select
+                          required
+                          id="courses"
+                          name="courses"
+                          class="custom-select form-control"
+                          onchange="loadStudents()"
+                        >
+                          <option value="" disabled selected>No Course Available</option>
+                        </select>
                     </div>
                   </div>
                   <table
-                    id="bootstrap-data-table"
+                    id="std-table"
                     class="table table-hover table-striped table-bordered"
                   >
                     <thead>
@@ -186,77 +194,13 @@
                         <th>Feedback</th>
                       </tr>
                     </thead>
-                    <tbody id="grd-body">
-                      <tr>
-                        <td>1</td>
-                        <td>Sample Student 1</td>
-                        <td><input type="text" maxlength="4" size="4" /></td>
-                        <td>
-                          <textarea
-                            name="feedback"
-                            id="feedback"
-                            cols="30"
-                            rows="1"
-                          ></textarea>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>2</td>
-                        <td>Sample Student 2</td>
-                        <td><input type="text" maxlength="4" size="4" /></td>
-                        <td>
-                          <textarea
-                            name="feedback"
-                            id="feedback"
-                            cols="30"
-                            rows="1"
-                          ></textarea>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>3</td>
-                        <td>Sample Student 3</td>
-                        <td><input type="text" maxlength="4" size="4" /></td>
-                        <td>
-                          <textarea
-                            name="feedback"
-                            id="feedback"
-                            cols="30"
-                            rows="1"
-                          ></textarea>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>4</td>
-                        <td>Sample Student 4</td>
-                        <td><input type="text" maxlength="4" size="4" /></td>
-                        <td>
-                          <textarea
-                            name="feedback"
-                            id="feedback"
-                            cols="30"
-                            rows="1"
-                          ></textarea>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>5</td>
-                        <td>Sample Student 5</td>
-                        <td><input type="text" maxlength="4" size="4" /></td>
-                        <td>
-                          <textarea
-                            name="feedback"
-                            id="feedback"
-                            cols="30"
-                            rows="1"
-                          ></textarea>
-                        </td>
-                      </tr>
+                    <tbody id="std-tbody">
+                      
                     </tbody>
                   </table><br>
                   <div class="row">
                     <div class="col-6">
-                      <button class="btn btn-primary" onclick="showConfirmation()"
+                      <button class="btn btn-primary" onclick="submitGrades()"
                         >Submit Grades</button
                       >
                     </div>
@@ -305,6 +249,9 @@
     <script src="../assets/js/lib/data-table/buttons.print.min.js"></script>
     <script src="../assets/js/lib/data-table/buttons.colVis.min.js"></script>
     <script src="../assets/js/init/datatables-init.js"></script>
+
+    <!-- Script for this page -->
+    <script src="../scripts/teacher/finalGrades.js"></script>
 
     <script>
         function showConfirmation(){

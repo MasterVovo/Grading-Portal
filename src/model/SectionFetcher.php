@@ -65,7 +65,7 @@ class SectionFetcher {
     public function getSctByFct($facultyID) {
         $conn = DBConn::getInstance()->getConnection();
         
-        $sql = "SELECT sectionID FROM assignment WHERE facultyID = :facultyID";
+        $sql = "SELECT DISTINCT sectionID FROM assignment WHERE facultyID = :facultyID";
         $stmt = $conn->prepare($sql);
         $result = $stmt->execute([
             'facultyID' => $facultyID

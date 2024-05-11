@@ -22,4 +22,20 @@ class AssignmentFetcher {
         else
             return json_encode(["error" => "Failed to fetch data"]);
     }
+
+    public function getByFctAndSct($facultyID, $sectionID) {
+        $conn = DBConn::getInstance()->getConnection();
+        
+        $sql = "SELECT * FROM assignment WHERE facultyID = :facultyID AND sectionID = :sectionID";
+        $stmt = $conn->prepare($sql);
+        $result = $stmt->execute([
+            ':facultyID' => $facultyID,
+            ':sectionID' => $sectionID
+        ]);
+
+        if ($result)
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        else
+            return "Failed to get assignment.";
+    }
 }
