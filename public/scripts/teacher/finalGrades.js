@@ -196,9 +196,9 @@ function submitGrades() {
             method: 'POST',
             body: (() => {
                 const formData = new FormData();
-                formData.append('grdTerm', 'final');
+                formData.append('term', document.querySelector('#term').value);
                 formData.append('grades', JSON.stringify(assocArr));
-                formData.append('course', document.querySelector('#courses').value)
+                formData.append('course', document.querySelector('#courses').value);
                 return formData;
             })()
         })
