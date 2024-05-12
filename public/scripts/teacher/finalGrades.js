@@ -91,7 +91,28 @@ function loadStudents() {
 
 
 function submitGrades() {
-    const gradesElement = document.querySelector('#grades');
-    const feedbacksElement = document.querySelector('#feedbacks');
+    const gradesElement = document.querySelectorAll('.grades');
+    const feedbacksElement = document.querySelectorAll('.feedbacks');
 
+    let assocArr = {};
+    for (let i = 0; i < gradesElement.length; i++) {
+        assocArr[gradesElement[i].getAttribute('data-id')] = {'grade': gradesElement[i].value, 'feedback': feedbacksElement[i].value};
+    }
+
+    fetch('../../src/controller/setGrades.php', {
+        method: 'POST',
+        body: (() => {
+            const formData = new FormData();
+            formData.append('grdTerm', 'final');
+            formData.append('grades', JSON.stringify(assocArr));
+            formData.append('course', document.querySelector('#courses').value)
+            return formData;
+        })()
+    })
+    .then(response => response.json())
+    .then(data => {
+        alert(data);
+        console.log(data);
+    })
+    .catch(error => console.error(error));
 }
