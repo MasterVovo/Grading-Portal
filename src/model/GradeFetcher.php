@@ -28,7 +28,7 @@ class GradeFetcher {
         if ($result) {
             return $stmt->fetchColumn();
         } else {
-            return null;
+            return $conn->errorInfo();
         }
     }
 

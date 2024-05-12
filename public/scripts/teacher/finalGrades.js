@@ -9,7 +9,7 @@ function loadContent() {
     })
     .then(response => response.json())
     .then(data => {
-        document.querySelector('#sections').innerHTML = '<option value="" disabled selected>Select A Section</option>';
+        document.querySelector('#sections').innerHTML = '<option value="" disabled selected>Select a Section</option>';
 
         data.forEach(item => {
             document.querySelector('#sections').innerHTML += `
@@ -34,7 +34,7 @@ function loadCourses(event) {
     })
     .then(response => response.json())
     .then(data => {
-        document.querySelector('#courses').innerHTML = '<option value="" disabled selected>Select A Section</option>';
+        document.querySelector('#courses').innerHTML = '<option value="" disabled selected>Select a Course</option>';
 
         data.forEach(item => {
             document.querySelector('#courses').innerHTML += `
@@ -62,7 +62,7 @@ function loadStudents() {
             return formData;
         })()
     })
-    .then(response => response.text())
+    .then(response => response.json())
     .then(status => {
         console.log(status)
         if (status == 'Dont exist') {
@@ -76,6 +76,10 @@ function loadStudents() {
     })
     .catch(error => console.error(error));
 
+    
+}
+
+function loadSubmittedGrades() {
     fetch('../../src/controller/getGrades.php', {
         method: 'POST',
         body: (() => {
@@ -97,60 +101,6 @@ function loadStudents() {
                 <td>${item.studentFName + ' ' + item.studentMName + ' ' + item.studentLName}</td>
                 <td>${item.gradeFinal}</td>
                 <td>${item.gradeFeedback}</td>
-            </tr>
-        `;
-        });
-        stdDataTable = $("#std-table").DataTable({
-            columnDefs: [{ targets: [2, 3], orderable: false }]
-        });
-       
-    })
-    .catch(error => console.error(error));
-}
-
-function loadSubmittedGrades() {
-    fetch('../../src/controller/getStdList.php', {
-        method: 'POST',
-        body: (() => {
-            const formData = new FormData();
-            formData.append('method', 'getStdBySct');
-            formData.append('section', document.querySelector('#sections').value);
-            return formData;
-        })()
-    })
-    .then(response => response.json())
-    .then(data => {
-        stdDataTable.destroy();
-        document.querySelector('#std-tbody').innerHTML = '';
-        data.forEach(item => {
-            document.querySelector('#std-tbody').innerHTML += `
-            <tr>
-                <td>${item.studentID}</td>
-                <td>${item.studentFName + ' ' + item.studentMName + ' ' + item.studentLName}</td>
-                <td>
-                    <select class="custom-select form-control grades" data-id="${item.studentID}">
-                        <option disabled selected>-Grade-</option>
-                        <option value='1.00'>1.00</option>
-                        <option value='1.25'>1.25</option>
-                        <option value='1.50'>1.50</option>
-                        <option value='1.75'>1.75</option>
-                        <option value='2.00'>2.00</option>
-                        <option value='2.25'>2.25</option>
-                        <option value='2.50'>2.50</option>
-                        <option value='2.75'>2.75</option>
-                        <option value='3.00'>3.00</option>
-                        <option value='3.25'>3.25</option>
-                        <option value='3.50'>3.50</option>
-                        <option value='3.75'>3.75</option>
-                        <option value='4.00'>4.00</option>
-                        <option value='4.25'>4.25</option>
-                        <option value='4.50'>4.50</option>
-                        <option value='4.75'>4.75</option>
-                        <option value='5.00'>5.00</option>
-                    </select>
-                <td>
-                    <input type="text" class="form-control cc-exp feedbacks">
-                </td>
             </tr>
         `;
         });

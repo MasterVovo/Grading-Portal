@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             $grdFetcher = new GradeFetcher();
             $gradeID = $grdFetcher->getGradingID($stdID, $_SESSION['userID'], $_POST['course']);
-            if (is_null($gradeID)) {
+            if ($gradeID == false) {
                 echo json_encode('Dont exist');
             } else {
                 $approvalID = $grdFetcher->getApprovalID($gradeID);
