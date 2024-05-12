@@ -32,6 +32,56 @@ class GradeFetcher {
         }
     }
 
+    public function midtermGradeExist($stdID, $fctID, $crsCode) {
+        $conn = DBConn::getInstance()->getConnection();
+    
+        $sql = 
+        "SELECT gradeID 
+        FROM grade
+        WHERE studentID = :stdID
+        AND teacherID = :fctID
+        AND courseCode = :crsCode
+        AND gradeMidterm <> 0.00";
+
+        $stmt = $conn->prepare($sql);
+        $result = $stmt->execute([
+            ':stdID' => $stdID,
+            ':fctID' => $fctID,
+            ':crsCode' => $crsCode
+        ]);
+    
+        if ($result) {
+            return $stmt->fetchColumn();
+        } else {
+            return $conn->errorInfo();
+        }
+    }
+
+    public function finalGradeExist($stdID, $fctID, $crsCode) {
+        $conn = DBConn::getInstance()->getConnection();
+    
+        $sql = 
+        "SELECT gradeID 
+        FROM grade
+        WHERE studentID = :stdID
+        AND teacherID = :fctID
+        AND courseCode = :crsCode
+        AND gradeFinal <> 0.00";
+
+        $stmt = $conn->prepare($sql);
+        $result = $stmt->execute([
+            ':stdID' => $stdID,
+            ':fctID' => $fctID,
+            ':crsCode' => $crsCode
+        ]);
+    
+        if ($result) {
+            return $stmt->fetchColumn();
+        } else {
+            return $conn->errorInfo();
+        }
+    }
+
     public function getApprovalID($gradeID) {
         $conn = DBConn::getInstance()->getConnection();
     

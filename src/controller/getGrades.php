@@ -14,7 +14,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $stdID = $students[0]['studentID'];
 
             $grdFetcher = new GradeFetcher();
-            $gradeID = $grdFetcher->getGradingID($stdID, $_SESSION['userID'], $_POST['course']);
+            if ($_POST['term'] == 'midterm') {
+                $gradeID = $grdFetcher->midtermGradeExist($stdID, $_SESSION['userID'], $_POST['course']);
+            } else if ($_POST['term'] == 'final') {
+                $gradeID = $grdFetcher->finalGradeExist($stdID, $_SESSION['userID'], $_POST['course']);
+            }
+            
             if ($gradeID == false) {
                 echo json_encode('Dont exist');
             } else {

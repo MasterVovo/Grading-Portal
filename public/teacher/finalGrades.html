@@ -176,10 +176,27 @@
                           id="courses"
                           name="courses"
                           class="custom-select form-control"
-                          onchange="loadStudents()"
+                          onchange="enableTermSelect()"
                         >
                           <option value="" disabled selected>No Course Available</option>
                         </select>
+                    </div>
+                  </div>
+                  <div class="row mb-4">
+                    <div class="col-6">
+                      <label for="term" class="control-label mb-1"
+                        >Grading Term</label
+                      >
+                      <select
+                        id="term"
+                        class="custom-select form-control"
+                        onchange="loadStudents()"
+                        disabled
+                      >
+                        <option value="" disabled selected>- Select a Grading Term -</option>
+                        <option value="midterm">Midterm</option>
+                        <option value="final">Final</option>
+                      </select>
                     </div>
                   </div>
                   <table

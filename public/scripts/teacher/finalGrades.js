@@ -47,6 +47,12 @@ function loadCourses(event) {
 
 
 
+function enableTermSelect() {
+    document.querySelector('#term').removeAttribute('disabled', 'disabled');
+}
+
+
+
 let stdDataTable = $("#std-table").DataTable({
     columnDefs: [{ targets: [2, 3], orderable: false }]
 });
@@ -58,7 +64,8 @@ function loadStudents() {
             const formData = new FormData();
             formData.append('method', 'gradeStatus');
             formData.append('section', document.querySelector('#sections').value);
-            formData.append('course', document.querySelector('#courses').value)
+            formData.append('course', document.querySelector('#courses').value);
+            formData.append('term', document.querySelector('#term').value);
             return formData;
         })()
     })
