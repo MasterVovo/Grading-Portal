@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once "../includes/dbconn.php";
 ?>
 
@@ -273,7 +274,11 @@ require_once "../includes/dbconn.php";
                               <option value="1">Teacher</option>
                               <option value="2">Program Chair</option>
                               <option value="3">Dean</option>
-                              <option value="4">Registrar</option>
+                              <?php
+                                if ($_SESSION["userType"] == "Registrar") {
+                                  echo "<option value='4'>Registrar</option>";
+                                }
+                              ?>
                             </select>
                           </div>
                         </div>

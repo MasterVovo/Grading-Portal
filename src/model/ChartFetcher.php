@@ -11,7 +11,7 @@ class ChartFetcher {
     public function getActiveUsers() {
         $conn = DBConn::getInstance()->getConnection();
         
-        $sql = "SELECT COUNT(sessionID) AS activeUsers FROM usersession";
+        $sql = "SELECT (SELECT COUNT(facultyStatus) FROM faculty WHERE facultyStatus IN (1, 2))+(SELECT COUNT(studentStatus) FROM student WHERE studentStatus IN (1, 2)) AS activeUsers;";
         $stmt = $conn->prepare($sql);
         $result = $stmt->execute();
 
