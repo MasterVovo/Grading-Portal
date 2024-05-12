@@ -89,9 +89,6 @@ function loadStudents() {
                         <option value='4.50'>4.50</option>
                         <option value='4.75'>4.75</option>
                         <option value='5.00'>5.00</option>
-                        <option value='5.25'>5.25</option>
-                        <option value='5.50'>5.50</option>
-                        <option value='5.75'>5.75</option>
                     </select>
                 <td>
                     <input type="text" class="form-control cc-exp feedbacks">
