@@ -93,7 +93,7 @@ function loadSubmittedGrades() {
             const formData = new FormData();
             formData.append('method', 'getSubmittedGrades');
             formData.append('section', document.querySelector('#sections').value);
-            formData.append('course', document.querySelector('#courses').value)
+            formData.append('course', document.querySelector('#courses').value);
             return formData;
         })()
     })
@@ -106,7 +106,7 @@ function loadSubmittedGrades() {
             <tr>
                 <td>${item.studentID}</td>
                 <td>${item.studentFName + ' ' + item.studentMName + ' ' + item.studentLName}</td>
-                <td>${item.gradeFinal}</td>
+                <td>${item.gradeMidterm}</td>
                 <td>${item.gradeFeedback}</td>
             </tr>
         `;

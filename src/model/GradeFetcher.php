@@ -126,7 +126,7 @@ class GradeFetcher {
         $conn = DBConn::getInstance()->getConnection();
     
         $sql = 
-        "SELECT student.studentID, student.studentFName, student.studentMName, student.studentLName, grade.gradeFinal, grade.gradeFeedback
+        "SELECT student.studentID, student.studentFName, student.studentMName, student.studentLName, grade.gradeMidterm, grade.gradeFinal, grade.gradeFeedback
         FROM student
         INNER JOIN grade
         ON student.studentID = grade.studentID
