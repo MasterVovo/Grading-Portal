@@ -34,6 +34,7 @@ if (isset($_POST['submit'])) {
       $_SESSION['userID'] = $row['facultyID'] ?: $row['studentID'];
       $_SESSION['userType'] = $userType;
       if ($_SESSION['userID'] == 'admin') {
+        $_SESSION['userType'] = 'Registrar';
         header("Location: admin/dashboard.php");
         exit();
       } elseif ($userType == 'student') {

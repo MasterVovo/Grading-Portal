@@ -51,9 +51,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 case 'Registrar':
                     $approvals = $apprFetcher->getToBeApprovedByRegistrar();
                     break;
-                case 'Admin':
-                    $approvals = $apprFetcher->getToBeApprovedByRegistrar();
-                    break;
             }
             
             $ecrList = array();

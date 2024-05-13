@@ -18,10 +18,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $apprUploader = new ApprovalUploader();
             echo json_encode($apprUploader->approveRegistrar($_POST['approvalID']));
             break;
-        case 'Admin':
-            $apprUploader = new ApprovalUploader();
-            echo json_encode($apprUploader->approveRegistrar($_POST['approvalID']));
-            break;
     }
 } else {
     exit();
