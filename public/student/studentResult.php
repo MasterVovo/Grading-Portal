@@ -135,7 +135,6 @@
                                         <th>Teacher</th>
                                         <th>Midterm</th>
                                         <th>Final</th>
-                                        <th>Semestral</th>
                                         <th>Remarks</th>
                                     </tr>
                                 </thead>
