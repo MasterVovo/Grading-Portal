@@ -88,12 +88,36 @@ function approveECR() {
                 method: 'POST',
                 body: (() => {
                     const formData = new FormData;
-                    formData.append('method', json_stringify(rootECRs[currentECRindex]));
+                    formData.append('approvalID', rootECRs[currentECRindex].approvalID);
                     return formData;
                 })()
             })
             .then(response => response.json())
-            .then()
+            .then(result => {
+                if (result == 'Success') {
+                    swal.fire({
+                        title: 'The ECR is now approved by the program chair.',
+                        icon: "success",
+                        showConfirmButton: true,
+                    })
+                    .then((result) => {
+                        if (result.isConfirmed) {
+                          window.location.href = "approveGrades.html";
+                        }
+                    });
+                } else {
+                    swal.fire({
+                        title: 'Oops! Something went wrong.',
+                        icon: "danger",
+                        showConfirmButton: true,
+                    })
+                    .then((result) => {
+                        if (result.isConfirmed) {
+                          window.location.href = "approveGrades.html";
+                        }
+                    })
+                }
+            })
             .catch(error => console.error(error));
 
         }
