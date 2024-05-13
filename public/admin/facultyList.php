@@ -294,8 +294,9 @@ require_once "../includes/dbconn.php";
                         }
 
                         $password = implode($passArray);
+                        $tempPass = "12345";
 
-                        echo "$password";
+                        echo "$tempPass";
                         ?> disabled hidden />
                       <p>
                         <small><i>Note: Faculty's password is automatically

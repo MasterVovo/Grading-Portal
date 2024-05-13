@@ -37,7 +37,7 @@ class StudentAdder {
 
     public function uploadBulkStd($bulkData) {
         for ($i = 0; $i < count($bulkData->id); $i++) {
-            if ($this->uploadToDB($bulkData->id[$i], $bulkData->{'First name'}[$i], $bulkData->{'Middle name'}[$i], $bulkData->{'Last name'}[$i], $bulkData->Email[$i], '123', $bulkData->Section[$i]) == "Student Added Successfully") {
+            if ($this->uploadToDB($bulkData->id[$i], $bulkData->{'First name'}[$i], $bulkData->{'Middle name'}[$i], $bulkData->{'Last name'}[$i], $bulkData->Email[$i], '12345', $bulkData->Section[$i]) == "Student Added Successfully") {
                 continue;
             } else {
                 return 'Something went wrong. Student ' . $bulkData->id[$i] . ' and beyond were not added.';
