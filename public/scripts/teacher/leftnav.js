@@ -45,10 +45,27 @@ if (data === "Teacher") {
     }`;
 } else if (data === "Program Chair") {
     document.querySelector("#left-panel").innerHTML = `${firstPart}
-    <li>
-        <a href="approveGrades.html">
-        <i class="menu-icon fa fa-thumbs-up"></i>Approve
+    <li class="menu-item-has-children dropdown">
+        <a
+            href="#"
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+        >
+            <i class="menu-icon fa fa-file"></i>
+            ECR
         </a>
+        <ul class="sub-menu children dropdown-menu">
+            <li>
+                <i class="menu-icon fa fa-thumbs-up"></i>
+                <a href="approveGrades.html">&nbsp;Approve</a>
+            </li>
+            <li>
+                <i class="menu-icon fa fa-check-circle-o"></i>
+                <a href="approvedGrades.html">&nbsp;Approved</a>
+            </li>
+        </ul>
     </li>
 
     <li>
