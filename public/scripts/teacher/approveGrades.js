@@ -96,7 +96,7 @@ function approveECR() {
             .then(result => {
                 if (result == 'Success') {
                     swal.fire({
-                        title: 'The ECR is now approved by the program chair.',
+                        title: 'The ECR is now approved.',
                         icon: "success",
                         showConfirmButton: true,
                     })

@@ -30,4 +30,50 @@ class ApprovalUploader {
         else
             return $conn->errorInfo();
     }
+
+    public function approveDean($id) {
+        $conn = DBConn::getInstance()->getConnection();
+        
+        $sql = 
+        "UPDATE approval 
+        SET isApprovedByDean = 1 
+        WHERE approvalID = :id";
+
+        $stmt = $conn->prepare($sql);
+        $result = $stmt->execute([
+            ':id' => $id
+        ]);
+
+        if ($result) {
+            if ($stmt->rowCount())
+                return 'Success';
+            else
+                return 'No row affected';
+        }
+        else
+            return $conn->errorInfo();
+    }
+
+    public function approveRegistrar($id) {
+        $conn = DBConn::getInstance()->getConnection();
+        
+        $sql = 
+        "UPDATE approval 
+        SET isApprovedByRegistrar = 1 
+        WHERE approvalID = :id";
+
+        $stmt = $conn->prepare($sql);
+        $result = $stmt->execute([
+            ':id' => $id
+        ]);
+
+        if ($result) {
+            if ($stmt->rowCount())
+                return 'Success';
+            else
+                return 'No row affected';
+        }
+        else
+            return $conn->errorInfo();
+    }
 }

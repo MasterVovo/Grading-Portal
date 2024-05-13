@@ -43,4 +43,38 @@ class ApprovalFetcher {
         else
             return $conn->errorInfo();
     }
+
+    public function getToBeApprovedByDean() {
+        $conn = DBConn::getInstance()->getConnection();
+        
+        $sql = 
+        "SELECT * 
+        FROM approval 
+        WHERE isApprovedByDean = 0";
+
+        $stmt = $conn->prepare($sql);
+        $result = $stmt->execute();
+
+        if ($result)
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        else
+            return $conn->errorInfo();
+    }
+
+    public function getToBeApprovedByRegistrar() {
+        $conn = DBConn::getInstance()->getConnection();
+        
+        $sql = 
+        "SELECT * 
+        FROM approval 
+        WHERE isApprovedByRegistrar = 0";
+
+        $stmt = $conn->prepare($sql);
+        $result = $stmt->execute();
+
+        if ($result)
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        else
+            return $conn->errorInfo();
+    }
 }
