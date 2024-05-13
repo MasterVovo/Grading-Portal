@@ -211,7 +211,7 @@ function submitGrades() {
             })
             .then((result) => {
                 if (result.isConfirmed) {
-                    window.location.href = "finalGrades.html";
+                    window.location.href = "grade.html";
                 }
             })
         })

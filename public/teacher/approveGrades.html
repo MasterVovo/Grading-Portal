@@ -50,7 +50,46 @@
       type="text/css"
     />
   </head>
-  <body>
+  <body onload="loadContent()">
+    <!-- Modal for editing faculty -->
+    <div class="modal fade" id="ECRModal" tabindex="-1" role="dialog" aria-labelledby="ECRModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="ECRModalLabel">Electronic Class Record</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="card shadow-lg">
+              <div class="card-body">
+                <table id="ecr-table" class="table table-hover table-striped table-bordered">
+                  <thead>
+                    <tr>
+                      <th>Student ID</th>
+                      <th>Student Name</th>
+                      <th>Midterm</th>
+                      <th>Final</th>
+                    </tr>
+                  </thead>
+                  <tbody id="ecr-body">
+
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-success" onclick="approveECR()">Approve</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
     <!-- Left Panel -->
     <aside id="left-panel" class="left-panel"></aside>
 
@@ -152,21 +191,21 @@
                 </div>
                 <div class="card-body">
                   <table
-                    id="bootstrap-data-table"
+                    id="grd-table"
                     class="table table-hover table-striped table-bordered"
                   >
                     <thead>
                       <tr>
-                        <th>Submitted</th>
-                        <th>Faculty ID</th>
-                        <th>Name</th>
+                        <th>Teacher</th>
                         <th>Section</th>
+                        <th>Course</th>
                         <th>Passed</th>
                         <th>Failed</th>
+                        <th>Action</th>
                       </tr>
                     </thead>
                     <tbody id="grd-body">
-                      <tr>
+                      <!-- <tr>
                         <td><i class="fa fa-times text-danger" aria-hidden="true"></i></td>
                         <td>1</td>
                         <td>Faculty 1</td>
@@ -205,7 +244,7 @@
                         <td>BSIS 203</td>
                         <td>--</td>
                         <td>--</td>
-                      </tr>
+                      </tr> -->
                     </tbody>
                   </table><br>
                   <div class="row">
@@ -259,6 +298,10 @@
     <script src="../assets/js/lib/data-table/buttons.print.min.js"></script>
     <script src="../assets/js/lib/data-table/buttons.colVis.min.js"></script>
     <script src="../assets/js/init/datatables-init.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <!-- Scripts for this page -->
+    <script src="../scripts/teacher/approveGrades.js"></script>
 
     <script>
         function showConfirmation(){
@@ -269,10 +312,6 @@
     </script>
 
     <script type="text/javascript">
-      $(document).ready(function () {
-        $("#bootstrap-data-table-export").DataTable();
-      });
-
       // Menu Trigger
       $("#menuToggle").on("click", function (event) {
         var windowWidth = $(window).width();
@@ -288,21 +327,8 @@
           $("#left-panel").removeClass("open-menu");
         }
       });
-
-      // Load the student list
-      fetch("../../src/controller/getStdList.php", {
-        method: "POST",
-        body: (() => {
-          const formData = new FormData();
-          formData.append("method", "getStdBySessionID");
-          return formData;
-        })(),
-      })
-        .then((response) => response.text())
-        .then((data) => {
-          console.log(data);
-        });
     </script>
+
     <!-- Script for loading and changing the leftnav based on teacher type -->
     <script src="../scripts/teacher/leftnav.js"></script>
     <script>

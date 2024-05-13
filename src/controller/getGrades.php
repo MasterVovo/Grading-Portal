@@ -1,9 +1,11 @@
 <?php
-// API for setting the courses that teachers taught
+// API for geting the grades
 
 session_start();
 require_once '../model/GradeFetcher.php';
 require_once '../model/StudentFetcher.php';
+require_once '../model/ApprovalFetcher.php';
+require_once '../model/ECRFetcher.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
@@ -35,6 +37,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         case 'getSubmittedGrades':
             $grdFetcher = new GradeFetcher();
             echo json_encode($grdFetcher->getSubmittedGrades($_SESSION['userID'], $_POST['section'], $_POST['course']));
+            break;
+        
+        case 'getApprovalGrades':
+            $apprFetcher = new ApprovalFetcher();
+            $approvals = $apprFetcher->getToBeApprovedByChair();
+
+            $ecrList = array();
+            
+            $ecrFetcher = new ECRFetcher();
+            for ($i = 0; $i < count($approvals); $i++) {
+                $grades = $ecrFetcher->get($approvals[$i]['approvalID']);
+                $ecrList[$i]['approvalID'] = $approvals[$i]['approvalID'];
+                $ecrList[$i]['ecr'] = $grades;
+            }
+            echo json_encode($ecrList);
             break;
     }
 } else {
