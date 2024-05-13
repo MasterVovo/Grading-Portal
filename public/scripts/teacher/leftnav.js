@@ -8,27 +8,11 @@ const firstPart = `
         ><i class="menu-icon fa fa-dashboard"></i>Dashboard
     </a>
     </li>
-
-    <li class="menu-item-has-children dropdown">
-    <a
-        href="#"
-        class="dropdown-toggle"
-        data-toggle="dropdown"
-        aria-haspopup="true"
-        aria-expanded="false"
-    >
-        <i class="menu-icon fa fa-file"></i> Grade</a
-    >
-    <ul class="sub-menu children dropdown-menu">
-        <li>
-        <i class="fa fa-plus"></i>
-        <a href="midtermGrades.html"> Midterms</a>
-        </li>
-        <li>
-        <i class="fa fa-plus"></i> <a href="finalGrades.html"> Finals</a>
-        </li>
-        <li>
-    </ul>
+    
+    <li>
+        <a href="grade.html">
+        <i class="menu-icon fa fa-file"></i>Grade
+        </a>
     </li>
 `;
 const secondPart = `
@@ -90,6 +74,9 @@ if (data === "Teacher") {
 
     ${secondPart}`;
 } else {
+    document.querySelector("#left-panel").innerHTML = `${
+        firstPart + secondPart
+    }`;
     throw new Error("Teacher type is not recognized.");
 }
 })
