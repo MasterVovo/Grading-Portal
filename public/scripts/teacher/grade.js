@@ -193,7 +193,7 @@ function createUneditableGradeTable(grdList) {
         <tr>
             <td>${item.studentID}</td>
             <td>${item.studentFName + ' ' + item.studentMName + ' ' + item.studentLName}</td>
-            <td>${item.gradeMidterm}</td>
+            <td>${(document.querySelector('#term').value == 'midterm') ? item.gradeMidterm : item.gradeFinal}</td>
             <td>${item.gradeFeedback}</td>
         </tr>
     `;
@@ -278,7 +278,8 @@ function submitGrades() {
                 })
                 .then((result) => {
                     if (result.isConfirmed) {
-                        window.location.href = "grade.html";
+                        loadStudents();
+                        document.querySelector('#cancel-button').setAttribute('hidden', 'hidden');
                     }
                 })
             })
