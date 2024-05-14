@@ -28,5 +28,10 @@ fetch('../../src/controller/getCrsList.php', {
         </tr>
         `;
     });
+
+    $("#bootstrap-data-table-export").DataTable({
+        lengthMenu: [10, 25, 50, 100, { label: "All", value: -1 }],
+        columnDefs: [{ targets: 4, orderable: false }],
+    });
 })
 .catch(error => console.error(error));
