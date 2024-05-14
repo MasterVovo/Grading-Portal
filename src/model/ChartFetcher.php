@@ -46,4 +46,78 @@ class ChartFetcher {
         else
             return json_encode(["error" => "Failed to fetch data"]);
     }
+
+    public function getAvgGrade($yearLvl) {
+        $conn = DBConn::getInstance()->getConnection();
+
+        $sql = 
+        "SELECT AVG(grade.gradeFinal) AS avgGrade
+        FROM grade
+        INNER JOIN student
+        ON grade.studentID = student.studentID
+        INNER JOIN section
+        ON student.studentSect = section.sectionID
+        AND section.sectionYearLvl = :yearLvl";
+
+        $stmt = $conn->prepare($sql);
+        $result = $stmt->execute([
+            ':yearLvl' => $yearLvl
+        ]);
+
+        if ($result)
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        else
+            return $conn->errorInfo();
+    
+    }
+
+    public function countStudents($yearLvl) {
+        $conn = DBConn::getInstance()->getConnection();
+
+        $sql = 
+        "SELECT COUNT(student.studentID) AS studentCount
+        FROM student
+        INNER JOIN section
+        ON student.studentSect = section.sectionID
+        AND section.sectionYearLvl = :yearLvl";
+
+        $stmt = $conn->prepare($sql);
+        $result = $stmt->execute([
+            ':yearLvl' => $yearLvl
+        ]);
+
+        if ($result)
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        else
+            return $conn->errorInfo();
+    
+    }
+
+    public function getGradeHistory($yearLvl, $semester) {
+        $conn = DBConn::getInstance()->getConnection();
+
+        $sql = 
+        "SELECT grade.gradeFinal 
+        FROM grade
+        INNER JOIN student
+        ON grade.studentID = student.studentID
+        INNER JOIN section
+        ON student.studentSect = section.sectionID
+        AND section.sectionYearLvl = :yearLvl
+        INNER JOIN course
+        ON course.courseCode = grade.courseCode
+        AND course.courseSem = :sem";
+
+        $stmt = $conn->prepare($sql);
+        $result = $stmt->execute([
+            ':yearLvl' => $yearLvl,
+            ':sem' => $semester
+        ]);
+
+        if ($result)
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        else
+            return $conn->errorInfo();
+    
+    }
 }

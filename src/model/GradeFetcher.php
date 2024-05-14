@@ -32,42 +32,27 @@ class GradeFetcher {
         }
     }
 
-    public function midtermGradeExist($stdID, $fctID, $crsCode) {
+    public function gradeExist($term, $stdID, $fctID, $crsCode) {
         $conn = DBConn::getInstance()->getConnection();
     
-        $sql = 
-        "SELECT gradeID 
-        FROM grade
-        WHERE studentID = :stdID
-        AND teacherID = :fctID
-        AND courseCode = :crsCode
-        AND gradeMidterm <> 0.00";
-
-        $stmt = $conn->prepare($sql);
-        $result = $stmt->execute([
-            ':stdID' => $stdID,
-            ':fctID' => $fctID,
-            ':crsCode' => $crsCode
-        ]);
-    
-        if ($result) {
-            return $stmt->fetchColumn();
-        } else {
-            return $conn->errorInfo();
+        if ($term == 'midterm') {
+            $sql = 
+            "SELECT gradeID 
+            FROM grade
+            WHERE studentID = :stdID
+            AND teacherID = :fctID
+            AND courseCode = :crsCode
+            AND gradeMidterm <> 0.00";
+        } else if ($term == 'final') {
+            $sql = 
+            "SELECT gradeID 
+            FROM grade
+            WHERE studentID = :stdID
+            AND teacherID = :fctID
+            AND courseCode = :crsCode
+            AND gradeFinal <> 0.00";
         }
-    }
-
-    public function finalGradeExist($stdID, $fctID, $crsCode) {
-        $conn = DBConn::getInstance()->getConnection();
-    
-        $sql = 
-        "SELECT gradeID 
-        FROM grade
-        WHERE studentID = :stdID
-        AND teacherID = :fctID
-        AND courseCode = :crsCode
-        AND gradeFinal <> 0.00";
-
+        
         $stmt = $conn->prepare($sql);
         $result = $stmt->execute([
             ':stdID' => $stdID,
@@ -102,14 +87,21 @@ class GradeFetcher {
         }
     }
 
-    public function approvedByReg($approvalID) {
+    public function approvedByReg($term, $approvalID) {
         $conn = DBConn::getInstance()->getConnection();
     
-        $sql = 
-        "SELECT isApprovedByRegistrar 
-        FROM approval
-        WHERE approvalID = :approvalID";
-
+        if ($term == 'midterm') {
+            $sql = 
+            "SELECT midtermApprovedByRegistrar 
+            FROM approval
+            WHERE approvalID = :approvalID";
+        } else if ($term == 'final') {
+            $sql = 
+            "SELECT finalApprovedByRegistrar 
+            FROM approval
+            WHERE approvalID = :approvalID";
+        }
+        
         $stmt = $conn->prepare($sql);
         $result = $stmt->execute([
             ':approvalID' => $approvalID
