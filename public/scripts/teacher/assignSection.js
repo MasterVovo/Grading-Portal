@@ -176,7 +176,7 @@ function assignTeacher(event) {
                 })
                 .then((result) => {
                     if (result.isConfirmed) {
-                        window.location.href = "assignSection.html";
+                        document.querySelector(`[data-id=${sectionID}`).click();
                     }
                 })
             } else
