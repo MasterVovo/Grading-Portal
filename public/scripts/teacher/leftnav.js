@@ -2,7 +2,7 @@ const firstPart = `
 <nav class="navbar navbar-expand-sm navbar-default">
 <div id="main-menu" class="main-menu collapse navbar-collapse">
 <ul class="nav navbar-nav">
-    <li class="menu-title">Teacher:&nbsp;</li>
+    <li class="menu-title" id="userName">Hello</li>
     <li class="">
     <a href="dashboard.html"
         ><i class="menu-icon fa fa-dashboard"></i>Dashboard
@@ -95,7 +95,7 @@ if (data === "Teacher") {
             </li>
             <li>
                 <i class="menu-icon fa fa-check-circle-o"></i>
-                <a href="approvedGrades.html">&nbsp;Approved</a>
+                <a href="#">&nbsp;Approved</a>
             </li>
         </ul>
     </li>
@@ -115,3 +115,15 @@ if (data === "Teacher") {
 }
 })
 .catch((error) => console.error(error));
+
+fetch("../../src/model/fetchUserName.php")
+.then(response => response.json())
+.then(data => {
+    if (data.facultyName) {
+        document.getElementById('userName').textContent = data.facultyName;
+    } else {
+        console.error(data.error);
+        document.getElementById('userName').textContent = "User not found";
+    }
+})
+.catch(error => console.error('Error:', error));
