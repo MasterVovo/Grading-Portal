@@ -91,12 +91,10 @@ async function getAssignedTeacher(section, course) {
     })
     .then(response => response.json())
     .then(data => {
-        console.log(data);
         if (data == 'none')
             return 'None';
         else {
             const name = data[0].facultyFName + ' ' + data[0].facultyMName + ' ' + data[0].facultyLName;
-            console.log(name);
             return name;
         }
     })
@@ -178,7 +176,7 @@ function assignTeacher(event) {
                 })
                 .then((result) => {
                     if (result.isConfirmed) {
-                        window.location.href = "assignSection.html";
+                        document.querySelector(`[data-id=${sectionID}`).click();
                     }
                 })
             } else

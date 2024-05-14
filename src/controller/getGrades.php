@@ -11,22 +11,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
     switch ($_POST['method']) {
         case 'gradeStatus':
+            // Get the first student ID
             $stdFetcher = new StudentFetcher();
             $students = json_decode($stdFetcher->getStdBySct($_POST['section']), true);
             $stdID = $students[0]['studentID'];
 
+            // Determine the grade status
             $grdFetcher = new GradeFetcher();
-            if ($_POST['term'] == 'midterm') {
-                $gradeID = $grdFetcher->midtermGradeExist($stdID, $_SESSION['userID'], $_POST['course']);
-            } else if ($_POST['term'] == 'final') {
-                $gradeID = $grdFetcher->finalGradeExist($stdID, $_SESSION['userID'], $_POST['course']);
-            }
+            $gradeID = $grdFetcher->gradeExist($_POST['term'], $stdID, $_SESSION['userID'], $_POST['course']);
             
             if ($gradeID == false) {
                 echo json_encode('Dont exist');
             } else {
                 $approvalID = $grdFetcher->getApprovalID($gradeID);
-                $submission = $grdFetcher->approvedByReg($approvalID);
+                $submission = $grdFetcher->approvedByReg($_POST['term'], $approvalID);
                 if ($submission == 1) {
                     echo json_encode('Approved');
                 } else {
