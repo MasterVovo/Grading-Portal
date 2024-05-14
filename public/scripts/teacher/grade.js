@@ -1,3 +1,7 @@
+let stdDataTable = $("#std-table").DataTable({
+    columnDefs: [{ targets: [2, 3], orderable: false }]
+});
+
 function loadContent() {
     fetch('../../src/controller/getSctList.php', {
         method: 'POST',
@@ -23,6 +27,11 @@ function loadContent() {
 
 
 function loadCourses(event) {
+    clearGradeTable();
+    createGradeDataTable();
+    document.querySelector('#term').value = '';
+    document.querySelector('#term').setAttribute('disabled', 'disabled');
+
     fetch('../../src/controller/getAssignment.php', {
         method: 'POST',
         body: (() => {
@@ -48,14 +57,14 @@ function loadCourses(event) {
 
 
 function enableTermSelect() {
+    clearGradeTable();
+    createGradeDataTable();
+    document.querySelector('#term').value = '';
     document.querySelector('#term').removeAttribute('disabled', 'disabled');
 }
 
 
 
-let stdDataTable = $("#std-table").DataTable({
-    columnDefs: [{ targets: [2, 3], orderable: false }]
-});
 function loadStudents() {
     // Check if the students are already graded and submitted
     fetch('../../src/controller/getGrades.php', {
@@ -86,6 +95,21 @@ function loadStudents() {
     
 }
 
+
+
+function clearGradeTable() {
+    stdDataTable.destroy();
+    document.querySelector('#std-tbody').innerHTML = '';
+}
+
+function createGradeDataTable() {
+    stdDataTable = $("#std-table").DataTable({
+        columnDefs: [{ targets: [2, 3], orderable: false }]
+    });
+}
+
+
+
 function loadSubmittedGrades() {
     fetch('../../src/controller/getGrades.php', {
         method: 'POST',
@@ -99,8 +123,7 @@ function loadSubmittedGrades() {
     })
     .then(response => response.json())
     .then(data => {
-        stdDataTable.destroy();
-        document.querySelector('#std-tbody').innerHTML = '';
+        clearGradeTable();
         data.forEach(item => {
             document.querySelector('#std-tbody').innerHTML += `
             <tr>
@@ -111,9 +134,7 @@ function loadSubmittedGrades() {
             </tr>
         `;
         });
-        stdDataTable = $("#std-table").DataTable({
-            columnDefs: [{ targets: [2, 3], orderable: false }]
-        });
+        createGradeDataTable();
        
     })
     .catch(error => console.error(error));
@@ -131,8 +152,7 @@ function loadUploadingGrades() {
     })
     .then(response => response.json())
     .then(data => {
-        stdDataTable.destroy();
-        document.querySelector('#std-tbody').innerHTML = '';
+        clearGradeTable();
         data.forEach(item => {
             document.querySelector('#std-tbody').innerHTML += `
             <tr>
@@ -165,9 +185,7 @@ function loadUploadingGrades() {
             </tr>
         `;
         });
-        stdDataTable = $("#std-table").DataTable({
-            columnDefs: [{ targets: [2, 3], orderable: false }]
-        });
+        createGradeDataTable();
        
     })
     .catch(error => console.error(error));
