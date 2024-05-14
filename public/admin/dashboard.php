@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html class="no-js" lang="">
 
@@ -320,6 +323,18 @@
       .then((data) => {
         document.querySelector("#header").innerHTML = data;
       });
+
+    fetch("../../src/model/fetchUserName.php")
+      .then(response => response.json())
+      .then(data => {
+          if (data.facultyName) {
+              document.getElementById('userName').textContent = data.facultyName;
+          } else {
+              console.error(data.error);
+              document.getElementById('userName').textContent = "User not found";
+          }
+      })
+      .catch(error => console.error('Error:', error));
   </script>
 
   <!-- Script for this page -->

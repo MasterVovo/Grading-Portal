@@ -50,6 +50,7 @@ if (isset($_POST['submit'])) {
         } elseif($userType == 4) {
           $_SESSION['userType'] = 'Registrar';
           header("Location: admin/dashboard.php");
+          exit();
         }
         header("Location: teacher/dashboard.html");
         exit();

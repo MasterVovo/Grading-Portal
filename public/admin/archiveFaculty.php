@@ -199,6 +199,18 @@ require_once "../includes/dbconn.php";
       }
     });
 
+    fetch("../../src/model/fetchUserName.php")
+      .then(response => response.json())
+      .then(data => {
+          if (data.facultyName) {
+              document.getElementById('userName').textContent = data.facultyName;
+          } else {
+              console.error(data.error);
+              document.getElementById('userName').textContent = "User not found";
+          }
+      })
+      .catch(error => console.error('Error:', error));
+
     $("#archive-faculty-table").DataTable({
       lengthMenu: [10, 25, 50, 100, {
         label: "All",

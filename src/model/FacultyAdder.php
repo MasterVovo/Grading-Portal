@@ -21,9 +21,10 @@ class FacultyAdder
                 $passArray[] = $char;
             }
             $password = implode($passArray);
+            $tempPass = "12345";
 
-            if ($this->uploadToDB($bulkData->id[$i], $bulkData->{'First name'}[$i], $bulkData->{'Middle name'}[$i], $bulkData->{'Last name'}[$i], $bulkData->Email[$i], $password, 1, 1) == "Faculty Added Successfully") {
-                sendEmail($bulkData->id[$i], $bulkData->{'First name'}[$i], $bulkData->{'Middle name'}[$i], $bulkData->{'Last name'}[$i], $bulkData->Email[$i], $password);
+            if ($this->uploadToDB($bulkData->id[$i], $bulkData->{'First name'}[$i], $bulkData->{'Middle name'}[$i], $bulkData->{'Last name'}[$i], $bulkData->Email[$i], $tempPass, 1, 1) == "Faculty Added Successfully") {
+                sendEmail($bulkData->id[$i], $bulkData->{'First name'}[$i], $bulkData->{'Middle name'}[$i], $bulkData->{'Last name'}[$i], $bulkData->Email[$i], $tempPass);
                 continue;
             } else {
                 return 'Something went wrong. Faculty ' . $bulkData->id[$i] . ' and beyond were not added.';

@@ -294,8 +294,9 @@ require_once "../includes/dbconn.php";
                         }
 
                         $password = implode($passArray);
+                        $tempPass = "12345";
 
-                        echo "$password";
+                        echo "$tempPass";
                         ?> disabled hidden />
                       <p>
                         <small><i>Note: Faculty's password is automatically
@@ -408,6 +409,18 @@ require_once "../includes/dbconn.php";
         $("#left-panel").removeClass("open-menu");
       }
     });
+
+    fetch("../../src/model/fetchUserName.php")
+      .then(response => response.json())
+      .then(data => {
+          if (data.facultyName) {
+              document.getElementById('userName').textContent = data.facultyName;
+          } else {
+              console.error(data.error);
+              document.getElementById('userName').textContent = "User not found";
+          }
+      })
+      .catch(error => console.error('Error:', error));
   </script>
 
   <script>
