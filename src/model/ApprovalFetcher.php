@@ -58,12 +58,14 @@ class ApprovalFetcher {
             $sql = 
             "SELECT * 
             FROM approval 
-            WHERE midtermApprovedByDean = 0";
+            WHERE midtermApprovedByChair = 1
+            AND midtermApprovedByDean = 0";
         } else if ($term == 'final') {
             $sql = 
             "SELECT * 
             FROM approval 
-            WHERE finalApprovedByDean = 0";
+            WHERE finalApprovedByChair = 1
+            AND finalApprovedByDean = 0";
         }
 
         $stmt = $conn->prepare($sql);
@@ -82,12 +84,16 @@ class ApprovalFetcher {
             $sql = 
             "SELECT * 
             FROM approval 
-            WHERE midtermApprovedByRegistrar = 0";
+            WHERE midtermApprovedByChair = 1
+            AND midtermApprovedByDean = 1
+            AND midtermApprovedByRegistrar = 0";
         } else if ($term == 'final') {
             $sql = 
             "SELECT * 
             FROM approval 
-            WHERE finalApprovedByRegistrar = 0";
+            WHERE finalApprovedByChair = 1
+            AND finalApprovedByDean = 1
+            AND finalApprovedByRegistrar = 0";
         }
 
         $stmt = $conn->prepare($sql);
