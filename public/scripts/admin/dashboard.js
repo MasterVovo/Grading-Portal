@@ -69,6 +69,40 @@ function loadCardData() {
         console.error('Total student or faculty value is not available');
     }
     }
+
+    // Fetch total failures and passers
+    fetch('../../src/controller/getChartData.php', {
+      method: 'POST',
+      body: (() => {
+      const formData = new FormData();
+      formData.append('method', 'getTotalFailuresAndPassers');
+      return formData;
+      })()
+    })
+    .then(response => response.json())
+    .then(data => {
+      // Display number of failures
+      document.querySelector('#total-fails').innerHTML = data.totalFails;
+
+      // Display passing percentage
+      document.querySelector('#pass-rate').innerHTML = ((data.totalPasses / (data.totalPasses + data.totalFails)) * 100).toFixed(2) + '%';
+    })
+    .catch(error => console.error(error));
+
+    // // Display passing rate
+    // fetch('../../src/controller/getChartData.php', {
+    //   method: 'POST',
+    //   body: (() => {
+    //   const formData = new FormData();
+    //   formData.append('method', 'getTotalFailures');
+    //   return formData;
+    //   })()
+    // })
+    // .then(response => response.json())
+    // .then(data => {
+    //   document.querySelector('#total-fails').innerHTML = data.totalFails;
+    // })
+    // .catch(error => console.error(error));
 }
 
 function loadChartData() {
@@ -95,19 +129,19 @@ function createAvgGradeChart($gradeHistory) {
     const data = [
         {
             year: '1st',
-            count: $gradeHistory['firstYear'].avg[0].avgGrade
+            count: 6 - (($gradeHistory['firstYear'].avg[0].avgGrade == null) ? 5 : $gradeHistory['firstYear'].avg[0].avgGrade)
         },
         {
             year: '2nd',
-            count: $gradeHistory['secondYear'].avg[0].avgGrade
+            count: 6 - (($gradeHistory['secondYear'].avg[0].avgGrade == null) ? 5 : $gradeHistory['secondYear'].avg[0].avgGrade)
         },
         {
             year: '3rd',
-            count: $gradeHistory['thirdYear'].avg[0].avgGrade
+            count: 6 - (($gradeHistory['thirdYear'].avg[0].avgGrade == null) ? 5 : $gradeHistory['thirdYear'].avg[0].avgGrade)
         },
         {
             year: '4th',
-            count: $gradeHistory['fourthYear'].avg[0].avgGrade
+            count: 6 - (($gradeHistory['fourthYear'].avg[0].avgGrade == null) ? 5 : $gradeHistory['fourthYear'].avg[0].avgGrade)
         },
     ];
     
@@ -118,7 +152,12 @@ function createAvgGradeChart($gradeHistory) {
           scales: {
             y: {
               min: 1,
-              max: 5
+              max: 5,
+              ticks: {
+                callback: function(value, index, values) {
+                    return (6 - value).toFixed(1);
+                }
+              }
             }
           },
           plugins: {
@@ -126,7 +165,7 @@ function createAvgGradeChart($gradeHistory) {
               display: false
             },
             tooltip: {
-              enabled: false
+              enabled: false,
             },
             title: {
               display: true,
@@ -204,8 +243,9 @@ function createStdCountChart($gradeHistory) {
         }
       });
 }
-
+let rootGrade;
 function createPerformanceChart($gradeHistory) {
+  rootGrade = $gradeHistory;
     const data = [
         {
             year: '1st',
@@ -229,6 +269,18 @@ function createPerformanceChart($gradeHistory) {
     new Chart(document.querySelector('#performance-chart'), {
         type: 'line',
         options: {
+          scales: {
+            y: {
+              min: 1,
+              max: 5,
+              ticks: {
+                callback: function(value, index, values) {
+                    return (6 - value).toFixed(1);
+                },
+                stepSize: .5
+              }
+            }
+          },
           plugins: {
             legend: {
               display: true
@@ -248,7 +300,7 @@ function createPerformanceChart($gradeHistory) {
           labels: ['1Y1S', '1Y2S', '2Y1S', '2Y2S', '3Y1S', '3Y2S', '4Y1S', '4Y2S', ],
           datasets: [{
               label: '1st',
-              data: [92, 95],
+              data: [getAvg($gradeHistory['firstYear']['1Y1S']), getAvg($gradeHistory['firstYear']['1Y2S'])],
               fill: true,
               backgroundColor: 'hsla(207, 95%, 63%, 0.2)',
               borderColor: 'hsla(207, 95%, 63%)',
@@ -256,7 +308,7 @@ function createPerformanceChart($gradeHistory) {
             },
             {
               label: '2nd',
-              data: [88, 87, 85, 90],
+              data: [getAvg($gradeHistory['secondYear']['1Y1S']), getAvg($gradeHistory['secondYear']['1Y2S']), getAvg($gradeHistory['secondYear']['2Y1S']), getAvg($gradeHistory['secondYear']['2Y2S'])],
               fill: true,
               backgroundColor: 'hsla(146, 87%, 44%, 0.2)',
               borderColor: 'hsla(146, 87%, 44%)',
@@ -264,7 +316,7 @@ function createPerformanceChart($gradeHistory) {
             },
             {
               label: '3rd',
-              data: [95, 96, 88, 85, 92, 92],
+              data: [getAvg($gradeHistory['thirdYear']['1Y1S']), getAvg($gradeHistory['thirdYear']['1Y2S']), getAvg($gradeHistory['thirdYear']['2Y1S']), getAvg($gradeHistory['thirdYear']['2Y2S']), getAvg($gradeHistory['thirdYear']['3Y1S']), getAvg($gradeHistory['thirdYear']['3Y2S'])],
               fill: true,
               backgroundColor: 'hsla(37, 94%, 64%, 0.2)',
               borderColor: 'hsla(37, 94%, 64%)',
@@ -272,7 +324,7 @@ function createPerformanceChart($gradeHistory) {
             },
             {
               label: '4th',
-              data: [88, 85, 90, 89, 94, 93, 96, 98],
+              data: [getAvg($gradeHistory['fourthYear']['1Y1S']), getAvg($gradeHistory['fourthYear']['1Y2S']), getAvg($gradeHistory['fourthYear']['2Y1S']), getAvg($gradeHistory['fourthYear']['2Y2S']), getAvg($gradeHistory['fourthYear']['3Y1S']), getAvg($gradeHistory['fourthYear']['3Y2S']), getAvg($gradeHistory['fourthYear']['4Y1S']), getAvg($gradeHistory['fourthYear']['4Y2S'])],
               fill: true,
               backgroundColor: 'hsla(6, 92%, 62%, 0.2)',
               borderColor: 'hsla(6, 92%, 62%)',
@@ -281,4 +333,12 @@ function createPerformanceChart($gradeHistory) {
           ]
         }
       });
+}
+
+function getAvg(grades) {
+  let sum = 0;
+  grades.forEach(grade => {
+    sum += parseFloat(grade.gradeFinal);
+  });
+  return 6 - (sum / grades.length);
 }
