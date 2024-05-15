@@ -1,8 +1,24 @@
+let ecrListDataTable = $("#ecr-list-table").DataTable({
+    columnDefs: [{ targets: 5, orderable: false }]
+});;
+
 let rootECRs;
 let currentECRindex;
 
 function loadContent() {
-    fetchApprovalECR();
+    clearECRListTable();
+    createECRListTable();
+}
+
+function clearECRListTable() {
+    ecrListDataTable.destroy();
+    document.querySelector('#ecr-list-body').innerHTML = '';
+}
+
+function createECRListTable() {
+    ecrListDataTable = $("#ecr-list-table").DataTable({
+        columnDefs: [{ targets: 5, orderable: false }]
+    });
 }
 
 function fetchApprovalECR() {
@@ -11,6 +27,7 @@ function fetchApprovalECR() {
         body: (() => {
             const formData = new FormData();
             formData.append('method', 'getApprovalGrades');
+            formData.append('term', document.querySelector('#term').value);
             return formData;
         })()
     })
@@ -21,7 +38,9 @@ function fetchApprovalECR() {
         ecrs.forEach((ecr, index) => {
             if (ecr['ecr'][0] == undefined)
                 return;
-            document.querySelector('#grd-body').innerHTML += `
+
+            clearECRListTable();
+            document.querySelector('#ecr-list-body').innerHTML += `
                 <tr>
                     <td>${ecr['ecr'][0].facultyFName} ${ecr['ecr'][0].facultyMName} ${ecr['ecr'][0].facultyLName}</td>
                     <td>${ecr['ecr'][0].studentSect}</td>
@@ -33,6 +52,7 @@ function fetchApprovalECR() {
                     </td>
                 </tr>
             `;
+            createECRListTable();
         });
         $('#grd-table').DataTable({
             columnDefs: [{ targets: 5, orderable: false }],
@@ -44,7 +64,7 @@ function fetchApprovalECR() {
 function countPassed(ecr) {
     let count = 0;
     ecr.forEach(record => {
-        if (record.gradeFinal <= 3.00 && record.gradeFinal != 0.00)
+        if (record.grade <= 3.00 && record.grade != 0.00)
             count++;
     })
     return count;
@@ -53,10 +73,17 @@ function countPassed(ecr) {
 function countFailed(ecr) {
     let count = 0;
     ecr.forEach(record => {
-        if (record.gradeFinal > 3.00 || record.gradeFinal == 0.00)
+        if (record.grade > 3.00 || record.grade == 0.00)
             count++;
     })
     return count;
+}
+
+function getRemark(grade) {
+    if (grade <= 3.00)
+        return 'Passed';
+    else (grade > 3.00)
+        return 'Failed'
 }
 
 function viewECR(event) {
@@ -66,8 +93,8 @@ function viewECR(event) {
             <tr>
                 <td>${record.studentID}</td>
                 <td>${record.studentFName} ${record.studentMName} ${record.studentLName}</td>
-                <td>${record.gradeMidterm}</td>
-                <td>${record.gradeFinal}</td>
+                <td>${record.grade}</td>
+                <td>${getRemark(record.grade)}</td>
             </tr>
         `;
     });
@@ -89,6 +116,7 @@ function approveECR() {
                 body: (() => {
                     const formData = new FormData;
                     formData.append('approvalID', rootECRs[currentECRindex].approvalID);
+                    formData.append('term', document.querySelector('#term').value);
                     return formData;
                 })()
             })
@@ -102,18 +130,18 @@ function approveECR() {
                     })
                     .then((result) => {
                         if (result.isConfirmed) {
-                          window.location.href = "approveGrades.html";
+                          loadContent();
                         }
                     });
                 } else {
                     swal.fire({
                         title: 'Oops! Something went wrong.',
-                        icon: "danger",
+                        icon: 'error',
                         showConfirmButton: true,
                     })
                     .then((result) => {
                         if (result.isConfirmed) {
-                          window.location.href = "approveGrades.html";
+                          loadContent();
                         }
                     })
                 }

@@ -8,13 +8,21 @@ class ApprovalUploader {
 
     }
 
-    public function approveChair($id) {
+    public function approveChair($id, $term) {
         $conn = DBConn::getInstance()->getConnection();
-        
-        $sql = 
-        "UPDATE approval 
-        SET isApprovedByChair = 1 
-        WHERE approvalID = :id";
+
+        if ($term == 'midterm') {
+            $sql = 
+            "UPDATE approval 
+            SET midtermApprovedByChair = 1 
+            WHERE approvalID = :id";
+    
+        } else if ($term == 'final') {
+            $sql = 
+            "UPDATE approval 
+            SET finalApprovedByChair = 1 
+            WHERE approvalID = :id";
+        }
 
         $stmt = $conn->prepare($sql);
         $result = $stmt->execute([
@@ -31,13 +39,21 @@ class ApprovalUploader {
             return $conn->errorInfo();
     }
 
-    public function approveDean($id) {
+    public function approveDean($id, $term) {
         $conn = DBConn::getInstance()->getConnection();
         
-        $sql = 
-        "UPDATE approval 
-        SET isApprovedByDean = 1 
-        WHERE approvalID = :id";
+        if ($term == 'midterm') {
+            $sql = 
+            "UPDATE approval 
+            SET midtermApprovedByDean = 1 
+            WHERE approvalID = :id";
+    
+        } else if ($term == 'final') {
+            $sql = 
+            "UPDATE approval 
+            SET finalApprovedByDean = 1 
+            WHERE approvalID = :id";
+        }
 
         $stmt = $conn->prepare($sql);
         $result = $stmt->execute([
@@ -54,13 +70,21 @@ class ApprovalUploader {
             return $conn->errorInfo();
     }
 
-    public function approveRegistrar($id) {
+    public function approveRegistrar($id, $term) {
         $conn = DBConn::getInstance()->getConnection();
         
-        $sql = 
-        "UPDATE approval 
-        SET isApprovedByRegistrar = 1 
-        WHERE approvalID = :id";
+        if ($term == 'midterm') {
+            $sql = 
+            "UPDATE approval 
+            SET midtermApprovedByRegistrar = 1 
+            WHERE approvalID = :id";
+    
+        } else if ($term == 'final') {
+            $sql = 
+            "UPDATE approval 
+            SET finalApprovedByRegistrar = 1 
+            WHERE approvalID = :id";
+        }
 
         $stmt = $conn->prepare($sql);
         $result = $stmt->execute([

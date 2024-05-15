@@ -27,13 +27,44 @@ class ApprovalFetcher {
             return $conn->errorInfo();
     }
 
-    public function getToBeApprovedByChair() {
+    public function getToBeApprovedByChair($term) {
         $conn = DBConn::getInstance()->getConnection();
         
-        $sql = 
-        "SELECT * 
-        FROM approval 
-        WHERE isApprovedByChair = 0";
+        if ($term == 'midterm') {
+            $sql = 
+            "SELECT * 
+            FROM approval 
+            WHERE midtermApprovedByChair = 0";
+        } else if ($term == 'final') {
+            $sql = 
+            "SELECT * 
+            FROM approval 
+            WHERE finalApprovedByChair = 0";
+        }
+        
+        $stmt = $conn->prepare($sql);
+        $result = $stmt->execute();
+
+        if ($result)
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        else
+            return $conn->errorInfo();
+    }
+
+    public function getToBeApprovedByDean($term) {
+        $conn = DBConn::getInstance()->getConnection();
+
+        if ($term == 'midterm') {
+            $sql = 
+            "SELECT * 
+            FROM approval 
+            WHERE midtermApprovedByDean = 0";
+        } else if ($term == 'final') {
+            $sql = 
+            "SELECT * 
+            FROM approval 
+            WHERE finalApprovedByDean = 0";
+        }
 
         $stmt = $conn->prepare($sql);
         $result = $stmt->execute();
@@ -44,30 +75,20 @@ class ApprovalFetcher {
             return $conn->errorInfo();
     }
 
-    public function getToBeApprovedByDean() {
+    public function getToBeApprovedByRegistrar($term) {
         $conn = DBConn::getInstance()->getConnection();
-        
-        $sql = 
-        "SELECT * 
-        FROM approval 
-        WHERE isApprovedByDean = 0";
 
-        $stmt = $conn->prepare($sql);
-        $result = $stmt->execute();
-
-        if ($result)
-            return $stmt->fetchAll(PDO::FETCH_ASSOC);
-        else
-            return $conn->errorInfo();
-    }
-
-    public function getToBeApprovedByRegistrar() {
-        $conn = DBConn::getInstance()->getConnection();
-        
-        $sql = 
-        "SELECT * 
-        FROM approval 
-        WHERE isApprovedByRegistrar = 0";
+        if ($term == 'midterm') {
+            $sql = 
+            "SELECT * 
+            FROM approval 
+            WHERE midtermApprovedByRegistrar = 0";
+        } else if ($term == 'final') {
+            $sql = 
+            "SELECT * 
+            FROM approval 
+            WHERE finalApprovedByRegistrar = 0";
+        }
 
         $stmt = $conn->prepare($sql);
         $result = $stmt->execute();

@@ -41,13 +41,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $apprFetcher = new ApprovalFetcher();
             switch($_SESSION['userType']) {
                 case 'Program Chair':
-                    $approvals = $apprFetcher->getToBeApprovedByChair();
+                    $approvals = $apprFetcher->getToBeApprovedByChair($_POST['term']);
                     break;
                 case 'Dean':
-                    $approvals = $apprFetcher->getToBeApprovedByDean();
+                    $approvals = $apprFetcher->getToBeApprovedByDean($_POST['term']);
                     break;
                 case 'Registrar':
-                    $approvals = $apprFetcher->getToBeApprovedByRegistrar();
+                    $approvals = $apprFetcher->getToBeApprovedByRegistrar($_POST['term']);
                     break;
             }
             
@@ -55,7 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             
             $ecrFetcher = new ECRFetcher();
             for ($i = 0; $i < count($approvals); $i++) {
-                $grades = $ecrFetcher->get($approvals[$i]['approvalID']);
+                $grades = $ecrFetcher->get($approvals[$i]['approvalID'], $_POST['term']);
                 $ecrList[$i]['approvalID'] = $approvals[$i]['approvalID'];
                 $ecrList[$i]['ecr'] = $grades;
             }
