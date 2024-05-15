@@ -76,4 +76,42 @@ class ApprovalUploader {
         else
             return $conn->errorInfo();
     }
+
+    public function availMidtermForApproval($approvalID) {
+        $conn = DBConn::getInstance()->getConnection();
+
+        $sql = 
+        "UPDATE approval 
+        SET midtermApprovedByChair = 0, midtermApprovedByDean = 0, midtermApprovedByRegistrar = 0
+        WHERE approvalID = :approvalID";
+
+        $stmt = $conn->prepare($sql);
+        $result = $stmt->execute([
+            ':approvalID' => $approvalID
+        ]);
+
+        if ($result) {
+            return 'Success';
+        } else
+            $conn->errorInfo();
+    }
+    
+    public function availFinalForApproval($approvalID) {
+        $conn = DBConn::getInstance()->getConnection();
+
+        $sql = 
+        "UPDATE approval 
+        SET finalApprovedByChair = 0, finalApprovedByDean = 0, finalApprovedByRegistrar = 0
+        WHERE approvalID = :approvalID";
+
+        $stmt = $conn->prepare($sql);
+        $result = $stmt->execute([
+            ':approvalID' => $approvalID
+        ]);
+
+        if ($result) {
+            return 'Success';
+        } else
+            $conn->errorInfo();
+    }
 }

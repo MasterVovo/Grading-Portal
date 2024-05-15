@@ -120,11 +120,11 @@ class GradeFetcher {
         $sql = 
         "SELECT student.studentID, student.studentFName, student.studentMName, student.studentLName, grade.gradeMidterm, grade.gradeFinal, grade.gradeFeedback
         FROM student
-        INNER JOIN grade
+        LEFT JOIN grade
         ON student.studentID = grade.studentID
         WHERE student.studentSect = :section
-        AND grade.teacherID = :teacher
-        AND grade.courseCode = :course";
+        AND (grade.teacherID = :teacher  OR grade.teacherID IS NULL)
+        AND (grade.courseCode = :course OR grade.courseCode IS NULL)";
 
         $stmt = $conn->prepare($sql);
         $result = $stmt->execute([

@@ -3,12 +3,13 @@
 require_once 'DBConn.php';
 
 class GradeUploader {
-    private static $approvalID;
+    public static $approvalID;
+    
     public function __construct() {
         
     }
 
-    public function uploadToMidterm($gradeID, $grade, $feedback) {
+    public function uploadToMidterm($gradeID, $grade, $feedback, $approvalID) {
         $conn = DBConn::getInstance()->getConnection();
     
         $sql = 
@@ -24,13 +25,14 @@ class GradeUploader {
         ]);
     
         if ($result) {
-            return 'Query executed successfully.';
-        } else {
+            require_once 'ApprovalUploader.php';
+            $apprUploader = new ApprovalUploader();
+            return $apprUploader->availMidtermForApproval($approvalID);
+        } else
             return $conn->errorInfo();
-        }
     }
 
-    public function uploadToFinal($gradeID, $grade, $feedback) {
+    public function uploadToFinal($gradeID, $grade, $feedback, $approvalID) {
         $conn = DBConn::getInstance()->getConnection();
     
         $sql = 
@@ -46,10 +48,11 @@ class GradeUploader {
         ]);
     
         if ($result) {
-            return 'Query executed successfully.';
-        } else {
+            require_once 'ApprovalUploader.php';
+            $apprUploader = new ApprovalUploader();
+            return $apprUploader->availFinalForApproval($approvalID);
+        } else
             return $conn->errorInfo();
-        }
     }
 
     public function createRecord($stdID, $fctID, $crsCode) {
