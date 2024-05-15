@@ -47,6 +47,42 @@ class ChartFetcher {
             return json_encode(["error" => "Failed to fetch data"]);
     }
 
+    public function getTotalFailures() {
+        $conn = DBConn::getInstance()->getConnection();
+        
+        $sql = 
+        "SELECT COUNT(gradeID) AS totalFails 
+        FROM grade
+        WHERE gradeFinal > 3.00";
+
+
+        $stmt = $conn->prepare($sql);
+        $result = $stmt->execute();
+
+        if ($result)
+            return $stmt->fetch();
+        else
+            return ["error" => "Failed to fetch data"];
+    }
+
+    public function getTotalPassers() {
+        $conn = DBConn::getInstance()->getConnection();
+        
+        $sql = 
+        "SELECT COUNT(gradeID) AS totalPasses 
+        FROM grade
+        WHERE gradeFinal <= 3.00";
+
+
+        $stmt = $conn->prepare($sql);
+        $result = $stmt->execute();
+
+        if ($result)
+            return $stmt->fetch();
+        else
+            return ["error" => "Failed to fetch data"];
+    }
+
     public function getAvgGrade($yearLvl) {
         $conn = DBConn::getInstance()->getConnection();
 
@@ -93,7 +129,7 @@ class ChartFetcher {
     
     }
 
-    public function getGradeHistory($yearLvl, $semester) {
+    public function getGradeHistory($stdYear, $yearLvl, $semester) {
         $conn = DBConn::getInstance()->getConnection();
 
         $sql = 
@@ -103,13 +139,27 @@ class ChartFetcher {
         ON grade.studentID = student.studentID
         INNER JOIN section
         ON student.studentSect = section.sectionID
-        AND section.sectionYearLvl = :yearLvl
+        AND section.sectionYearLvl = :stdYear
         INNER JOIN course
         ON course.courseCode = grade.courseCode
+        AND course.courseYear = :yearLvl
         AND course.courseSem = :sem";
+
+        // $sql = 
+        // "SELECT grade.gradeFinal 
+        // FROM grade
+        // INNER JOIN student
+        // ON grade.studentID = student.studentID
+        // INNER JOIN section
+        // ON student.studentSect = section.sectionID
+        // AND section.sectionYearLvl = :yearLvl
+        // INNER JOIN course
+        // ON course.courseCode = grade.courseCode
+        // AND course.courseSem = :sem";
 
         $stmt = $conn->prepare($sql);
         $result = $stmt->execute([
+            ':stdYear' => $stdYear,
             ':yearLvl' => $yearLvl,
             ':sem' => $semester
         ]);

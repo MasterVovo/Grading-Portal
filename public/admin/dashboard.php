@@ -214,7 +214,7 @@ session_start();
                 <div class="card-left pt-1 float-left">
                   <h3 class="mb-0 fw-r">
                     <span class="currency float-left mr-1"></span>
-                    <span class="count" id="pass-rate">98%</span>
+                    <span class="count" id="pass-rate">--</span>
                   </h3>
                   <p class="text-light mt-1 m-0">Passing Rate</p>
                 </div>
