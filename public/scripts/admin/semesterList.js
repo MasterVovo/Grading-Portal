@@ -31,7 +31,6 @@ function loadContent() {
                     <td>${item.endDate}</td>
                     <td>
                         <a href="#" onclick="populateEditFields()" data-id="${item.semesterID}"><i class="fa fa-edit fa-1x" data-toggle="modal" data-target="#editSemesterModal"></i></a>
-                        <a onclick="deleteSemester()" href="#"><i class="fa fa-trash fa-1x"></i></a>
                     </td>
                 </tr>
             `
