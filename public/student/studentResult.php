@@ -191,7 +191,7 @@
                                 
                                 <div class="row">
                                     <div class="col-6">
-                                        <a href="studentPrintResult.php?semesterId=<?php echo $semesterId; ?>&matricNo=<?php echo $matricNo; ?>&levelId=<?php echo $levelId; ?>&sessionId=<?php echo $sessionId; ?>" class="btn btn-danger">Print Result</a>
+                                        <a href="#" class="btn btn-danger">Print Result</a>
                                     </div>
                                     <div class="col-6">
                                         <h4 class="font-weight-bold pr-5 pt-2" align="right">GWA: --</h4>
@@ -256,6 +256,19 @@
             .then((data) => {
                 document.querySelector("#header").innerHTML = data;
             });
+        setTimeout(function() {
+            fetch("../../src/model/fetchUserName.php")
+            .then(response => response.json())
+            .then(data => {
+                if (data.facultyName) {
+                    document.getElementById('userName').textContent = data.facultyName;
+                } else {
+                    console.error(data.error);
+                    document.getElementById('userName').textContent = "User not found";
+                }
+            })
+            .catch(error => console.error('Error:', error));
+            }, 1000);
     </script>
 
     <script type="text/javascript">

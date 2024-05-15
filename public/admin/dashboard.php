@@ -324,17 +324,19 @@ session_start();
         document.querySelector("#header").innerHTML = data;
       });
 
-    fetch("../../src/model/fetchUserName.php")
-      .then(response => response.json())
-      .then(data => {
-          if (data.facultyName) {
-              document.getElementById('userName').textContent = data.facultyName;
-          } else {
-              console.error(data.error);
-              document.getElementById('userName').textContent = "User not found";
-          }
-      })
-      .catch(error => console.error('Error:', error));
+      setTimeout(function() {
+        fetch("../../src/model/fetchUserName.php")
+          .then(response => response.json())
+          .then(data => {
+              if (data.facultyName) {
+                  document.getElementById('userName').textContent = data.facultyName;
+              } else {
+                  console.error(data.error);
+                  document.getElementById('userName').textContent = "User not found";
+              }
+          })
+          .catch(error => console.error('Error:', error));
+        }, 1000);
   </script>
 
   <!-- Script for this page -->
