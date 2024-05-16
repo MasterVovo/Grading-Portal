@@ -102,10 +102,12 @@ function viewECR(event) {
 }
 
 function printECR() {
-    const page = document.querySelector('#ecr-table').innerHTML; // Specify the content you want to convert to PDF
+    // const page = document.querySelector('#ecr-table').innerHTML; // Specify the content you want to convert to PDF
+    const page = '<h1 style="background:black">Hello world</h1>';
+    console.log(page);
     var opt = {
         margin:       1,
-        filename:     'Demopdf.pdf',
+        filename:     'ECR.pdf',
         image:        { type: 'jpeg', quality: 0.98 },
         html2canvas:  { scale: 2 },
         jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
