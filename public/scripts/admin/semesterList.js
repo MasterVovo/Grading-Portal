@@ -1,4 +1,12 @@
+let semDataTable = $("#sem-table").DataTable({
+    columnDefs: [{ targets: 4, orderable: false }],
+});
+
 function loadContent() {
+    document.querySelector('#sem-name').value = '';
+    document.querySelector('#start-date').value = '';
+    document.querySelector('#end-date').value = '';
+
     // Loading the left nav and header
     fetch("includes/leftnav.html")
     .then((response) => response.text())
@@ -22,6 +30,9 @@ function loadContent() {
     })
     .then(response => response.json())
     .then(data => {
+        semDataTable.destroy();
+        document.querySelector('#sem-tbody').innerHTML = '';
+        document.querySelector('#upd-button').setAttribute('disabled', 'disabled');
         data.forEach(item => {
             document.querySelector('#sem-tbody').innerHTML += `
                 <tr>
@@ -30,38 +41,83 @@ function loadContent() {
                     <td>${item.startDate}</td>
                     <td>${item.endDate}</td>
                     <td>
-                        <a href="#" onclick="populateEditFields()" data-id="${item.semesterID}"><i class="fa fa-edit fa-1x" data-toggle="modal" data-target="#editSemesterModal"></i></a>
+                        <a href="#" onclick="populateEditFields(event)" data-id="${item.semesterID}" data-name="${item.semesterName}" data-start="${item.startDate}" data-end="${item.endDate}"><i class="fa fa-edit fa-1x" data-toggle="modal" data-target="#editSemesterModal"></i></a>
                     </td>
                 </tr>
             `
         });
-        $("#sem-table").DataTable({
+        semDataTable = $("#sem-table").DataTable({
             columnDefs: [{ targets: 4, orderable: false }],
         });
     })
     .catch(error => console.error(error));
 }
 
+function populateEditFields(event) {
+    document.querySelector('#sem-name').value = event.currentTarget.getAttribute('data-name');
+    document.querySelector('#start-date').value = event.currentTarget.getAttribute('data-start');
+    document.querySelector('#end-date').value = event.currentTarget.getAttribute('data-end');
 
+    document.querySelector('#upd-button').removeAttribute('disabled', 'disabled');
+}
 
-// Function for uploading the semester to the database
-function uploadSemester(event) {
+function updateSem(event) {
     event.preventDefault();
 
-    fetch('../../src/controller/addSemester.php', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
-        },
-        body: new URLSearchParams({
-            'semName': document.querySelector('#sem-name').value,
-            'startDate': document.querySelector('#start-date').value,
-            'endDate': document.querySelector('#end-date').value
-        }).toString()
+    swal.fire({
+        title: 'Are you sure?',
+        text: 'This will update the start and end data of the semester.',
+        icon: 'question',
+        showConfirmButton: true,
+        showCancelButton: true
     })
-    .then(response => response.text())
-    .then(data => {
-        console.log(data)
+    .then(result => {
+        if (result.isConfirmed) {
+            doUpdateSem()
+            .then(updateRes => {
+                if (updateRes == 'Success') {
+                    swal.fire({
+                        title: 'The semester was updated',
+                        icon: 'success',
+                        showConfirmButton: true
+                    })
+                    .then(response => {
+                        if (response.isConfirmed) {
+                            loadContent();
+                        }
+                    });
+                } else {
+                    swal.fire({
+                        title: 'Oops! Something went wrong.',
+                        icon: 'error',
+                        showConfirmButton: true
+                    })
+                    .then(response => {
+                        if (response.isConfirmed) {
+                            loadContent();
+                        }
+                    });
+                }
+            })
+        }
+    })
+    
+}
+
+async function doUpdateSem() {
+    return await fetch('../../src/controller/updateSemester.php', {
+        method: 'POST',
+        body: (() => {
+            const formData = new FormData();
+            formData.append('semName', document.querySelector('#sem-name').value);
+            formData.append('startDate', document.querySelector('#start-date').value);
+            formData.append('endDate', document.querySelector('#end-date').value);
+            return formData;
+        })()
+    })
+    .then(response => response.json())
+    .then(result => {
+        return result;
     })
     .catch(error => console.error(error));
 }

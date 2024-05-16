@@ -161,7 +161,7 @@
                       <div class="<?php echo $alertStyle;?>" role="alert">
                         <?php echo $statusMsg;?>
                       </div>
-                      <form method="POST" action="#" id="add-sem" onsubmit="uploadSemester(event)">
+                      <form method="POST" action="#" id="edit-sem" onsubmit="updateSem(event)">
                         <div class="row">
                           <div class="col-6">
                             <label for="sem-name" class="control-label mb-1"
@@ -204,11 +204,13 @@
                         </div>
 
                         <button
+                          id="upd-button"
                           type="submit"
                           name="submit"
                           class="btn btn-success"
+                          disabled;
                         >
-                          Add Semester
+                          Update
                         </button>
                       </form>
                     </div>
@@ -289,6 +291,7 @@
     <script src="../assets/js/lib/data-table/buttons.print.min.js"></script>
     <script src="../assets/js/lib/data-table/buttons.colVis.min.js"></script>
     <script src="../assets/js/init/datatables-init.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <!-- Script for this page -->
     <script src="../scripts/admin/semesterList.js"></script>
