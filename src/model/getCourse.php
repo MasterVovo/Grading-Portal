@@ -15,6 +15,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     ON faculty.facultyID = grade.teacherID
     RIGHT JOIN course
     ON course.courseCode = grade.courseCode
+    LEFT JOIN approval
+    ON approval.approvalID = grade.gradeApproved
+    AND approval.midtermApprovedByRegistrar = 1
     WHERE course.courseSem = ?
     AND course.courseYear = ?
     AND (grade.studentID IS NULL
