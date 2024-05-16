@@ -22,12 +22,12 @@ function createECRListTable() {
     });
 }
 
-function fetchApprovalECR() {
+function fetchApprovedECR() {
     fetch('../../src/controller/getGrades.php', {
         method: 'POST',
         body: (() => {
             const formData = new FormData();
-            formData.append('method', 'getApprovalGrades');
+            formData.append('method', 'getApprovedGrades');
             formData.append('term', document.querySelector('#term').value);
             return formData;
         })()
@@ -40,7 +40,7 @@ function fetchApprovalECR() {
         ecrs.forEach((ecr, index) => {
             if (ecr['ecr'][0] == undefined)
                 return;
-
+            
             document.querySelector('#ecr-list-body').innerHTML += `
                 <tr>
                     <td>${ecr['ecr'][0].facultyFName} ${ecr['ecr'][0].facultyMName} ${ecr['ecr'][0].facultyLName}</td>
@@ -87,6 +87,7 @@ function getRemark(grade) {
 function viewECR(event) {
     currentECRindex = event.currentTarget.getAttribute('data-id');
     ecrDataTable.destroy();
+    document.querySelector('#ecr-body').innerHTML = '';
     rootECRs[currentECRindex]['ecr'].forEach(record => {
         document.querySelector('#ecr-body').innerHTML += `
             <tr>
@@ -100,55 +101,15 @@ function viewECR(event) {
     ecrDataTable = $('#ecr-table').DataTable();
 }
 
-function approveECR() {
-    swal.fire({
-        title: "Are you sure?",
-        text: "You approve to the contents of the ECR!",
-        icon: "question",
-        showConfirmButton: true,
-        showCancelButton: true,
-    })
-    .then((result) => {
-        if (result.isConfirmed) {
-            fetch('../../src/controller/approveECR.php', {
-                method: 'POST',
-                body: (() => {
-                    const formData = new FormData;
-                    formData.append('approvalID', rootECRs[currentECRindex].approvalID);
-                    formData.append('term', document.querySelector('#term').value);
-                    return formData;
-                })()
-            })
-            .then(response => response.json())
-            .then(result => {
-                if (result == 'Success') {
-                    swal.fire({
-                        title: 'The ECR is now approved.',
-                        icon: "success",
-                        showConfirmButton: true,
-                    })
-                    .then((result) => {
-                        if (result.isConfirmed) {
-                          loadContent();
-                        }
-                    });
-                } else {
-                    swal.fire({
-                        title: 'Oops! Something went wrong.',
-                        icon: 'error',
-                        showConfirmButton: true,
-                    })
-                    .then((result) => {
-                        if (result.isConfirmed) {
-                          loadContent();
-                        }
-                    })
-                }
-            })
-            .catch(error => console.error(error));
-
-        }
-
-    });
-    
+function printECR() {
+    const page = document.querySelector('#ecr-table').innerHTML; // Specify the content you want to convert to PDF
+    var opt = {
+        margin:       1,
+        filename:     'Demopdf.pdf',
+        image:        { type: 'jpeg', quality: 0.98 },
+        html2canvas:  { scale: 2 },
+        jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+    };
+    // Choose the element that contains the content you want to convert.
+    html2pdf().set(opt).from(page).save();
 }

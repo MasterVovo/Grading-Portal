@@ -61,6 +61,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
             echo json_encode($ecrList);
             break;
+        
+        case 'getApprovedGrades':
+            $apprFetcher = new ApprovalFetcher();
+            $approvals = $apprFetcher->getApprovedByRegistrar($_POST['term']);
+            
+            $ecrList = array();
+            
+            $ecrFetcher = new ECRFetcher();
+            for ($i = 0; $i < count($approvals); $i++) {
+                $grades = $ecrFetcher->get($approvals[$i]['approvalID'], $_POST['term']);
+                $ecrList[$i]['approvalID'] = $approvals[$i]['approvalID'];
+                $ecrList[$i]['ecr'] = $grades;
+            }
+            echo json_encode($ecrList);
+            break;
     }
 } else {
     exit();

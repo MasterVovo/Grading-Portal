@@ -104,4 +104,28 @@ class ApprovalFetcher {
         else
             return $conn->errorInfo();
     }
+
+    public function getApprovedByRegistrar($term) {
+        $conn = DBConn::getInstance()->getConnection();
+
+        if ($term == 'midterm') {
+            $sql = 
+            "SELECT * 
+            FROM approval 
+            WHERE midtermApprovedByRegistrar = 1";
+        } else if ($term == 'final') {
+            $sql = 
+            "SELECT * 
+            FROM approval 
+            WHERE finalApprovedByRegistrar = 1";
+        }
+
+        $stmt = $conn->prepare($sql);
+        $result = $stmt->execute();
+
+        if ($result)
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        else
+            return $conn->errorInfo();
+    }
 }
