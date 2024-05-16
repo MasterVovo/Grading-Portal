@@ -44,28 +44,12 @@ if (data === "Teacher") {
     firstPart + secondPart
     }`;
 } else if (data === "Program Chair") {
-    document.querySelector("#left-panel").innerHTML = `${firstPart}
-    <li class="menu-item-has-children dropdown">
-        <a
-            href="#"
-            class="dropdown-toggle"
-            data-toggle="dropdown"
-            aria-haspopup="true"
-            aria-expanded="false"
-        >
-            <i class="menu-icon fa fa-file"></i>
-            ECR
-        </a>
-        <ul class="sub-menu children dropdown-menu">
-            <li>
-                <i class="menu-icon fa fa-thumbs-up"></i>
-                <a href="approveGrades.html">&nbsp;Approve</a>
-            </li>
-            <li>
-                <i class="menu-icon fa fa-check-circle-o"></i>
-                <a href="approvedGrades.html">&nbsp;Approved</a>
-            </li>
-        </ul>
+    document.querySelector("#left-panel").innerHTML = `
+    ${firstPart}
+    
+    <li>
+        <a href="approveGrades.html">
+        <i class="menu-icon fa fa-thumbs-up"></i>&nbsp;ECR</a>
     </li>
 
     <li>
@@ -76,28 +60,12 @@ if (data === "Teacher") {
 
     ${secondPart}`;
 } else if (data === "Dean") {
-    document.querySelector("#left-panel").innerHTML = `${firstPart}
-    <li class="menu-item-has-children dropdown">
-        <a
-            href="#"
-            class="dropdown-toggle"
-            data-toggle="dropdown"
-            aria-haspopup="true"
-            aria-expanded="false"
-        >
-            <i class="menu-icon fa fa-file"></i>
-            ECR
-        </a>
-        <ul class="sub-menu children dropdown-menu">
-            <li>
-                <i class="menu-icon fa fa-thumbs-up"></i>
-                <a href="approveGrades.html">&nbsp;Approve</a>
-            </li>
-            <li>
-                <i class="menu-icon fa fa-check-circle-o"></i>
-                <a href="#">&nbsp;Approved</a>
-            </li>
-        </ul>
+    document.querySelector("#left-panel").innerHTML = `
+    ${firstPart}
+
+    <li>
+        <a href="approveGrades.html">
+        <i class="menu-icon fa fa-thumbs-up"></i>&nbsp;ECR</a>
     </li>
 
     <li>
